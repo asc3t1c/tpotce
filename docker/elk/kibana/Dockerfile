@@ -4,7 +4,8 @@ FROM ubuntu:22.04
 ENV KB_VER=8.14.2
 # Include dist
 COPY dist/ /root/dist/
-RUN cpanm Term::ReadLine
+# CPAN
+RUN cpanm -nq Term::ReadLine
 #
 RUN apt-get update -y && \
     apt-get install -y \
