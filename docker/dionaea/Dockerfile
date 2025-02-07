@@ -106,6 +106,7 @@ RUN ARCH=$(arch) && \
       libnl-3-200 \
       libpcap0.8 \
       libpython3.12 \
+      python3-yaml \
       libudns0 && \
 #
     apt-get autoremove --purge -y && \
