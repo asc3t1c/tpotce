@@ -21,7 +21,7 @@ RUN apt-get update -y && \
     dpkg -i kibana-$KB_VER-$KB_ARCH.deb && \
 #
 # Setup user, groups and configs
-    RUN apt-get reinstall libpaper1 \
+RUN apt-get reinstall libpaper1 && \
 	mkdir -p /usr/share/kibana/config \
              /usr/share/kibana/data && \
     cp /etc/kibana/kibana.yml /usr/share/kibana/config && \
