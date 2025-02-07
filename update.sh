@@ -166,7 +166,7 @@ function fuUPDATER () {
 	echo "######$myBLUE This might take a while, please be patient!$myWHITE"
 	fuPULLIMAGES
 	fuREMOVEOLDIMAGES "f0rc3ps/*:dev"
-	fuREMOVEOLDIMAGES "ghcr.io/Asc3t1c/*:dev"
+	fuREMOVEOLDIMAGES "ghcr.io/asc3t1c/*:dev"
 	echo
 	echo "### If you made changes to docker-compose.yml please ensure to add them again."
 	echo "### We stored the previous version as backup in $myARCHIVE."
