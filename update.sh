@@ -78,8 +78,8 @@ function fuSELFUPDATE () {
 }
 
 function fuCHECK_VERSION () {
-	local myMINVERSION="24.04.0"
-	local myMASTERVERSION="24.04.0"
+	local myMINVERSION="24.04"
+	local myMASTERVERSION="24.04"
 	echo
 	echo "### Checking for version tag ..."
 	if [ -f "version" ];
