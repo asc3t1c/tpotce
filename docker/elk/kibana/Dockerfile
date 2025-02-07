@@ -1,4 +1,5 @@
 FROM ubuntu:22.04
+FROM node:20.15.1-alpine3.20
 #
 # VARS
 ENV KB_VER=8.16.1
