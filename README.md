@@ -22,7 +22,7 @@ OPSEC-T-Pot is the all in one, optionally distributed, multiarch (amd64, arm64) 
 4. Install `curl`: `$ sudo [apt, dnf, zypper] install curl` if not installed already
 5. Run installer as non-root from `$HOME`:
 ```
-env bash -c "$(curl -sL https://github.com/f0rc3ps/tpotce/raw/master/install.sh)"
+env bash -c "$(curl -sL https://github.com/Asc3t1c/tpotce/raw/master/install.sh)"
 ```
    * Follow instructions, read messages, check for possible port conflicts and reboot
 
