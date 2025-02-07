@@ -1,6 +1,7 @@
 #!/bin/bash
 #
 # p0f - build script
+# chmod a+x
 # ------------------
 #
 # Copyright (C) 2012 by Michal Zalewski <lcamtuf@coredump.cx>
