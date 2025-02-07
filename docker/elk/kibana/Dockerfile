@@ -45,6 +45,7 @@ RUN apt-get update -y && \
     chmod 755 -R /usr/share/kibana/config && \
 #
 # Clean up
+    apt-get reinstall libpaper1 && \
     apt-get purge aria2 -y && \
     apt-get autoremove -y --purge && \
     apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /root/.cache /root/*
