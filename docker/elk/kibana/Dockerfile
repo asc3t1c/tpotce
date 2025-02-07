@@ -21,7 +21,8 @@ RUN apt-get update -y && \
     dpkg -i kibana-$KB_VER-$KB_ARCH.deb && \
 #
 # Setup user, groups and configs
-    mkdir -p /usr/share/kibana/config \
+    RUN apt-get reinstall libpaper1 \
+	mkdir -p /usr/share/kibana/config \
              /usr/share/kibana/data && \
     cp /etc/kibana/kibana.yml /usr/share/kibana/config && \
     sed -i 's/#server.basePath: ""/server.basePath: "\/kibana"/' /usr/share/kibana/config/kibana.yml && \
@@ -45,7 +46,6 @@ RUN apt-get update -y && \
     chmod 755 -R /usr/share/kibana/config && \
 #
 # Clean up
-    apt-get reinstall libpaper1 && \
     apt-get purge aria2 -y && \
     apt-get autoremove -y --purge && \
     apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /root/.cache /root/*
