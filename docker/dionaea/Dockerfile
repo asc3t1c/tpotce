@@ -88,7 +88,6 @@ RUN ARCH=$(arch) && \
       python3-dev \   
       python3-boto3 \
       python3-bson \
-      python3-yaml \ 
       wget && \ 
 #
     apt-get install -y \
