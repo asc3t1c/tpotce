@@ -7,7 +7,7 @@ USERNAME="your_docker_user"
 PASSWORD="your_docker_password"
 
 # Part 0.1
-GITOKEN="your_token_here"
+GITOKEN="your_GITHUB_token_here"
 docker login $REGISTRY_URL -u $USERNAME -p $PASSWORD
 docker login ghcr.io -u $USERNAME --password $GITOKEN
 
