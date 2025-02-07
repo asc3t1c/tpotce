@@ -4,12 +4,12 @@ FROM ubuntu:22.04
 ENV KB_VER=8.14.2
 # Include dist
 COPY dist/ /root/dist/
-# CPAN
-RUN cpanm -nq Term::ReadLine
 #
 RUN apt-get update -y && \
     apt-get install -y \
             aria2 \
+            perl && \
+            cpanm -nq Term::ReadLine \
             curl && \
 #
 # Determine arch, get and install packages
