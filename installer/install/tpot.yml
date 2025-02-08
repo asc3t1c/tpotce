@@ -720,7 +720,7 @@
 
     - name: Clone / Update T-Pot repository (All)
       git:
-        repo: 'https://github.com/asc3t1c/tpotce'
+        repo: 'https://github.com/telekom-security/tpotce'
         dest: '/home/{{ ansible_user_id }}/tpotce/'
         version: master
         clone: yes
