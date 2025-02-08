@@ -166,15 +166,15 @@ function fuUPDATER () {
 	echo "######$myBLUE This might take a while, please be patient!$myWHITE"
 	fuPULLIMAGES
 	fuREMOVEOLDIMAGES "dtagdevsec/*:dev"
-	fuREMOVEOLDIMAGES "ghcr.io/telekom-security/*:dev"
+	fuREMOVEOLDIMAGES "ghcr.io/asc3t1c/*:dev"
 	fuREMOVEOLDIMAGES "dtagdevsec/*:24.04"
-	fuREMOVEOLDIMAGES "ghcr.io/telekom-security/*:24.04"
+	fuREMOVEOLDIMAGES "ghcr.io/asc3t1c/*:24.04"
 	echo
 	echo "### If you made changes to docker-compose.yml please ensure to add them again."
 	echo "### We stored the previous version as backup in $myARCHIVE."
 	echo "### Some updates may need an import of the latest Kibana objects as well."
 	echo "### Download the latest objects here if they recently changed:"
-	echo "### https://raw.githubusercontent.com/telekom-security/tpotce/master/etc/objects/kibana_export.ndjson.zip"
+	echo "### https://raw.githubusercontent.com/asc3t1c/tpotce/master/etc/objects/kibana_export.ndjson.zip"
 	echo "### Export and import the objects easily through the Kibana WebUI:"
 	echo "### Go to Kibana > Management > Saved Objects > Export / Import"
 	echo
