@@ -5,58 +5,64 @@
 #1 DONE 0.0s
 
 #2 [go-pot linux/arm64 internal] load metadata for docker.io/library/golang:1.23-alpine
-#2 DONE 0.2s
+#2 ...
 
 #3 [go-pot linux/amd64 internal] load metadata for docker.io/library/golang:1.23-alpine
-#3 DONE 0.2s
+#3 DONE 0.6s
+
+#2 [go-pot linux/arm64 internal] load metadata for docker.io/library/golang:1.23-alpine
+#2 DONE 0.6s
 
 #4 [go-pot internal] load .dockerignore
 #4 transferring context: 2B done
 #4 DONE 0.0s
 
-#5 [go-pot linux/amd64 builder 1/4] FROM docker.io/library/golang:1.23-alpine@sha256:2c49857f2295e89b23b28386e57e018a86620a8fede5003900f2d138ba9c4037
-#5 resolve docker.io/library/golang:1.23-alpine@sha256:2c49857f2295e89b23b28386e57e018a86620a8fede5003900f2d138ba9c4037 0.0s done
+#5 [go-pot internal] load build context
 #5 DONE 0.0s
 
-#6 [go-pot linux/arm64 builder 1/4] FROM docker.io/library/golang:1.23-alpine@sha256:2c49857f2295e89b23b28386e57e018a86620a8fede5003900f2d138ba9c4037
+#6 [go-pot linux/amd64 builder 1/4] FROM docker.io/library/golang:1.23-alpine@sha256:2c49857f2295e89b23b28386e57e018a86620a8fede5003900f2d138ba9c4037
 #6 resolve docker.io/library/golang:1.23-alpine@sha256:2c49857f2295e89b23b28386e57e018a86620a8fede5003900f2d138ba9c4037 0.0s done
 #6 DONE 0.0s
 
-#7 [go-pot internal] load build context
-#7 transferring context: 13.27kB done
-#7 DONE 0.0s
+#7 [go-pot linux/arm64 builder 1/4] FROM docker.io/library/golang:1.23-alpine@sha256:2c49857f2295e89b23b28386e57e018a86620a8fede5003900f2d138ba9c4037
+#7 resolve docker.io/library/golang:1.23-alpine@sha256:2c49857f2295e89b23b28386e57e018a86620a8fede5003900f2d138ba9c4037 0.1s done
+#7 DONE 0.1s
 
-#8 [go-pot linux/amd64 stage-1 1/3] COPY --from=builder /opt/go-pot/go-pot /opt/go-pot/go-pot
+#5 [go-pot internal] load build context
+#5 transferring context: 61B done
+#5 DONE 0.0s
+
+#8 [go-pot linux/amd64 builder 4/4] RUN CGO_ENABLED=0 GOOS=linux go build -o /opt/go-pot/go-pot
 #8 CACHED
 
-#9 [go-pot linux/amd64 builder 4/4] RUN CGO_ENABLED=0 GOOS=linux go build -o /opt/go-pot/go-pot
+#9 [go-pot linux/amd64 builder 2/4] RUN <<EOF (apk -U upgrade...)
 #9 CACHED
 
-#10 [go-pot linux/amd64 builder 2/4] RUN <<EOF (apk -U upgrade...)
+#10 [go-pot linux/amd64 builder 3/4] WORKDIR /opt/go-pot
 #10 CACHED
 
-#11 [go-pot linux/amd64 stage-1 2/3] COPY dist/config.yml /opt/go-pot/config.yml
+#11 [go-pot linux/amd64 stage-1 1/3] COPY --from=builder /opt/go-pot/go-pot /opt/go-pot/go-pot
 #11 CACHED
 
-#12 [go-pot linux/amd64 builder 3/4] WORKDIR /opt/go-pot
+#12 [go-pot linux/amd64 stage-1 2/3] COPY dist/config.yml /opt/go-pot/config.yml
 #12 CACHED
 
-#13 [go-pot linux/arm64 builder 4/4] RUN CGO_ENABLED=0 GOOS=linux go build -o /opt/go-pot/go-pot
+#13 [go-pot linux/amd64 stage-1 3/3] WORKDIR /opt/go-pot
 #13 CACHED
 
-#14 [go-pot linux/arm64 stage-1 2/3] COPY dist/config.yml /opt/go-pot/config.yml
+#14 [go-pot linux/arm64 builder 4/4] RUN CGO_ENABLED=0 GOOS=linux go build -o /opt/go-pot/go-pot
 #14 CACHED
 
 #15 [go-pot linux/arm64 builder 3/4] WORKDIR /opt/go-pot
 #15 CACHED
 
-#16 [go-pot linux/arm64 builder 2/4] RUN <<EOF (apk -U upgrade...)
+#16 [go-pot linux/arm64 stage-1 1/3] COPY --from=builder /opt/go-pot/go-pot /opt/go-pot/go-pot
 #16 CACHED
 
-#17 [go-pot linux/arm64 stage-1 1/3] COPY --from=builder /opt/go-pot/go-pot /opt/go-pot/go-pot
+#17 [go-pot linux/arm64 stage-1 2/3] COPY dist/config.yml /opt/go-pot/config.yml
 #17 CACHED
 
-#18 [go-pot linux/amd64 stage-1 3/3] WORKDIR /opt/go-pot
+#18 [go-pot linux/arm64 builder 2/4] RUN <<EOF (apk -U upgrade...)
 #18 CACHED
 
 #19 [go-pot linux/arm64 stage-1 3/3] WORKDIR /opt/go-pot
@@ -64,15 +70,14 @@
 
 #20 [go-pot] exporting to image
 #20 exporting layers done
-#20 exporting manifest sha256:7d8df5476b9e9abae934e0442a7ef12d65a8525c41d922e0996105d84821f367 done
-#20 exporting config sha256:3d6b4c3b3c9a73adf55230628a616579d4b9b65dd6d6f1bf93449bd043089eaa
-#20 exporting config sha256:3d6b4c3b3c9a73adf55230628a616579d4b9b65dd6d6f1bf93449bd043089eaa done
-#20 exporting attestation manifest sha256:1b0b2a6ed32f7b89295c46f5d8d3159d10ee2b0eb012078271744cb8e879bebd 0.0s done
-#20 exporting manifest sha256:9428fb8df83a35b04075310bd0b4e410e9dd5dbf12aeda34a0e0e038555170bb done
+#20 exporting manifest sha256:7d8df5476b9e9abae934e0442a7ef12d65a8525c41d922e0996105d84821f367 0.0s done
+#20 exporting config sha256:3d6b4c3b3c9a73adf55230628a616579d4b9b65dd6d6f1bf93449bd043089eaa 0.0s done
+#20 exporting attestation manifest sha256:ac51bfebad8c383fa8964ad395483ecc76f5e3ec65698549f20319cdd366df2d
+#20 exporting attestation manifest sha256:ac51bfebad8c383fa8964ad395483ecc76f5e3ec65698549f20319cdd366df2d 0.0s done
+#20 exporting manifest sha256:9428fb8df83a35b04075310bd0b4e410e9dd5dbf12aeda34a0e0e038555170bb 0.0s done
 #20 exporting config sha256:2ea36065396feeffeac7962f706b57e6901b2683516f487908631501c92a01a2 done
-#20 exporting attestation manifest sha256:087b010ae83883d9c561a0191fcb6a990de596a01b05ee5babf9dd08fc9e92b6 0.0s done
-#20 exporting manifest list sha256:c0c108b842afeab4b8a5130a15fa2424910c97a4c8d76768d5f756b9c73fac5d
-#20 exporting manifest list sha256:c0c108b842afeab4b8a5130a15fa2424910c97a4c8d76768d5f756b9c73fac5d 0.0s done
+#20 exporting attestation manifest sha256:e0c1b2991c7f4a6db0f6cf7be19ba1193c9a7acccd38e423db2fadec2ce06bc9 0.0s done
+#20 exporting manifest list sha256:7b0e514299a80b8458c345e9c357ece4c662b8ed5d2e912eb56896d791768796 0.0s done
 #20 pushing layers
 #20 ...
 
@@ -80,19 +85,19 @@
 #21 DONE 0.0s
 
 #20 [go-pot] exporting to image
-#20 pushing layers 3.3s done
-#20 pushing manifest for docker.io/f0rc3ps/go-pot:24.04.1@sha256:c0c108b842afeab4b8a5130a15fa2424910c97a4c8d76768d5f756b9c73fac5d
-#20 pushing manifest for docker.io/f0rc3ps/go-pot:24.04.1@sha256:c0c108b842afeab4b8a5130a15fa2424910c97a4c8d76768d5f756b9c73fac5d 2.3s done
+#20 pushing layers 3.1s done
+#20 pushing manifest for docker.io/f0rc3ps/go-pot:24.04.1@sha256:7b0e514299a80b8458c345e9c357ece4c662b8ed5d2e912eb56896d791768796
+#20 pushing manifest for docker.io/f0rc3ps/go-pot:24.04.1@sha256:7b0e514299a80b8458c345e9c357ece4c662b8ed5d2e912eb56896d791768796 2.3s done
 #20 ...
 
 #22 [go-pot auth] asc3t1c/go-pot:pull,push token for ghcr.io
 #22 DONE 0.0s
 
 #20 [go-pot] exporting to image
-#20 pushing layers 2.6s done
-#20 pushing manifest for ghcr.io/asc3t1c/go-pot:24.04.1@sha256:c0c108b842afeab4b8a5130a15fa2424910c97a4c8d76768d5f756b9c73fac5d
-#20 pushing manifest for ghcr.io/asc3t1c/go-pot:24.04.1@sha256:c0c108b842afeab4b8a5130a15fa2424910c97a4c8d76768d5f756b9c73fac5d 1.5s done
-#20 DONE 9.8s
+#20 pushing layers 2.1s done
+#20 pushing manifest for ghcr.io/asc3t1c/go-pot:24.04.1@sha256:7b0e514299a80b8458c345e9c357ece4c662b8ed5d2e912eb56896d791768796
+#20 pushing manifest for ghcr.io/asc3t1c/go-pot:24.04.1@sha256:7b0e514299a80b8458c345e9c357ece4c662b8ed5d2e912eb56896d791768796 1.6s done
+#20 DONE 9.3s
 
 #23 [go-pot] resolving provenance for metadata file
 #23 DONE 0.0s

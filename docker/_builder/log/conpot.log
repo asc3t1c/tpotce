@@ -4,30 +4,33 @@
 #1 transferring dockerfile: 3.71kB 0.0s done
 #1 DONE 0.0s
 
-#2 [conpot linux/amd64 internal] load metadata for docker.io/library/alpine:3.19
+#2 [conpot linux/arm64 internal] load metadata for docker.io/library/alpine:3.19
 #2 ...
 
-#3 [conpot linux/arm64 internal] load metadata for docker.io/library/alpine:3.19
+#3 [conpot linux/amd64 internal] load metadata for docker.io/library/alpine:3.19
 #3 DONE 0.2s
 
+#2 [conpot linux/arm64 internal] load metadata for docker.io/library/alpine:3.19
+#2 DONE 0.2s
+
 #4 [conpot internal] load .dockerignore
-#4 transferring context: 2B done
+#4 transferring context: 2B 0.0s done
 #4 DONE 0.0s
 
-#2 [conpot linux/amd64 internal] load metadata for docker.io/library/alpine:3.19
-#2 DONE 0.4s
-
-#5 [conpot linux/amd64 1/3] FROM docker.io/library/alpine:3.19@sha256:6380aa6b04faa579332d4c9d1f65bd7093012ba6e01d9bbcd5e2d8a4f9fae38f
-#5 resolve docker.io/library/alpine:3.19@sha256:6380aa6b04faa579332d4c9d1f65bd7093012ba6e01d9bbcd5e2d8a4f9fae38f 0.0s done
+#5 [conpot internal] load build context
 #5 DONE 0.0s
 
-#6 [conpot linux/arm64 1/3] FROM docker.io/library/alpine:3.19@sha256:6380aa6b04faa579332d4c9d1f65bd7093012ba6e01d9bbcd5e2d8a4f9fae38f
+#6 [conpot linux/amd64 1/3] FROM docker.io/library/alpine:3.19@sha256:6380aa6b04faa579332d4c9d1f65bd7093012ba6e01d9bbcd5e2d8a4f9fae38f
 #6 resolve docker.io/library/alpine:3.19@sha256:6380aa6b04faa579332d4c9d1f65bd7093012ba6e01d9bbcd5e2d8a4f9fae38f 0.0s done
 #6 DONE 0.0s
 
-#7 [conpot internal] load build context
-#7 transferring context: 54.29kB 0.0s done
+#7 [conpot linux/arm64 1/3] FROM docker.io/library/alpine:3.19@sha256:6380aa6b04faa579332d4c9d1f65bd7093012ba6e01d9bbcd5e2d8a4f9fae38f
+#7 resolve docker.io/library/alpine:3.19@sha256:6380aa6b04faa579332d4c9d1f65bd7093012ba6e01d9bbcd5e2d8a4f9fae38f 0.0s done
 #7 DONE 0.0s
+
+#5 [conpot internal] load build context
+#5 transferring context: 765B 0.0s done
+#5 DONE 0.0s
 
 #8 [conpot linux/arm64 2/3] COPY dist/ /root/dist/
 #8 CACHED
@@ -44,13 +47,12 @@
 #12 [conpot] exporting to image
 #12 exporting layers done
 #12 exporting manifest sha256:7b246befea07460f141672606d959e9c8deac945b35ee0a5d921801a6b0b45c0 done
-#12 exporting config sha256:a499f33433afb6d20f924a5616f09894d7c1086cec41c977bab53bd0831cae40
 #12 exporting config sha256:a499f33433afb6d20f924a5616f09894d7c1086cec41c977bab53bd0831cae40 done
-#12 exporting attestation manifest sha256:87fc8a044f374fb04b1078ac47721aad68c41bc057dc9d6bd8ed2fd80a3ec222 0.0s done
+#12 exporting attestation manifest sha256:da4d96b416734593a0478622d62374af1834fcee4eaa765c3ee6f57c39dede3f 0.0s done
 #12 exporting manifest sha256:d37e88bdf39375f7063eef61dd4d21d3baa4427be723e885cd3c4f50a6d10e81 done
 #12 exporting config sha256:de7a19baad83ccaba0a25c8ee495d4247394db1d97bb61c4e12545c0ad6e9c45 done
-#12 exporting attestation manifest sha256:41a396cdcc7feca48cc4ab4418974de9009e938f34fac9ce8bd2248a2b38285d 0.0s done
-#12 exporting manifest list sha256:58b2a06847c638382e3a194d1a5b7bed31a7002d068d035e0b1aa785885e56f6 0.0s done
+#12 exporting attestation manifest sha256:a6e9971fcdf7dd655b2829209bc4c23aaa5e54f41664fc269c88e181e44e85c9 0.0s done
+#12 exporting manifest list sha256:f34bddec215626ed504c9751acb325291f7a5ee953e4c580a93565f2a02798f2 done
 #12 pushing layers
 #12 ...
 
@@ -58,19 +60,19 @@
 #13 DONE 0.0s
 
 #12 [conpot] exporting to image
-#12 pushing layers 3.1s done
-#12 pushing manifest for docker.io/f0rc3ps/conpot:24.04.1@sha256:58b2a06847c638382e3a194d1a5b7bed31a7002d068d035e0b1aa785885e56f6
-#12 pushing manifest for docker.io/f0rc3ps/conpot:24.04.1@sha256:58b2a06847c638382e3a194d1a5b7bed31a7002d068d035e0b1aa785885e56f6 2.6s done
+#12 pushing layers 2.6s done
+#12 pushing manifest for docker.io/f0rc3ps/conpot:24.04.1@sha256:f34bddec215626ed504c9751acb325291f7a5ee953e4c580a93565f2a02798f2
+#12 pushing manifest for docker.io/f0rc3ps/conpot:24.04.1@sha256:f34bddec215626ed504c9751acb325291f7a5ee953e4c580a93565f2a02798f2 2.6s done
 #12 ...
 
 #14 [conpot auth] asc3t1c/conpot:pull,push token for ghcr.io
 #14 DONE 0.0s
 
 #12 [conpot] exporting to image
-#12 pushing layers 1.3s done
-#12 pushing manifest for ghcr.io/asc3t1c/conpot:24.04.1@sha256:58b2a06847c638382e3a194d1a5b7bed31a7002d068d035e0b1aa785885e56f6
-#12 pushing manifest for ghcr.io/asc3t1c/conpot:24.04.1@sha256:58b2a06847c638382e3a194d1a5b7bed31a7002d068d035e0b1aa785885e56f6 2.5s done
-#12 DONE 9.6s
+#12 pushing layers 2.4s done
+#12 pushing manifest for ghcr.io/asc3t1c/conpot:24.04.1@sha256:f34bddec215626ed504c9751acb325291f7a5ee953e4c580a93565f2a02798f2
+#12 pushing manifest for ghcr.io/asc3t1c/conpot:24.04.1@sha256:f34bddec215626ed504c9751acb325291f7a5ee953e4c580a93565f2a02798f2 1.6s done
+#12 DONE 9.3s
 
 #15 [conpot] resolving provenance for metadata file
 #15 DONE 0.0s

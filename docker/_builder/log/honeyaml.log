@@ -4,110 +4,113 @@
 #1 transferring dockerfile: 1.03kB 0.0s done
 #1 DONE 0.0s
 
-#2 [honeyaml auth] chainguard/wolfi-base:pull token for registry-1.docker.io
-#2 DONE 0.0s
+#2 [honeyaml linux/amd64 internal] load metadata for docker.io/chainguard/wolfi-base:latest
+#2 ...
 
-#3 [honeyaml auth] library/rust:pull token for registry-1.docker.io
+#3 [honeyaml auth] chainguard/wolfi-base:pull token for registry-1.docker.io
 #3 DONE 0.0s
 
-#4 [honeyaml linux/amd64 internal] load metadata for docker.io/library/rust:latest
-#4 ...
+#4 [honeyaml auth] library/rust:pull token for registry-1.docker.io
+#4 DONE 0.0s
 
-#5 [honeyaml linux/amd64 internal] load metadata for docker.io/chainguard/wolfi-base:latest
-#5 DONE 0.7s
+#5 [honeyaml linux/amd64 internal] load metadata for docker.io/library/rust:latest
+#5 ...
 
-#6 [honeyaml linux/arm64 internal] load metadata for docker.io/chainguard/wolfi-base:latest
-#6 DONE 0.7s
+#2 [honeyaml linux/amd64 internal] load metadata for docker.io/chainguard/wolfi-base:latest
+#2 DONE 1.0s
 
-#4 [honeyaml linux/amd64 internal] load metadata for docker.io/library/rust:latest
-#4 DONE 0.8s
+#6 [honeyaml linux/arm64 internal] load metadata for docker.io/library/rust:latest
+#6 DONE 1.0s
 
-#7 [honeyaml internal] load .dockerignore
-#7 transferring context: 2B done
-#7 DONE 0.0s
+#7 [honeyaml linux/arm64 internal] load metadata for docker.io/chainguard/wolfi-base:latest
+#7 DONE 1.0s
 
-#8 [honeyaml linux/arm64 internal] load metadata for docker.io/library/rust:latest
-#8 DONE 0.8s
+#5 [honeyaml linux/amd64 internal] load metadata for docker.io/library/rust:latest
+#5 DONE 1.1s
 
-#9 [honeyaml linux/amd64 builder 1/6] FROM docker.io/library/rust:latest@sha256:738ae99a3d75623f41e6882566b4ef37e38a9840244a47efd4a0ca22e9628b88
-#9 resolve docker.io/library/rust:latest@sha256:738ae99a3d75623f41e6882566b4ef37e38a9840244a47efd4a0ca22e9628b88 0.0s done
+#8 [honeyaml internal] load .dockerignore
+#8 transferring context: 2B done
+#8 DONE 0.0s
+
+#9 [honeyaml linux/amd64 stage-1 1/5] FROM docker.io/chainguard/wolfi-base:latest@sha256:1ec3327af43d7af231ffe475aff88d49dbb5e09af9f28610e6afbd2cb096e751
+#9 resolve docker.io/chainguard/wolfi-base:latest@sha256:1ec3327af43d7af231ffe475aff88d49dbb5e09af9f28610e6afbd2cb096e751 0.0s done
 #9 DONE 0.0s
 
 #10 [honeyaml linux/arm64 builder 1/6] FROM docker.io/library/rust:latest@sha256:738ae99a3d75623f41e6882566b4ef37e38a9840244a47efd4a0ca22e9628b88
 #10 resolve docker.io/library/rust:latest@sha256:738ae99a3d75623f41e6882566b4ef37e38a9840244a47efd4a0ca22e9628b88 0.0s done
-#10 DONE 0.0s
+#10 DONE 0.1s
 
-#11 [honeyaml linux/amd64 stage-1 1/5] FROM docker.io/chainguard/wolfi-base:latest@sha256:1ec3327af43d7af231ffe475aff88d49dbb5e09af9f28610e6afbd2cb096e751
+#11 [honeyaml linux/arm64 stage-1 1/5] FROM docker.io/chainguard/wolfi-base:latest@sha256:1ec3327af43d7af231ffe475aff88d49dbb5e09af9f28610e6afbd2cb096e751
 #11 resolve docker.io/chainguard/wolfi-base:latest@sha256:1ec3327af43d7af231ffe475aff88d49dbb5e09af9f28610e6afbd2cb096e751 0.0s done
-#11 DONE 0.0s
+#11 DONE 0.1s
 
-#12 [honeyaml linux/arm64 stage-1 1/5] FROM docker.io/chainguard/wolfi-base:latest@sha256:1ec3327af43d7af231ffe475aff88d49dbb5e09af9f28610e6afbd2cb096e751
-#12 resolve docker.io/chainguard/wolfi-base:latest@sha256:1ec3327af43d7af231ffe475aff88d49dbb5e09af9f28610e6afbd2cb096e751 0.0s done
-#12 DONE 0.0s
+#12 [honeyaml linux/arm64 builder 6/6] RUN cargo build --release &&     cp target/release/honeyaml /opt/honeyaml/
+#12 CACHED
 
-#13 [honeyaml linux/amd64 builder 4/6] RUN git clone https://github.com/t3chn0m4g3/honeyaml /opt/honeyaml &&     cd /opt/honeyaml &&     git checkout 9648c27bb31ad554ccabfdd9aeb77028219f24b0
+#13 [honeyaml linux/arm64 builder 5/6] WORKDIR /opt/honeyaml
 #13 CACHED
 
-#14 [honeyaml linux/amd64 stage-1 4/5] RUN apk -U --no-cache add libstdc++
+#14 [honeyaml linux/arm64 stage-1 4/5] RUN apk -U --no-cache add libstdc++
 #14 CACHED
 
-#15 [honeyaml linux/amd64 stage-1 2/5] COPY --from=builder /opt/honeyaml/honeyaml /opt/honeyaml/
+#15 [honeyaml linux/arm64 builder 2/6] RUN apt update &&     apt upgrade -y &&     apt install -y git                     musl-tools                     musl-dev                     libzstd-dev
 #15 CACHED
 
-#16 [honeyaml linux/amd64 builder 3/6] RUN update-ca-certificates
+#16 [honeyaml linux/arm64 builder 3/6] RUN update-ca-certificates
 #16 CACHED
 
-#17 [honeyaml linux/amd64 stage-1 3/5] COPY --from=builder /opt/honeyaml/api.yml /opt/honeyaml/
+#17 [honeyaml linux/arm64 builder 4/6] RUN git clone https://github.com/t3chn0m4g3/honeyaml /opt/honeyaml &&     cd /opt/honeyaml &&     git checkout 9648c27bb31ad554ccabfdd9aeb77028219f24b0
 #17 CACHED
 
-#18 [honeyaml linux/amd64 builder 2/6] RUN apt update &&     apt upgrade -y &&     apt install -y git                     musl-tools                     musl-dev                     libzstd-dev
+#18 [honeyaml linux/arm64 stage-1 3/5] COPY --from=builder /opt/honeyaml/api.yml /opt/honeyaml/
 #18 CACHED
 
-#19 [honeyaml linux/amd64 builder 5/6] WORKDIR /opt/honeyaml
+#19 [honeyaml linux/arm64 stage-1 2/5] COPY --from=builder /opt/honeyaml/honeyaml /opt/honeyaml/
 #19 CACHED
 
-#20 [honeyaml linux/amd64 builder 6/6] RUN cargo build --release &&     cp target/release/honeyaml /opt/honeyaml/
+#20 [honeyaml linux/arm64 stage-1 5/5] WORKDIR /opt/honeyaml
 #20 CACHED
 
-#21 [honeyaml linux/amd64 stage-1 5/5] WORKDIR /opt/honeyaml
-#21 CACHED
+#21 [honeyaml linux/amd64 builder 1/6] FROM docker.io/library/rust:latest@sha256:738ae99a3d75623f41e6882566b4ef37e38a9840244a47efd4a0ca22e9628b88
+#21 resolve docker.io/library/rust:latest@sha256:738ae99a3d75623f41e6882566b4ef37e38a9840244a47efd4a0ca22e9628b88 0.0s done
+#21 DONE 0.1s
 
-#22 [honeyaml linux/arm64 stage-1 2/5] COPY --from=builder /opt/honeyaml/honeyaml /opt/honeyaml/
+#22 [honeyaml linux/amd64 builder 3/6] RUN update-ca-certificates
 #22 CACHED
 
-#23 [honeyaml linux/arm64 builder 3/6] RUN update-ca-certificates
+#23 [honeyaml linux/amd64 stage-1 4/5] RUN apk -U --no-cache add libstdc++
 #23 CACHED
 
-#24 [honeyaml linux/arm64 stage-1 3/5] COPY --from=builder /opt/honeyaml/api.yml /opt/honeyaml/
+#24 [honeyaml linux/amd64 builder 6/6] RUN cargo build --release &&     cp target/release/honeyaml /opt/honeyaml/
 #24 CACHED
 
-#25 [honeyaml linux/arm64 builder 2/6] RUN apt update &&     apt upgrade -y &&     apt install -y git                     musl-tools                     musl-dev                     libzstd-dev
+#25 [honeyaml linux/amd64 stage-1 3/5] COPY --from=builder /opt/honeyaml/api.yml /opt/honeyaml/
 #25 CACHED
 
-#26 [honeyaml linux/arm64 builder 6/6] RUN cargo build --release &&     cp target/release/honeyaml /opt/honeyaml/
+#26 [honeyaml linux/amd64 builder 2/6] RUN apt update &&     apt upgrade -y &&     apt install -y git                     musl-tools                     musl-dev                     libzstd-dev
 #26 CACHED
 
-#27 [honeyaml linux/arm64 stage-1 4/5] RUN apk -U --no-cache add libstdc++
+#27 [honeyaml linux/amd64 builder 5/6] WORKDIR /opt/honeyaml
 #27 CACHED
 
-#28 [honeyaml linux/arm64 builder 5/6] WORKDIR /opt/honeyaml
+#28 [honeyaml linux/amd64 builder 4/6] RUN git clone https://github.com/t3chn0m4g3/honeyaml /opt/honeyaml &&     cd /opt/honeyaml &&     git checkout 9648c27bb31ad554ccabfdd9aeb77028219f24b0
 #28 CACHED
 
-#29 [honeyaml linux/arm64 builder 4/6] RUN git clone https://github.com/t3chn0m4g3/honeyaml /opt/honeyaml &&     cd /opt/honeyaml &&     git checkout 9648c27bb31ad554ccabfdd9aeb77028219f24b0
+#29 [honeyaml linux/amd64 stage-1 2/5] COPY --from=builder /opt/honeyaml/honeyaml /opt/honeyaml/
 #29 CACHED
 
-#30 [honeyaml linux/arm64 stage-1 5/5] WORKDIR /opt/honeyaml
+#30 [honeyaml linux/amd64 stage-1 5/5] WORKDIR /opt/honeyaml
 #30 CACHED
 
 #31 [honeyaml] exporting to image
 #31 exporting layers done
 #31 exporting manifest sha256:719785dd2903082301de614f98a03e192159ff78fd4b3a100b4b81b606ab6c4f done
 #31 exporting config sha256:6225140f2187b968186f1b6e55df54b7b8841015b1b464da043729e3c49f74e1 done
-#31 exporting attestation manifest sha256:a953150f704331e0be7a9e6f10133d9d0db3834bd67f8a16c2020bde0c016420 0.0s done
+#31 exporting attestation manifest sha256:4ad81804fa90ccab9997836ed00a01140b1f9d5c5416d4371357d62e8f53ad94 0.0s done
 #31 exporting manifest sha256:264581ba5d816b681643a0007203c5855d17fde85dcd873ccec64ba91886e151 done
 #31 exporting config sha256:77519e1fa9ee9533fcfe5e24b2926ab50c99153eada6a3bb10d0bd25af9e9bb1 done
-#31 exporting attestation manifest sha256:5ff399401d978c16752d1484d046ab91c78a67054d4865893a07b36ba91ee54c 0.0s done
-#31 exporting manifest list sha256:cb0af8f99e8786ccbe6582eb88ce697436d382e7e9cf3ba480af59bbe88b9cdf done
+#31 exporting attestation manifest sha256:1ef2eea9b125b70492a30b79bf7b69f5f65928af2ecddd3013a77e0f81084c4a 0.0s done
+#31 exporting manifest list sha256:458cd60397a25447debd6c1d97a9dbaa25b485fff6c957de17827f7c8c25b3d0 0.0s done
 #31 pushing layers
 #31 ...
 
@@ -116,18 +119,18 @@
 
 #31 [honeyaml] exporting to image
 #31 pushing layers 3.3s done
-#31 pushing manifest for docker.io/f0rc3ps/honeyaml:24.04.1@sha256:cb0af8f99e8786ccbe6582eb88ce697436d382e7e9cf3ba480af59bbe88b9cdf
-#31 pushing manifest for docker.io/f0rc3ps/honeyaml:24.04.1@sha256:cb0af8f99e8786ccbe6582eb88ce697436d382e7e9cf3ba480af59bbe88b9cdf 2.3s done
+#31 pushing manifest for docker.io/f0rc3ps/honeyaml:24.04.1@sha256:458cd60397a25447debd6c1d97a9dbaa25b485fff6c957de17827f7c8c25b3d0
+#31 pushing manifest for docker.io/f0rc3ps/honeyaml:24.04.1@sha256:458cd60397a25447debd6c1d97a9dbaa25b485fff6c957de17827f7c8c25b3d0 2.1s done
 #31 ...
 
 #33 [honeyaml auth] asc3t1c/honeyaml:pull,push token for ghcr.io
 #33 DONE 0.0s
 
 #31 [honeyaml] exporting to image
-#31 pushing layers 2.5s done
-#31 pushing manifest for ghcr.io/asc3t1c/honeyaml:24.04.1@sha256:cb0af8f99e8786ccbe6582eb88ce697436d382e7e9cf3ba480af59bbe88b9cdf
-#31 pushing manifest for ghcr.io/asc3t1c/honeyaml:24.04.1@sha256:cb0af8f99e8786ccbe6582eb88ce697436d382e7e9cf3ba480af59bbe88b9cdf 1.5s done
-#31 DONE 9.8s
+#31 pushing layers 2.0s done
+#31 pushing manifest for ghcr.io/asc3t1c/honeyaml:24.04.1@sha256:458cd60397a25447debd6c1d97a9dbaa25b485fff6c957de17827f7c8c25b3d0
+#31 pushing manifest for ghcr.io/asc3t1c/honeyaml:24.04.1@sha256:458cd60397a25447debd6c1d97a9dbaa25b485fff6c957de17827f7c8c25b3d0 1.7s done
+#31 DONE 9.2s
 
 #34 [honeyaml] resolving provenance for metadata file
 #34 DONE 0.0s

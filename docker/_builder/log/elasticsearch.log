@@ -5,49 +5,51 @@
 #1 DONE 0.0s
 
 #2 [elasticsearch linux/arm64 internal] load metadata for docker.io/library/ubuntu:24.04
-#2 DONE 0.2s
+#2 ...
 
 #3 [elasticsearch linux/amd64 internal] load metadata for docker.io/library/ubuntu:24.04
 #3 DONE 0.2s
+
+#2 [elasticsearch linux/arm64 internal] load metadata for docker.io/library/ubuntu:24.04
+#2 DONE 0.2s
 
 #4 [elasticsearch internal] load .dockerignore
 #4 transferring context: 2B done
 #4 DONE 0.0s
 
-#5 [elasticsearch linux/amd64 1/3] FROM docker.io/library/ubuntu:24.04@sha256:72297848456d5d37d1262630108ab308d3e9ec7ed1c3286a32fe09856619a782
+#5 [elasticsearch linux/arm64 1/3] FROM docker.io/library/ubuntu:24.04@sha256:72297848456d5d37d1262630108ab308d3e9ec7ed1c3286a32fe09856619a782
 #5 resolve docker.io/library/ubuntu:24.04@sha256:72297848456d5d37d1262630108ab308d3e9ec7ed1c3286a32fe09856619a782 0.0s done
 #5 DONE 0.0s
 
-#6 [elasticsearch linux/arm64 1/3] FROM docker.io/library/ubuntu:24.04@sha256:72297848456d5d37d1262630108ab308d3e9ec7ed1c3286a32fe09856619a782
+#6 [elasticsearch linux/amd64 1/3] FROM docker.io/library/ubuntu:24.04@sha256:72297848456d5d37d1262630108ab308d3e9ec7ed1c3286a32fe09856619a782
 #6 resolve docker.io/library/ubuntu:24.04@sha256:72297848456d5d37d1262630108ab308d3e9ec7ed1c3286a32fe09856619a782 0.0s done
 #6 DONE 0.0s
 
 #7 [elasticsearch internal] load build context
-#7 transferring context: 547B 0.0s done
+#7 transferring context: 68B done
 #7 DONE 0.0s
 
-#8 [elasticsearch linux/amd64 2/3] COPY dist/ /root/dist/
+#8 [elasticsearch linux/arm64 2/3] COPY dist/ /root/dist/
 #8 CACHED
 
-#9 [elasticsearch linux/arm64 2/3] COPY dist/ /root/dist/
+#9 [elasticsearch linux/arm64 3/3] RUN	APT-GET update -y &&     apt-get upgrade -y &&     apt-get install -y 			adduser             aria2             curl &&     ARCH=$(arch) &&       if [ "$ARCH" = "x86_64" ]; then ES_ARCH="amd64"; export _JAVA_OPTIONS=""; fi &&       if [ "$ARCH" = "aarch64" ]; then ES_ARCH="arm64"; export _JAVA_OPTIONS="-XX:UseSVE=0"; fi &&     echo "$ARCH" &&     cd /root/dist/ &&     mkdir -p /usr/share/elasticsearch/config              /etc/elasticsearch &&     cp elasticsearch.yml /etc/elasticsearch/ &&     aria2c -s 16 -x 16 https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-8.16.1-$ES_ARCH.deb &&     dpkg --force-confold -i elasticsearch-8.16.1-$ES_ARCH.deb &&     groupmod -g 2000 elasticsearch &&     usermod -u 2000 elasticsearch &&     chown -R root:elasticsearch /etc/default/elasticsearch                                 /etc/elasticsearch &&     chown -R elasticsearch:elasticsearch /var/lib/elasticsearch                                          /var/log/elasticsearch &&     apt-get purge aria2 -y &&     apt-get autoremove -y --purge &&     apt-get clean &&     rm -rf /var/lib/apt/lists/*         /tmp/* /var/tmp/*         /root/.cache         /root/*
 #9 CACHED
 
-#10 [elasticsearch linux/amd64 3/3] RUN	APT-GET update -y &&     apt-get upgrade -y &&     apt-get install -y 			adduser             aria2             curl &&     ARCH=$(arch) &&       if [ "$ARCH" = "x86_64" ]; then ES_ARCH="amd64"; export _JAVA_OPTIONS=""; fi &&       if [ "$ARCH" = "aarch64" ]; then ES_ARCH="arm64"; export _JAVA_OPTIONS="-XX:UseSVE=0"; fi &&     echo "$ARCH" &&     cd /root/dist/ &&     mkdir -p /usr/share/elasticsearch/config              /etc/elasticsearch &&     cp elasticsearch.yml /etc/elasticsearch/ &&     aria2c -s 16 -x 16 https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-8.16.1-$ES_ARCH.deb &&     dpkg --force-confold -i elasticsearch-8.16.1-$ES_ARCH.deb &&     groupmod -g 2000 elasticsearch &&     usermod -u 2000 elasticsearch &&     chown -R root:elasticsearch /etc/default/elasticsearch                                 /etc/elasticsearch &&     chown -R elasticsearch:elasticsearch /var/lib/elasticsearch                                          /var/log/elasticsearch &&     apt-get purge aria2 -y &&     apt-get autoremove -y --purge &&     apt-get clean &&     rm -rf /var/lib/apt/lists/*         /tmp/* /var/tmp/*         /root/.cache         /root/*
+#10 [elasticsearch linux/amd64 2/3] COPY dist/ /root/dist/
 #10 CACHED
 
-#11 [elasticsearch linux/arm64 3/3] RUN	APT-GET update -y &&     apt-get upgrade -y &&     apt-get install -y 			adduser             aria2             curl &&     ARCH=$(arch) &&       if [ "$ARCH" = "x86_64" ]; then ES_ARCH="amd64"; export _JAVA_OPTIONS=""; fi &&       if [ "$ARCH" = "aarch64" ]; then ES_ARCH="arm64"; export _JAVA_OPTIONS="-XX:UseSVE=0"; fi &&     echo "$ARCH" &&     cd /root/dist/ &&     mkdir -p /usr/share/elasticsearch/config              /etc/elasticsearch &&     cp elasticsearch.yml /etc/elasticsearch/ &&     aria2c -s 16 -x 16 https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-8.16.1-$ES_ARCH.deb &&     dpkg --force-confold -i elasticsearch-8.16.1-$ES_ARCH.deb &&     groupmod -g 2000 elasticsearch &&     usermod -u 2000 elasticsearch &&     chown -R root:elasticsearch /etc/default/elasticsearch                                 /etc/elasticsearch &&     chown -R elasticsearch:elasticsearch /var/lib/elasticsearch                                          /var/log/elasticsearch &&     apt-get purge aria2 -y &&     apt-get autoremove -y --purge &&     apt-get clean &&     rm -rf /var/lib/apt/lists/*         /tmp/* /var/tmp/*         /root/.cache         /root/*
+#11 [elasticsearch linux/amd64 3/3] RUN	APT-GET update -y &&     apt-get upgrade -y &&     apt-get install -y 			adduser             aria2             curl &&     ARCH=$(arch) &&       if [ "$ARCH" = "x86_64" ]; then ES_ARCH="amd64"; export _JAVA_OPTIONS=""; fi &&       if [ "$ARCH" = "aarch64" ]; then ES_ARCH="arm64"; export _JAVA_OPTIONS="-XX:UseSVE=0"; fi &&     echo "$ARCH" &&     cd /root/dist/ &&     mkdir -p /usr/share/elasticsearch/config              /etc/elasticsearch &&     cp elasticsearch.yml /etc/elasticsearch/ &&     aria2c -s 16 -x 16 https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-8.16.1-$ES_ARCH.deb &&     dpkg --force-confold -i elasticsearch-8.16.1-$ES_ARCH.deb &&     groupmod -g 2000 elasticsearch &&     usermod -u 2000 elasticsearch &&     chown -R root:elasticsearch /etc/default/elasticsearch                                 /etc/elasticsearch &&     chown -R elasticsearch:elasticsearch /var/lib/elasticsearch                                          /var/log/elasticsearch &&     apt-get purge aria2 -y &&     apt-get autoremove -y --purge &&     apt-get clean &&     rm -rf /var/lib/apt/lists/*         /tmp/* /var/tmp/*         /root/.cache         /root/*
 #11 CACHED
 
 #12 [elasticsearch] exporting to image
 #12 exporting layers done
 #12 exporting manifest sha256:b6a35459a8d588974f4b3a0ebb757fec07da8f9515705e8de2a16a8ba839931e done
-#12 exporting config sha256:0e16ff3f728c5fbc344acc3e2d5659cac962864a2ff259cd9d35c0012102c93f
 #12 exporting config sha256:0e16ff3f728c5fbc344acc3e2d5659cac962864a2ff259cd9d35c0012102c93f done
-#12 exporting attestation manifest sha256:4d48dffe1fd658eafc6d34f9aaa05864f88bb17d88668888cf9b7b477d4e2779 0.0s done
+#12 exporting attestation manifest sha256:b6cfd399d034ea01091a942d4e51dd61770ddcb48d5fc0d60e735d1a28cce35b 0.0s done
 #12 exporting manifest sha256:7de23b9103f6d55fe797dabf2a9694d936de0be621ac818397e5e7aaff4b3d4c done
 #12 exporting config sha256:f447b479df359398150d338b56562291b1d9a4dcc57bb3ffa1c1a2a0762e772a done
-#12 exporting attestation manifest sha256:938516366fcbab1884cf9977524df97a9bcbbf7a482a0be7494b40d8ec628199 0.0s done
-#12 exporting manifest list sha256:73828e3fc1a876e6f28ba936a76c04453ae605717519638cd9f44d4e02c1eb59 0.0s done
+#12 exporting attestation manifest sha256:a93b8a7c438c007226b26887d329aad35e7a2e3c0013898724e02705f7f63e0b 0.0s done
+#12 exporting manifest list sha256:6c331a8174ac61cb076ee3395a0150fa96b9dff255d0304a57899c13143b617c 0.0s done
 #12 pushing layers
 #12 ...
 
@@ -56,17 +58,17 @@
 
 #12 [elasticsearch] exporting to image
 #12 pushing layers 2.6s done
-#12 pushing manifest for docker.io/f0rc3ps/elasticsearch:24.04.1@sha256:73828e3fc1a876e6f28ba936a76c04453ae605717519638cd9f44d4e02c1eb59
-#12 pushing manifest for docker.io/f0rc3ps/elasticsearch:24.04.1@sha256:73828e3fc1a876e6f28ba936a76c04453ae605717519638cd9f44d4e02c1eb59 2.7s done
+#12 pushing manifest for docker.io/f0rc3ps/elasticsearch:24.04.1@sha256:6c331a8174ac61cb076ee3395a0150fa96b9dff255d0304a57899c13143b617c
+#12 pushing manifest for docker.io/f0rc3ps/elasticsearch:24.04.1@sha256:6c331a8174ac61cb076ee3395a0150fa96b9dff255d0304a57899c13143b617c 2.6s done
 #12 ...
 
 #14 [elasticsearch auth] asc3t1c/elasticsearch:pull,push token for ghcr.io
 #14 DONE 0.0s
 
 #12 [elasticsearch] exporting to image
-#12 pushing layers 1.9s done
-#12 pushing manifest for ghcr.io/asc3t1c/elasticsearch:24.04.1@sha256:73828e3fc1a876e6f28ba936a76c04453ae605717519638cd9f44d4e02c1eb59
-#12 pushing manifest for ghcr.io/asc3t1c/elasticsearch:24.04.1@sha256:73828e3fc1a876e6f28ba936a76c04453ae605717519638cd9f44d4e02c1eb59 2.1s done
+#12 pushing layers 2.0s done
+#12 pushing manifest for ghcr.io/asc3t1c/elasticsearch:24.04.1@sha256:6c331a8174ac61cb076ee3395a0150fa96b9dff255d0304a57899c13143b617c
+#12 pushing manifest for ghcr.io/asc3t1c/elasticsearch:24.04.1@sha256:6c331a8174ac61cb076ee3395a0150fa96b9dff255d0304a57899c13143b617c 2.2s done
 #12 DONE 9.4s
 
 #15 [elasticsearch] resolving provenance for metadata file

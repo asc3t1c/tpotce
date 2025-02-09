@@ -4,14 +4,11 @@
 #1 transferring dockerfile: 2.53kB 0.0s done
 #1 DONE 0.0s
 
-#2 [cowrie linux/arm64 internal] load metadata for docker.io/library/alpine:3.20
-#2 ...
+#2 [cowrie linux/amd64 internal] load metadata for docker.io/library/alpine:3.20
+#2 DONE 0.3s
 
-#3 [cowrie linux/amd64 internal] load metadata for docker.io/library/alpine:3.20
-#3 DONE 0.4s
-
-#2 [cowrie linux/arm64 internal] load metadata for docker.io/library/alpine:3.20
-#2 DONE 0.4s
+#3 [cowrie linux/arm64 internal] load metadata for docker.io/library/alpine:3.20
+#3 DONE 0.3s
 
 #4 [cowrie internal] load .dockerignore
 #4 transferring context: 2B done
@@ -26,7 +23,7 @@
 #6 DONE 0.0s
 
 #7 [cowrie internal] load build context
-#7 transferring context: 3.12kB done
+#7 transferring context: 101B done
 #7 DONE 0.0s
 
 #8 [cowrie linux/amd64 2/4] COPY dist/ /root/dist/
@@ -50,13 +47,13 @@
 #14 [cowrie] exporting to image
 #14 exporting layers done
 #14 exporting manifest sha256:c33caca09e0b5b268dca8ec7afd4c300327b00e7cf49dad138d1787512fa1308 done
-#14 exporting config sha256:bddc76ab67317fe03b8b76186e8c81c554a0ddc4e0ff1f1c9372cb23c0b1b2b7 0.0s done
-#14 exporting attestation manifest sha256:a748e42f32adfce94b6d6fccc868751d522a98ed4282492961766c057372022f 0.0s done
+#14 exporting config sha256:bddc76ab67317fe03b8b76186e8c81c554a0ddc4e0ff1f1c9372cb23c0b1b2b7 done
+#14 exporting attestation manifest sha256:1adaa1f8ad819fcd707f617bc103b03805acaeea50edf025769f39ce7a94982c 0.0s done
 #14 exporting manifest sha256:8ee7051c2636481629f5c3c9b9ac88e707fc39d0419b750a2fc02cf4abcc6a9e done
-#14 exporting config sha256:929d57ebff50e339ce99548b87d246798c888c7a1398b4f94892396f734eeb21 done
-#14 exporting attestation manifest sha256:07b8ceca4c123e6742af5c0e7cb53dead228c231bdbbd837d690eb6cfbc4fbec 0.0s done
-#14 exporting manifest list sha256:3677c44c6959875bf6445bbfe5664d7b43c6b0c3d786b881e0fa47b8a81c493c
-#14 exporting manifest list sha256:3677c44c6959875bf6445bbfe5664d7b43c6b0c3d786b881e0fa47b8a81c493c 0.0s done
+#14 exporting config sha256:929d57ebff50e339ce99548b87d246798c888c7a1398b4f94892396f734eeb21 0.0s done
+#14 exporting attestation manifest sha256:745216249084eae4d0dbac02966d454982dcd43ad620c46b21c2e820bb7ec3f2 0.0s done
+#14 exporting manifest list sha256:a7c5fcda6c8e13e31f837a83773e3fcbd57f7efaf03ef94f27cc90e51e704bf3
+#14 exporting manifest list sha256:a7c5fcda6c8e13e31f837a83773e3fcbd57f7efaf03ef94f27cc90e51e704bf3 done
 #14 pushing layers
 #14 ...
 
@@ -64,19 +61,19 @@
 #15 DONE 0.0s
 
 #14 [cowrie] exporting to image
-#14 pushing layers 3.6s done
-#14 pushing manifest for docker.io/f0rc3ps/cowrie:24.04.1@sha256:3677c44c6959875bf6445bbfe5664d7b43c6b0c3d786b881e0fa47b8a81c493c
-#14 pushing manifest for docker.io/f0rc3ps/cowrie:24.04.1@sha256:3677c44c6959875bf6445bbfe5664d7b43c6b0c3d786b881e0fa47b8a81c493c 2.8s done
+#14 pushing layers 2.9s done
+#14 pushing manifest for docker.io/f0rc3ps/cowrie:24.04.1@sha256:a7c5fcda6c8e13e31f837a83773e3fcbd57f7efaf03ef94f27cc90e51e704bf3
+#14 pushing manifest for docker.io/f0rc3ps/cowrie:24.04.1@sha256:a7c5fcda6c8e13e31f837a83773e3fcbd57f7efaf03ef94f27cc90e51e704bf3 2.1s done
 #14 ...
 
 #16 [cowrie auth] asc3t1c/cowrie:pull,push token for ghcr.io
 #16 DONE 0.0s
 
 #14 [cowrie] exporting to image
-#14 pushing layers 1.7s done
-#14 pushing manifest for ghcr.io/asc3t1c/cowrie:24.04.1@sha256:3677c44c6959875bf6445bbfe5664d7b43c6b0c3d786b881e0fa47b8a81c493c
-#14 pushing manifest for ghcr.io/asc3t1c/cowrie:24.04.1@sha256:3677c44c6959875bf6445bbfe5664d7b43c6b0c3d786b881e0fa47b8a81c493c 1.6s done
-#14 DONE 9.8s
+#14 pushing layers 2.5s done
+#14 pushing manifest for ghcr.io/asc3t1c/cowrie:24.04.1@sha256:a7c5fcda6c8e13e31f837a83773e3fcbd57f7efaf03ef94f27cc90e51e704bf3
+#14 pushing manifest for ghcr.io/asc3t1c/cowrie:24.04.1@sha256:a7c5fcda6c8e13e31f837a83773e3fcbd57f7efaf03ef94f27cc90e51e704bf3 1.5s done
+#14 DONE 9.2s
 
 #17 [cowrie] resolving provenance for metadata file
 #17 DONE 0.0s
