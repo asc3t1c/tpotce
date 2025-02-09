@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+# Single build
+# docker buildx build --platform linux/amd64,linux/arm64 -t your_docker_user/your_docker_img:0.0.0-your_tag --push . 
 
 # Got root?
 myWHOAMI=$(whoami)
