@@ -1,6 +1,6 @@
 # T-Pot - The All In One Multi Honeypot Platform
 
-Suppose you need support: For full support, automation, backup, and customization: 500$ every month, per server! $37000 for one year - full company support or it depends on the packet support! You can ask questions at: seccyboxopsec@gmail.com  The other choice is free, you can download install it, and try it personally, without any support! Kind Regards
+Suppose you need support: For full support, automation, backup, and customization: `500$` every month, per server! `$37000` for one year - full company support or it depends on the packet support! You can ask questions at: seccyboxopsec@gmail.com  The other choice is free, you can download install it, and try it personally, without any support! Kind Regards
 
 ![T-Pot](doc/tpotsocial.png)
 
