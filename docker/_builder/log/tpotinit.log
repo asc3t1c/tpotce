@@ -1,0 +1,319 @@
+#0 building with "mybuilder" instance using docker-container driver
+
+#1 [tpotinit internal] load build definition from Dockerfile
+#1 transferring dockerfile: 1.30kB done
+#1 DONE 0.0s
+
+#2 [tpotinit linux/arm64 internal] load metadata for docker.io/library/alpine:edge
+#2 DONE 0.2s
+
+#3 [tpotinit linux/amd64 internal] load metadata for docker.io/library/alpine:edge
+#3 DONE 0.4s
+
+#4 [tpotinit internal] load .dockerignore
+#4 transferring context: 2B done
+#4 DONE 0.0s
+
+#5 [tpotinit linux/arm64 1/3] FROM docker.io/library/alpine:edge@sha256:115729ec5cb049ba6359c3ab005ac742012d92bbaa5b8bc1a878f1e8f62c0cb8
+#5 resolve docker.io/library/alpine:edge@sha256:115729ec5cb049ba6359c3ab005ac742012d92bbaa5b8bc1a878f1e8f62c0cb8 0.0s done
+#5 CACHED
+
+#6 [tpotinit linux/amd64 1/3] FROM docker.io/library/alpine:edge@sha256:115729ec5cb049ba6359c3ab005ac742012d92bbaa5b8bc1a878f1e8f62c0cb8
+#6 resolve docker.io/library/alpine:edge@sha256:115729ec5cb049ba6359c3ab005ac742012d92bbaa5b8bc1a878f1e8f62c0cb8 0.0s done
+#6 CACHED
+
+#7 [tpotinit internal] load build context
+#7 transferring context: 2.51MB 0.1s done
+#7 DONE 0.1s
+
+#8 [tpotinit linux/amd64 2/4] COPY dist/ /opt/tpot/
+#8 DONE 0.1s
+
+#9 [tpotinit linux/arm64 2/4] COPY dist/ /opt/tpot/
+#9 DONE 0.1s
+
+#10 [tpotinit linux/arm64 3/4] RUN apk --no-cache -U upgrade &&     apk --no-cache -U add         aria2         apache2-utils         bash         bind-tools         conntrack-tools 		cracklib         curl         ethtool         figlet         git         grep         iproute2         iptables         jq         logrotate         lsblk         net-tools         openssl         pigz         tar         uuidgen &&     apk --no-cache -U add --repository=https://dl-cdn.alpinelinux.org/alpine/edge/community         yq &&     addgroup -g 2000 tpot &&     adduser -S -s /bin/ash -u 2000 -D -g 2000 tpot &&     chmod 0600 /opt/tpot/etc/logrotate/logrotate.conf &&     apk del --purge git &&     rm -rf /root/* /tmp/*            /root/.cache            /opt/tpot/.git            /var/cache/apk/*
+#10 0.445 fetch https://dl-cdn.alpinelinux.org/alpine/edge/main/aarch64/APKINDEX.tar.gz
+#10 1.911 fetch https://dl-cdn.alpinelinux.org/alpine/edge/community/aarch64/APKINDEX.tar.gz
+#10 ...
+
+#11 [tpotinit linux/amd64 3/4] RUN apk --no-cache -U upgrade &&     apk --no-cache -U add         aria2         apache2-utils         bash         bind-tools         conntrack-tools 		cracklib         curl         ethtool         figlet         git         grep         iproute2         iptables         jq         logrotate         lsblk         net-tools         openssl         pigz         tar         uuidgen &&     apk --no-cache -U add --repository=https://dl-cdn.alpinelinux.org/alpine/edge/community         yq &&     addgroup -g 2000 tpot &&     adduser -S -s /bin/ash -u 2000 -D -g 2000 tpot &&     chmod 0600 /opt/tpot/etc/logrotate/logrotate.conf &&     apk del --purge git &&     rm -rf /root/* /tmp/*            /root/.cache            /opt/tpot/.git            /var/cache/apk/*
+#11 0.236 fetch https://dl-cdn.alpinelinux.org/alpine/edge/main/x86_64/APKINDEX.tar.gz
+#11 0.736 fetch https://dl-cdn.alpinelinux.org/alpine/edge/community/x86_64/APKINDEX.tar.gz
+#11 1.612 Upgrading critical system libraries and apk-tools:
+#11 1.612 (1/1) Upgrading apk-tools (2.14.7-r0 -> 2.14.9-r0)
+#11 1.638 Executing busybox-1.37.0-r10.trigger
+#11 1.835 Continuing the upgrade transaction with new apk-tools:
+#11 1.848 fetch https://dl-cdn.alpinelinux.org/alpine/edge/main/x86_64/APKINDEX.tar.gz
+#11 2.124 fetch https://dl-cdn.alpinelinux.org/alpine/edge/community/x86_64/APKINDEX.tar.gz
+#11 3.008 (1/6) Upgrading busybox (1.37.0-r10 -> 1.37.0-r14)
+#11 3.065 Executing busybox-1.37.0-r14.post-upgrade
+#11 3.125 (2/6) Upgrading busybox-binsh (1.37.0-r10 -> 1.37.0-r14)
+#11 3.131 (3/6) Upgrading alpine-release (3.22.0_alpha20250108-r0 -> 3.22.0_alpha20250108-r1)
+#11 3.140 (4/6) Upgrading libcrypto3 (3.3.2-r4 -> 3.3.2-r5)
+#11 3.323 (5/6) Upgrading libssl3 (3.3.2-r4 -> 3.3.2-r5)
+#11 3.371 (6/6) Upgrading ssl_client (1.37.0-r10 -> 1.37.0-r14)
+#11 3.377 Executing busybox-1.37.0-r14.trigger
+#11 3.388 OK: 7 MiB in 15 packages
+#11 3.620 fetch https://dl-cdn.alpinelinux.org/alpine/edge/main/x86_64/APKINDEX.tar.gz
+#11 3.803 fetch https://dl-cdn.alpinelinux.org/alpine/edge/community/x86_64/APKINDEX.tar.gz
+#11 4.663 (1/81) Installing libuuid (2.40.4-r0)
+#11 4.670 (2/81) Installing apr (1.7.5-r0)
+#11 4.689 (3/81) Installing libexpat (2.6.4-r0)
+#11 4.701 (4/81) Installing apr-util (1.6.3-r1)
+#11 4.719 (5/81) Installing apache2-utils (2.4.63-r0)
+#11 4.737 (6/81) Installing ca-certificates (20241121-r1)
+#11 4.789 (7/81) Installing c-ares (1.34.4-r0)
+#11 4.811 (8/81) Installing libgcc (14.2.0-r5)
+#11 4.828 (9/81) Installing gmp (6.3.0-r2)
+#11 4.857 (10/81) Installing nettle (3.10.1-r0)
+#11 4.938 (11/81) Installing libunistring (1.3-r0)
+#11 5.019 (12/81) Installing libidn2 (2.3.7-r0)
+#11 5.036 (13/81) Installing libffi (3.4.6-r0)
+#11 5.043 (14/81) Installing libtasn1 (4.20.0-r0)
+#11 5.054 (15/81) Installing p11-kit (0.25.5-r2)
+#11 5.094 (16/81) Installing gnutls (3.8.8-r0)
+#11 5.184 (17/81) Installing sqlite-libs (3.49.0-r1)
+#11 5.586 (18/81) Installing libstdc++ (14.2.0-r5)
+#11 5.691 (19/81) Installing aria2 (1.37.0-r0)
+#11 5.778 (20/81) Installing ncurses-terminfo-base (6.5_p20250118-r0)
+#11 5.795 (21/81) Installing libncursesw (6.5_p20250118-r0)
+#11 5.821 (22/81) Installing readline (8.2.13-r0)
+#11 5.845 (23/81) Installing bash (5.2.37-r0)
+#11 5.902 Executing bash-5.2.37-r0.post-install
+#11 5.914 (24/81) Installing fstrm (0.6.1-r4)
+#11 5.920 (25/81) Installing krb5-conf (1.0-r2)
+#11 5.928 (26/81) Installing libcom_err (1.47.2-r0)
+#11 5.935 (27/81) Installing keyutils-libs (1.6.3-r4)
+#11 5.940 (28/81) Installing libverto (0.3.2-r2)
+#11 5.949 (29/81) Installing krb5-libs (1.21.3-r0)
+#11 6.029 (30/81) Installing json-c (0.18-r0)
+#11 6.037 (31/81) Installing nghttp2-libs (1.64.0-r0)
+#11 6.052 (32/81) Installing protobuf-c (1.5.1-r0)
+#11 6.061 (33/81) Installing libuv (1.50.0-r0)
+#11 6.084 (34/81) Installing xz-libs (5.6.4-r0)
+#11 6.116 (35/81) Installing libxml2 (2.13.4-r3)
+#11 6.168 (36/81) Installing bind-libs (9.18.33-r0)
+#11 6.282 (37/81) Installing bind-tools (9.18.33-r0)
+#11 6.317 (38/81) Installing libmnl (1.0.5-r2)
+#11 6.321 (39/81) Installing libnfnetlink (1.0.2-r3)
+#11 6.329 (40/81) Installing libnetfilter_conntrack (1.0.9-r3)
+#11 6.343 (41/81) Installing libnetfilter_cthelper (1.0.1-r2)
+#11 6.351 (42/81) Installing libnetfilter_cttimeout (1.0.1-r2)
+#11 6.360 (43/81) Installing libnetfilter_queue (1.0.5-r2)
+#11 6.372 (44/81) Installing conntrack-tools (1.4.8-r0)
+#11 6.397 (45/81) Installing cracklib (2.10.3-r0)
+#11 6.423 (46/81) Installing brotli-libs (1.1.0-r2)
+#11 6.470 (47/81) Installing libpsl (0.21.5-r3)
+#11 6.480 (48/81) Installing zstd-libs (1.5.6-r2)
+#11 6.529 (49/81) Installing libcurl (8.12.0-r0)
+#11 6.566 (50/81) Installing curl (8.12.0-r0)
+#11 6.590 (51/81) Installing ethtool (6.11-r0)
+#11 6.614 (52/81) Installing figlet (2.2.5-r3)
+#11 6.653 (53/81) Installing pcre2 (10.43-r0)
+#11 6.688 (54/81) Installing git (2.48.1-r0)
+#11 7.005 (55/81) Installing git-init-template (2.48.1-r0)
+#11 7.015 (56/81) Installing grep (3.11-r0)
+#11 7.033 (57/81) Installing libcap2 (2.73-r0)
+#11 7.042 (58/81) Installing libelf (0.192-r0)
+#11 7.055 (59/81) Installing iproute2-minimal (6.12.0-r1)
+#11 7.180 (60/81) Installing libxtables (1.8.11-r1)
+#11 7.188 (61/81) Installing iproute2-tc (6.12.0-r1)
+#11 7.220 (62/81) Installing iproute2-ss (6.12.0-r1)
+#11 7.230 (63/81) Installing iproute2 (6.12.0-r1)
+#11 7.255 Executing iproute2-6.12.0-r1.post-install
+#11 7.263 (64/81) Installing libnftnl (1.2.8-r0)
+#11 7.280 (65/81) Installing iptables (1.8.11-r1)
+#11 7.337 (66/81) Installing oniguruma (6.9.9-r0)
+#11 7.364 (67/81) Installing jq (1.7.1-r0)
+#11 7.403 (68/81) Installing acl-libs (2.3.2-r1)
+#11 7.412 (69/81) Installing popt (1.19-r4)
+#11 7.422 (70/81) Installing logrotate (3.21.0-r1)
+#11 7.434 (71/81) Installing libeconf (0.6.3-r0)
+#11 7.443 (72/81) Installing libblkid (2.40.4-r0)
+#11 7.460 (73/81) Installing libmount (2.40.4-r0)
+#11 7.479 (74/81) Installing libsmartcols (2.40.4-r0)
+#11 7.490 (75/81) Installing lsblk (2.40.4-r0)
+#11 7.500 (76/81) Installing mii-tool (2.10-r3)
+#11 7.506 (77/81) Installing net-tools (2.10-r3)
+#11 7.528 (78/81) Installing openssl (3.3.2-r5)
+#11 7.570 (79/81) Installing pigz (2.8-r1)
+#11 7.585 (80/81) Installing tar (1.35-r2)
+#11 7.611 (81/81) Installing uuidgen (2.40.4-r0)
+#11 7.617 Executing busybox-1.37.0-r14.trigger
+#11 7.630 Executing ca-certificates-20241121-r1.trigger
+#11 7.711 Executing cracklib-2.10.3-r0.trigger
+#11 7.959 OK: 50 MiB in 96 packages
+#11 8.218 fetch https://dl-cdn.alpinelinux.org/alpine/edge/community/x86_64/APKINDEX.tar.gz
+#11 8.815 fetch https://dl-cdn.alpinelinux.org/alpine/edge/main/x86_64/APKINDEX.tar.gz
+#11 9.288 (1/1) Installing yq-go (4.45.1-r0)
+#11 9.669 Executing busybox-1.37.0-r14.trigger
+#11 9.686 OK: 61 MiB in 97 packages
+#11 9.943 WARNING: opening from cache https://dl-cdn.alpinelinux.org/alpine/edge/main: No such file or directory
+#11 9.944 WARNING: opening from cache https://dl-cdn.alpinelinux.org/alpine/edge/community: No such file or directory
+#11 9.947 (1/2) Purging git-init-template (2.48.1-r0)
+#11 9.950 (2/2) Purging git (2.48.1-r0)
+#11 9.963 Executing busybox-1.37.0-r14.trigger
+#11 9.977 OK: 54 MiB in 95 packages
+#11 DONE 10.1s
+
+#10 [tpotinit linux/arm64 3/4] RUN apk --no-cache -U upgrade &&     apk --no-cache -U add         aria2         apache2-utils         bash         bind-tools         conntrack-tools 		cracklib         curl         ethtool         figlet         git         grep         iproute2         iptables         jq         logrotate         lsblk         net-tools         openssl         pigz         tar         uuidgen &&     apk --no-cache -U add --repository=https://dl-cdn.alpinelinux.org/alpine/edge/community         yq &&     addgroup -g 2000 tpot &&     adduser -S -s /bin/ash -u 2000 -D -g 2000 tpot &&     chmod 0600 /opt/tpot/etc/logrotate/logrotate.conf &&     apk del --purge git &&     rm -rf /root/* /tmp/*            /root/.cache            /opt/tpot/.git            /var/cache/apk/*
+#10 5.601 Upgrading critical system libraries and apk-tools:
+#10 5.604 (1/1) Upgrading apk-tools (2.14.7-r0 -> 2.14.9-r0)
+#10 5.731 Executing busybox-1.37.0-r10.trigger
+#10 6.312 Continuing the upgrade transaction with new apk-tools:
+#10 6.516 fetch https://dl-cdn.alpinelinux.org/alpine/edge/main/aarch64/APKINDEX.tar.gz
+#10 7.778 fetch https://dl-cdn.alpinelinux.org/alpine/edge/community/aarch64/APKINDEX.tar.gz
+#10 ...
+
+#12 [tpotinit linux/amd64 4/4] WORKDIR /opt/tpot
+#12 DONE 0.1s
+
+#10 [tpotinit linux/arm64 3/4] RUN apk --no-cache -U upgrade &&     apk --no-cache -U add         aria2         apache2-utils         bash         bind-tools         conntrack-tools 		cracklib         curl         ethtool         figlet         git         grep         iproute2         iptables         jq         logrotate         lsblk         net-tools         openssl         pigz         tar         uuidgen &&     apk --no-cache -U add --repository=https://dl-cdn.alpinelinux.org/alpine/edge/community         yq &&     addgroup -g 2000 tpot &&     adduser -S -s /bin/ash -u 2000 -D -g 2000 tpot &&     chmod 0600 /opt/tpot/etc/logrotate/logrotate.conf &&     apk del --purge git &&     rm -rf /root/* /tmp/*            /root/.cache            /opt/tpot/.git            /var/cache/apk/*
+#10 11.28 (1/6) Upgrading busybox (1.37.0-r10 -> 1.37.0-r14)
+#10 11.53 Executing busybox-1.37.0-r14.post-upgrade
+#10 12.09 (2/6) Upgrading busybox-binsh (1.37.0-r10 -> 1.37.0-r14)
+#10 12.14 (3/6) Upgrading alpine-release (3.22.0_alpha20250108-r0 -> 3.22.0_alpha20250108-r1)
+#10 12.16 (4/6) Upgrading libcrypto3 (3.3.2-r4 -> 3.3.2-r5)
+#10 12.68 (5/6) Upgrading libssl3 (3.3.2-r4 -> 3.3.2-r5)
+#10 12.78 (6/6) Upgrading ssl_client (1.37.0-r10 -> 1.37.0-r14)
+#10 12.79 Executing busybox-1.37.0-r14.trigger
+#10 12.94 OK: 7 MiB in 15 packages
+#10 13.65 fetch https://dl-cdn.alpinelinux.org/alpine/edge/main/aarch64/APKINDEX.tar.gz
+#10 15.08 fetch https://dl-cdn.alpinelinux.org/alpine/edge/community/aarch64/APKINDEX.tar.gz
+#10 18.70 (1/81) Installing libuuid (2.40.4-r0)
+#10 18.76 (2/81) Installing apr (1.7.5-r0)
+#10 18.82 (3/81) Installing libexpat (2.6.4-r0)
+#10 18.91 (4/81) Installing apr-util (1.6.3-r1)
+#10 18.95 (5/81) Installing apache2-utils (2.4.63-r0)
+#10 19.00 (6/81) Installing ca-certificates (20241121-r1)
+#10 19.10 (7/81) Installing c-ares (1.34.4-r0)
+#10 19.15 (8/81) Installing libgcc (14.2.0-r5)
+#10 19.19 (9/81) Installing gmp (6.3.0-r2)
+#10 19.27 (10/81) Installing nettle (3.10.1-r0)
+#10 19.35 (11/81) Installing libunistring (1.3-r0)
+#10 19.54 (12/81) Installing libidn2 (2.3.7-r0)
+#10 19.58 (13/81) Installing libffi (3.4.6-r0)
+#10 19.59 (14/81) Installing libtasn1 (4.20.0-r0)
+#10 19.61 (15/81) Installing p11-kit (0.25.5-r2)
+#10 19.72 (16/81) Installing gnutls (3.8.8-r0)
+#10 19.98 (17/81) Installing sqlite-libs (3.49.0-r1)
+#10 20.19 (18/81) Installing libstdc++ (14.2.0-r5)
+#10 20.62 (19/81) Installing aria2 (1.37.0-r0)
+#10 20.89 (20/81) Installing ncurses-terminfo-base (6.5_p20250118-r0)
+#10 20.93 (21/81) Installing libncursesw (6.5_p20250118-r0)
+#10 20.99 (22/81) Installing readline (8.2.13-r0)
+#10 21.03 (23/81) Installing bash (5.2.37-r0)
+#10 21.16 Executing bash-5.2.37-r0.post-install
+#10 21.25 (24/81) Installing fstrm (0.6.1-r4)
+#10 21.28 (25/81) Installing krb5-conf (1.0-r2)
+#10 21.28 (26/81) Installing libcom_err (1.47.2-r0)
+#10 21.29 (27/81) Installing keyutils-libs (1.6.3-r4)
+#10 21.30 (28/81) Installing libverto (0.3.2-r2)
+#10 21.31 (29/81) Installing krb5-libs (1.21.3-r0)
+#10 21.55 (30/81) Installing json-c (0.18-r0)
+#10 21.57 (31/81) Installing nghttp2-libs (1.64.0-r0)
+#10 21.59 (32/81) Installing protobuf-c (1.5.1-r0)
+#10 21.61 (33/81) Installing libuv (1.50.0-r0)
+#10 21.64 (34/81) Installing xz-libs (5.6.4-r0)
+#10 21.68 (35/81) Installing libxml2 (2.13.4-r3)
+#10 21.83 (36/81) Installing bind-libs (9.18.33-r0)
+#10 22.21 (37/81) Installing bind-tools (9.18.33-r0)
+#10 22.30 (38/81) Installing libmnl (1.0.5-r2)
+#10 22.31 (39/81) Installing libnfnetlink (1.0.2-r3)
+#10 22.32 (40/81) Installing libnetfilter_conntrack (1.0.9-r3)
+#10 22.35 (41/81) Installing libnetfilter_cthelper (1.0.1-r2)
+#10 22.36 (42/81) Installing libnetfilter_cttimeout (1.0.1-r2)
+#10 22.37 (43/81) Installing libnetfilter_queue (1.0.5-r2)
+#10 22.38 (44/81) Installing conntrack-tools (1.4.8-r0)
+#10 22.45 (45/81) Installing cracklib (2.10.3-r0)
+#10 22.50 (46/81) Installing brotli-libs (1.1.0-r2)
+#10 22.62 (47/81) Installing libpsl (0.21.5-r3)
+#10 22.64 (48/81) Installing zstd-libs (1.5.6-r2)
+#10 22.73 (49/81) Installing libcurl (8.12.0-r0)
+#10 22.84 (50/81) Installing curl (8.12.0-r0)
+#10 22.88 (51/81) Installing ethtool (6.11-r0)
+#10 22.95 (52/81) Installing figlet (2.2.5-r3)
+#10 23.03 (53/81) Installing pcre2 (10.43-r0)
+#10 23.12 (54/81) Installing git (2.48.1-r0)
+#10 24.17 (55/81) Installing git-init-template (2.48.1-r0)
+#10 24.19 (56/81) Installing grep (3.11-r0)
+#10 24.22 (57/81) Installing libcap2 (2.73-r0)
+#10 24.24 (58/81) Installing libelf (0.192-r0)
+#10 24.27 (59/81) Installing iproute2-minimal (6.12.0-r1)
+#10 24.35 (60/81) Installing libxtables (1.8.11-r1)
+#10 24.37 (61/81) Installing iproute2-tc (6.12.0-r1)
+#10 24.44 (62/81) Installing iproute2-ss (6.12.0-r1)
+#10 24.46 (63/81) Installing iproute2 (6.12.0-r1)
+#10 24.53 Executing iproute2-6.12.0-r1.post-install
+#10 24.63 (64/81) Installing libnftnl (1.2.8-r0)
+#10 24.66 (65/81) Installing iptables (1.8.11-r1)
+#10 24.94 (66/81) Installing oniguruma (6.9.9-r0)
+#10 25.04 (67/81) Installing jq (1.7.1-r0)
+#10 25.14 (68/81) Installing acl-libs (2.3.2-r1)
+#10 25.15 (69/81) Installing popt (1.19-r4)
+#10 25.17 (70/81) Installing logrotate (3.21.0-r1)
+#10 25.18 (71/81) Installing libeconf (0.6.3-r0)
+#10 25.20 (72/81) Installing libblkid (2.40.4-r0)
+#10 25.24 (73/81) Installing libmount (2.40.4-r0)
+#10 25.29 (74/81) Installing libsmartcols (2.40.4-r0)
+#10 25.57 (75/81) Installing lsblk (2.40.4-r0)
+#10 25.60 (76/81) Installing mii-tool (2.10-r3)
+#10 25.61 (77/81) Installing net-tools (2.10-r3)
+#10 25.67 (78/81) Installing openssl (3.3.2-r5)
+#10 25.76 (79/81) Installing pigz (2.8-r1)
+#10 25.80 (80/81) Installing tar (1.35-r2)
+#10 25.86 (81/81) Installing uuidgen (2.40.4-r0)
+#10 25.87 Executing busybox-1.37.0-r14.trigger
+#10 25.99 Executing ca-certificates-20241121-r1.trigger
+#10 26.81 Executing cracklib-2.10.3-r0.trigger
+#10 28.65 OK: 64 MiB in 96 packages
+#10 29.39 fetch https://dl-cdn.alpinelinux.org/alpine/edge/community/aarch64/APKINDEX.tar.gz
+#10 33.11 fetch https://dl-cdn.alpinelinux.org/alpine/edge/main/aarch64/APKINDEX.tar.gz
+#10 35.13 (1/1) Installing yq-go (4.45.1-r0)
+#10 36.28 Executing busybox-1.37.0-r14.trigger
+#10 36.40 OK: 75 MiB in 97 packages
+#10 37.22 WARNING: opening from cache https://dl-cdn.alpinelinux.org/alpine/edge/main: No such file or directory
+#10 37.22 WARNING: opening from cache https://dl-cdn.alpinelinux.org/alpine/edge/community: No such file or directory
+#10 37.25 (1/2) Purging git-init-template (2.48.1-r0)
+#10 37.26 (2/2) Purging git (2.48.1-r0)
+#10 37.27 Executing busybox-1.37.0-r14.trigger
+#10 37.39 OK: 68 MiB in 95 packages
+#10 DONE 37.7s
+
+#13 [tpotinit linux/arm64 4/4] WORKDIR /opt/tpot
+#13 DONE 0.1s
+
+#14 [tpotinit] exporting to image
+#14 exporting layers
+#14 exporting layers 5.3s done
+#14 exporting manifest sha256:1a24db013efc018f512ed9a8e74029957efd34999fb3c4a2cc353e269737de65 done
+#14 exporting config sha256:93d3a4d5538c5aa8c07b120e17f0bf3a779ed1e97eea2462cf2bfdfd9cb6a6fb done
+#14 exporting attestation manifest sha256:b64fc7a75655f82f4b7573dab43784e8a1a2dbc5fa27454c1c6e1a92514e8090 0.0s done
+#14 exporting manifest sha256:34552fcb5253972d59c1c94242d5a2319752435b5eed0d5281e2eb18dad4b760 done
+#14 exporting config sha256:2a99405d19c36aafd64e214dbb105be2f0fce6e228af383a93e8ee6851df5633 done
+#14 exporting attestation manifest sha256:38bebc508522b98639fe74be6e0f8de567a26e2e4d39d0a32145d4282c12ffef 0.0s done
+#14 exporting manifest list sha256:a81f19e1b257bf3790355e88dd23ebfdf38dc7255a020ae06ef0699600dca3c6 done
+#14 pushing layers
+#14 ...
+
+#15 [tpotinit auth] f0rc3ps/tpotinit:pull,push token for registry-1.docker.io
+#15 DONE 0.0s
+
+#14 [tpotinit] exporting to image
+#14 pushing layers 15.9s done
+#14 pushing manifest for docker.io/f0rc3ps/tpotinit:24.04.1@sha256:a81f19e1b257bf3790355e88dd23ebfdf38dc7255a020ae06ef0699600dca3c6
+#14 pushing manifest for docker.io/f0rc3ps/tpotinit:24.04.1@sha256:a81f19e1b257bf3790355e88dd23ebfdf38dc7255a020ae06ef0699600dca3c6 3.1s done
+#14 ...
+
+#16 [tpotinit auth] asc3t1c/tpotinit:pull,push token for ghcr.io
+#16 DONE 0.0s
+
+#14 [tpotinit] exporting to image
+#14 pushing layers 13.1s done
+#14 pushing manifest for ghcr.io/asc3t1c/tpotinit:24.04.1@sha256:a81f19e1b257bf3790355e88dd23ebfdf38dc7255a020ae06ef0699600dca3c6
+#14 pushing manifest for ghcr.io/asc3t1c/tpotinit:24.04.1@sha256:a81f19e1b257bf3790355e88dd23ebfdf38dc7255a020ae06ef0699600dca3c6 2.3s done
+#14 DONE 39.8s
+
+#17 [tpotinit] resolving provenance for metadata file
+#17 DONE 0.0s

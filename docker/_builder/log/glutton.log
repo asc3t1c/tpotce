@@ -1,0 +1,113 @@
+#0 building with "mybuilder" instance using docker-container driver
+
+#1 [glutton internal] load build definition from Dockerfile
+#1 transferring dockerfile: 1.21kB 0.0s done
+#1 DONE 0.0s
+
+#2 [glutton linux/arm64 internal] load metadata for docker.io/library/golang:1.23-alpine
+#2 ...
+
+#3 [glutton linux/amd64 internal] load metadata for docker.io/library/golang:1.23-alpine
+#3 DONE 0.2s
+
+#4 [glutton linux/amd64 builder 1/4] FROM docker.io/library/golang:1.23-alpine@sha256:2c49857f2295e89b23b28386e57e018a86620a8fede5003900f2d138ba9c4037
+#4 resolve docker.io/library/golang:1.23-alpine@sha256:2c49857f2295e89b23b28386e57e018a86620a8fede5003900f2d138ba9c4037 0.1s done
+#4 DONE 0.1s
+
+#5 [glutton linux/arm64 builder 1/4] FROM docker.io/library/golang:1.23-alpine@sha256:2c49857f2295e89b23b28386e57e018a86620a8fede5003900f2d138ba9c4037
+#5 resolve docker.io/library/golang:1.23-alpine@sha256:2c49857f2295e89b23b28386e57e018a86620a8fede5003900f2d138ba9c4037 0.0s done
+#5 DONE 0.1s
+
+#6 [glutton linux/arm64 stage-1 1/4] FROM docker.io/library/alpine:3.20@sha256:31687a2fdd021f85955bf2d0c2682e9c0949827560e1db546358ea094f740f12
+#6 resolve docker.io/library/alpine:3.20@sha256:31687a2fdd021f85955bf2d0c2682e9c0949827560e1db546358ea094f740f12 0.1s done
+#6 DONE 0.1s
+
+#7 [glutton linux/amd64 stage-1 1/4] FROM docker.io/library/alpine:3.20@sha256:31687a2fdd021f85955bf2d0c2682e9c0949827560e1db546358ea094f740f12
+#7 resolve docker.io/library/alpine:3.20@sha256:31687a2fdd021f85955bf2d0c2682e9c0949827560e1db546358ea094f740f12 0.1s done
+#7 DONE 0.1s
+
+#8 [glutton linux/arm64 internal] load metadata for docker.io/library/alpine:3.20
+#8 DONE 0.2s
+
+#9 [glutton linux/amd64 internal] load metadata for docker.io/library/alpine:3.20
+#9 DONE 0.2s
+
+#2 [glutton linux/arm64 internal] load metadata for docker.io/library/golang:1.23-alpine
+#2 DONE 0.2s
+
+#10 [glutton internal] load .dockerignore
+#10 transferring context: 2B done
+#10 DONE 0.0s
+
+#11 [glutton internal] load build context
+#11 transferring context: 2.81kB 0.0s done
+#11 DONE 0.0s
+
+#12 [glutton linux/arm64 builder 3/3] RUN apk --no-cache -U upgrade && 	apk -U --no-cache add 		make   		git 		g++ 		iptables-dev 		libpcap-dev &&     mkdir -p /opt/ &&     cd /opt/ &&     git clone https://github.com/mushorg/glutton &&     cd /opt/glutton/ &&     git checkout b3b5944b79893ccb1da19e112571674841bbe124 &&     cp /root/dist/system.go . &&     make build && 	cp /root/dist/*.yaml /opt/glutton/config/
+#12 CACHED
+
+#13 [glutton linux/arm64 stage-1 2/5] COPY --from=builder /opt/glutton/bin /opt/glutton/bin
+#13 CACHED
+
+#14 [glutton linux/arm64 stage-1 4/5] RUN apk -U --no-cache upgrade && 	apk -U --no-cache add 		iptables 		libcap   		libpcap-dev && 		setcap cap_net_admin,cap_net_raw=+ep /opt/glutton/bin/server && 		setcap cap_net_admin,cap_net_raw=+ep /sbin/xtables-nft-multi && 		mkdir -p /var/log/glutton 		         /opt/glutton/payloads
+#14 CACHED
+
+#15 [glutton linux/arm64 stage-1 3/5] COPY --from=builder /opt/glutton/config /opt/glutton/config
+#15 CACHED
+
+#16 [glutton linux/arm64 builder 2/3] COPY dist/ /root/dist/
+#16 CACHED
+
+#17 [glutton linux/arm64 stage-1 5/5] WORKDIR /opt/glutton
+#17 CACHED
+
+#18 [glutton linux/amd64 builder 2/3] COPY dist/ /root/dist/
+#18 CACHED
+
+#19 [glutton linux/amd64 builder 3/3] RUN apk --no-cache -U upgrade && 	apk -U --no-cache add 		make   		git 		g++ 		iptables-dev 		libpcap-dev &&     mkdir -p /opt/ &&     cd /opt/ &&     git clone https://github.com/mushorg/glutton &&     cd /opt/glutton/ &&     git checkout b3b5944b79893ccb1da19e112571674841bbe124 &&     cp /root/dist/system.go . &&     make build && 	cp /root/dist/*.yaml /opt/glutton/config/
+#19 CACHED
+
+#20 [glutton linux/amd64 stage-1 4/5] RUN apk -U --no-cache upgrade && 	apk -U --no-cache add 		iptables 		libcap   		libpcap-dev && 		setcap cap_net_admin,cap_net_raw=+ep /opt/glutton/bin/server && 		setcap cap_net_admin,cap_net_raw=+ep /sbin/xtables-nft-multi && 		mkdir -p /var/log/glutton 		         /opt/glutton/payloads
+#20 CACHED
+
+#21 [glutton linux/amd64 stage-1 3/5] COPY --from=builder /opt/glutton/config /opt/glutton/config
+#21 CACHED
+
+#22 [glutton linux/amd64 stage-1 2/5] COPY --from=builder /opt/glutton/bin /opt/glutton/bin
+#22 CACHED
+
+#23 [glutton linux/amd64 stage-1 5/5] WORKDIR /opt/glutton
+#23 CACHED
+
+#24 [glutton] exporting to image
+#24 exporting layers done
+#24 exporting manifest sha256:0d2383f5e3e88429e83b9cfa21b2bcc84fa906742acb9d4fc549a31dfbb0773d done
+#24 exporting config sha256:3074e7bf5bc1528c600c296b88af481cfa35448e77db895051612bb84aff0365 done
+#24 exporting attestation manifest sha256:fa153d0b105d1998ccd788e1d6ab2231de63f05b17c1eb858e051705e7337f7d 0.0s done
+#24 exporting manifest sha256:3c5766c0a6feaa54f0e97711961f435afa8bbfaa68602d4eb6fb810f32ec8da7 done
+#24 exporting config sha256:783b45ea8a75c8ab01f40818c0d002b7241ed4a589e3ff1c751b9bed3e483a2a done
+#24 exporting attestation manifest sha256:9a746afd37650612459847debf94688337608ecc17016b3377bdaf00582d75ee 0.0s done
+#24 exporting manifest list sha256:3c4d6d8358a926e9cc90ea0f2f39781858a26602efba87ac800a9e31d579a2dd done
+#24 pushing layers
+#24 ...
+
+#25 [glutton auth] f0rc3ps/glutton:pull,push token for registry-1.docker.io
+#25 DONE 0.0s
+
+#24 [glutton] exporting to image
+#24 pushing layers 3.4s done
+#24 pushing manifest for docker.io/f0rc3ps/glutton:24.04.1@sha256:3c4d6d8358a926e9cc90ea0f2f39781858a26602efba87ac800a9e31d579a2dd
+#24 pushing manifest for docker.io/f0rc3ps/glutton:24.04.1@sha256:3c4d6d8358a926e9cc90ea0f2f39781858a26602efba87ac800a9e31d579a2dd 2.3s done
+#24 ...
+
+#26 [glutton auth] asc3t1c/glutton:pull,push token for ghcr.io
+#26 DONE 0.0s
+
+#24 [glutton] exporting to image
+#24 pushing layers 2.3s done
+#24 pushing manifest for ghcr.io/asc3t1c/glutton:24.04.1@sha256:3c4d6d8358a926e9cc90ea0f2f39781858a26602efba87ac800a9e31d579a2dd
+#24 pushing manifest for ghcr.io/asc3t1c/glutton:24.04.1@sha256:3c4d6d8358a926e9cc90ea0f2f39781858a26602efba87ac800a9e31d579a2dd 1.5s done
+#24 DONE 9.5s
+
+#27 [glutton] resolving provenance for metadata file
+#27 DONE 0.0s

@@ -1,0 +1,73 @@
+#0 building with "mybuilder" instance using docker-container driver
+
+#1 [ewsposter internal] load build definition from Dockerfile
+#1 transferring dockerfile: 1.34kB 0.0s done
+#1 DONE 0.0s
+
+#2 [ewsposter linux/amd64 internal] load metadata for docker.io/library/alpine:3.19
+#2 DONE 0.2s
+
+#3 [ewsposter linux/arm64 internal] load metadata for docker.io/library/alpine:3.19
+#3 DONE 0.2s
+
+#4 [ewsposter internal] load .dockerignore
+#4 transferring context: 2B done
+#4 DONE 0.0s
+
+#5 [ewsposter linux/amd64 1/3] FROM docker.io/library/alpine:3.19@sha256:6380aa6b04faa579332d4c9d1f65bd7093012ba6e01d9bbcd5e2d8a4f9fae38f
+#5 resolve docker.io/library/alpine:3.19@sha256:6380aa6b04faa579332d4c9d1f65bd7093012ba6e01d9bbcd5e2d8a4f9fae38f 0.0s done
+#5 DONE 0.0s
+
+#6 [ewsposter linux/arm64 1/3] FROM docker.io/library/alpine:3.19@sha256:6380aa6b04faa579332d4c9d1f65bd7093012ba6e01d9bbcd5e2d8a4f9fae38f
+#6 resolve docker.io/library/alpine:3.19@sha256:6380aa6b04faa579332d4c9d1f65bd7093012ba6e01d9bbcd5e2d8a4f9fae38f 0.0s done
+#6 DONE 0.0s
+
+#7 [ewsposter internal] load build context
+#7 transferring context: 4.52kB 0.0s done
+#7 DONE 0.0s
+
+#8 [ewsposter linux/amd64 2/3] COPY dist/ /root/dist/
+#8 CACHED
+
+#9 [ewsposter linux/arm64 2/3] COPY dist/ /root/dist/
+#9 CACHED
+
+#10 [ewsposter linux/amd64 3/3] RUN apk --no-cache -U upgrade && 	apk --no-cache -U add 		build-base 		git 		libffi-dev 		libssl3 		openssl-dev 		python3 		python3-dev 		py3-cffi 		py3-cryptography 		py3-ipaddress 		py3-lxml 		py3-mysqlclient 		py3-openssl 		py3-requests 		py3-pip 		py3-setuptools 		py3-wheel && 	pip3 install --break-system-packages --upgrade pip && 	pip3 install --break-system-packages --no-cache-dir 			configparser 			hpfeeds3 			influxdb 			influxdb-client 			xmljson &&     git clone https://github.com/telekom-security/ewsposter -b v1.25.0 /opt/ewsposter &&     mkdir -p /opt/ewsposter/spool /opt/ewsposter/log &&     addgroup -g 2000 ews &&     adduser -S -H -u 2000 -D -g 2000 ews &&     chown -R ews:ews /opt/ewsposter &&     mv /root/dist/ews.cfg /opt/ewsposter/ &&     mv /root/dist/entrypoint.sh /usr/bin/ &&     chmod 755 /usr/bin/entrypoint.sh &&     apk del build-base 		git 		openssl-dev 		python3-dev 		py-setuptools && 	rm -rf /root/* /var/cache/apk/* /opt/ewsposter/.git
+#10 CACHED
+
+#11 [ewsposter linux/arm64 3/3] RUN apk --no-cache -U upgrade && 	apk --no-cache -U add 		build-base 		git 		libffi-dev 		libssl3 		openssl-dev 		python3 		python3-dev 		py3-cffi 		py3-cryptography 		py3-ipaddress 		py3-lxml 		py3-mysqlclient 		py3-openssl 		py3-requests 		py3-pip 		py3-setuptools 		py3-wheel && 	pip3 install --break-system-packages --upgrade pip && 	pip3 install --break-system-packages --no-cache-dir 			configparser 			hpfeeds3 			influxdb 			influxdb-client 			xmljson &&     git clone https://github.com/telekom-security/ewsposter -b v1.25.0 /opt/ewsposter &&     mkdir -p /opt/ewsposter/spool /opt/ewsposter/log &&     addgroup -g 2000 ews &&     adduser -S -H -u 2000 -D -g 2000 ews &&     chown -R ews:ews /opt/ewsposter &&     mv /root/dist/ews.cfg /opt/ewsposter/ &&     mv /root/dist/entrypoint.sh /usr/bin/ &&     chmod 755 /usr/bin/entrypoint.sh &&     apk del build-base 		git 		openssl-dev 		python3-dev 		py-setuptools && 	rm -rf /root/* /var/cache/apk/* /opt/ewsposter/.git
+#11 CACHED
+
+#12 [ewsposter] exporting to image
+#12 exporting layers done
+#12 exporting manifest sha256:4a818cf7a39a6b74e726631d17d1a1c4506b41abc3f527ac0a127dbcbe86de49 done
+#12 exporting config sha256:bee4610db501500aa13b1016d8f8f760bd5704245e1e77c89ff58fea7135427d done
+#12 exporting attestation manifest sha256:e82af4476aa4dafdf705731a731c86147aead646e541ec08c237dfb17592c455
+#12 exporting attestation manifest sha256:e82af4476aa4dafdf705731a731c86147aead646e541ec08c237dfb17592c455 0.0s done
+#12 exporting manifest sha256:e19cbb99a891d5c48089731da55c4ab19f54190ff3b3c26f33dc33bd712c88cb done
+#12 exporting config sha256:cb9c6e4d16e27fe57c789619d8c26f9d011a508dbbef65d428cc16a87bd20b7e done
+#12 exporting attestation manifest sha256:8b04af23cc94ea3c17aca95acb1ccecd116a381a15bf00a83b2af214b9d2056d 0.0s done
+#12 exporting manifest list sha256:3808b9ba65a6aef6d34c60ca3beabe8b5eb50269ba714f20c8278406746b4c2d 0.0s done
+#12 pushing layers
+#12 ...
+
+#13 [ewsposter auth] f0rc3ps/ewsposter:pull,push token for registry-1.docker.io
+#13 DONE 0.0s
+
+#12 [ewsposter] exporting to image
+#12 pushing layers 2.7s done
+#12 pushing manifest for docker.io/f0rc3ps/ewsposter:24.04.1@sha256:3808b9ba65a6aef6d34c60ca3beabe8b5eb50269ba714f20c8278406746b4c2d
+#12 pushing manifest for docker.io/f0rc3ps/ewsposter:24.04.1@sha256:3808b9ba65a6aef6d34c60ca3beabe8b5eb50269ba714f20c8278406746b4c2d 2.4s done
+#12 ...
+
+#14 [ewsposter auth] asc3t1c/ewsposter:pull,push token for ghcr.io
+#14 DONE 0.0s
+
+#12 [ewsposter] exporting to image
+#12 pushing layers 1.7s done
+#12 pushing manifest for ghcr.io/asc3t1c/ewsposter:24.04.1@sha256:3808b9ba65a6aef6d34c60ca3beabe8b5eb50269ba714f20c8278406746b4c2d
+#12 pushing manifest for ghcr.io/asc3t1c/ewsposter:24.04.1@sha256:3808b9ba65a6aef6d34c60ca3beabe8b5eb50269ba714f20c8278406746b4c2d 1.9s done
+#12 DONE 8.7s
+
+#15 [ewsposter] resolving provenance for metadata file
+#15 DONE 0.0s
