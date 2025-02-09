@@ -5,14 +5,17 @@
 #1 DONE 0.0s
 
 #2 [map linux/amd64 internal] load metadata for docker.io/library/alpine:3.20
-#2 DONE 0.2s
+#2 ...
 
 #3 [map linux/arm64 internal] load metadata for docker.io/library/alpine:3.20
-#3 DONE 0.2s
+#3 DONE 0.6s
 
 #4 [map internal] load .dockerignore
 #4 transferring context: 2B done
 #4 DONE 0.0s
+
+#2 [map linux/amd64 internal] load metadata for docker.io/library/alpine:3.20
+#2 DONE 0.7s
 
 #5 [map linux/amd64 1/3] FROM docker.io/library/alpine:3.20@sha256:31687a2fdd021f85955bf2d0c2682e9c0949827560e1db546358ea094f740f12
 #5 resolve docker.io/library/alpine:3.20@sha256:31687a2fdd021f85955bf2d0c2682e9c0949827560e1db546358ea094f740f12 0.0s done
@@ -26,7 +29,7 @@
 
 #8 [map linux/arm64 1/3] FROM docker.io/library/alpine:3.20@sha256:31687a2fdd021f85955bf2d0c2682e9c0949827560e1db546358ea094f740f12
 #8 resolve docker.io/library/alpine:3.20@sha256:31687a2fdd021f85955bf2d0c2682e9c0949827560e1db546358ea094f740f12 0.0s done
-#8 DONE 0.0s
+#8 DONE 0.1s
 
 #9 [map linux/arm64 2/3] RUN apk --no-cache -U upgrade &&     apk --no-cache -U add 		build-base 		git 		libcap 		py3-pip 		python3 		python3-dev 		tzdata &&     mkdir -p /opt &&     cd /opt/ &&     git clone https://github.com/t3chn0m4g3/t-pot-attack-map -b 2.2.6 &&     cd t-pot-attack-map &&     pip3 install --break-system-packages --upgrade pip &&     pip3 install --break-system-packages -r requirements.txt &&     setcap cap_net_bind_service=+ep $(readlink -f $(type -P python3)) &&     addgroup -g 2000 map &&     adduser -S -H -s /bin/ash -u 2000 -D -g 2000 map &&     chown map:map -R /opt/t-pot-attack-map &&     apk del --purge build-base 		git 		python3-dev &&     rm -rf /root/* /var/cache/apk/*            /opt/t-pot-attack-map/.git
 #9 CACHED
@@ -38,11 +41,11 @@
 #11 exporting layers done
 #11 exporting manifest sha256:63b78eecfc7f5b953d135deaf52f7038d98dc45497f56376e8042bcc523f1e7b done
 #11 exporting config sha256:4f67bc20d74bc8b4cfa42a13c0302b29ffc0d2eab9432ef513d49cb87976793b done
-#11 exporting attestation manifest sha256:3b7a2524112634968d727c4d27d3caa66f1bebfe2cd06ba1672e87c66fa284a8 0.0s done
+#11 exporting attestation manifest sha256:43e2622b91a00b53e8bc6c83700d366e844330184266cbcd444612a3c8631011 0.0s done
 #11 exporting manifest sha256:3849c54dd5c6c212d82d540e6a03ba9a40304448980d9837ec85b8d3624299e1 done
 #11 exporting config sha256:b3abecc43aad04b6c4b963eb65b18ca00e0a1fd717069cc7eb390030fda7c3ab done
-#11 exporting attestation manifest sha256:b35cf49aeabd3fa4362fea1d3e089eb03743d4de5a51b915bddda114be11e94a 0.0s done
-#11 exporting manifest list sha256:bf2848506aad9d788ae7b76d2e1784d0a7d590fbda1f3222d2d55f272b46c623 0.0s done
+#11 exporting attestation manifest sha256:3f25c75e8da3e76f9d144c12c4aac492e5d1fce0c5666838ee5d2b9a4a1b9695 0.0s done
+#11 exporting manifest list sha256:898cc49b631def3862a8845d5b65ed335c4f9022e28cb02db170aeea96c985a8 0.0s done
 #11 pushing layers
 #11 ...
 
@@ -50,19 +53,19 @@
 #12 DONE 0.0s
 
 #11 [map] exporting to image
-#11 pushing layers 3.1s done
-#11 pushing manifest for docker.io/f0rc3ps/map:24.04.1@sha256:bf2848506aad9d788ae7b76d2e1784d0a7d590fbda1f3222d2d55f272b46c623
-#11 pushing manifest for docker.io/f0rc3ps/map:24.04.1@sha256:bf2848506aad9d788ae7b76d2e1784d0a7d590fbda1f3222d2d55f272b46c623 3.0s done
+#11 pushing layers 3.4s done
+#11 pushing manifest for docker.io/f0rc3ps/map:24.04.1@sha256:898cc49b631def3862a8845d5b65ed335c4f9022e28cb02db170aeea96c985a8
+#11 pushing manifest for docker.io/f0rc3ps/map:24.04.1@sha256:898cc49b631def3862a8845d5b65ed335c4f9022e28cb02db170aeea96c985a8 2.3s done
 #11 ...
 
 #13 [map auth] asc3t1c/map:pull,push token for ghcr.io
 #13 DONE 0.0s
 
 #11 [map] exporting to image
-#11 pushing layers 1.8s done
-#11 pushing manifest for ghcr.io/asc3t1c/map:24.04.1@sha256:bf2848506aad9d788ae7b76d2e1784d0a7d590fbda1f3222d2d55f272b46c623
-#11 pushing manifest for ghcr.io/asc3t1c/map:24.04.1@sha256:bf2848506aad9d788ae7b76d2e1784d0a7d590fbda1f3222d2d55f272b46c623 1.9s done
-#11 DONE 9.9s
+#11 pushing layers 2.5s done
+#11 pushing manifest for ghcr.io/asc3t1c/map:24.04.1@sha256:898cc49b631def3862a8845d5b65ed335c4f9022e28cb02db170aeea96c985a8
+#11 pushing manifest for ghcr.io/asc3t1c/map:24.04.1@sha256:898cc49b631def3862a8845d5b65ed335c4f9022e28cb02db170aeea96c985a8 1.6s done
+#11 DONE 9.8s
 
 #14 [map] resolving provenance for metadata file
 #14 DONE 0.0s

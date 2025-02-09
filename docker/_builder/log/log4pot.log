@@ -1,37 +1,37 @@
 #0 building with "mybuilder" instance using docker-container driver
 
 #1 [log4pot internal] load build definition from Dockerfile
-#1 transferring dockerfile: 1.84kB done
+#1 transferring dockerfile: 1.84kB 0.0s done
 #1 DONE 0.0s
 
 #2 [log4pot linux/amd64 internal] load metadata for docker.io/library/ubuntu:24.04
 #2 ...
 
 #3 [log4pot linux/arm64 internal] load metadata for docker.io/library/ubuntu:24.04
-#3 DONE 0.2s
+#3 DONE 0.3s
 
 #4 [log4pot internal] load .dockerignore
-#4 transferring context: 2B done
+#4 transferring context: 2B 0.0s done
 #4 DONE 0.0s
 
 #2 [log4pot linux/amd64 internal] load metadata for docker.io/library/ubuntu:24.04
-#2 DONE 0.2s
+#2 DONE 0.4s
 
 #5 [log4pot linux/arm64 1/3] FROM docker.io/library/ubuntu:24.04@sha256:72297848456d5d37d1262630108ab308d3e9ec7ed1c3286a32fe09856619a782
 #5 resolve docker.io/library/ubuntu:24.04@sha256:72297848456d5d37d1262630108ab308d3e9ec7ed1c3286a32fe09856619a782 0.0s done
 #5 DONE 0.0s
 
-#6 [log4pot linux/amd64 1/3] FROM docker.io/library/ubuntu:24.04@sha256:72297848456d5d37d1262630108ab308d3e9ec7ed1c3286a32fe09856619a782
-#6 resolve docker.io/library/ubuntu:24.04@sha256:72297848456d5d37d1262630108ab308d3e9ec7ed1c3286a32fe09856619a782 0.0s done
-#6 DONE 0.0s
+#6 [log4pot linux/arm64 2/3] RUN apt-get update -y &&     apt-get upgrade -y &&     apt-get install -y 		build-essential 		cargo 		cleo 		git 		libcap2 		libcap2-bin 		libcurl4t64 		libcurl4-gnutls-dev 		libffi8 		libffi-dev 		libssl-dev 		python3-pip 		python3 		python3-dev 		rust-all && 	pip3 install --no-cache-dir --break-system-packages 		poetry==1.8.3 		pycurl &&     mkdir -p /opt /var/log/log4pot &&     cd /opt/ &&     git clone https://github.com/thomaspatzke/Log4Pot &&     cd Log4Pot &&     git checkout 5002b1fe0f82359ef32dbc3a899e8a701dc3256e &&     sed -i 's#"type": logtype,#"reason": logtype,#g' log4pot-server.py &&     poetry --no-cache --without=dev install &&     setcap cap_net_bind_service=+ep $(readlink -f $(which python3)) &&     addgroup --gid 2000 log4pot &&     adduser --system --no-create-home --shell /bin/bash -uid 2000 --disabled-password --disabled-login -gid 2000 log4pot &&     chown log4pot:log4pot -R /opt/Log4Pot &&     apt-get purge -y build-essential 		cargo 		git 		libcurl4-gnutls-dev 		libffi-dev 		libssl-dev 		python3-dev 		python3-pip 		rust-all &&     apt-get autoremove -y --purge &&     apt-get clean && 	rm -rf /var/lib/apt/lists/* 		/tmp/* 		/var/tmp/* 		/root/.cache 		/opt/Log4Pot/.git
+#6 CACHED
 
-#7 [log4pot linux/arm64 2/3] RUN apt-get update -y &&     apt-get upgrade -y &&     apt-get install -y 		build-essential 		cargo 		cleo 		git 		libcap2 		libcap2-bin 		libcurl4t64 		libcurl4-gnutls-dev 		libffi8 		libffi-dev 		libssl-dev 		python3-pip 		python3 		python3-dev 		rust-all && 	pip3 install --no-cache-dir --break-system-packages 		poetry==1.8.3 		pycurl &&     mkdir -p /opt /var/log/log4pot &&     cd /opt/ &&     git clone https://github.com/thomaspatzke/Log4Pot &&     cd Log4Pot &&     git checkout 5002b1fe0f82359ef32dbc3a899e8a701dc3256e &&     sed -i 's#"type": logtype,#"reason": logtype,#g' log4pot-server.py &&     poetry --no-cache --without=dev install &&     setcap cap_net_bind_service=+ep $(readlink -f $(which python3)) &&     addgroup --gid 2000 log4pot &&     adduser --system --no-create-home --shell /bin/bash -uid 2000 --disabled-password --disabled-login -gid 2000 log4pot &&     chown log4pot:log4pot -R /opt/Log4Pot &&     apt-get purge -y build-essential 		cargo 		git 		libcurl4-gnutls-dev 		libffi-dev 		libssl-dev 		python3-dev 		python3-pip 		rust-all &&     apt-get autoremove -y --purge &&     apt-get clean && 	rm -rf /var/lib/apt/lists/* 		/tmp/* 		/var/tmp/* 		/root/.cache 		/opt/Log4Pot/.git
+#7 [log4pot linux/arm64 3/3] WORKDIR /opt/Log4Pot/
 #7 CACHED
 
-#8 [log4pot linux/amd64 2/3] RUN apt-get update -y &&     apt-get upgrade -y &&     apt-get install -y 		build-essential 		cargo 		cleo 		git 		libcap2 		libcap2-bin 		libcurl4t64 		libcurl4-gnutls-dev 		libffi8 		libffi-dev 		libssl-dev 		python3-pip 		python3 		python3-dev 		rust-all && 	pip3 install --no-cache-dir --break-system-packages 		poetry==1.8.3 		pycurl &&     mkdir -p /opt /var/log/log4pot &&     cd /opt/ &&     git clone https://github.com/thomaspatzke/Log4Pot &&     cd Log4Pot &&     git checkout 5002b1fe0f82359ef32dbc3a899e8a701dc3256e &&     sed -i 's#"type": logtype,#"reason": logtype,#g' log4pot-server.py &&     poetry --no-cache --without=dev install &&     setcap cap_net_bind_service=+ep $(readlink -f $(which python3)) &&     addgroup --gid 2000 log4pot &&     adduser --system --no-create-home --shell /bin/bash -uid 2000 --disabled-password --disabled-login -gid 2000 log4pot &&     chown log4pot:log4pot -R /opt/Log4Pot &&     apt-get purge -y build-essential 		cargo 		git 		libcurl4-gnutls-dev 		libffi-dev 		libssl-dev 		python3-dev 		python3-pip 		rust-all &&     apt-get autoremove -y --purge &&     apt-get clean && 	rm -rf /var/lib/apt/lists/* 		/tmp/* 		/var/tmp/* 		/root/.cache 		/opt/Log4Pot/.git
-#8 CACHED
+#8 [log4pot linux/amd64 1/3] FROM docker.io/library/ubuntu:24.04@sha256:72297848456d5d37d1262630108ab308d3e9ec7ed1c3286a32fe09856619a782
+#8 resolve docker.io/library/ubuntu:24.04@sha256:72297848456d5d37d1262630108ab308d3e9ec7ed1c3286a32fe09856619a782 0.0s done
+#8 DONE 0.0s
 
-#9 [log4pot linux/arm64 3/3] WORKDIR /opt/Log4Pot/
+#9 [log4pot linux/amd64 2/3] RUN apt-get update -y &&     apt-get upgrade -y &&     apt-get install -y 		build-essential 		cargo 		cleo 		git 		libcap2 		libcap2-bin 		libcurl4t64 		libcurl4-gnutls-dev 		libffi8 		libffi-dev 		libssl-dev 		python3-pip 		python3 		python3-dev 		rust-all && 	pip3 install --no-cache-dir --break-system-packages 		poetry==1.8.3 		pycurl &&     mkdir -p /opt /var/log/log4pot &&     cd /opt/ &&     git clone https://github.com/thomaspatzke/Log4Pot &&     cd Log4Pot &&     git checkout 5002b1fe0f82359ef32dbc3a899e8a701dc3256e &&     sed -i 's#"type": logtype,#"reason": logtype,#g' log4pot-server.py &&     poetry --no-cache --without=dev install &&     setcap cap_net_bind_service=+ep $(readlink -f $(which python3)) &&     addgroup --gid 2000 log4pot &&     adduser --system --no-create-home --shell /bin/bash -uid 2000 --disabled-password --disabled-login -gid 2000 log4pot &&     chown log4pot:log4pot -R /opt/Log4Pot &&     apt-get purge -y build-essential 		cargo 		git 		libcurl4-gnutls-dev 		libffi-dev 		libssl-dev 		python3-dev 		python3-pip 		rust-all &&     apt-get autoremove -y --purge &&     apt-get clean && 	rm -rf /var/lib/apt/lists/* 		/tmp/* 		/var/tmp/* 		/root/.cache 		/opt/Log4Pot/.git
 #9 CACHED
 
 #10 [log4pot linux/amd64 3/3] WORKDIR /opt/Log4Pot/
@@ -41,11 +41,11 @@
 #11 exporting layers done
 #11 exporting manifest sha256:05411fc51bd467b5d3fec00d78b27c984bdadf3fbb8b1ebe796d7e2651e1e407 done
 #11 exporting config sha256:affff481de4c6b540b3a7a65b88e88735c8d8a20e389d8ffa40a1398c6b3dddb done
-#11 exporting attestation manifest sha256:c33259ec1b71410b56257dc310af5e2bf9c255eab026aad41dc9e8cdb1694758 0.0s done
+#11 exporting attestation manifest sha256:024d04632b864f7983977156fed39c69c37fc9c398d2f0b6e74c1a8c77aa44b4 0.0s done
 #11 exporting manifest sha256:8cf08d043e6628d7ebc8df4d1fc8d69038b6aa1d02f520592f5321f20ad1f8c7 done
 #11 exporting config sha256:f33bf46a75e4e3692f8345e1402267b6e8f3fd991b50c601180788bd67793a29 done
-#11 exporting attestation manifest sha256:07bcdc7fe09087634deaa1c309cece3143e1bddcb963b9877e3ec866d5e6b1e4 0.0s done
-#11 exporting manifest list sha256:8e5099b00e41018cf7612a250d58814b6cd8208d6a9014ec26367d3eaaef789a done
+#11 exporting attestation manifest sha256:3a361d85239083efe27c53fa07c03d43a2be129a44312a0b2b8106ed4e4c2f78 0.0s done
+#11 exporting manifest list sha256:931599b7f3413ba31708572ced88b4256912f0409bca4ca1a56ef4566cc9531e done
 #11 pushing layers
 #11 ...
 
@@ -53,19 +53,19 @@
 #12 DONE 0.0s
 
 #11 [log4pot] exporting to image
-#11 pushing layers 2.2s done
-#11 pushing manifest for docker.io/f0rc3ps/log4pot:24.04.1@sha256:8e5099b00e41018cf7612a250d58814b6cd8208d6a9014ec26367d3eaaef789a
-#11 pushing manifest for docker.io/f0rc3ps/log4pot:24.04.1@sha256:8e5099b00e41018cf7612a250d58814b6cd8208d6a9014ec26367d3eaaef789a 2.8s done
+#11 pushing layers 2.6s done
+#11 pushing manifest for docker.io/f0rc3ps/log4pot:24.04.1@sha256:931599b7f3413ba31708572ced88b4256912f0409bca4ca1a56ef4566cc9531e
+#11 pushing manifest for docker.io/f0rc3ps/log4pot:24.04.1@sha256:931599b7f3413ba31708572ced88b4256912f0409bca4ca1a56ef4566cc9531e 2.4s done
 #11 ...
 
 #13 [log4pot auth] asc3t1c/log4pot:pull,push token for ghcr.io
 #13 DONE 0.0s
 
 #11 [log4pot] exporting to image
-#11 pushing layers 1.8s done
-#11 pushing manifest for ghcr.io/asc3t1c/log4pot:24.04.1@sha256:8e5099b00e41018cf7612a250d58814b6cd8208d6a9014ec26367d3eaaef789a
-#11 pushing manifest for ghcr.io/asc3t1c/log4pot:24.04.1@sha256:8e5099b00e41018cf7612a250d58814b6cd8208d6a9014ec26367d3eaaef789a 1.7s done
-#11 DONE 8.6s
+#11 pushing layers 2.3s done
+#11 pushing manifest for ghcr.io/asc3t1c/log4pot:24.04.1@sha256:931599b7f3413ba31708572ced88b4256912f0409bca4ca1a56ef4566cc9531e
+#11 pushing manifest for ghcr.io/asc3t1c/log4pot:24.04.1@sha256:931599b7f3413ba31708572ced88b4256912f0409bca4ca1a56ef4566cc9531e 1.8s done
+#11 DONE 9.1s
 
 #14 [log4pot] resolving provenance for metadata file
 #14 DONE 0.0s

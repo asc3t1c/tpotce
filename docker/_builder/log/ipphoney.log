@@ -127,3 +127,10 @@
 #32 DONE 0.0s
 
 #30 [ipphoney] exporting to image
+#30 pushing layers 2.8s done
+#30 pushing manifest for ghcr.io/asc3t1c/ipphoney:24.04.1@sha256:cac28c0935c8a5520c5fc89ce294f4c3c831fff185fc4976bccca01529631cfe
+#30 pushing manifest for ghcr.io/asc3t1c/ipphoney:24.04.1@sha256:cac28c0935c8a5520c5fc89ce294f4c3c831fff185fc4976bccca01529631cfe 1.6s done
+#30 DONE 9.4s
+
+#33 [ipphoney] resolving provenance for metadata file
+#33 DONE 0.0s

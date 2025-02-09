@@ -1,105 +1,103 @@
 #0 building with "mybuilder" instance using docker-container driver
 
 #1 [miniprint internal] load build definition from Dockerfile
-#1 transferring dockerfile: 942B done
+#1 transferring dockerfile: 942B 0.0s done
 #1 DONE 0.0s
 
-#2 [miniprint linux/arm64 internal] load metadata for docker.io/library/alpine:3.20
-#2 ...
-
-#3 [miniprint linux/amd64 internal] load metadata for docker.io/library/alpine:3.20
-#3 DONE 0.2s
-
-#2 [miniprint linux/arm64 internal] load metadata for docker.io/library/alpine:3.20
+#2 [miniprint linux/amd64 internal] load metadata for docker.io/library/alpine:3.20
 #2 DONE 0.2s
+
+#3 [miniprint linux/arm64 internal] load metadata for docker.io/library/alpine:3.20
+#3 DONE 0.2s
 
 #4 [miniprint internal] load .dockerignore
 #4 transferring context: 2B done
 #4 DONE 0.0s
 
-#5 [miniprint linux/amd64 builder 1/7] FROM docker.io/library/alpine:3.20@sha256:31687a2fdd021f85955bf2d0c2682e9c0949827560e1db546358ea094f740f12
+#5 [miniprint linux/arm64 builder 1/7] FROM docker.io/library/alpine:3.20@sha256:31687a2fdd021f85955bf2d0c2682e9c0949827560e1db546358ea094f740f12
 #5 resolve docker.io/library/alpine:3.20@sha256:31687a2fdd021f85955bf2d0c2682e9c0949827560e1db546358ea094f740f12 0.0s done
 #5 DONE 0.0s
 
-#6 [miniprint linux/amd64 builder 2/7] RUN apk --no-cache -U upgrade && 	apk --no-cache -U add 	build-base 	git 	python3     py3-pip
-#6 CACHED
+#6 [miniprint linux/amd64 builder 1/7] FROM docker.io/library/alpine:3.20@sha256:31687a2fdd021f85955bf2d0c2682e9c0949827560e1db546358ea094f740f12
+#6 resolve docker.io/library/alpine:3.20@sha256:31687a2fdd021f85955bf2d0c2682e9c0949827560e1db546358ea094f740f12 0.0s done
+#6 DONE 0.0s
 
-#7 [miniprint linux/amd64 builder 5/7] RUN pip3 install --break-system-packages pyinstaller
+#7 [miniprint linux/arm64 stage-1 4/6] COPY --from=builder /opt/miniprint/fake-files/ /opt/miniprint/fake-files/
 #7 CACHED
 
-#8 [miniprint linux/amd64 stage-1 2/6] RUN apk --no-cache -U upgrade
+#8 [miniprint linux/arm64 builder 4/7] WORKDIR /opt/miniprint
 #8 CACHED
 
-#9 [miniprint linux/amd64 builder 4/7] WORKDIR /opt/miniprint
+#9 [miniprint linux/arm64 builder 3/7] RUN	MKDIR -p /opt && 	cd /opt/ && 	git clone https://github.com/t3chn0m4g3/miniprint
 #9 CACHED
 
-#10 [miniprint linux/amd64 stage-1 4/6] COPY --from=builder /opt/miniprint/fake-files/ /opt/miniprint/fake-files/
+#10 [miniprint linux/arm64 builder 2/7] RUN apk --no-cache -U upgrade && 	apk --no-cache -U add 	build-base 	git 	python3     py3-pip
 #10 CACHED
 
-#11 [miniprint linux/amd64 builder 6/7] RUN	PIP3 install --break-system-packages -r requirements.txt
+#11 [miniprint linux/arm64 stage-1 2/6] RUN apk --no-cache -U upgrade
 #11 CACHED
 
-#12 [miniprint linux/amd64 stage-1 3/6] COPY --from=builder /opt/miniprint/dist/* /opt/miniprint/
+#12 [miniprint linux/arm64 builder 7/7] RUN pyinstaller server.py 		--add-data "./fake-files:./fake-files" 		--add-data "./uploads:./uploads"
 #12 CACHED
 
-#13 [miniprint linux/amd64 builder 7/7] RUN pyinstaller server.py 		--add-data "./fake-files:./fake-files" 		--add-data "./uploads:./uploads"
+#13 [miniprint linux/arm64 stage-1 5/6] COPY --from=builder /opt/miniprint/uploads/ /opt/miniprint/uploads/
 #13 CACHED
 
-#14 [miniprint linux/amd64 stage-1 5/6] COPY --from=builder /opt/miniprint/uploads/ /opt/miniprint/uploads/
+#14 [miniprint linux/arm64 stage-1 3/6] COPY --from=builder /opt/miniprint/dist/* /opt/miniprint/
 #14 CACHED
 
-#15 [miniprint linux/amd64 builder 3/7] RUN	MKDIR -p /opt && 	cd /opt/ && 	git clone https://github.com/t3chn0m4g3/miniprint
+#15 [miniprint linux/arm64 builder 5/7] RUN pip3 install --break-system-packages pyinstaller
 #15 CACHED
 
-#16 [miniprint linux/amd64 stage-1 6/6] WORKDIR /opt/miniprint/
+#16 [miniprint linux/arm64 builder 6/7] RUN	PIP3 install --break-system-packages -r requirements.txt
 #16 CACHED
 
-#17 [miniprint linux/arm64 builder 1/7] FROM docker.io/library/alpine:3.20@sha256:31687a2fdd021f85955bf2d0c2682e9c0949827560e1db546358ea094f740f12
-#17 resolve docker.io/library/alpine:3.20@sha256:31687a2fdd021f85955bf2d0c2682e9c0949827560e1db546358ea094f740f12 0.0s done
-#17 DONE 0.0s
+#17 [miniprint linux/arm64 stage-1 6/6] WORKDIR /opt/miniprint/
+#17 CACHED
 
-#18 [miniprint linux/arm64 stage-1 5/6] COPY --from=builder /opt/miniprint/uploads/ /opt/miniprint/uploads/
+#18 [miniprint linux/amd64 builder 5/7] RUN pip3 install --break-system-packages pyinstaller
 #18 CACHED
 
-#19 [miniprint linux/arm64 stage-1 2/6] RUN apk --no-cache -U upgrade
+#19 [miniprint linux/amd64 builder 4/7] WORKDIR /opt/miniprint
 #19 CACHED
 
-#20 [miniprint linux/arm64 builder 4/7] WORKDIR /opt/miniprint
+#20 [miniprint linux/amd64 builder 3/7] RUN	MKDIR -p /opt && 	cd /opt/ && 	git clone https://github.com/t3chn0m4g3/miniprint
 #20 CACHED
 
-#21 [miniprint linux/arm64 builder 7/7] RUN pyinstaller server.py 		--add-data "./fake-files:./fake-files" 		--add-data "./uploads:./uploads"
+#21 [miniprint linux/amd64 stage-1 2/6] RUN apk --no-cache -U upgrade
 #21 CACHED
 
-#22 [miniprint linux/arm64 builder 3/7] RUN	MKDIR -p /opt && 	cd /opt/ && 	git clone https://github.com/t3chn0m4g3/miniprint
+#22 [miniprint linux/amd64 builder 6/7] RUN	PIP3 install --break-system-packages -r requirements.txt
 #22 CACHED
 
-#23 [miniprint linux/arm64 builder 2/7] RUN apk --no-cache -U upgrade && 	apk --no-cache -U add 	build-base 	git 	python3     py3-pip
+#23 [miniprint linux/amd64 builder 2/7] RUN apk --no-cache -U upgrade && 	apk --no-cache -U add 	build-base 	git 	python3     py3-pip
 #23 CACHED
 
-#24 [miniprint linux/arm64 builder 5/7] RUN pip3 install --break-system-packages pyinstaller
+#24 [miniprint linux/amd64 stage-1 4/6] COPY --from=builder /opt/miniprint/fake-files/ /opt/miniprint/fake-files/
 #24 CACHED
 
-#25 [miniprint linux/arm64 builder 6/7] RUN	PIP3 install --break-system-packages -r requirements.txt
+#25 [miniprint linux/amd64 stage-1 5/6] COPY --from=builder /opt/miniprint/uploads/ /opt/miniprint/uploads/
 #25 CACHED
 
-#26 [miniprint linux/arm64 stage-1 3/6] COPY --from=builder /opt/miniprint/dist/* /opt/miniprint/
+#26 [miniprint linux/amd64 builder 7/7] RUN pyinstaller server.py 		--add-data "./fake-files:./fake-files" 		--add-data "./uploads:./uploads"
 #26 CACHED
 
-#27 [miniprint linux/arm64 stage-1 4/6] COPY --from=builder /opt/miniprint/fake-files/ /opt/miniprint/fake-files/
+#27 [miniprint linux/amd64 stage-1 3/6] COPY --from=builder /opt/miniprint/dist/* /opt/miniprint/
 #27 CACHED
 
-#28 [miniprint linux/arm64 stage-1 6/6] WORKDIR /opt/miniprint/
+#28 [miniprint linux/amd64 stage-1 6/6] WORKDIR /opt/miniprint/
 #28 CACHED
 
 #29 [miniprint] exporting to image
 #29 exporting layers done
 #29 exporting manifest sha256:74e31d991c744c565e4519defda359d064744637b6f4c782861c3d9940a5e0f6 done
 #29 exporting config sha256:5cb6be529b08df59201f851a5f60737627921485821563ccd8301b14e44ca2ed done
-#29 exporting attestation manifest sha256:629caa5b45af71c2a7828c73efd49b50cb979bed4932a83d1bdb20e2740fb39a 0.0s done
+#29 exporting attestation manifest sha256:09d1ebf51152aadf2c28cf9aca9943dacea674d107eabe1fc7fd6637dabe66e0 0.0s done
 #29 exporting manifest sha256:516f4136f2e0be1b09fb60fbad88f80586333e42e835021924e8798fbb8201f7 done
 #29 exporting config sha256:e022197a09108614f01ee2dd40be7f15eabc65ee92e080393f41175a81e3c5b6 done
-#29 exporting attestation manifest sha256:8a4e8375aaa99a7edfe43c8431d4f18c462e4f571959ce81c836482e71911fac 0.0s done
-#29 exporting manifest list sha256:40ede861064bdf8e5aee41d51666f10175b734e694a5d1af42492f733061402f done
+#29 exporting attestation manifest sha256:fb11fb37c7bf392aaea2d7022627d0bd82095f02171f4faedb24c16e917cebcf
+#29 exporting attestation manifest sha256:fb11fb37c7bf392aaea2d7022627d0bd82095f02171f4faedb24c16e917cebcf 0.0s done
+#29 exporting manifest list sha256:ab39fdf2e6f81acfb524e9f07aed22ad4cb07b45f6d6f363244cb8241ef85776 0.0s done
 #29 pushing layers
 #29 ...
 
@@ -109,26 +107,26 @@
 #29 [miniprint] exporting to image
 #29 ...
 
-#17 [miniprint linux/arm64 builder 1/7] FROM docker.io/library/alpine:3.20@sha256:31687a2fdd021f85955bf2d0c2682e9c0949827560e1db546358ea094f740f12
-#17 CACHED
-
-#5 [miniprint linux/amd64 builder 1/7] FROM docker.io/library/alpine:3.20@sha256:31687a2fdd021f85955bf2d0c2682e9c0949827560e1db546358ea094f740f12
+#5 [miniprint linux/arm64 builder 1/7] FROM docker.io/library/alpine:3.20@sha256:31687a2fdd021f85955bf2d0c2682e9c0949827560e1db546358ea094f740f12
 #5 CACHED
 
+#6 [miniprint linux/amd64 builder 1/7] FROM docker.io/library/alpine:3.20@sha256:31687a2fdd021f85955bf2d0c2682e9c0949827560e1db546358ea094f740f12
+#6 CACHED
+
 #29 [miniprint] exporting to image
-#29 pushing layers 2.4s done
-#29 pushing manifest for docker.io/f0rc3ps/miniprint:24.04.1@sha256:40ede861064bdf8e5aee41d51666f10175b734e694a5d1af42492f733061402f
-#29 pushing manifest for docker.io/f0rc3ps/miniprint:24.04.1@sha256:40ede861064bdf8e5aee41d51666f10175b734e694a5d1af42492f733061402f 2.9s done
+#29 pushing layers 2.0s done
+#29 pushing manifest for docker.io/f0rc3ps/miniprint:24.04.1@sha256:ab39fdf2e6f81acfb524e9f07aed22ad4cb07b45f6d6f363244cb8241ef85776
+#29 pushing manifest for docker.io/f0rc3ps/miniprint:24.04.1@sha256:ab39fdf2e6f81acfb524e9f07aed22ad4cb07b45f6d6f363244cb8241ef85776 2.6s done
 #29 ...
 
 #31 [miniprint auth] asc3t1c/miniprint:pull,push token for ghcr.io
 #31 DONE 0.0s
 
 #29 [miniprint] exporting to image
-#29 pushing layers 1.4s done
-#29 pushing manifest for ghcr.io/asc3t1c/miniprint:24.04.1@sha256:40ede861064bdf8e5aee41d51666f10175b734e694a5d1af42492f733061402f
-#29 pushing manifest for ghcr.io/asc3t1c/miniprint:24.04.1@sha256:40ede861064bdf8e5aee41d51666f10175b734e694a5d1af42492f733061402f 1.5s done
-#29 DONE 8.3s
+#29 pushing layers 1.5s done
+#29 pushing manifest for ghcr.io/asc3t1c/miniprint:24.04.1@sha256:ab39fdf2e6f81acfb524e9f07aed22ad4cb07b45f6d6f363244cb8241ef85776
+#29 pushing manifest for ghcr.io/asc3t1c/miniprint:24.04.1@sha256:ab39fdf2e6f81acfb524e9f07aed22ad4cb07b45f6d6f363244cb8241ef85776 1.6s done
+#29 DONE 7.8s
 
 #32 [miniprint] resolving provenance for metadata file
 #32 DONE 0.0s

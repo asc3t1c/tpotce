@@ -1,32 +1,29 @@
 #0 building with "mybuilder" instance using docker-container driver
 
 #1 [redis internal] load build definition from Dockerfile
-#1 transferring dockerfile: 568B done
-#1 DONE 0.0s
+#1 transferring dockerfile: 568B 0.1s done
+#1 DONE 0.1s
 
-#2 [redis linux/arm64 internal] load metadata for docker.io/library/alpine:3.20
-#2 ...
+#2 [redis linux/amd64 internal] load metadata for docker.io/library/alpine:3.20
+#2 DONE 0.2s
 
-#3 [redis linux/amd64 internal] load metadata for docker.io/library/alpine:3.20
-#3 DONE 0.2s
+#3 [redis linux/arm64 internal] load metadata for docker.io/library/alpine:3.20
+#3 DONE 0.3s
 
-#4 [redis internal] load .dockerignore
-#4 transferring context: 2B done
-#4 DONE 0.0s
+#4 [redis linux/arm64 builder 1/7] FROM docker.io/library/alpine:3.20@sha256:31687a2fdd021f85955bf2d0c2682e9c0949827560e1db546358ea094f740f12
+#4 CACHED
 
-#2 [redis linux/arm64 internal] load metadata for docker.io/library/alpine:3.20
-#2 DONE 0.3s
-
-#5 [redis linux/arm64 builder 1/7] FROM docker.io/library/alpine:3.20@sha256:31687a2fdd021f85955bf2d0c2682e9c0949827560e1db546358ea094f740f12
+#5 [redis linux/amd64 builder 1/7] FROM docker.io/library/alpine:3.20@sha256:31687a2fdd021f85955bf2d0c2682e9c0949827560e1db546358ea094f740f12
 #5 resolve docker.io/library/alpine:3.20@sha256:31687a2fdd021f85955bf2d0c2682e9c0949827560e1db546358ea094f740f12 0.0s done
 #5 CACHED
 
-#6 [redis linux/amd64 builder 1/7] FROM docker.io/library/alpine:3.20@sha256:31687a2fdd021f85955bf2d0c2682e9c0949827560e1db546358ea094f740f12
-#6 CACHED
+#6 [redis internal] load .dockerignore
+#6 transferring context: 2B 0.0s done
+#6 DONE 0.1s
 
 #7 [redis internal] load build context
-#7 transferring context: 109B 0.0s done
-#7 DONE 0.0s
+#7 transferring context: 60B 0.0s done
+#7 DONE 0.1s
 
 #8 [redis linux/amd64 2/3] COPY dist/ /root/dist/
 #8 CACHED
@@ -44,12 +41,13 @@
 #12 exporting layers done
 #12 exporting manifest sha256:ee69e1623f0f7732cc54ff43af8f360cb807614e4563d90ffc4e655aca192644 done
 #12 exporting config sha256:e169a6643db3496bbf0ade4cb9f461882da46c5b9aca5403e4966615a1243000 done
-#12 exporting attestation manifest sha256:e89e26895810e0617560f1120ac6d4d818a0f5c0adec87c9fde4b2b703304979 0.0s done
-#12 exporting manifest sha256:3f3182c11ba366773c89637f6fcf5c7e272572bce22b0519374af2a73413997a done
-#12 exporting config sha256:293e6f0e3edaa6e9b3ac6f2925e408a3d2f9424d1c1b7947af9b50d350f93362 done
-#12 exporting attestation manifest sha256:8124a8d0824d19a8b2e81901e02cfcdfcd1e214b57ff75909302b8b4d97289e1
-#12 exporting attestation manifest sha256:8124a8d0824d19a8b2e81901e02cfcdfcd1e214b57ff75909302b8b4d97289e1 0.0s done
-#12 exporting manifest list sha256:a18d8405f4ee84f580a48ffa8199ed5f6ec46419350365bd9f802e9970b4f7fb 0.0s done
+#12 exporting attestation manifest sha256:1f476ec2f77e9e48a59e8955be8e6eb8418b4a982b4b41ce242ad4c789fe0207 0.1s done
+#12 exporting manifest sha256:3f3182c11ba366773c89637f6fcf5c7e272572bce22b0519374af2a73413997a
+#12 exporting manifest sha256:3f3182c11ba366773c89637f6fcf5c7e272572bce22b0519374af2a73413997a 0.0s done
+#12 exporting config sha256:293e6f0e3edaa6e9b3ac6f2925e408a3d2f9424d1c1b7947af9b50d350f93362 0.0s done
+#12 exporting attestation manifest sha256:d68c5c8e70f23ac02b846b7676cd4e1f43a2c7d407a25ee098c16ae438d0ae90
+#12 exporting attestation manifest sha256:d68c5c8e70f23ac02b846b7676cd4e1f43a2c7d407a25ee098c16ae438d0ae90 0.1s done
+#12 exporting manifest list sha256:99cba2047b76bad4100f2e7060e685a8dcb20b9ae099c4a125654235fe70e1c3 0.0s done
 #12 pushing layers
 #12 ...
 
@@ -57,19 +55,19 @@
 #13 DONE 0.0s
 
 #12 [redis] exporting to image
-#12 pushing layers 13.1s done
-#12 pushing manifest for docker.io/f0rc3ps/redis:24.04.1@sha256:a18d8405f4ee84f580a48ffa8199ed5f6ec46419350365bd9f802e9970b4f7fb
-#12 pushing manifest for docker.io/f0rc3ps/redis:24.04.1@sha256:a18d8405f4ee84f580a48ffa8199ed5f6ec46419350365bd9f802e9970b4f7fb 3.6s done
+#12 pushing layers 2.9s done
+#12 pushing manifest for docker.io/f0rc3ps/redis:24.04.1@sha256:99cba2047b76bad4100f2e7060e685a8dcb20b9ae099c4a125654235fe70e1c3
+#12 pushing manifest for docker.io/f0rc3ps/redis:24.04.1@sha256:99cba2047b76bad4100f2e7060e685a8dcb20b9ae099c4a125654235fe70e1c3 2.1s done
 #12 ...
 
 #14 [redis auth] asc3t1c/redis:pull,push token for ghcr.io
 #14 DONE 0.0s
 
 #12 [redis] exporting to image
-#12 pushing layers 1.5s done
-#12 pushing manifest for ghcr.io/asc3t1c/redis:24.04.1@sha256:a18d8405f4ee84f580a48ffa8199ed5f6ec46419350365bd9f802e9970b4f7fb
-#12 pushing manifest for ghcr.io/asc3t1c/redis:24.04.1@sha256:a18d8405f4ee84f580a48ffa8199ed5f6ec46419350365bd9f802e9970b4f7fb 1.9s done
-#12 DONE 20.2s
+#12 pushing layers 1.9s done
+#12 pushing manifest for ghcr.io/asc3t1c/redis:24.04.1@sha256:99cba2047b76bad4100f2e7060e685a8dcb20b9ae099c4a125654235fe70e1c3
+#12 pushing manifest for ghcr.io/asc3t1c/redis:24.04.1@sha256:99cba2047b76bad4100f2e7060e685a8dcb20b9ae099c4a125654235fe70e1c3 1.9s done
+#12 DONE 9.2s
 
 #15 [redis] resolving provenance for metadata file
 #15 DONE 0.0s

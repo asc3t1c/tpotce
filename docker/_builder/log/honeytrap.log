@@ -65,3 +65,8 @@
 #12 [honeytrap] exporting to image
 #12 pushing layers 2.8s done
 #12 pushing manifest for ghcr.io/asc3t1c/honeytrap:24.04.1@sha256:2e688c95157588675f6a52f47b25a95e010da907ec0a1ac4ee8433286d05a1f8
+#12 pushing manifest for ghcr.io/asc3t1c/honeytrap:24.04.1@sha256:2e688c95157588675f6a52f47b25a95e010da907ec0a1ac4ee8433286d05a1f8 1.9s done
+#12 DONE 9.8s
+
+#15 [honeytrap] resolving provenance for metadata file
+#15 DONE 0.0s

@@ -4,126 +4,134 @@
 #1 transferring dockerfile: 1.33kB 0.0s done
 #1 DONE 0.0s
 
-#2 [wordpot linux/arm64 internal] load metadata for docker.io/library/alpine:3.20
-#2 ...
+#2 [wordpot auth] library/alpine:pull token for registry-1.docker.io
+#2 DONE 0.0s
 
-#3 [wordpot linux/amd64 internal] load metadata for docker.io/library/alpine:3.20
-#3 DONE 0.4s
+#3 [wordpot linux/arm64 internal] load metadata for docker.io/library/alpine:3.20
+#3 DONE 1.1s
 
-#2 [wordpot linux/arm64 internal] load metadata for docker.io/library/alpine:3.20
-#2 DONE 0.4s
+#4 [wordpot linux/amd64 internal] load metadata for docker.io/library/alpine:3.20
+#4 DONE 1.1s
 
-#4 [wordpot internal] load .dockerignore
-#4 transferring context: 2B done
-#4 DONE 0.0s
-
-#5 [wordpot linux/arm64 builder 1/9] FROM docker.io/library/alpine:3.20@sha256:31687a2fdd021f85955bf2d0c2682e9c0949827560e1db546358ea094f740f12
-#5 resolve docker.io/library/alpine:3.20@sha256:31687a2fdd021f85955bf2d0c2682e9c0949827560e1db546358ea094f740f12 0.0s done
+#5 [wordpot internal] load .dockerignore
+#5 transferring context: 2B 0.0s done
 #5 DONE 0.0s
 
-#6 [wordpot linux/amd64 builder 1/9] FROM docker.io/library/alpine:3.20@sha256:31687a2fdd021f85955bf2d0c2682e9c0949827560e1db546358ea094f740f12
-#6 resolve docker.io/library/alpine:3.20@sha256:31687a2fdd021f85955bf2d0c2682e9c0949827560e1db546358ea094f740f12 0.0s done
+#6 [wordpot internal] load build context
 #6 DONE 0.0s
 
-#7 [wordpot internal] load build context
-#7 transferring context: 114B done
+#7 [wordpot linux/amd64 builder 1/9] FROM docker.io/library/alpine:3.20@sha256:31687a2fdd021f85955bf2d0c2682e9c0949827560e1db546358ea094f740f12
+#7 resolve docker.io/library/alpine:3.20@sha256:31687a2fdd021f85955bf2d0c2682e9c0949827560e1db546358ea094f740f12
+#7 ...
+
+#8 [wordpot linux/arm64 builder 1/9] FROM docker.io/library/alpine:3.20@sha256:31687a2fdd021f85955bf2d0c2682e9c0949827560e1db546358ea094f740f12
+#8 resolve docker.io/library/alpine:3.20@sha256:31687a2fdd021f85955bf2d0c2682e9c0949827560e1db546358ea094f740f12 0.0s done
+#8 DONE 0.0s
+
+#7 [wordpot linux/amd64 builder 1/9] FROM docker.io/library/alpine:3.20@sha256:31687a2fdd021f85955bf2d0c2682e9c0949827560e1db546358ea094f740f12
+#7 resolve docker.io/library/alpine:3.20@sha256:31687a2fdd021f85955bf2d0c2682e9c0949827560e1db546358ea094f740f12 0.0s done
 #7 DONE 0.0s
 
-#8 [wordpot linux/arm64 builder 9/9] RUN ls -alR
-#8 CACHED
+#6 [wordpot internal] load build context
+#6 transferring context: 66B 0.0s done
+#6 DONE 0.0s
 
-#9 [wordpot linux/arm64 builder 4/9] RUN mkdir -p /opt &&     cd /opt/ &&     git clone https://github.com/t3chn0m4g3/wordpot &&     cd wordpot &&     git checkout b2701cb6c7057ed2843187c0c425bb8c13845719 &&     cp /root/dist/requirements.txt .
+#9 [wordpot linux/amd64 builder 4/9] RUN mkdir -p /opt &&     cd /opt/ &&     git clone https://github.com/t3chn0m4g3/wordpot &&     cd wordpot &&     git checkout b2701cb6c7057ed2843187c0c425bb8c13845719 &&     cp /root/dist/requirements.txt .
 #9 CACHED
 
-#10 [wordpot linux/arm64 builder 8/9] RUN pyinstaller wordpot.py 		--hidden-import hpfeeds 		--add-data "./wordpot/static:./wordpot/static" 		--add-data "./wordpot/templates:./wordpot/templates" 		--add-data "./wordpot/plugins:./wordpot/plugins" 		--add-data "./wordpot.conf:./"
+#10 [wordpot linux/amd64 builder 3/9] RUN apk --no-cache -U upgrade && 	apk --no-cache -U add 		build-base 		git 		libcap 		py3-click 		py3-flask 		py3-itsdangerous 		py3-jinja2 		py3-markupsafe 		py3-pip 		py3-ua-parser 		py3-werkzeug 		py3-yaml 		python3 		python3-dev
 #10 CACHED
 
-#11 [wordpot linux/arm64 builder 2/9] COPY dist/ /root/dist/
+#11 [wordpot linux/amd64 builder 9/9] RUN ls -alR
 #11 CACHED
 
-#12 [wordpot linux/arm64 builder 7/9] RUN	PIP3 install --no-cache-dir --break-system-packages -r requirements.txt
+#12 [wordpot linux/amd64 builder 8/9] RUN pyinstaller wordpot.py 		--hidden-import hpfeeds 		--add-data "./wordpot/static:./wordpot/static" 		--add-data "./wordpot/templates:./wordpot/templates" 		--add-data "./wordpot/plugins:./wordpot/plugins" 		--add-data "./wordpot.conf:./"
 #12 CACHED
 
-#13 [wordpot linux/arm64 builder 6/9] RUN pip3 install --no-cache-dir --break-system-packages pyinstaller
+#13 [wordpot linux/amd64 builder 5/9] WORKDIR /opt/wordpot
 #13 CACHED
 
-#14 [wordpot linux/arm64 stage-1 2/4] RUN apk --no-cache -U upgrade
+#14 [wordpot linux/amd64 stage-1 2/4] RUN apk --no-cache -U upgrade
 #14 CACHED
 
-#15 [wordpot linux/arm64 builder 5/9] WORKDIR /opt/wordpot
+#15 [wordpot linux/amd64 builder 2/9] COPY dist/ /root/dist/
 #15 CACHED
 
-#16 [wordpot linux/arm64 builder 3/9] RUN apk --no-cache -U upgrade && 	apk --no-cache -U add 		build-base 		git 		libcap 		py3-click 		py3-flask 		py3-itsdangerous 		py3-jinja2 		py3-markupsafe 		py3-pip 		py3-ua-parser 		py3-werkzeug 		py3-yaml 		python3 		python3-dev
+#16 [wordpot linux/amd64 builder 7/9] RUN	PIP3 install --no-cache-dir --break-system-packages -r requirements.txt
 #16 CACHED
 
-#17 [wordpot linux/arm64 stage-1 3/4] COPY --from=builder /opt/wordpot/dist /opt/
+#17 [wordpot linux/amd64 builder 6/9] RUN pip3 install --no-cache-dir --break-system-packages pyinstaller
 #17 CACHED
 
-#18 [wordpot linux/arm64 stage-1 4/4] WORKDIR /opt/wordpot/
+#18 [wordpot linux/amd64 stage-1 3/4] COPY --from=builder /opt/wordpot/dist /opt/
 #18 CACHED
 
-#19 [wordpot linux/amd64 builder 4/9] RUN mkdir -p /opt &&     cd /opt/ &&     git clone https://github.com/t3chn0m4g3/wordpot &&     cd wordpot &&     git checkout b2701cb6c7057ed2843187c0c425bb8c13845719 &&     cp /root/dist/requirements.txt .
+#19 [wordpot linux/arm64 stage-1 3/4] COPY --from=builder /opt/wordpot/dist /opt/
 #19 CACHED
 
-#20 [wordpot linux/amd64 stage-1 3/4] COPY --from=builder /opt/wordpot/dist /opt/
+#20 [wordpot linux/arm64 builder 5/9] WORKDIR /opt/wordpot
 #20 CACHED
 
-#21 [wordpot linux/amd64 builder 3/9] RUN apk --no-cache -U upgrade && 	apk --no-cache -U add 		build-base 		git 		libcap 		py3-click 		py3-flask 		py3-itsdangerous 		py3-jinja2 		py3-markupsafe 		py3-pip 		py3-ua-parser 		py3-werkzeug 		py3-yaml 		python3 		python3-dev
+#21 [wordpot linux/arm64 builder 3/9] RUN apk --no-cache -U upgrade && 	apk --no-cache -U add 		build-base 		git 		libcap 		py3-click 		py3-flask 		py3-itsdangerous 		py3-jinja2 		py3-markupsafe 		py3-pip 		py3-ua-parser 		py3-werkzeug 		py3-yaml 		python3 		python3-dev
 #21 CACHED
 
-#22 [wordpot linux/amd64 builder 8/9] RUN pyinstaller wordpot.py 		--hidden-import hpfeeds 		--add-data "./wordpot/static:./wordpot/static" 		--add-data "./wordpot/templates:./wordpot/templates" 		--add-data "./wordpot/plugins:./wordpot/plugins" 		--add-data "./wordpot.conf:./"
+#22 [wordpot linux/arm64 builder 8/9] RUN pyinstaller wordpot.py 		--hidden-import hpfeeds 		--add-data "./wordpot/static:./wordpot/static" 		--add-data "./wordpot/templates:./wordpot/templates" 		--add-data "./wordpot/plugins:./wordpot/plugins" 		--add-data "./wordpot.conf:./"
 #22 CACHED
 
-#23 [wordpot linux/amd64 builder 9/9] RUN ls -alR
+#23 [wordpot linux/arm64 stage-1 2/4] RUN apk --no-cache -U upgrade
 #23 CACHED
 
-#24 [wordpot linux/amd64 builder 6/9] RUN pip3 install --no-cache-dir --break-system-packages pyinstaller
+#24 [wordpot linux/arm64 builder 6/9] RUN pip3 install --no-cache-dir --break-system-packages pyinstaller
 #24 CACHED
 
-#25 [wordpot linux/amd64 builder 5/9] WORKDIR /opt/wordpot
+#25 [wordpot linux/arm64 builder 2/9] COPY dist/ /root/dist/
 #25 CACHED
 
-#26 [wordpot linux/amd64 builder 7/9] RUN	PIP3 install --no-cache-dir --break-system-packages -r requirements.txt
+#26 [wordpot linux/arm64 builder 7/9] RUN	PIP3 install --no-cache-dir --break-system-packages -r requirements.txt
 #26 CACHED
 
-#27 [wordpot linux/amd64 stage-1 2/4] RUN apk --no-cache -U upgrade
+#27 [wordpot linux/arm64 builder 9/9] RUN ls -alR
 #27 CACHED
 
-#28 [wordpot linux/amd64 builder 2/9] COPY dist/ /root/dist/
+#28 [wordpot linux/arm64 builder 4/9] RUN mkdir -p /opt &&     cd /opt/ &&     git clone https://github.com/t3chn0m4g3/wordpot &&     cd wordpot &&     git checkout b2701cb6c7057ed2843187c0c425bb8c13845719 &&     cp /root/dist/requirements.txt .
 #28 CACHED
 
 #29 [wordpot linux/amd64 stage-1 4/4] WORKDIR /opt/wordpot/
 #29 CACHED
 
-#30 [wordpot] exporting to image
-#30 exporting layers done
-#30 exporting manifest sha256:1ee4c0792092f6176e9030035fa6d6d72a83d97fc80dd52530d7702877f77c8b done
-#30 exporting config sha256:2829be0b6bdae2ac1b609ba100014a59c5f3e4a28acbdc553b98bc4ee80c6a56 done
-#30 exporting attestation manifest sha256:53e9f8a99d9d572de63041779d85d7bb048830f010b722d29978c8853c9c737d 0.0s done
-#30 exporting manifest sha256:9a4b4f51a17058d22e0f814e91ce0eb9a03e0561f65b620f3e5becbfdbb2b129 done
-#30 exporting config sha256:101e14c38d32b234ab52a37e1416aa077f8708d547c56c98d7b6fe160ff601e6 done
-#30 exporting attestation manifest sha256:c2ebe3fdd8da1f95d6926f4108547e26729499e2dc8e5d3c8510f63cc8624d4b 0.0s done
-#30 exporting manifest list sha256:02d59ffb7dd38fc98b57573b97cbf7ba1ed0e7778bca35d8ed4bfefc13c2e4c2 0.0s done
-#30 pushing layers
-#30 ...
+#30 [wordpot linux/arm64 stage-1 4/4] WORKDIR /opt/wordpot/
+#30 CACHED
 
-#31 [wordpot auth] f0rc3ps/wordpot:pull,push token for registry-1.docker.io
-#31 DONE 0.0s
+#31 [wordpot] exporting to image
+#31 exporting layers done
+#31 exporting manifest sha256:1ee4c0792092f6176e9030035fa6d6d72a83d97fc80dd52530d7702877f77c8b done
+#31 exporting config sha256:2829be0b6bdae2ac1b609ba100014a59c5f3e4a28acbdc553b98bc4ee80c6a56 done
+#31 exporting attestation manifest sha256:90adc932a62713d5ebf7353d1da096a0d754dfef66268ea7af1c310fdc0184c4 0.0s done
+#31 exporting manifest sha256:9a4b4f51a17058d22e0f814e91ce0eb9a03e0561f65b620f3e5becbfdbb2b129 done
+#31 exporting config sha256:101e14c38d32b234ab52a37e1416aa077f8708d547c56c98d7b6fe160ff601e6 done
+#31 exporting attestation manifest sha256:a2124a829a198810a8b915b733d3d2ab1bd1cbcb407cb73ce5e47ac51509403c 0.0s done
+#31 exporting manifest list sha256:b886b46996be3c2a4c7cd68975bd412f01c7e89fcb2a4223d7f0fb23250a2e95
+#31 exporting manifest list sha256:b886b46996be3c2a4c7cd68975bd412f01c7e89fcb2a4223d7f0fb23250a2e95 0.0s done
+#31 pushing layers
+#31 ...
 
-#30 [wordpot] exporting to image
-#30 pushing layers 2.4s done
-#30 pushing manifest for docker.io/f0rc3ps/wordpot:24.04.1@sha256:02d59ffb7dd38fc98b57573b97cbf7ba1ed0e7778bca35d8ed4bfefc13c2e4c2
-#30 pushing manifest for docker.io/f0rc3ps/wordpot:24.04.1@sha256:02d59ffb7dd38fc98b57573b97cbf7ba1ed0e7778bca35d8ed4bfefc13c2e4c2 2.2s done
-#30 ...
-
-#32 [wordpot auth] asc3t1c/wordpot:pull,push token for ghcr.io
+#32 [wordpot auth] f0rc3ps/wordpot:pull,push token for registry-1.docker.io
 #32 DONE 0.0s
 
-#30 [wordpot] exporting to image
-#30 pushing layers 1.6s done
-#30 pushing manifest for ghcr.io/asc3t1c/wordpot:24.04.1@sha256:02d59ffb7dd38fc98b57573b97cbf7ba1ed0e7778bca35d8ed4bfefc13c2e4c2
-#30 pushing manifest for ghcr.io/asc3t1c/wordpot:24.04.1@sha256:02d59ffb7dd38fc98b57573b97cbf7ba1ed0e7778bca35d8ed4bfefc13c2e4c2 1.9s done
-#30 DONE 8.2s
+#31 [wordpot] exporting to image
+#31 pushing layers 1.7s done
+#31 pushing manifest for docker.io/f0rc3ps/wordpot:24.04.1@sha256:b886b46996be3c2a4c7cd68975bd412f01c7e89fcb2a4223d7f0fb23250a2e95
+#31 pushing manifest for docker.io/f0rc3ps/wordpot:24.04.1@sha256:b886b46996be3c2a4c7cd68975bd412f01c7e89fcb2a4223d7f0fb23250a2e95 2.2s done
+#31 ...
 
-#33 [wordpot] resolving provenance for metadata file
+#33 [wordpot auth] asc3t1c/wordpot:pull,push token for ghcr.io
 #33 DONE 0.0s
+
+#31 [wordpot] exporting to image
+#31 pushing layers 1.9s done
+#31 pushing manifest for ghcr.io/asc3t1c/wordpot:24.04.1@sha256:b886b46996be3c2a4c7cd68975bd412f01c7e89fcb2a4223d7f0fb23250a2e95
+#31 pushing manifest for ghcr.io/asc3t1c/wordpot:24.04.1@sha256:b886b46996be3c2a4c7cd68975bd412f01c7e89fcb2a4223d7f0fb23250a2e95 1.6s done
+#31 DONE 7.5s
+
+#34 [wordpot] resolving provenance for metadata file
+#34 DONE 0.0s

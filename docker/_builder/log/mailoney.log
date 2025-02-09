@@ -1,17 +1,17 @@
 #0 building with "mybuilder" instance using docker-container driver
 
 #1 [mailoney internal] load build definition from Dockerfile
-#1 transferring dockerfile: 965B done
+#1 transferring dockerfile: 965B 0.0s done
 #1 DONE 0.0s
 
 #2 [mailoney linux/amd64 internal] load metadata for docker.io/library/alpine:3.19
-#2 DONE 0.2s
+#2 DONE 0.4s
 
 #3 [mailoney linux/arm64 internal] load metadata for docker.io/library/alpine:3.19
-#3 DONE 0.2s
+#3 DONE 0.4s
 
 #4 [mailoney internal] load .dockerignore
-#4 transferring context: 2B done
+#4 transferring context: 2B 0.0s done
 #4 DONE 0.0s
 
 #5 [mailoney linux/arm64 1/3] FROM docker.io/library/alpine:3.19@sha256:6380aa6b04faa579332d4c9d1f65bd7093012ba6e01d9bbcd5e2d8a4f9fae38f
@@ -38,11 +38,12 @@
 #11 exporting layers done
 #11 exporting manifest sha256:989daf642c3a0261019731ce59597f09e39698e231d8656c7dfd0979da78d43d done
 #11 exporting config sha256:a17bdb4bc1f66ff3fefb7863e96daa4f43e557bb43bd9d9b72c96564aebfd2e4 done
-#11 exporting attestation manifest sha256:a4928cf23043ed635f8020f5d8809216dcb7660bcb715cf4d0c724c08bc0c6d6 0.0s done
+#11 exporting attestation manifest sha256:c5978dd027cc5c20ae58fba7f7867931aaec42b77649542e6edcce4eadd98dfa
+#11 exporting attestation manifest sha256:c5978dd027cc5c20ae58fba7f7867931aaec42b77649542e6edcce4eadd98dfa 0.0s done
 #11 exporting manifest sha256:a73d9834913f0187222142b5266811936d3bf7d07af1148981ce9a5cfd0becd5 done
 #11 exporting config sha256:1098a2e7b9421edd36fedc28ac38cee914cb9db791a7e3cf201008fc0e3e591b done
-#11 exporting attestation manifest sha256:c4318646d0f80294263dff9671c7659c04637da86f3f128e8e375729b5f96b9e 0.0s done
-#11 exporting manifest list sha256:0b95ffec2320dfeb2ffcea9d9b4c4291581c9d85c1f24082564a189f6e5c0efe 0.0s done
+#11 exporting attestation manifest sha256:7127c056ae5f5af95b2389468369db01ae6374ef6db83f354d93e42656d86ea5 0.0s done
+#11 exporting manifest list sha256:facdca2a2f6a1fd5e3b1d251130cb46ea90e0db5cbd2c576a9f4901744af8361 0.0s done
 #11 pushing layers
 #11 ...
 
@@ -50,19 +51,19 @@
 #12 DONE 0.0s
 
 #11 [mailoney] exporting to image
-#11 pushing layers 2.7s done
-#11 pushing manifest for docker.io/f0rc3ps/mailoney:24.04.1@sha256:0b95ffec2320dfeb2ffcea9d9b4c4291581c9d85c1f24082564a189f6e5c0efe
-#11 pushing manifest for docker.io/f0rc3ps/mailoney:24.04.1@sha256:0b95ffec2320dfeb2ffcea9d9b4c4291581c9d85c1f24082564a189f6e5c0efe 2.4s done
+#11 pushing layers 2.3s done
+#11 pushing manifest for docker.io/f0rc3ps/mailoney:24.04.1@sha256:facdca2a2f6a1fd5e3b1d251130cb46ea90e0db5cbd2c576a9f4901744af8361
+#11 pushing manifest for docker.io/f0rc3ps/mailoney:24.04.1@sha256:facdca2a2f6a1fd5e3b1d251130cb46ea90e0db5cbd2c576a9f4901744af8361 2.1s done
 #11 ...
 
 #13 [mailoney auth] asc3t1c/mailoney:pull,push token for ghcr.io
 #13 DONE 0.0s
 
 #11 [mailoney] exporting to image
-#11 pushing layers 1.9s done
-#11 pushing manifest for ghcr.io/asc3t1c/mailoney:24.04.1@sha256:0b95ffec2320dfeb2ffcea9d9b4c4291581c9d85c1f24082564a189f6e5c0efe
-#11 pushing manifest for ghcr.io/asc3t1c/mailoney:24.04.1@sha256:0b95ffec2320dfeb2ffcea9d9b4c4291581c9d85c1f24082564a189f6e5c0efe 1.5s done
-#11 DONE 8.6s
+#11 pushing layers 2.4s done
+#11 pushing manifest for ghcr.io/asc3t1c/mailoney:24.04.1@sha256:facdca2a2f6a1fd5e3b1d251130cb46ea90e0db5cbd2c576a9f4901744af8361
+#11 pushing manifest for ghcr.io/asc3t1c/mailoney:24.04.1@sha256:facdca2a2f6a1fd5e3b1d251130cb46ea90e0db5cbd2c576a9f4901744af8361 1.9s done
+#11 DONE 8.9s
 
 #14 [mailoney] resolving provenance for metadata file
 #14 DONE 0.0s

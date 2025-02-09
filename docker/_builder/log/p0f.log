@@ -8,53 +8,54 @@
 #2 ...
 
 #3 [p0f linux/amd64 internal] load metadata for docker.io/library/alpine:3.20
-#3 DONE 0.5s
+#3 DONE 0.2s
 
 #4 [p0f internal] load .dockerignore
 #4 transferring context: 2B done
 #4 DONE 0.0s
 
 #2 [p0f linux/arm64 internal] load metadata for docker.io/library/alpine:3.20
-#2 DONE 0.8s
+#2 DONE 0.4s
 
 #5 [p0f linux/arm64 builder 1/7] FROM docker.io/library/alpine:3.20@sha256:31687a2fdd021f85955bf2d0c2682e9c0949827560e1db546358ea094f740f12
 #5 resolve docker.io/library/alpine:3.20@sha256:31687a2fdd021f85955bf2d0c2682e9c0949827560e1db546358ea094f740f12 0.0s done
 #5 CACHED
 
 #6 [p0f linux/amd64 builder 1/7] FROM docker.io/library/alpine:3.20@sha256:31687a2fdd021f85955bf2d0c2682e9c0949827560e1db546358ea094f740f12
+#6 resolve docker.io/library/alpine:3.20@sha256:31687a2fdd021f85955bf2d0c2682e9c0949827560e1db546358ea094f740f12 0.0s done
 #6 CACHED
 
 #7 [p0f internal] load build context
-#7 transferring context: 332.98kB 0.0s done
+#7 transferring context: 1.19kB 0.0s done
 #7 DONE 0.0s
 
-#8 [p0f linux/arm64 2/4] COPY . /opt/p0f
+#8 [p0f linux/amd64 3/4] RUN apk --no-cache -U upgrade &&     apk --no-cache -U add 		bash 		build-base 		jansson 		jansson-dev 		libcap 		libpcap 		libpcap-dev &&     addgroup -g 2000 p0f &&     adduser -S -s /bin/bash -u 2000 -D -g 2000 p0f &&     cd /opt/p0f &&     ./build.sh &&     setcap cap_sys_chroot,cap_setgid,cap_net_raw=+ep /opt/p0f/p0f &&     apk del --purge build-base                     jansson-dev                     libpcap-dev &&     rm -rf /root/*            /var/cache/apk/*
 #8 CACHED
 
-#9 [p0f linux/arm64 3/4] RUN apk --no-cache -U upgrade &&     apk --no-cache -U add 		bash 		build-base 		jansson 		jansson-dev 		libcap 		libpcap 		libpcap-dev &&     addgroup -g 2000 p0f &&     adduser -S -s /bin/bash -u 2000 -D -g 2000 p0f &&     cd /opt/p0f &&     ./build.sh &&     setcap cap_sys_chroot,cap_setgid,cap_net_raw=+ep /opt/p0f/p0f &&     apk del --purge build-base                     jansson-dev                     libpcap-dev &&     rm -rf /root/*            /var/cache/apk/*
+#9 [p0f linux/amd64 2/4] COPY . /opt/p0f
 #9 CACHED
 
-#10 [p0f linux/amd64 3/4] RUN apk --no-cache -U upgrade &&     apk --no-cache -U add 		bash 		build-base 		jansson 		jansson-dev 		libcap 		libpcap 		libpcap-dev &&     addgroup -g 2000 p0f &&     adduser -S -s /bin/bash -u 2000 -D -g 2000 p0f &&     cd /opt/p0f &&     ./build.sh &&     setcap cap_sys_chroot,cap_setgid,cap_net_raw=+ep /opt/p0f/p0f &&     apk del --purge build-base                     jansson-dev                     libpcap-dev &&     rm -rf /root/*            /var/cache/apk/*
+#10 [p0f linux/amd64 4/4] WORKDIR /opt/p0f
 #10 CACHED
 
-#11 [p0f linux/amd64 2/4] COPY . /opt/p0f
+#11 [p0f linux/arm64 3/4] RUN apk --no-cache -U upgrade &&     apk --no-cache -U add 		bash 		build-base 		jansson 		jansson-dev 		libcap 		libpcap 		libpcap-dev &&     addgroup -g 2000 p0f &&     adduser -S -s /bin/bash -u 2000 -D -g 2000 p0f &&     cd /opt/p0f &&     ./build.sh &&     setcap cap_sys_chroot,cap_setgid,cap_net_raw=+ep /opt/p0f/p0f &&     apk del --purge build-base                     jansson-dev                     libpcap-dev &&     rm -rf /root/*            /var/cache/apk/*
 #11 CACHED
 
-#12 [p0f linux/arm64 4/4] WORKDIR /opt/p0f
+#12 [p0f linux/arm64 2/4] COPY . /opt/p0f
 #12 CACHED
 
-#13 [p0f linux/amd64 4/4] WORKDIR /opt/p0f
+#13 [p0f linux/arm64 4/4] WORKDIR /opt/p0f
 #13 CACHED
 
 #14 [p0f] exporting to image
 #14 exporting layers done
 #14 exporting manifest sha256:1fc4b00d7e3df9e862fea294ef58b1f72a10faaf66febaf890239fc4be91d348 done
 #14 exporting config sha256:a8239be47f585a05e9e22774a53604c758c0ab3c4b0baace7302a255e4bed03a done
-#14 exporting attestation manifest sha256:19602f9d87c96efcc794a9e2f7a472a0d645e874f45e3b8d2fe01b8a09dbe8a9 0.0s done
+#14 exporting attestation manifest sha256:bce7af624226a974b90c78f5d2d4d9a09218ae895fb8a8dd0edb7eb1cd3b677e 0.0s done
 #14 exporting manifest sha256:b4a900c07d3f819125edec773a2302a9de5f9dc9eeeca4c29fa0b07fb55b35a1 done
 #14 exporting config sha256:4015a109d8513050d254ff7ca872b9f363d8ab6e4702dbd146f82a11a25cd824 done
-#14 exporting attestation manifest sha256:e9a9803d0a6a230d501a25631dde60edce34e855969891bc3d0408315842aafd 0.0s done
-#14 exporting manifest list sha256:076def30be66dae332a352f80a92fbe0b4733e93728138b76e3d90311c306170 0.0s done
+#14 exporting attestation manifest sha256:9f341e3db71b23be3b59450f552ac0e9f92af3e84b37f476653abbf98bbb1ac1 0.0s done
+#14 exporting manifest list sha256:c5ac84041cdaa3ed23b6fedaecaa40ea20d9fd36303c507088537d874bc8e2ac 0.0s done
 #14 pushing layers
 #14 ...
 
@@ -62,19 +63,19 @@
 #15 DONE 0.0s
 
 #14 [p0f] exporting to image
-#14 pushing layers 2.2s done
-#14 pushing manifest for docker.io/f0rc3ps/p0f:24.04.1@sha256:076def30be66dae332a352f80a92fbe0b4733e93728138b76e3d90311c306170
-#14 pushing manifest for docker.io/f0rc3ps/p0f:24.04.1@sha256:076def30be66dae332a352f80a92fbe0b4733e93728138b76e3d90311c306170 3.4s done
+#14 pushing layers 2.1s done
+#14 pushing manifest for docker.io/f0rc3ps/p0f:24.04.1@sha256:c5ac84041cdaa3ed23b6fedaecaa40ea20d9fd36303c507088537d874bc8e2ac
+#14 pushing manifest for docker.io/f0rc3ps/p0f:24.04.1@sha256:c5ac84041cdaa3ed23b6fedaecaa40ea20d9fd36303c507088537d874bc8e2ac 2.5s done
 #14 ...
 
 #16 [p0f auth] asc3t1c/p0f:pull,push token for ghcr.io
 #16 DONE 0.0s
 
 #14 [p0f] exporting to image
-#14 pushing layers 1.6s done
-#14 pushing manifest for ghcr.io/asc3t1c/p0f:24.04.1@sha256:076def30be66dae332a352f80a92fbe0b4733e93728138b76e3d90311c306170
-#14 pushing manifest for ghcr.io/asc3t1c/p0f:24.04.1@sha256:076def30be66dae332a352f80a92fbe0b4733e93728138b76e3d90311c306170 1.5s done
-#14 DONE 8.8s
+#14 pushing layers 1.7s done
+#14 pushing manifest for ghcr.io/asc3t1c/p0f:24.04.1@sha256:c5ac84041cdaa3ed23b6fedaecaa40ea20d9fd36303c507088537d874bc8e2ac
+#14 pushing manifest for ghcr.io/asc3t1c/p0f:24.04.1@sha256:c5ac84041cdaa3ed23b6fedaecaa40ea20d9fd36303c507088537d874bc8e2ac 1.6s done
+#14 DONE 7.9s
 
 #17 [p0f] resolving provenance for metadata file
 #17 DONE 0.0s
