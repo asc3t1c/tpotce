@@ -4,7 +4,7 @@ Suppose you need support: For full support, automation, backup, and customizatio
 
 # NOTE:
 
-***Click on the wallpaper to go into the demo and buy it if you need help with installation!***
+***Click on the wallpaper to go into the demo and buy it if you need help with installation for $25!***
 
 [![T-Pot](doc/tpotsocial.png)]()
 
