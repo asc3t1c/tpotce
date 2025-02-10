@@ -4,7 +4,7 @@ Suppose you need support: For full support, automation, backup, and customizatio
 
 # NOTE:
 
-***Click on the wallpaper to go into the demo and buy it if you need help with installation for $25!***
+***Click on the wallpaper to go into the demo video installation and buy it if you need help installing OPSEC-T-pot. The price is `$25`, thank you.***
 
 [![T-Pot](doc/tpotsocial.png)]()
 
