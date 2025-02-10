@@ -2,7 +2,11 @@
 
 Suppose you need support: For full support, automation, backup, and customization: `500$` every month, per server, or `$37000` every year with full support for 10 servers, it depends on the packet support! You can ask questions at: seccyboxopsec@gmail.com  The other choice is free, you can download install it, and try it personally, without any support! Kind Regards
 
-![T-Pot](doc/tpotsocial.png)
+***NOTE:***
+
+Click on the wallpaper to go into the demo and buy it if you need help with installation!
+
+[![T-Pot](doc/tpotsocial.png)]()
 
 T-Pot is the all in one, optionally distributed, multiarch (amd64, arm64) honeypot plattform, supporting 20+ honeypots and countless visualization options using the Elastic Stack, animated live attack maps and lots of security tools to further improve the deception experience.
 <br><br>
