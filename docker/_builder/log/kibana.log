@@ -8,13 +8,13 @@
 #2 DONE 0.0s
 
 #3 [kibana linux/amd64 internal] load metadata for docker.io/library/node:20.15.1-alpine3.20
-#3 DONE 0.8s
+#3 DONE 0.6s
 
 #4 [kibana linux/arm64 internal] load metadata for docker.io/library/node:20.15.1-alpine3.20
-#4 DONE 0.8s
+#4 DONE 0.6s
 
 #5 [kibana internal] load .dockerignore
-#5 transferring context: 2B 0.0s done
+#5 transferring context: 2B done
 #5 DONE 0.0s
 
 #6 [kibana linux/arm64 1/3] FROM docker.io/library/node:20.15.1-alpine3.20@sha256:09dbe0a53523c2482d85a037efc6b0e8e8bb16c6f1acf431fe36aa0ebc871c06
@@ -43,14 +43,13 @@
 
 #13 [kibana] exporting to image
 #13 exporting layers done
-#13 exporting manifest sha256:500d7c5b9c13a9a9a8b5eb7202e4d1c987d7fc303e0d6ed5645fc13582158add
 #13 exporting manifest sha256:500d7c5b9c13a9a9a8b5eb7202e4d1c987d7fc303e0d6ed5645fc13582158add done
 #13 exporting config sha256:9d501dcb6f7852eaf9aa10e6b5c81abba15cd7a7dbfdca80fdb0fde16d87193c done
-#13 exporting attestation manifest sha256:a905cb241af8eeba2a0c11fba2ea80ffe99cfffb9144e57955c5dbee274816b9 0.0s done
+#13 exporting attestation manifest sha256:224a3b4b5bb99b835cce342dadbcbf18b95937602020bd687a4cb456f2a16565 0.0s done
 #13 exporting manifest sha256:9506ce125df7c22f32d8244b554111588541868a1bb3f6e3033c76a4588a4ea8 done
 #13 exporting config sha256:c0cc048ed653527601488fd99f86b9dbf2597c1d5468de4127b40f5e5f680d78 done
-#13 exporting attestation manifest sha256:277839de4285c6dbccb69bce0f61833090124acd87506ee777a840ee161f619e 0.0s done
-#13 exporting manifest list sha256:4c3d38991703d54b58b7112f4fc2a628b23411c88faa9fc003e97eb93940f957 done
+#13 exporting attestation manifest sha256:3dcd4d0ff6de58e4f088ee453c0a00b6636ab57abaa5ae51ffde609652bbd984 0.0s done
+#13 exporting manifest list sha256:1e74b9d0207b2373fc17d08fc65508a380c083878342e4a12c5fbc2147fae894 done
 #13 pushing layers
 #13 ...
 
@@ -58,19 +57,19 @@
 #14 DONE 0.0s
 
 #13 [kibana] exporting to image
-#13 pushing layers 3.0s done
-#13 pushing manifest for docker.io/f0rc3ps/kibana:24.04.1@sha256:4c3d38991703d54b58b7112f4fc2a628b23411c88faa9fc003e97eb93940f957
-#13 pushing manifest for docker.io/f0rc3ps/kibana:24.04.1@sha256:4c3d38991703d54b58b7112f4fc2a628b23411c88faa9fc003e97eb93940f957 2.1s done
+#13 pushing layers 2.9s done
+#13 pushing manifest for docker.io/f0rc3ps/kibana:24.04.1@sha256:1e74b9d0207b2373fc17d08fc65508a380c083878342e4a12c5fbc2147fae894
+#13 pushing manifest for docker.io/f0rc3ps/kibana:24.04.1@sha256:1e74b9d0207b2373fc17d08fc65508a380c083878342e4a12c5fbc2147fae894 2.2s done
 #13 ...
 
 #15 [kibana auth] asc3t1c/kibana:pull,push token for ghcr.io
 #15 DONE 0.0s
 
 #13 [kibana] exporting to image
-#13 pushing layers 2.5s done
-#13 pushing manifest for ghcr.io/asc3t1c/kibana:24.04.1@sha256:4c3d38991703d54b58b7112f4fc2a628b23411c88faa9fc003e97eb93940f957
-#13 pushing manifest for ghcr.io/asc3t1c/kibana:24.04.1@sha256:4c3d38991703d54b58b7112f4fc2a628b23411c88faa9fc003e97eb93940f957 1.5s done
-#13 DONE 9.2s
+#13 pushing layers 2.1s done
+#13 pushing manifest for ghcr.io/asc3t1c/kibana:24.04.1@sha256:1e74b9d0207b2373fc17d08fc65508a380c083878342e4a12c5fbc2147fae894
+#13 pushing manifest for ghcr.io/asc3t1c/kibana:24.04.1@sha256:1e74b9d0207b2373fc17d08fc65508a380c083878342e4a12c5fbc2147fae894 1.6s done
+#13 DONE 8.9s
 
 #16 [kibana] resolving provenance for metadata file
 #16 DONE 0.0s

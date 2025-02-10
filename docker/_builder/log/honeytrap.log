@@ -1,7 +1,7 @@
 #0 building with "mybuilder" instance using docker-container driver
 
 #1 [honeytrap internal] load build definition from Dockerfile
-#1 transferring dockerfile: 2.30kB done
+#1 transferring dockerfile: 2.30kB 0.0s done
 #1 DONE 0.0s
 
 #2 [honeytrap linux/arm64 internal] load metadata for docker.io/library/ubuntu:22.04
@@ -11,20 +11,20 @@
 #3 DONE 0.2s
 
 #4 [honeytrap internal] load .dockerignore
-#4 transferring context: 2B 0.0s done
+#4 transferring context: 2B done
 #4 DONE 0.0s
 
 #5 [honeytrap linux/arm64 1/3] FROM docker.io/library/ubuntu:22.04@sha256:ed1544e454989078f5dec1bfdabd8c5cc9c48e0705d07b678ab6ae3fb61952d2
 #5 resolve docker.io/library/ubuntu:22.04@sha256:ed1544e454989078f5dec1bfdabd8c5cc9c48e0705d07b678ab6ae3fb61952d2 0.0s done
-#5 DONE 0.1s
+#5 DONE 0.0s
 
-#6 [honeytrap internal] load build context
-#6 transferring context: 65B 0.0s done
+#6 [honeytrap linux/amd64 1/3] FROM docker.io/library/ubuntu:22.04@sha256:ed1544e454989078f5dec1bfdabd8c5cc9c48e0705d07b678ab6ae3fb61952d2
+#6 resolve docker.io/library/ubuntu:22.04@sha256:ed1544e454989078f5dec1bfdabd8c5cc9c48e0705d07b678ab6ae3fb61952d2 0.0s done
 #6 DONE 0.0s
 
-#7 [honeytrap linux/amd64 1/3] FROM docker.io/library/ubuntu:22.04@sha256:ed1544e454989078f5dec1bfdabd8c5cc9c48e0705d07b678ab6ae3fb61952d2
-#7 resolve docker.io/library/ubuntu:22.04@sha256:ed1544e454989078f5dec1bfdabd8c5cc9c48e0705d07b678ab6ae3fb61952d2 0.1s done
-#7 DONE 0.1s
+#7 [honeytrap internal] load build context
+#7 transferring context: 65B done
+#7 DONE 0.0s
 
 #8 [honeytrap linux/arm64 2/3] COPY dist/ /root/dist/
 #8 CACHED
@@ -41,12 +41,13 @@
 #12 [honeytrap] exporting to image
 #12 exporting layers done
 #12 exporting manifest sha256:1025e0d5f7df44ff38228760f138fd9a3f7ed6d4f9da391ede8a629ec00d5926 done
+#12 exporting config sha256:a583e9f234754664e52740e90df3365489025942380826745a395acb56f82f6c
 #12 exporting config sha256:a583e9f234754664e52740e90df3365489025942380826745a395acb56f82f6c done
-#12 exporting attestation manifest sha256:cfabf6329775b1e2828917461b0ca6b7181b34a2aeeec45143f0c8d9f346abba 0.0s done
+#12 exporting attestation manifest sha256:063be03d3cc0a01c3234ee4c98d35441f3c6d7beb054e358b02579104d3ae73a 0.0s done
 #12 exporting manifest sha256:a8c409fa61b355f8edfb4485447658368e5b6caa5e678bee75cb6e5cc0510381 done
-#12 exporting config sha256:06416f7684dd41a291142b2d0c702f8a0428195f01c1182e6d1f2df8eb19d0f6 0.0s done
-#12 exporting attestation manifest sha256:46d14bde818a950a1ab3ce32e09fa5a14006dd85247df03ffdb42c4125b9c518 0.0s done
-#12 exporting manifest list sha256:2e688c95157588675f6a52f47b25a95e010da907ec0a1ac4ee8433286d05a1f8 0.0s done
+#12 exporting config sha256:06416f7684dd41a291142b2d0c702f8a0428195f01c1182e6d1f2df8eb19d0f6 done
+#12 exporting attestation manifest sha256:6bca1eaba9584105af5217535829a19a9cac424c140ec7318ecec435ae22041e 0.0s done
+#12 exporting manifest list sha256:59b3cd840eeb094e5d45b20ed8967a50de59733a9184c5a97f9b21bd9045f4b6 0.0s done
 #12 pushing layers
 #12 ...
 
@@ -54,19 +55,19 @@
 #13 DONE 0.0s
 
 #12 [honeytrap] exporting to image
-#12 pushing layers 2.8s done
-#12 pushing manifest for docker.io/f0rc3ps/honeytrap:24.04.1@sha256:2e688c95157588675f6a52f47b25a95e010da907ec0a1ac4ee8433286d05a1f8
-#12 pushing manifest for docker.io/f0rc3ps/honeytrap:24.04.1@sha256:2e688c95157588675f6a52f47b25a95e010da907ec0a1ac4ee8433286d05a1f8 2.2s done
+#12 pushing layers 2.9s done
+#12 pushing manifest for docker.io/f0rc3ps/honeytrap:24.04.1@sha256:59b3cd840eeb094e5d45b20ed8967a50de59733a9184c5a97f9b21bd9045f4b6
+#12 pushing manifest for docker.io/f0rc3ps/honeytrap:24.04.1@sha256:59b3cd840eeb094e5d45b20ed8967a50de59733a9184c5a97f9b21bd9045f4b6 2.2s done
 #12 ...
 
 #14 [honeytrap auth] asc3t1c/honeytrap:pull,push token for ghcr.io
 #14 DONE 0.0s
 
 #12 [honeytrap] exporting to image
-#12 pushing layers 2.8s done
-#12 pushing manifest for ghcr.io/asc3t1c/honeytrap:24.04.1@sha256:2e688c95157588675f6a52f47b25a95e010da907ec0a1ac4ee8433286d05a1f8
-#12 pushing manifest for ghcr.io/asc3t1c/honeytrap:24.04.1@sha256:2e688c95157588675f6a52f47b25a95e010da907ec0a1ac4ee8433286d05a1f8 1.9s done
-#12 DONE 9.8s
+#12 pushing layers 2.2s done
+#12 pushing manifest for ghcr.io/asc3t1c/honeytrap:24.04.1@sha256:59b3cd840eeb094e5d45b20ed8967a50de59733a9184c5a97f9b21bd9045f4b6
+#12 pushing manifest for ghcr.io/asc3t1c/honeytrap:24.04.1@sha256:59b3cd840eeb094e5d45b20ed8967a50de59733a9184c5a97f9b21bd9045f4b6 1.7s done
+#12 DONE 9.2s
 
 #15 [honeytrap] resolving provenance for metadata file
 #15 DONE 0.0s

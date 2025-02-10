@@ -4,30 +4,30 @@
 #1 transferring dockerfile: 2.40kB 0.0s done
 #1 DONE 0.0s
 
-#2 [logstash linux/arm64 internal] load metadata for docker.io/library/ubuntu:24.04
-#2 DONE 0.2s
+#2 [logstash linux/amd64 internal] load metadata for docker.io/library/ubuntu:24.04
+#2 ...
 
-#3 [logstash linux/amd64 internal] load metadata for docker.io/library/ubuntu:24.04
+#3 [logstash linux/arm64 internal] load metadata for docker.io/library/ubuntu:24.04
 #3 DONE 0.2s
 
+#2 [logstash linux/amd64 internal] load metadata for docker.io/library/ubuntu:24.04
+#2 DONE 0.2s
+
 #4 [logstash internal] load .dockerignore
-#4 transferring context: 2B done
+#4 transferring context: 2B 0.0s done
 #4 DONE 0.0s
 
-#5 [logstash internal] load build context
+#5 [logstash linux/amd64 1/3] FROM docker.io/library/ubuntu:24.04@sha256:72297848456d5d37d1262630108ab308d3e9ec7ed1c3286a32fe09856619a782
+#5 resolve docker.io/library/ubuntu:24.04@sha256:72297848456d5d37d1262630108ab308d3e9ec7ed1c3286a32fe09856619a782 0.0s done
 #5 DONE 0.0s
 
-#6 [logstash linux/amd64 1/3] FROM docker.io/library/ubuntu:24.04@sha256:72297848456d5d37d1262630108ab308d3e9ec7ed1c3286a32fe09856619a782
+#6 [logstash linux/arm64 1/3] FROM docker.io/library/ubuntu:24.04@sha256:72297848456d5d37d1262630108ab308d3e9ec7ed1c3286a32fe09856619a782
 #6 resolve docker.io/library/ubuntu:24.04@sha256:72297848456d5d37d1262630108ab308d3e9ec7ed1c3286a32fe09856619a782 0.0s done
 #6 DONE 0.0s
 
-#7 [logstash linux/arm64 1/3] FROM docker.io/library/ubuntu:24.04@sha256:72297848456d5d37d1262630108ab308d3e9ec7ed1c3286a32fe09856619a782
-#7 resolve docker.io/library/ubuntu:24.04@sha256:72297848456d5d37d1262630108ab308d3e9ec7ed1c3286a32fe09856619a782 0.0s done
-#7 DONE 0.1s
-
-#5 [logstash internal] load build context
-#5 transferring context: 346B 0.0s done
-#5 DONE 0.0s
+#7 [logstash internal] load build context
+#7 transferring context: 346B 0.0s done
+#7 DONE 0.0s
 
 #8 [logstash linux/amd64 2/3] COPY dist/ /root/dist/
 #8 CACHED
@@ -44,12 +44,13 @@
 #12 [logstash] exporting to image
 #12 exporting layers done
 #12 exporting manifest sha256:bf06dafed02549d86760e5ccbd9fa2e095f17c3f7ec7aa9e3300fa104d9c42bd done
-#12 exporting config sha256:6e48721e489a3b0d861d0f28c41aa9414237a5065ea659d569cc9683f59b77c8 done
-#12 exporting attestation manifest sha256:a26fa97213e19aaab4227a47c615175d6b0428dfc1fafbf56a8f06f13e4b4661 0.0s done
+#12 exporting config sha256:6e48721e489a3b0d861d0f28c41aa9414237a5065ea659d569cc9683f59b77c8 0.0s done
+#12 exporting attestation manifest sha256:ed7e50b3317ee25d50b47973937ccbe876a06d8e31c943e6942ce15a3fc608ca 0.0s done
 #12 exporting manifest sha256:71cca43a23f3911a9b42f5ca6c0b4b13066be1e84648db8bf5d7c4f793f73557 done
 #12 exporting config sha256:481e461ccc1e8016e499337ccb5b5de5765ebecdebcbf0606a4711244c346766 done
-#12 exporting attestation manifest sha256:0c830fb58d42e54e0ed50e203a518cb1617b543bac0cb11a324d6c7c320bf3fc 0.0s done
-#12 exporting manifest list sha256:db3b13fde1af890fa8f2545a6f09cac00e26d6ff1a6342e517334b501c853b23 0.0s done
+#12 exporting attestation manifest sha256:2d8e09337bc24906bc517c498bc961434d39fca5f721400d3865c2432f94b767 0.0s done
+#12 exporting manifest list sha256:e237810e656adce651daa5ec72fec3ce78785c0a1b6dc53a9ac9acb0e388c507
+#12 exporting manifest list sha256:e237810e656adce651daa5ec72fec3ce78785c0a1b6dc53a9ac9acb0e388c507 done
 #12 pushing layers
 #12 ...
 
@@ -57,19 +58,19 @@
 #13 DONE 0.0s
 
 #12 [logstash] exporting to image
-#12 pushing layers 2.4s done
-#12 pushing manifest for docker.io/f0rc3ps/logstash:24.04.1@sha256:db3b13fde1af890fa8f2545a6f09cac00e26d6ff1a6342e517334b501c853b23
-#12 pushing manifest for docker.io/f0rc3ps/logstash:24.04.1@sha256:db3b13fde1af890fa8f2545a6f09cac00e26d6ff1a6342e517334b501c853b23 2.7s done
+#12 pushing layers 2.6s done
+#12 pushing manifest for docker.io/f0rc3ps/logstash:24.04.1@sha256:e237810e656adce651daa5ec72fec3ce78785c0a1b6dc53a9ac9acb0e388c507
+#12 pushing manifest for docker.io/f0rc3ps/logstash:24.04.1@sha256:e237810e656adce651daa5ec72fec3ce78785c0a1b6dc53a9ac9acb0e388c507 2.4s done
 #12 ...
 
 #14 [logstash auth] asc3t1c/logstash:pull,push token for ghcr.io
 #14 DONE 0.0s
 
 #12 [logstash] exporting to image
-#12 pushing layers 2.8s done
-#12 pushing manifest for ghcr.io/asc3t1c/logstash:24.04.1@sha256:db3b13fde1af890fa8f2545a6f09cac00e26d6ff1a6342e517334b501c853b23
-#12 pushing manifest for ghcr.io/asc3t1c/logstash:24.04.1@sha256:db3b13fde1af890fa8f2545a6f09cac00e26d6ff1a6342e517334b501c853b23 1.5s done
-#12 DONE 9.6s
+#12 pushing layers 2.2s done
+#12 pushing manifest for ghcr.io/asc3t1c/logstash:24.04.1@sha256:e237810e656adce651daa5ec72fec3ce78785c0a1b6dc53a9ac9acb0e388c507
+#12 pushing manifest for ghcr.io/asc3t1c/logstash:24.04.1@sha256:e237810e656adce651daa5ec72fec3ce78785c0a1b6dc53a9ac9acb0e388c507 1.8s done
+#12 DONE 9.1s
 
 #15 [logstash] resolving provenance for metadata file
 #15 DONE 0.0s

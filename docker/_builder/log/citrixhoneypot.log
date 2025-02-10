@@ -5,90 +5,86 @@
 #1 DONE 0.0s
 
 #2 [citrixhoneypot linux/arm64 internal] load metadata for docker.io/library/alpine:3.20
-#2 ...
+#2 DONE 0.2s
 
 #3 [citrixhoneypot linux/amd64 internal] load metadata for docker.io/library/alpine:3.20
 #3 DONE 0.2s
 
-#4 [citrixhoneypot internal] load .dockerignore
-#4 transferring context: 2B 0.0s done
+#4 [citrixhoneypot linux/arm64 builder 1/4] FROM docker.io/library/alpine:3.20@sha256:31687a2fdd021f85955bf2d0c2682e9c0949827560e1db546358ea094f740f12
 #4 DONE 0.0s
 
-#2 [citrixhoneypot linux/arm64 internal] load metadata for docker.io/library/alpine:3.20
-#2 DONE 0.3s
+#5 [citrixhoneypot linux/amd64 builder 1/4] FROM docker.io/library/alpine:3.20@sha256:31687a2fdd021f85955bf2d0c2682e9c0949827560e1db546358ea094f740f12
+#5 resolve docker.io/library/alpine:3.20@sha256:31687a2fdd021f85955bf2d0c2682e9c0949827560e1db546358ea094f740f12 0.0s done
+#5 DONE 0.0s
 
-#5 [citrixhoneypot linux/arm64 builder 1/4] FROM docker.io/library/alpine:3.20@sha256:31687a2fdd021f85955bf2d0c2682e9c0949827560e1db546358ea094f740f12
-#5 resolve docker.io/library/alpine:3.20@sha256:31687a2fdd021f85955bf2d0c2682e9c0949827560e1db546358ea094f740f12
-#5 ...
+#6 [citrixhoneypot internal] load .dockerignore
+#6 transferring context: 2B done
+#6 DONE 0.0s
 
-#6 [citrixhoneypot linux/amd64 builder 1/4] FROM docker.io/library/alpine:3.20@sha256:31687a2fdd021f85955bf2d0c2682e9c0949827560e1db546358ea094f740f12
-#6 resolve docker.io/library/alpine:3.20@sha256:31687a2fdd021f85955bf2d0c2682e9c0949827560e1db546358ea094f740f12 0.0s done
-#6 DONE 0.1s
-
-#7 [citrixhoneypot linux/arm64 stage-1 2/4] RUN apk --no-cache -U upgrade
+#7 [citrixhoneypot linux/amd64 stage-1 2/4] RUN apk --no-cache -U upgrade
 #7 CACHED
 
-#8 [citrixhoneypot linux/arm64 builder 5/5] RUN pyinstaller CitrixHoneypot.py
+#8 [citrixhoneypot linux/amd64 stage-1 3/6] COPY --from=builder /opt/citrixhoneypot/dist/CitrixHoneypot/ /opt/citrixhoneypot
 #8 CACHED
 
-#9 [citrixhoneypot linux/arm64 builder 4/5] WORKDIR /opt/citrixhoneypot
+#9 [citrixhoneypot linux/amd64 builder 4/5] WORKDIR /opt/citrixhoneypot
 #9 CACHED
 
-#10 [citrixhoneypot linux/arm64 builder 2/5] RUN apk --no-cache -U upgrade &&     apk --no-cache -U add         build-base 		git 		openssl 		py3-pip 		python3 &&     pip3 install --break-system-packages --no-cache-dir         pyinstaller         python-json-logger
+#10 [citrixhoneypot linux/amd64 stage-1 5/6] COPY --from=builder /opt/citrixhoneypot/responses/ /opt/citrixhoneypot/responses
 #10 CACHED
 
-#11 [citrixhoneypot linux/arm64 stage-1 5/6] COPY --from=builder /opt/citrixhoneypot/responses/ /opt/citrixhoneypot/responses
+#11 [citrixhoneypot linux/amd64 builder 3/5] RUN git clone https://github.com/t3chn0m4g3/CitrixHoneypot /opt/citrixhoneypot &&     cd /opt/citrixhoneypot &&     git checkout dee32447033a0296d053e8f881bf190f9dd7ad44 &&     mkdir -p /opt/citrixhoneypot/logs /opt/citrixhoneypot/ssl &&     openssl req           -nodes           -x509           -newkey rsa:2048           -keyout "/opt/citrixhoneypot/ssl/key.pem"           -out "/opt/citrixhoneypot/ssl/cert.pem"           -days 365           -subj '/C=AU/ST=Some-State/O=Internet Widgits Pty Ltd' &&     chown 2000:2000 -R ssl/
 #11 CACHED
 
-#12 [citrixhoneypot linux/arm64 stage-1 3/6] COPY --from=builder /opt/citrixhoneypot/dist/CitrixHoneypot/ /opt/citrixhoneypot
+#12 [citrixhoneypot linux/amd64 builder 5/5] RUN pyinstaller CitrixHoneypot.py
 #12 CACHED
 
-#13 [citrixhoneypot linux/arm64 stage-1 4/6] COPY --from=builder /opt/citrixhoneypot/ssl /opt/citrixhoneypot/ssl
+#13 [citrixhoneypot linux/amd64 stage-1 4/6] COPY --from=builder /opt/citrixhoneypot/ssl /opt/citrixhoneypot/ssl
 #13 CACHED
 
-#14 [citrixhoneypot linux/arm64 builder 3/5] RUN git clone https://github.com/t3chn0m4g3/CitrixHoneypot /opt/citrixhoneypot &&     cd /opt/citrixhoneypot &&     git checkout dee32447033a0296d053e8f881bf190f9dd7ad44 &&     mkdir -p /opt/citrixhoneypot/logs /opt/citrixhoneypot/ssl &&     openssl req           -nodes           -x509           -newkey rsa:2048           -keyout "/opt/citrixhoneypot/ssl/key.pem"           -out "/opt/citrixhoneypot/ssl/cert.pem"           -days 365           -subj '/C=AU/ST=Some-State/O=Internet Widgits Pty Ltd' &&     chown 2000:2000 -R ssl/
+#14 [citrixhoneypot linux/amd64 builder 2/5] RUN apk --no-cache -U upgrade &&     apk --no-cache -U add         build-base 		git 		openssl 		py3-pip 		python3 &&     pip3 install --break-system-packages --no-cache-dir         pyinstaller         python-json-logger
 #14 CACHED
 
-#15 [citrixhoneypot linux/arm64 stage-1 6/6] WORKDIR /opt/citrixhoneypot/
+#15 [citrixhoneypot linux/amd64 stage-1 6/6] WORKDIR /opt/citrixhoneypot/
 #15 CACHED
 
-#16 [citrixhoneypot linux/amd64 stage-1 5/6] COPY --from=builder /opt/citrixhoneypot/responses/ /opt/citrixhoneypot/responses
+#16 [citrixhoneypot linux/arm64 stage-1 5/6] COPY --from=builder /opt/citrixhoneypot/responses/ /opt/citrixhoneypot/responses
 #16 CACHED
 
-#17 [citrixhoneypot linux/amd64 builder 2/5] RUN apk --no-cache -U upgrade &&     apk --no-cache -U add         build-base 		git 		openssl 		py3-pip 		python3 &&     pip3 install --break-system-packages --no-cache-dir         pyinstaller         python-json-logger
+#17 [citrixhoneypot linux/arm64 builder 2/5] RUN apk --no-cache -U upgrade &&     apk --no-cache -U add         build-base 		git 		openssl 		py3-pip 		python3 &&     pip3 install --break-system-packages --no-cache-dir         pyinstaller         python-json-logger
 #17 CACHED
 
-#18 [citrixhoneypot linux/amd64 builder 5/5] RUN pyinstaller CitrixHoneypot.py
+#18 [citrixhoneypot linux/arm64 stage-1 3/6] COPY --from=builder /opt/citrixhoneypot/dist/CitrixHoneypot/ /opt/citrixhoneypot
 #18 CACHED
 
-#19 [citrixhoneypot linux/amd64 stage-1 2/4] RUN apk --no-cache -U upgrade
+#19 [citrixhoneypot linux/arm64 stage-1 2/4] RUN apk --no-cache -U upgrade
 #19 CACHED
 
-#20 [citrixhoneypot linux/amd64 stage-1 3/6] COPY --from=builder /opt/citrixhoneypot/dist/CitrixHoneypot/ /opt/citrixhoneypot
+#20 [citrixhoneypot linux/arm64 builder 5/5] RUN pyinstaller CitrixHoneypot.py
 #20 CACHED
 
-#21 [citrixhoneypot linux/amd64 builder 3/5] RUN git clone https://github.com/t3chn0m4g3/CitrixHoneypot /opt/citrixhoneypot &&     cd /opt/citrixhoneypot &&     git checkout dee32447033a0296d053e8f881bf190f9dd7ad44 &&     mkdir -p /opt/citrixhoneypot/logs /opt/citrixhoneypot/ssl &&     openssl req           -nodes           -x509           -newkey rsa:2048           -keyout "/opt/citrixhoneypot/ssl/key.pem"           -out "/opt/citrixhoneypot/ssl/cert.pem"           -days 365           -subj '/C=AU/ST=Some-State/O=Internet Widgits Pty Ltd' &&     chown 2000:2000 -R ssl/
+#21 [citrixhoneypot linux/arm64 stage-1 4/6] COPY --from=builder /opt/citrixhoneypot/ssl /opt/citrixhoneypot/ssl
 #21 CACHED
 
-#22 [citrixhoneypot linux/amd64 stage-1 4/6] COPY --from=builder /opt/citrixhoneypot/ssl /opt/citrixhoneypot/ssl
+#22 [citrixhoneypot linux/arm64 builder 3/5] RUN git clone https://github.com/t3chn0m4g3/CitrixHoneypot /opt/citrixhoneypot &&     cd /opt/citrixhoneypot &&     git checkout dee32447033a0296d053e8f881bf190f9dd7ad44 &&     mkdir -p /opt/citrixhoneypot/logs /opt/citrixhoneypot/ssl &&     openssl req           -nodes           -x509           -newkey rsa:2048           -keyout "/opt/citrixhoneypot/ssl/key.pem"           -out "/opt/citrixhoneypot/ssl/cert.pem"           -days 365           -subj '/C=AU/ST=Some-State/O=Internet Widgits Pty Ltd' &&     chown 2000:2000 -R ssl/
 #22 CACHED
 
-#23 [citrixhoneypot linux/amd64 builder 4/5] WORKDIR /opt/citrixhoneypot
+#23 [citrixhoneypot linux/arm64 builder 4/5] WORKDIR /opt/citrixhoneypot
 #23 CACHED
 
-#24 [citrixhoneypot linux/amd64 stage-1 6/6] WORKDIR /opt/citrixhoneypot/
+#24 [citrixhoneypot linux/arm64 stage-1 6/6] WORKDIR /opt/citrixhoneypot/
 #24 CACHED
 
 #25 [citrixhoneypot] exporting to image
 #25 exporting layers done
 #25 exporting manifest sha256:ee8d390c33636be143c13236420cb0b61ad1f3290f37814b3f5b390fc257294b done
 #25 exporting config sha256:067347e4ed09a0e394791869258dbc1979ea1f7efb7302ccb3319cdda83e6676 done
-#25 exporting attestation manifest sha256:a6d2bf8072fd8ddfd52b1d11dafba63755b486321cdd6ac7cf490dc040d036ca 0.0s done
-#25 exporting manifest sha256:73d6041bf852745bb4bd9b73ea69b2b7b0be10eedf3a96fd82d2e71c51b171ce 0.0s done
-#25 exporting config sha256:bde0dc49b1e20ace23e6d1ee167ad546026c1639dfb6891abccf9dfd2bbd1f78
+#25 exporting attestation manifest sha256:4b7d24ca000e37a9673169ad431f90dde452d973109cd4253f1f77543b3556b9 0.0s done
+#25 exporting manifest sha256:73d6041bf852745bb4bd9b73ea69b2b7b0be10eedf3a96fd82d2e71c51b171ce done
 #25 exporting config sha256:bde0dc49b1e20ace23e6d1ee167ad546026c1639dfb6891abccf9dfd2bbd1f78 done
-#25 exporting attestation manifest sha256:6d77a67ae724597872c8ba50ad75b6e7abcfe5966f331b669327254feed993fa 0.0s done
-#25 exporting manifest list sha256:6d7153698a32f4c68b19692f4f396b605222ec2b936add15629463c402451508 0.0s done
+#25 exporting attestation manifest sha256:df2782c1c0aae8a94a86a4ae27ddda141752bf1204841875c025d6a15fe6418f
+#25 exporting attestation manifest sha256:df2782c1c0aae8a94a86a4ae27ddda141752bf1204841875c025d6a15fe6418f 0.0s done
+#25 exporting manifest list sha256:316227cd19dc1db35e5147d5a6bd2dbf5d7917249415da1f749f74b91738c304 0.0s done
 #25 pushing layers
 #25 ...
 
@@ -96,9 +92,9 @@
 #26 DONE 0.0s
 
 #25 [citrixhoneypot] exporting to image
-#25 pushing layers 3.9s done
-#25 pushing manifest for docker.io/f0rc3ps/citrixhoneypot:24.04.1@sha256:6d7153698a32f4c68b19692f4f396b605222ec2b936add15629463c402451508
-#25 pushing manifest for docker.io/f0rc3ps/citrixhoneypot:24.04.1@sha256:6d7153698a32f4c68b19692f4f396b605222ec2b936add15629463c402451508 2.4s done
+#25 pushing layers 3.0s done
+#25 pushing manifest for docker.io/f0rc3ps/citrixhoneypot:24.04.1@sha256:316227cd19dc1db35e5147d5a6bd2dbf5d7917249415da1f749f74b91738c304
+#25 pushing manifest for docker.io/f0rc3ps/citrixhoneypot:24.04.1@sha256:316227cd19dc1db35e5147d5a6bd2dbf5d7917249415da1f749f74b91738c304 2.0s done
 #25 ...
 
 #27 [citrixhoneypot auth] asc3t1c/citrixhoneypot:pull,push token for ghcr.io
@@ -106,9 +102,9 @@
 
 #25 [citrixhoneypot] exporting to image
 #25 pushing layers 2.3s done
-#25 pushing manifest for ghcr.io/asc3t1c/citrixhoneypot:24.04.1@sha256:6d7153698a32f4c68b19692f4f396b605222ec2b936add15629463c402451508
-#25 pushing manifest for ghcr.io/asc3t1c/citrixhoneypot:24.04.1@sha256:6d7153698a32f4c68b19692f4f396b605222ec2b936add15629463c402451508 1.6s done
-#25 DONE 10.4s
+#25 pushing manifest for ghcr.io/asc3t1c/citrixhoneypot:24.04.1@sha256:316227cd19dc1db35e5147d5a6bd2dbf5d7917249415da1f749f74b91738c304
+#25 pushing manifest for ghcr.io/asc3t1c/citrixhoneypot:24.04.1@sha256:316227cd19dc1db35e5147d5a6bd2dbf5d7917249415da1f749f74b91738c304 1.6s done
+#25 DONE 9.1s
 
 #28 [citrixhoneypot] resolving provenance for metadata file
 #28 DONE 0.0s

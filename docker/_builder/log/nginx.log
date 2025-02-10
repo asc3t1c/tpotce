@@ -4,316 +4,311 @@
 #1 transferring dockerfile: 1.18kB 0.0s done
 #1 DONE 0.0s
 
-#2 [nginx linux/arm64 internal] load metadata for docker.io/library/alpine:3.20
-#2 ...
+#2 [nginx linux/amd64 internal] load metadata for docker.io/library/alpine:3.20
+#2 DONE 0.1s
 
-#3 [nginx linux/amd64 internal] load metadata for docker.io/library/alpine:3.20
-#3 DONE 0.2s
+#3 [nginx internal] load .dockerignore
+#3 transferring context:
+#3 transferring context: 2B done
+#3 DONE 0.0s
 
-#4 [nginx linux/arm64 builder 1/7] FROM docker.io/library/alpine:3.20@sha256:31687a2fdd021f85955bf2d0c2682e9c0949827560e1db546358ea094f740f12
-#4 resolve docker.io/library/alpine:3.20@sha256:31687a2fdd021f85955bf2d0c2682e9c0949827560e1db546358ea094f740f12 0.0s done
-#4 DONE 0.0s
+#4 [nginx linux/arm64 internal] load metadata for docker.io/library/alpine:3.20
+#4 DONE 0.2s
 
-#5 [nginx linux/amd64 builder 1/7] FROM docker.io/library/alpine:3.20@sha256:31687a2fdd021f85955bf2d0c2682e9c0949827560e1db546358ea094f740f12
+#5 [nginx internal] load build context
+#5 transferring context: 76.99kB 0.0s done
 #5 DONE 0.0s
 
-#2 [nginx linux/arm64 internal] load metadata for docker.io/library/alpine:3.20
-#2 DONE 0.2s
+#6 [nginx linux/amd64 builder 1/7] FROM docker.io/library/alpine:3.20@sha256:31687a2fdd021f85955bf2d0c2682e9c0949827560e1db546358ea094f740f12
+#6 resolve docker.io/library/alpine:3.20@sha256:31687a2fdd021f85955bf2d0c2682e9c0949827560e1db546358ea094f740f12 0.0s done
+#6 CACHED
 
-#6 [nginx internal] load .dockerignore
-#6 transferring context: 2B 0.0s done
-#6 DONE 0.0s
+#7 [nginx linux/arm64 builder 1/7] FROM docker.io/library/alpine:3.20@sha256:31687a2fdd021f85955bf2d0c2682e9c0949827560e1db546358ea094f740f12
+#7 resolve docker.io/library/alpine:3.20@sha256:31687a2fdd021f85955bf2d0c2682e9c0949827560e1db546358ea094f740f12 0.0s done
+#7 CACHED
 
-#7 [nginx internal] load build context
-#7 transferring context: 13.81MB 0.4s done
-#7 DONE 0.5s
-
-#4 [nginx linux/arm64 builder 1/7] FROM docker.io/library/alpine:3.20@sha256:31687a2fdd021f85955bf2d0c2682e9c0949827560e1db546358ea094f740f12
-#4 CACHED
-
-#5 [nginx linux/amd64 builder 1/7] FROM docker.io/library/alpine:3.20@sha256:31687a2fdd021f85955bf2d0c2682e9c0949827560e1db546358ea094f740f12
-#5 CACHED
-
-#8 [nginx linux/amd64 2/3] COPY dist/ /root/dist/
+#8 [nginx linux/arm64 2/3] COPY dist/ /root/dist/
 #8 ...
 
-#9 [nginx linux/arm64 2/3] COPY dist/ /root/dist/
-#9 DONE 0.6s
+#9 [nginx linux/amd64 2/3] COPY dist/ /root/dist/
+#9 DONE 0.4s
 
-#8 [nginx linux/amd64 2/3] COPY dist/ /root/dist/
-#8 DONE 0.6s
+#8 [nginx linux/arm64 2/3] COPY dist/ /root/dist/
+#8 DONE 0.4s
 
-#10 [nginx linux/amd64 3/3] RUN apk --no-cache -U upgrade &&     apk --no-cache -U add       nginx       nginx-mod-http-brotli       nginx-mod-http-headers-more       nginx-mod-http-lua &&     cp -R /root/dist/html/* /var/lib/nginx/html/ &&     cd /var/lib/nginx/html/esvue &&     tar xvfz esvue.tgz &&     rm esvue.tgz &&     cd /var/lib/nginx/html/cyberchef &&     tar xvfz cyberchef.tgz &&     rm cyberchef.tgz &&     chown root:www-data -R /var/lib/nginx/html &&     chmod 755 -R /var/lib/nginx/html &&     rm -rf /etc/nginx/conf.d/* /usr/share/nginx/html/* &&     mkdir -p /etc/nginx/conf.d &&     cp /root/dist/conf/nginx.conf /etc/nginx/ &&     cp -R /root/dist/conf/ssl /etc/nginx/ &&     cp /root/dist/conf/tpotweb.conf /etc/nginx/conf.d/ &&     cp /root/dist/conf/lsweb.conf /etc/nginx/conf.d/ &&     rm -rf /root/*            /var/cache/apk/*
-#10 0.222 fetch https://dl-cdn.alpinelinux.org/alpine/v3.20/main/x86_64/APKINDEX.tar.gz
-#10 0.542 fetch https://dl-cdn.alpinelinux.org/alpine/v3.20/community/x86_64/APKINDEX.tar.gz
-#10 1.752 (1/2) Upgrading libcrypto3 (3.3.2-r1 -> 3.3.2-r2)
-#10 1.940 (2/2) Upgrading libssl3 (3.3.2-r1 -> 3.3.2-r2)
-#10 1.995 OK: 8 MiB in 14 packages
-#10 2.304 fetch https://dl-cdn.alpinelinux.org/alpine/v3.20/main/x86_64/APKINDEX.tar.gz
-#10 2.767 fetch https://dl-cdn.alpinelinux.org/alpine/v3.20/community/x86_64/APKINDEX.tar.gz
-#10 3.675 (1/11) Installing pcre (8.45-r3)
-#10 3.705 (2/11) Installing nginx (1.26.2-r0)
-#10 3.724 Executing nginx-1.26.2-r0.pre-install
-#10 3.790 Executing nginx-1.26.2-r0.post-install
-#10 3.805 (3/11) Installing brotli-libs (1.1.0-r2)
-#10 3.849 (4/11) Installing nginx-mod-http-brotli (1.26.2-r0)
-#10 3.859 (5/11) Installing nginx-mod-http-headers-more (1.26.2-r0)
-#10 3.866 (6/11) Installing nginx-mod-devel-kit (1.26.2-r0)
-#10 3.874 (7/11) Installing libgcc (13.2.1_git20240309-r0)
-#10 3.888 (8/11) Installing luajit (2.1_p20240314-r0)
-#10 3.959 (9/11) Installing lua-resty-lrucache (0.13-r1)
-#10 3.967 (10/11) Installing lua-resty-core (0.1.28-r0)
-#10 3.985 (11/11) Installing nginx-mod-http-lua (1.26.2-r0)
-#10 4.020 Executing busybox-1.36.1-r29.trigger
-#10 4.049 OK: 13 MiB in 25 packages
-#10 4.380 assets/
-#10 4.567 assets/KFOlCnqEu92Fr1MmYUtfBBc--Dr8fnyGc.woff
-#10 4.567 assets/hack-bold-o0myPlua.woff2
-#10 4.567 assets/hack-bold-XM2YsVf3.woff
-#10 4.567 assets/KFOlCnqEu92Fr1MmEU9fBBc--ViM7Ag4Q.woff
-#10 4.567 assets/hack-italic-CQtdA7T5.woff2
-#10 4.567 assets/KFOkCnqEu92Fr1MmgVxIIzQ-Y2mpUUkw.woff
-#10 4.567 assets/favicon-D555SDe-.ico
-#10 4.567 assets/index-BEfhSXxP.js.map
-#10 4.567 assets/flUhRq6tzZclQEJ-Vdg-IuiaDsNcIhQ8tQ-D-x-0Q06.woff2
-#10 4.567 assets/hack-regular-DEir-J6A.woff
-#10 4.567 assets/CodeEditor-6kim-Nqt.js
-#10 4.567 assets/CodeEditor-6kim-Nqt.js.map
-#10 4.567 assets/hack-bolditalic-CcY3gI8S.woff
-#10 4.567 assets/CodeViewer-WIHrD9bL.js.map
-#10 4.567 assets/index-BlKYqKaz.css
-#10 4.567 assets/CodeEditor-CvD7sC9j.js
-#10 4.567 assets/CodeEditor-CvD7sC9j.js.map
-#10 4.567 assets/KFOmCnqEu92Fr1Mu4mxM-DAYh6T4l.woff
-#10 4.567 assets/hack-italic-CxLZKZQa.woff
-#10 4.567 assets/hack-regular-Dv5unGLz.woff2
-#10 4.567 assets/hack-bolditalic-D5TV5Tsg.woff2
-#10 4.567 assets/index-BEfhSXxP.js
-#10 4.567 assets/CodeViewer-WIHrD9bL.js
-#10 4.567 assets/KFOlCnqEu92Fr1MmWUlfBBc--CW3_XjG_.woff
-#10 4.567 assets/KFOlCnqEu92Fr1MmSU5fBBc--CrFzpgl6.woff
-#10 4.567 assets/flUhRq6tzZclQEJ-Vdg-IuiaDsNa-Dr0goTwe.woff
-#10 4.567 index.html
-#10 4.574 BundleAnalyzerReport.html
-#10 5.306 ChefWorker.js.LICENSE.txt
-#10 5.306 DishWorker.js.LICENSE.txt
-#10 5.306 InputWorker.js.LICENSE.txt
-#10 5.306 LoaderWorker.js.LICENSE.txt
-#10 5.306 ZipWorker.js.LICENSE.txt
-#10 5.306 assets/
-#10 5.306 assets/02aafe15b98928fdaa38.ttf
-#10 5.306 assets/tesseract/
-#10 5.306 assets/tesseract/worker.min.js
-#10 5.306 assets/tesseract/worker.min.js.LICENSE.txt
-#10 5.306 assets/tesseract/tesseract-core.wasm.js
-#10 5.306 assets/tesseract/lang-data/
-#10 5.306 assets/tesseract/lang-data/eng.traineddata.gz
-#10 5.306 assets/main.js.LICENSE.txt
-#10 5.306 assets/main.css
-#10 5.306 assets/forge/
-#10 5.306 assets/forge/prime.worker.min.js
-#10 5.306 assets/fonts/
-#10 5.306 assets/fonts/RobotoMono72White.png
-#10 5.306 assets/fonts/RobotoSlab72White.png
-#10 5.306 assets/fonts/Roboto72White.png
-#10 5.306 assets/fonts/RobotoSlab72White.fnt
-#10 5.306 assets/fonts/Roboto72White.fnt
-#10 5.306 assets/fonts/RobotoBlack72White.fnt
-#10 5.306 assets/fonts/RobotoBlack72White.png
-#10 5.306 assets/fonts/RobotoMono72White.fnt
-#10 5.306 assets/aecc661b69309290f600.ico
-#10 5.306 assets/main.js
-#10 5.306 images/
-#10 5.306 images/fork_me.png
-#10 5.306 images/cook_male-32x32.png
-#10 5.306 images/file-128x128.png
-#10 5.306 images/cyberchef-128x128.png
-#10 5.306 index.html
-#10 5.306 modules/
-#10 5.306 modules/Serialise.js
-#10 5.306 modules/Charts.js.LICENSE.txt
-#10 5.306 modules/URL.js.LICENSE.txt
-#10 5.306 modules/Bletchley.js
-#10 5.729 modules/Shellcode.js.LICENSE.txt
-#10 5.729 modules/Protobuf.js.LICENSE.txt
-#10 5.729 modules/Ciphers.js.LICENSE.txt
-#10 5.729 modules/URL.js
-#10 5.729 modules/Code.js.LICENSE.txt
-#10 5.729 modules/Hashing.js.LICENSE.txt
-#10 5.729 modules/PGP.js.LICENSE.txt
-#10 5.729 modules/PublicKey.js
-#10 5.729 modules/Crypto.js
-#10 5.729 modules/Regex.js.LICENSE.txt
-#10 5.729 modules/Regex.js
-#10 5.729 modules/Compression.js.LICENSE.txt
-#10 5.729 modules/Bletchley.js.LICENSE.txt
-#10 5.729 modules/PublicKey.js.LICENSE.txt
-#10 5.729 modules/Yara.js.LICENSE.txt
-#10 5.729 modules/PGP.js
-#10 5.729 modules/OCR.js
-#10 5.729 modules/Shellcode.js
-#10 5.729 modules/Serialise.js.LICENSE.txt
-#10 5.729 modules/Encodings.js.LICENSE.txt
-#10 5.729 modules/Encodings.js
-#10 5.729 modules/Yara.js
-#10 5.729 modules/Hashing.js
-#10 5.729 modules/UserAgent.js
-#10 5.729 modules/Image.js
-#10 5.729 modules/Code.js
-#10 5.729 modules/Charts.js
-#10 5.729 modules/Crypto.js.LICENSE.txt
-#10 5.729 modules/Ciphers.js
-#10 5.729 modules/Image.js.LICENSE.txt
-#10 5.729 modules/Diff.js
-#10 5.729 modules/Compression.js
-#10 5.729 modules/UserAgent.js.LICENSE.txt
-#10 5.729 modules/Protobuf.js
-#10 5.729 modules/OCR.js.LICENSE.txt
-#10 5.729 modules/Diff.js.LICENSE.txt
-#10 5.729 sha256digest.txt
-#10 DONE 6.1s
+#10 [nginx linux/arm64 3/3] RUN apk --no-cache -U upgrade &&     apk --no-cache -U add       nginx       nginx-mod-http-brotli       nginx-mod-http-headers-more       nginx-mod-http-lua &&     cp -R /root/dist/html/* /var/lib/nginx/html/ &&     cd /var/lib/nginx/html/esvue &&     tar xvfz esvue.tgz &&     rm esvue.tgz &&     cd /var/lib/nginx/html/cyberchef &&     tar xvfz cyberchef.tgz &&     rm cyberchef.tgz &&     chown root:www-data -R /var/lib/nginx/html &&     chmod 755 -R /var/lib/nginx/html &&     rm -rf /etc/nginx/conf.d/* /usr/share/nginx/html/* &&     mkdir -p /etc/nginx/conf.d &&     cp /root/dist/conf/nginx.conf /etc/nginx/ &&     cp -R /root/dist/conf/ssl /etc/nginx/ &&     cp /root/dist/conf/tpotweb.conf /etc/nginx/conf.d/ &&     cp /root/dist/conf/lsweb.conf /etc/nginx/conf.d/ &&     rm -rf /root/*            /var/cache/apk/*
+#10 0.419 fetch https://dl-cdn.alpinelinux.org/alpine/v3.20/main/aarch64/APKINDEX.tar.gz
+#10 1.716 fetch https://dl-cdn.alpinelinux.org/alpine/v3.20/community/aarch64/APKINDEX.tar.gz
+#10 5.171 (1/2) Upgrading libcrypto3 (3.3.2-r1 -> 3.3.2-r2)
+#10 ...
 
-#11 [nginx linux/arm64 3/3] RUN apk --no-cache -U upgrade &&     apk --no-cache -U add       nginx       nginx-mod-http-brotli       nginx-mod-http-headers-more       nginx-mod-http-lua &&     cp -R /root/dist/html/* /var/lib/nginx/html/ &&     cd /var/lib/nginx/html/esvue &&     tar xvfz esvue.tgz &&     rm esvue.tgz &&     cd /var/lib/nginx/html/cyberchef &&     tar xvfz cyberchef.tgz &&     rm cyberchef.tgz &&     chown root:www-data -R /var/lib/nginx/html &&     chmod 755 -R /var/lib/nginx/html &&     rm -rf /etc/nginx/conf.d/* /usr/share/nginx/html/* &&     mkdir -p /etc/nginx/conf.d &&     cp /root/dist/conf/nginx.conf /etc/nginx/ &&     cp -R /root/dist/conf/ssl /etc/nginx/ &&     cp /root/dist/conf/tpotweb.conf /etc/nginx/conf.d/ &&     cp /root/dist/conf/lsweb.conf /etc/nginx/conf.d/ &&     rm -rf /root/*            /var/cache/apk/*
-#11 0.489 fetch https://dl-cdn.alpinelinux.org/alpine/v3.20/main/aarch64/APKINDEX.tar.gz
-#11 2.118 fetch https://dl-cdn.alpinelinux.org/alpine/v3.20/community/aarch64/APKINDEX.tar.gz
-#11 5.764 (1/2) Upgrading libcrypto3 (3.3.2-r1 -> 3.3.2-r2)
-#11 6.617 (2/2) Upgrading libssl3 (3.3.2-r1 -> 3.3.2-r2)
-#11 6.804 OK: 9 MiB in 14 packages
-#11 7.491 fetch https://dl-cdn.alpinelinux.org/alpine/v3.20/main/aarch64/APKINDEX.tar.gz
-#11 9.337 fetch https://dl-cdn.alpinelinux.org/alpine/v3.20/community/aarch64/APKINDEX.tar.gz
-#11 12.92 (1/11) Installing pcre (8.45-r3)
-#11 13.02 (2/11) Installing nginx (1.26.2-r0)
-#11 13.10 Executing nginx-1.26.2-r0.pre-install
-#11 13.61 Executing nginx-1.26.2-r0.post-install
-#11 13.78 (3/11) Installing brotli-libs (1.1.0-r2)
-#11 13.91 (4/11) Installing nginx-mod-http-brotli (1.26.2-r0)
-#11 13.93 (5/11) Installing nginx-mod-http-headers-more (1.26.2-r0)
-#11 13.95 (6/11) Installing nginx-mod-devel-kit (1.26.2-r0)
-#11 13.96 (7/11) Installing libgcc (13.2.1_git20240309-r0)
-#11 13.99 (8/11) Installing luajit (2.1_p20240314-r0)
-#11 14.21 (9/11) Installing lua-resty-lrucache (0.13-r1)
-#11 14.23 (10/11) Installing lua-resty-core (0.1.28-r0)
-#11 14.27 (11/11) Installing nginx-mod-http-lua (1.26.2-r0)
-#11 14.34 Executing busybox-1.36.1-r29.trigger
-#11 14.49 OK: 14 MiB in 25 packages
-#11 15.30 assets/
-#11 16.31 assets/KFOlCnqEu92Fr1MmYUtfBBc--Dr8fnyGc.woff
-#11 16.31 assets/hack-bold-o0myPlua.woff2
-#11 16.31 assets/hack-bold-XM2YsVf3.woff
-#11 16.31 assets/KFOlCnqEu92Fr1MmEU9fBBc--ViM7Ag4Q.woff
-#11 16.31 assets/hack-italic-CQtdA7T5.woff2
-#11 16.31 assets/KFOkCnqEu92Fr1MmgVxIIzQ-Y2mpUUkw.woff
-#11 16.31 assets/favicon-D555SDe-.ico
-#11 16.31 assets/index-BEfhSXxP.js.map
-#11 16.31 assets/flUhRq6tzZclQEJ-Vdg-IuiaDsNcIhQ8tQ-D-x-0Q06.woff2
-#11 16.31 assets/hack-regular-DEir-J6A.woff
-#11 16.31 assets/CodeEditor-6kim-Nqt.js
-#11 16.31 assets/CodeEditor-6kim-Nqt.js.map
-#11 16.31 assets/hack-bolditalic-CcY3gI8S.woff
-#11 16.31 assets/CodeViewer-WIHrD9bL.js.map
-#11 16.31 assets/index-BlKYqKaz.css
-#11 16.31 assets/CodeEditor-CvD7sC9j.js
-#11 16.31 assets/CodeEditor-CvD7sC9j.js.map
-#11 16.31 assets/KFOmCnqEu92Fr1Mu4mxM-DAYh6T4l.woff
-#11 16.31 assets/hack-italic-CxLZKZQa.woff
-#11 16.31 assets/hack-regular-Dv5unGLz.woff2
-#11 16.31 assets/hack-bolditalic-D5TV5Tsg.woff2
-#11 16.31 assets/index-BEfhSXxP.js
-#11 16.31 assets/CodeViewer-WIHrD9bL.js
-#11 16.31 assets/KFOlCnqEu92Fr1MmWUlfBBc--CW3_XjG_.woff
-#11 16.31 assets/KFOlCnqEu92Fr1MmSU5fBBc--CrFzpgl6.woff
-#11 16.31 assets/flUhRq6tzZclQEJ-Vdg-IuiaDsNa-Dr0goTwe.woff
-#11 16.31 index.html
-#11 16.42 BundleAnalyzerReport.html
-#11 19.81 ChefWorker.js.LICENSE.txt
-#11 19.81 DishWorker.js.LICENSE.txt
-#11 19.81 InputWorker.js.LICENSE.txt
-#11 19.81 LoaderWorker.js.LICENSE.txt
-#11 19.81 ZipWorker.js.LICENSE.txt
-#11 19.81 assets/
-#11 19.81 assets/02aafe15b98928fdaa38.ttf
-#11 19.81 assets/tesseract/
-#11 19.81 assets/tesseract/worker.min.js
-#11 19.81 assets/tesseract/worker.min.js.LICENSE.txt
-#11 19.81 assets/tesseract/tesseract-core.wasm.js
-#11 19.81 assets/tesseract/lang-data/
-#11 19.81 assets/tesseract/lang-data/eng.traineddata.gz
-#11 19.81 assets/main.js.LICENSE.txt
-#11 19.81 assets/main.css
-#11 19.81 assets/forge/
-#11 19.81 assets/forge/prime.worker.min.js
-#11 19.81 assets/fonts/
-#11 19.81 assets/fonts/RobotoMono72White.png
-#11 19.81 assets/fonts/RobotoSlab72White.png
-#11 19.81 assets/fonts/Roboto72White.png
-#11 19.81 assets/fonts/RobotoSlab72White.fnt
-#11 19.81 assets/fonts/Roboto72White.fnt
-#11 19.81 assets/fonts/RobotoBlack72White.fnt
-#11 19.81 assets/fonts/RobotoBlack72White.png
-#11 19.81 assets/fonts/RobotoMono72White.fnt
-#11 19.81 assets/aecc661b69309290f600.ico
-#11 19.81 assets/main.js
-#11 19.81 images/
-#11 19.81 images/fork_me.png
-#11 19.81 images/cook_male-32x32.png
-#11 19.81 images/file-128x128.png
-#11 19.81 images/cyberchef-128x128.png
-#11 19.81 index.html
-#11 19.81 modules/
-#11 19.81 modules/Serialise.js
-#11 19.81 modules/Charts.js.LICENSE.txt
-#11 19.81 modules/URL.js.LICENSE.txt
-#11 19.81 modules/Bletchley.js
-#11 21.31 modules/Shellcode.js.LICENSE.txt
-#11 21.31 modules/Protobuf.js.LICENSE.txt
-#11 21.31 modules/Ciphers.js.LICENSE.txt
-#11 21.31 modules/URL.js
-#11 21.31 modules/Code.js.LICENSE.txt
-#11 21.31 modules/Hashing.js.LICENSE.txt
-#11 21.31 modules/PGP.js.LICENSE.txt
-#11 21.31 modules/PublicKey.js
-#11 21.31 modules/Crypto.js
-#11 21.31 modules/Regex.js.LICENSE.txt
-#11 21.31 modules/Regex.js
-#11 21.31 modules/Compression.js.LICENSE.txt
-#11 21.31 modules/Bletchley.js.LICENSE.txt
-#11 21.31 modules/PublicKey.js.LICENSE.txt
-#11 21.31 modules/Yara.js.LICENSE.txt
-#11 21.31 modules/PGP.js
-#11 21.31 modules/OCR.js
-#11 21.31 modules/Shellcode.js
-#11 21.31 modules/Serialise.js.LICENSE.txt
-#11 21.31 modules/Encodings.js.LICENSE.txt
-#11 21.31 modules/Encodings.js
-#11 21.31 modules/Yara.js
-#11 21.31 modules/Hashing.js
-#11 21.31 modules/UserAgent.js
-#11 21.31 modules/Image.js
-#11 21.31 modules/Code.js
-#11 21.31 modules/Charts.js
-#11 21.31 modules/Crypto.js.LICENSE.txt
-#11 21.31 modules/Ciphers.js
-#11 21.31 modules/Image.js.LICENSE.txt
-#11 21.31 modules/Diff.js
-#11 21.31 modules/Compression.js
-#11 21.31 modules/UserAgent.js.LICENSE.txt
-#11 21.31 modules/Protobuf.js
-#11 21.31 modules/OCR.js.LICENSE.txt
-#11 21.31 modules/Diff.js.LICENSE.txt
-#11 21.31 sha256digest.txt
-#11 DONE 22.1s
+#11 [nginx linux/amd64 3/3] RUN apk --no-cache -U upgrade &&     apk --no-cache -U add       nginx       nginx-mod-http-brotli       nginx-mod-http-headers-more       nginx-mod-http-lua &&     cp -R /root/dist/html/* /var/lib/nginx/html/ &&     cd /var/lib/nginx/html/esvue &&     tar xvfz esvue.tgz &&     rm esvue.tgz &&     cd /var/lib/nginx/html/cyberchef &&     tar xvfz cyberchef.tgz &&     rm cyberchef.tgz &&     chown root:www-data -R /var/lib/nginx/html &&     chmod 755 -R /var/lib/nginx/html &&     rm -rf /etc/nginx/conf.d/* /usr/share/nginx/html/* &&     mkdir -p /etc/nginx/conf.d &&     cp /root/dist/conf/nginx.conf /etc/nginx/ &&     cp -R /root/dist/conf/ssl /etc/nginx/ &&     cp /root/dist/conf/tpotweb.conf /etc/nginx/conf.d/ &&     cp /root/dist/conf/lsweb.conf /etc/nginx/conf.d/ &&     rm -rf /root/*            /var/cache/apk/*
+#11 0.185 fetch https://dl-cdn.alpinelinux.org/alpine/v3.20/main/x86_64/APKINDEX.tar.gz
+#11 0.457 fetch https://dl-cdn.alpinelinux.org/alpine/v3.20/community/x86_64/APKINDEX.tar.gz
+#11 1.646 (1/2) Upgrading libcrypto3 (3.3.2-r1 -> 3.3.2-r2)
+#11 1.881 (2/2) Upgrading libssl3 (3.3.2-r1 -> 3.3.2-r2)
+#11 1.928 OK: 8 MiB in 14 packages
+#11 2.147 fetch https://dl-cdn.alpinelinux.org/alpine/v3.20/main/x86_64/APKINDEX.tar.gz
+#11 2.393 fetch https://dl-cdn.alpinelinux.org/alpine/v3.20/community/x86_64/APKINDEX.tar.gz
+#11 3.395 (1/11) Installing pcre (8.45-r3)
+#11 3.422 (2/11) Installing nginx (1.26.2-r0)
+#11 3.443 Executing nginx-1.26.2-r0.pre-install
+#11 3.524 Executing nginx-1.26.2-r0.post-install
+#11 3.535 (3/11) Installing brotli-libs (1.1.0-r2)
+#11 3.584 (4/11) Installing nginx-mod-http-brotli (1.26.2-r0)
+#11 3.590 (5/11) Installing nginx-mod-http-headers-more (1.26.2-r0)
+#11 3.598 (6/11) Installing nginx-mod-devel-kit (1.26.2-r0)
+#11 3.604 (7/11) Installing libgcc (13.2.1_git20240309-r0)
+#11 3.619 (8/11) Installing luajit (2.1_p20240314-r0)
+#11 3.689 (9/11) Installing lua-resty-lrucache (0.13-r1)
+#11 3.696 (10/11) Installing lua-resty-core (0.1.28-r0)
+#11 3.715 (11/11) Installing nginx-mod-http-lua (1.26.2-r0)
+#11 3.740 Executing busybox-1.36.1-r29.trigger
+#11 3.758 OK: 13 MiB in 25 packages
+#11 4.062 assets/
+#11 4.265 assets/KFOlCnqEu92Fr1MmYUtfBBc--Dr8fnyGc.woff
+#11 4.265 assets/hack-bold-o0myPlua.woff2
+#11 4.265 assets/hack-bold-XM2YsVf3.woff
+#11 4.265 assets/KFOlCnqEu92Fr1MmEU9fBBc--ViM7Ag4Q.woff
+#11 4.265 assets/hack-italic-CQtdA7T5.woff2
+#11 4.265 assets/KFOkCnqEu92Fr1MmgVxIIzQ-Y2mpUUkw.woff
+#11 4.265 assets/favicon-D555SDe-.ico
+#11 4.265 assets/index-BEfhSXxP.js.map
+#11 4.265 assets/flUhRq6tzZclQEJ-Vdg-IuiaDsNcIhQ8tQ-D-x-0Q06.woff2
+#11 4.265 assets/hack-regular-DEir-J6A.woff
+#11 4.265 assets/CodeEditor-6kim-Nqt.js
+#11 4.265 assets/CodeEditor-6kim-Nqt.js.map
+#11 4.265 assets/hack-bolditalic-CcY3gI8S.woff
+#11 4.265 assets/CodeViewer-WIHrD9bL.js.map
+#11 4.265 assets/index-BlKYqKaz.css
+#11 4.265 assets/CodeEditor-CvD7sC9j.js
+#11 4.265 assets/CodeEditor-CvD7sC9j.js.map
+#11 4.265 assets/KFOmCnqEu92Fr1Mu4mxM-DAYh6T4l.woff
+#11 4.265 assets/hack-italic-CxLZKZQa.woff
+#11 4.265 assets/hack-regular-Dv5unGLz.woff2
+#11 4.265 assets/hack-bolditalic-D5TV5Tsg.woff2
+#11 4.265 assets/index-BEfhSXxP.js
+#11 4.265 assets/CodeViewer-WIHrD9bL.js
+#11 4.265 assets/KFOlCnqEu92Fr1MmWUlfBBc--CW3_XjG_.woff
+#11 4.265 assets/KFOlCnqEu92Fr1MmSU5fBBc--CrFzpgl6.woff
+#11 4.265 assets/flUhRq6tzZclQEJ-Vdg-IuiaDsNa-Dr0goTwe.woff
+#11 4.265 index.html
+#11 4.271 BundleAnalyzerReport.html
+#11 5.025 ChefWorker.js.LICENSE.txt
+#11 5.025 DishWorker.js.LICENSE.txt
+#11 5.025 InputWorker.js.LICENSE.txt
+#11 5.025 LoaderWorker.js.LICENSE.txt
+#11 5.025 ZipWorker.js.LICENSE.txt
+#11 5.025 assets/
+#11 5.025 assets/02aafe15b98928fdaa38.ttf
+#11 5.025 assets/tesseract/
+#11 5.025 assets/tesseract/worker.min.js
+#11 5.025 assets/tesseract/worker.min.js.LICENSE.txt
+#11 5.025 assets/tesseract/tesseract-core.wasm.js
+#11 5.025 assets/tesseract/lang-data/
+#11 5.025 assets/tesseract/lang-data/eng.traineddata.gz
+#11 5.025 assets/main.js.LICENSE.txt
+#11 5.025 assets/main.css
+#11 5.025 assets/forge/
+#11 5.025 assets/forge/prime.worker.min.js
+#11 5.025 assets/fonts/
+#11 5.025 assets/fonts/RobotoMono72White.png
+#11 5.025 assets/fonts/RobotoSlab72White.png
+#11 5.025 assets/fonts/Roboto72White.png
+#11 5.025 assets/fonts/RobotoSlab72White.fnt
+#11 5.025 assets/fonts/Roboto72White.fnt
+#11 5.025 assets/fonts/RobotoBlack72White.fnt
+#11 5.025 assets/fonts/RobotoBlack72White.png
+#11 5.025 assets/fonts/RobotoMono72White.fnt
+#11 5.025 assets/aecc661b69309290f600.ico
+#11 5.025 assets/main.js
+#11 5.025 images/
+#11 5.025 images/fork_me.png
+#11 5.025 images/cook_male-32x32.png
+#11 5.025 images/file-128x128.png
+#11 5.025 images/cyberchef-128x128.png
+#11 5.025 index.html
+#11 5.025 modules/
+#11 5.025 modules/Serialise.js
+#11 5.025 modules/Charts.js.LICENSE.txt
+#11 5.025 modules/URL.js.LICENSE.txt
+#11 5.025 modules/Bletchley.js
+#11 5.492 modules/Shellcode.js.LICENSE.txt
+#11 5.492 modules/Protobuf.js.LICENSE.txt
+#11 5.492 modules/Ciphers.js.LICENSE.txt
+#11 5.492 modules/URL.js
+#11 5.492 modules/Code.js.LICENSE.txt
+#11 5.492 modules/Hashing.js.LICENSE.txt
+#11 5.492 modules/PGP.js.LICENSE.txt
+#11 5.492 modules/PublicKey.js
+#11 5.492 modules/Crypto.js
+#11 5.492 modules/Regex.js.LICENSE.txt
+#11 5.492 modules/Regex.js
+#11 5.492 modules/Compression.js.LICENSE.txt
+#11 5.492 modules/Bletchley.js.LICENSE.txt
+#11 5.492 modules/PublicKey.js.LICENSE.txt
+#11 5.492 modules/Yara.js.LICENSE.txt
+#11 5.492 modules/PGP.js
+#11 5.492 modules/OCR.js
+#11 5.492 modules/Shellcode.js
+#11 5.492 modules/Serialise.js.LICENSE.txt
+#11 5.492 modules/Encodings.js.LICENSE.txt
+#11 5.492 modules/Encodings.js
+#11 5.492 modules/Yara.js
+#11 5.492 modules/Hashing.js
+#11 5.492 modules/UserAgent.js
+#11 5.492 modules/Image.js
+#11 5.492 modules/Code.js
+#11 5.492 modules/Charts.js
+#11 5.492 modules/Crypto.js.LICENSE.txt
+#11 5.492 modules/Ciphers.js
+#11 5.492 modules/Image.js.LICENSE.txt
+#11 5.492 modules/Diff.js
+#11 5.492 modules/Compression.js
+#11 5.492 modules/UserAgent.js.LICENSE.txt
+#11 5.492 modules/Protobuf.js
+#11 5.492 modules/OCR.js.LICENSE.txt
+#11 5.492 modules/Diff.js.LICENSE.txt
+#11 5.492 sha256digest.txt
+#11 DONE 5.8s
+
+#10 [nginx linux/arm64 3/3] RUN apk --no-cache -U upgrade &&     apk --no-cache -U add       nginx       nginx-mod-http-brotli       nginx-mod-http-headers-more       nginx-mod-http-lua &&     cp -R /root/dist/html/* /var/lib/nginx/html/ &&     cd /var/lib/nginx/html/esvue &&     tar xvfz esvue.tgz &&     rm esvue.tgz &&     cd /var/lib/nginx/html/cyberchef &&     tar xvfz cyberchef.tgz &&     rm cyberchef.tgz &&     chown root:www-data -R /var/lib/nginx/html &&     chmod 755 -R /var/lib/nginx/html &&     rm -rf /etc/nginx/conf.d/* /usr/share/nginx/html/* &&     mkdir -p /etc/nginx/conf.d &&     cp /root/dist/conf/nginx.conf /etc/nginx/ &&     cp -R /root/dist/conf/ssl /etc/nginx/ &&     cp /root/dist/conf/tpotweb.conf /etc/nginx/conf.d/ &&     cp /root/dist/conf/lsweb.conf /etc/nginx/conf.d/ &&     rm -rf /root/*            /var/cache/apk/*
+#10 5.963 (2/2) Upgrading libssl3 (3.3.2-r1 -> 3.3.2-r2)
+#10 6.130 OK: 9 MiB in 14 packages
+#10 6.627 fetch https://dl-cdn.alpinelinux.org/alpine/v3.20/main/aarch64/APKINDEX.tar.gz
+#10 8.180 fetch https://dl-cdn.alpinelinux.org/alpine/v3.20/community/aarch64/APKINDEX.tar.gz
+#10 11.28 (1/11) Installing pcre (8.45-r3)
+#10 11.37 (2/11) Installing nginx (1.26.2-r0)
+#10 11.45 Executing nginx-1.26.2-r0.pre-install
+#10 11.92 Executing nginx-1.26.2-r0.post-install
+#10 12.05 (3/11) Installing brotli-libs (1.1.0-r2)
+#10 12.16 (4/11) Installing nginx-mod-http-brotli (1.26.2-r0)
+#10 12.18 (5/11) Installing nginx-mod-http-headers-more (1.26.2-r0)
+#10 12.19 (6/11) Installing nginx-mod-devel-kit (1.26.2-r0)
+#10 12.21 (7/11) Installing libgcc (13.2.1_git20240309-r0)
+#10 12.24 (8/11) Installing luajit (2.1_p20240314-r0)
+#10 12.42 (9/11) Installing lua-resty-lrucache (0.13-r1)
+#10 12.44 (10/11) Installing lua-resty-core (0.1.28-r0)
+#10 12.47 (11/11) Installing nginx-mod-http-lua (1.26.2-r0)
+#10 12.54 Executing busybox-1.36.1-r29.trigger
+#10 12.68 OK: 14 MiB in 25 packages
+#10 13.33 assets/
+#10 14.00 assets/KFOlCnqEu92Fr1MmYUtfBBc--Dr8fnyGc.woff
+#10 14.00 assets/hack-bold-o0myPlua.woff2
+#10 14.00 assets/hack-bold-XM2YsVf3.woff
+#10 14.00 assets/KFOlCnqEu92Fr1MmEU9fBBc--ViM7Ag4Q.woff
+#10 14.00 assets/hack-italic-CQtdA7T5.woff2
+#10 14.00 assets/KFOkCnqEu92Fr1MmgVxIIzQ-Y2mpUUkw.woff
+#10 14.00 assets/favicon-D555SDe-.ico
+#10 14.00 assets/index-BEfhSXxP.js.map
+#10 14.00 assets/flUhRq6tzZclQEJ-Vdg-IuiaDsNcIhQ8tQ-D-x-0Q06.woff2
+#10 14.00 assets/hack-regular-DEir-J6A.woff
+#10 14.00 assets/CodeEditor-6kim-Nqt.js
+#10 14.00 assets/CodeEditor-6kim-Nqt.js.map
+#10 14.00 assets/hack-bolditalic-CcY3gI8S.woff
+#10 14.00 assets/CodeViewer-WIHrD9bL.js.map
+#10 14.00 assets/index-BlKYqKaz.css
+#10 14.00 assets/CodeEditor-CvD7sC9j.js
+#10 14.00 assets/CodeEditor-CvD7sC9j.js.map
+#10 14.00 assets/KFOmCnqEu92Fr1Mu4mxM-DAYh6T4l.woff
+#10 14.00 assets/hack-italic-CxLZKZQa.woff
+#10 14.00 assets/hack-regular-Dv5unGLz.woff2
+#10 14.00 assets/hack-bolditalic-D5TV5Tsg.woff2
+#10 14.00 assets/index-BEfhSXxP.js
+#10 14.00 assets/CodeViewer-WIHrD9bL.js
+#10 14.00 assets/KFOlCnqEu92Fr1MmWUlfBBc--CW3_XjG_.woff
+#10 14.00 assets/KFOlCnqEu92Fr1MmSU5fBBc--CrFzpgl6.woff
+#10 14.00 assets/flUhRq6tzZclQEJ-Vdg-IuiaDsNa-Dr0goTwe.woff
+#10 14.00 index.html
+#10 14.08 BundleAnalyzerReport.html
+#10 17.33 ChefWorker.js.LICENSE.txt
+#10 17.33 DishWorker.js.LICENSE.txt
+#10 17.33 InputWorker.js.LICENSE.txt
+#10 17.33 LoaderWorker.js.LICENSE.txt
+#10 17.33 ZipWorker.js.LICENSE.txt
+#10 17.33 assets/
+#10 17.33 assets/02aafe15b98928fdaa38.ttf
+#10 17.33 assets/tesseract/
+#10 17.33 assets/tesseract/worker.min.js
+#10 17.33 assets/tesseract/worker.min.js.LICENSE.txt
+#10 17.33 assets/tesseract/tesseract-core.wasm.js
+#10 17.33 assets/tesseract/lang-data/
+#10 17.33 assets/tesseract/lang-data/eng.traineddata.gz
+#10 17.33 assets/main.js.LICENSE.txt
+#10 17.33 assets/main.css
+#10 17.33 assets/forge/
+#10 17.33 assets/forge/prime.worker.min.js
+#10 17.33 assets/fonts/
+#10 17.33 assets/fonts/RobotoMono72White.png
+#10 17.33 assets/fonts/RobotoSlab72White.png
+#10 17.33 assets/fonts/Roboto72White.png
+#10 17.33 assets/fonts/RobotoSlab72White.fnt
+#10 17.33 assets/fonts/Roboto72White.fnt
+#10 17.33 assets/fonts/RobotoBlack72White.fnt
+#10 17.33 assets/fonts/RobotoBlack72White.png
+#10 17.33 assets/fonts/RobotoMono72White.fnt
+#10 17.33 assets/aecc661b69309290f600.ico
+#10 17.33 assets/main.js
+#10 17.33 images/
+#10 17.33 images/fork_me.png
+#10 17.33 images/cook_male-32x32.png
+#10 17.33 images/file-128x128.png
+#10 17.33 images/cyberchef-128x128.png
+#10 17.33 index.html
+#10 17.33 modules/
+#10 17.33 modules/Serialise.js
+#10 17.33 modules/Charts.js.LICENSE.txt
+#10 17.33 modules/URL.js.LICENSE.txt
+#10 17.33 modules/Bletchley.js
+#10 18.68 modules/Shellcode.js.LICENSE.txt
+#10 18.68 modules/Protobuf.js.LICENSE.txt
+#10 18.68 modules/Ciphers.js.LICENSE.txt
+#10 18.68 modules/URL.js
+#10 18.68 modules/Code.js.LICENSE.txt
+#10 18.68 modules/Hashing.js.LICENSE.txt
+#10 18.68 modules/PGP.js.LICENSE.txt
+#10 18.68 modules/PublicKey.js
+#10 18.68 modules/Crypto.js
+#10 18.68 modules/Regex.js.LICENSE.txt
+#10 18.68 modules/Regex.js
+#10 18.68 modules/Compression.js.LICENSE.txt
+#10 18.68 modules/Bletchley.js.LICENSE.txt
+#10 18.68 modules/PublicKey.js.LICENSE.txt
+#10 18.68 modules/Yara.js.LICENSE.txt
+#10 18.68 modules/PGP.js
+#10 18.68 modules/OCR.js
+#10 18.68 modules/Shellcode.js
+#10 18.68 modules/Serialise.js.LICENSE.txt
+#10 18.68 modules/Encodings.js.LICENSE.txt
+#10 18.68 modules/Encodings.js
+#10 18.68 modules/Yara.js
+#10 18.68 modules/Hashing.js
+#10 18.68 modules/UserAgent.js
+#10 18.68 modules/Image.js
+#10 18.68 modules/Code.js
+#10 18.68 modules/Charts.js
+#10 18.68 modules/Crypto.js.LICENSE.txt
+#10 18.68 modules/Ciphers.js
+#10 18.68 modules/Image.js.LICENSE.txt
+#10 18.68 modules/Diff.js
+#10 18.68 modules/Compression.js
+#10 18.68 modules/UserAgent.js.LICENSE.txt
+#10 18.68 modules/Protobuf.js
+#10 18.68 modules/OCR.js.LICENSE.txt
+#10 18.68 modules/Diff.js.LICENSE.txt
+#10 18.68 sha256digest.txt
+#10 DONE 19.3s
 
 #12 [nginx] exporting to image
 #12 exporting layers
-#12 exporting layers 10.1s done
-#12 exporting manifest sha256:7ea1d333a0b66d8604875a192ff43949bcafc041e85bf17ef816d249e1c21905 0.0s done
-#12 exporting config sha256:28cc89de71cfef463fb820f55df7d8ad9b09122061621885894cd39f5f7f4a92 0.0s done
-#12 exporting attestation manifest sha256:969d973c30c6aeb4ad2472be3d8d1a0bd584a9c4a80de74fcc7e195ff0f4238b 0.0s done
-#12 exporting manifest sha256:ffb54fab34fc864fa096972d12d7f684e282b07371197c7ecad1aa355a2cbcb0 0.0s done
-#12 exporting config sha256:b3256d5b19a7d5d6f341f7fb2cfeddcaf7d922bec6eefcd02b63b26dce5167be 0.0s done
-#12 exporting attestation manifest sha256:24c359da586d1ffcbec7af220c2e9ebd04e231ffdca3f6aa9322b2d5b85998b5
-#12 exporting attestation manifest sha256:24c359da586d1ffcbec7af220c2e9ebd04e231ffdca3f6aa9322b2d5b85998b5 0.0s done
-#12 exporting manifest list sha256:c254bc4a9b4eb8524ad61b0c0e622cd75cada525f6b74317e6dccb7500a8a424 0.0s done
+#12 exporting layers 6.7s done
+#12 exporting manifest sha256:74a3e371ac87d86c08b25d7534bac8264f0f1191299a48afb2bbcc89071efebd 0.0s done
+#12 exporting config sha256:50c8aa074ba5be13035914ce4056cc3058262afcac903773a897ed52de7779f5 0.0s done
+#12 exporting attestation manifest sha256:2bcd0493e375aebb07d0fb5e9a64c94b263cecb1018fc0ad28b7d1802c8bd4f6 0.0s done
+#12 exporting manifest sha256:92f76f55b021edb690a28e85af03c3a4931221a19a1f1c94b9809feb0faf20e7 0.0s done
+#12 exporting config sha256:ac510ce754226a9ac41c163732d26d552261957312929a97c366550c4b57f49f 0.0s done
+#12 exporting attestation manifest sha256:ec94d685e502bc176965b9b191d6b4d5b3e29562cde9c5a82e4c1e906fd17fa2 0.0s done
+#12 exporting manifest list sha256:22e2e2955c6d2655be110badb1f0c3c2ff095172f0b72fa3f9537ba55ceff281 0.0s done
 #12 pushing layers
 #12 ...
 
@@ -321,19 +316,19 @@
 #13 DONE 0.0s
 
 #12 [nginx] exporting to image
-#12 pushing layers 25.5s done
-#12 pushing manifest for docker.io/f0rc3ps/nginx:24.04.1@sha256:c254bc4a9b4eb8524ad61b0c0e622cd75cada525f6b74317e6dccb7500a8a424
-#12 pushing manifest for docker.io/f0rc3ps/nginx:24.04.1@sha256:c254bc4a9b4eb8524ad61b0c0e622cd75cada525f6b74317e6dccb7500a8a424 3.4s done
+#12 pushing layers 24.3s done
+#12 pushing manifest for docker.io/f0rc3ps/nginx:24.04.1@sha256:22e2e2955c6d2655be110badb1f0c3c2ff095172f0b72fa3f9537ba55ceff281
+#12 pushing manifest for docker.io/f0rc3ps/nginx:24.04.1@sha256:22e2e2955c6d2655be110badb1f0c3c2ff095172f0b72fa3f9537ba55ceff281 3.3s done
 #12 ...
 
 #14 [nginx auth] asc3t1c/nginx:pull,push token for ghcr.io
 #14 DONE 0.0s
 
 #12 [nginx] exporting to image
-#12 pushing layers 24.9s done
-#12 pushing manifest for ghcr.io/asc3t1c/nginx:24.04.1@sha256:c254bc4a9b4eb8524ad61b0c0e622cd75cada525f6b74317e6dccb7500a8a424
-#12 pushing manifest for ghcr.io/asc3t1c/nginx:24.04.1@sha256:c254bc4a9b4eb8524ad61b0c0e622cd75cada525f6b74317e6dccb7500a8a424 2.2s done
-#12 DONE 66.3s
+#12 pushing layers 23.0s done
+#12 pushing manifest for ghcr.io/asc3t1c/nginx:24.04.1@sha256:22e2e2955c6d2655be110badb1f0c3c2ff095172f0b72fa3f9537ba55ceff281
+#12 pushing manifest for ghcr.io/asc3t1c/nginx:24.04.1@sha256:22e2e2955c6d2655be110badb1f0c3c2ff095172f0b72fa3f9537ba55ceff281 2.1s done
+#12 DONE 59.5s
 
 #15 [nginx] resolving provenance for metadata file
 #15 DONE 0.0s

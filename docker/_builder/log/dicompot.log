@@ -1,7 +1,7 @@
 #0 building with "mybuilder" instance using docker-container driver
 
 #1 [dicompot internal] load build definition from Dockerfile
-#1 transferring dockerfile: 855B 0.0s done
+#1 transferring dockerfile: 855B done
 #1 DONE 0.0s
 
 #2 [dicompot linux/amd64 internal] load metadata for docker.io/library/golang:1.23-alpine
@@ -10,97 +10,95 @@
 #3 [dicompot linux/arm64 internal] load metadata for docker.io/library/golang:1.23-alpine
 #3 DONE 0.3s
 
+#2 [dicompot linux/amd64 internal] load metadata for docker.io/library/golang:1.23-alpine
+#2 DONE 0.3s
+
 #4 [dicompot internal] load .dockerignore
 #4 transferring context: 2B done
 #4 DONE 0.0s
 
-#2 [dicompot linux/amd64 internal] load metadata for docker.io/library/golang:1.23-alpine
-#2 DONE 0.3s
+#5 [dicompot linux/amd64 builder 1/8] FROM docker.io/library/golang:1.23-alpine@sha256:2c49857f2295e89b23b28386e57e018a86620a8fede5003900f2d138ba9c4037
+#5 resolve docker.io/library/golang:1.23-alpine@sha256:2c49857f2295e89b23b28386e57e018a86620a8fede5003900f2d138ba9c4037 0.1s done
+#5 DONE 0.1s
 
-#5 [dicompot internal] load build context
-#5 DONE 0.0s
-
-#6 [dicompot linux/amd64 builder 1/8] FROM docker.io/library/golang:1.23-alpine@sha256:2c49857f2295e89b23b28386e57e018a86620a8fede5003900f2d138ba9c4037
+#6 [dicompot linux/arm64 builder 1/8] FROM docker.io/library/golang:1.23-alpine@sha256:2c49857f2295e89b23b28386e57e018a86620a8fede5003900f2d138ba9c4037
 #6 resolve docker.io/library/golang:1.23-alpine@sha256:2c49857f2295e89b23b28386e57e018a86620a8fede5003900f2d138ba9c4037 0.0s done
-#6 DONE 0.0s
+#6 DONE 0.1s
 
-#7 [dicompot linux/arm64 builder 1/8] FROM docker.io/library/golang:1.23-alpine@sha256:2c49857f2295e89b23b28386e57e018a86620a8fede5003900f2d138ba9c4037
-#7 resolve docker.io/library/golang:1.23-alpine@sha256:2c49857f2295e89b23b28386e57e018a86620a8fede5003900f2d138ba9c4037 0.0s done
+#7 [dicompot internal] load build context
+#7 transferring context: 4.90kB 0.0s done
 #7 DONE 0.0s
 
-#5 [dicompot internal] load build context
-#5 transferring context: 4.90kB 0.0s done
-#5 DONE 0.0s
-
-#8 [dicompot linux/amd64 stage-1 1/3] COPY --from=builder /go/dicompot/dicompot /opt/dicompot/dicompot
+#8 [dicompot linux/arm64 builder 4/8] RUN git clone https://github.com/nsmfoo/dicompot.git &&     cd dicompot &&     git checkout 41331194156bbb17078bcc1594f4952ac06a731e &&     cp /root/dist/go.mod .
 #8 CACHED
 
-#9 [dicompot linux/amd64 builder 2/8] COPY dist/ /root/dist/
+#9 [dicompot linux/arm64 stage-1 1/3] COPY --from=builder /go/dicompot/dicompot /opt/dicompot/dicompot
 #9 CACHED
 
-#10 [dicompot linux/amd64 builder 7/8] RUN go mod download
+#10 [dicompot linux/arm64 builder 3/8] RUN apk --no-cache -U add 		build-base 		git 		g++
 #10 CACHED
 
-#11 [dicompot linux/amd64 builder 8/8] RUN go build -o dicompot github.com/nsmfoo/dicompot/server
+#11 [dicompot linux/arm64 builder 2/8] COPY dist/ /root/dist/
 #11 CACHED
 
-#12 [dicompot linux/amd64 builder 4/8] RUN git clone https://github.com/nsmfoo/dicompot.git &&     cd dicompot &&     git checkout 41331194156bbb17078bcc1594f4952ac06a731e &&     cp /root/dist/go.mod .
+#12 [dicompot linux/arm64 stage-1 2/3] COPY --from=builder /root/dist/dcm_pts/images /opt/dicompot/images
 #12 CACHED
 
-#13 [dicompot linux/amd64 builder 5/8] WORKDIR /go/dicompot
+#13 [dicompot linux/arm64 builder 5/8] WORKDIR /go/dicompot
 #13 CACHED
 
-#14 [dicompot linux/amd64 builder 6/8] RUN go mod tidy
+#14 [dicompot linux/arm64 builder 6/8] RUN go mod tidy
 #14 CACHED
 
-#15 [dicompot linux/amd64 stage-1 2/3] COPY --from=builder /root/dist/dcm_pts/images /opt/dicompot/images
+#15 [dicompot linux/arm64 builder 7/8] RUN go mod download
 #15 CACHED
 
-#16 [dicompot linux/amd64 builder 3/8] RUN apk --no-cache -U add 		build-base 		git 		g++
+#16 [dicompot linux/arm64 builder 8/8] RUN go build -o dicompot github.com/nsmfoo/dicompot/server
 #16 CACHED
 
-#17 [dicompot linux/arm64 builder 3/8] RUN apk --no-cache -U add 		build-base 		git 		g++
+#17 [dicompot linux/arm64 stage-1 3/3] WORKDIR /opt/dicompot
 #17 CACHED
 
-#18 [dicompot linux/arm64 builder 5/8] WORKDIR /go/dicompot
+#18 [dicompot linux/amd64 builder 6/8] RUN go mod tidy
 #18 CACHED
 
-#19 [dicompot linux/arm64 builder 4/8] RUN git clone https://github.com/nsmfoo/dicompot.git &&     cd dicompot &&     git checkout 41331194156bbb17078bcc1594f4952ac06a731e &&     cp /root/dist/go.mod .
+#19 [dicompot linux/amd64 builder 7/8] RUN go mod download
 #19 CACHED
 
-#20 [dicompot linux/arm64 builder 6/8] RUN go mod tidy
+#20 [dicompot linux/amd64 builder 4/8] RUN git clone https://github.com/nsmfoo/dicompot.git &&     cd dicompot &&     git checkout 41331194156bbb17078bcc1594f4952ac06a731e &&     cp /root/dist/go.mod .
 #20 CACHED
 
-#21 [dicompot linux/arm64 builder 8/8] RUN go build -o dicompot github.com/nsmfoo/dicompot/server
+#21 [dicompot linux/amd64 stage-1 2/3] COPY --from=builder /root/dist/dcm_pts/images /opt/dicompot/images
 #21 CACHED
 
-#22 [dicompot linux/arm64 builder 2/8] COPY dist/ /root/dist/
+#22 [dicompot linux/amd64 builder 3/8] RUN apk --no-cache -U add 		build-base 		git 		g++
 #22 CACHED
 
-#23 [dicompot linux/arm64 stage-1 2/3] COPY --from=builder /root/dist/dcm_pts/images /opt/dicompot/images
+#23 [dicompot linux/amd64 builder 8/8] RUN go build -o dicompot github.com/nsmfoo/dicompot/server
 #23 CACHED
 
-#24 [dicompot linux/arm64 stage-1 1/3] COPY --from=builder /go/dicompot/dicompot /opt/dicompot/dicompot
+#24 [dicompot linux/amd64 stage-1 1/3] COPY --from=builder /go/dicompot/dicompot /opt/dicompot/dicompot
 #24 CACHED
 
-#25 [dicompot linux/arm64 builder 7/8] RUN go mod download
+#25 [dicompot linux/amd64 builder 2/8] COPY dist/ /root/dist/
 #25 CACHED
 
-#26 [dicompot linux/amd64 stage-1 3/3] WORKDIR /opt/dicompot
+#26 [dicompot linux/amd64 builder 5/8] WORKDIR /go/dicompot
 #26 CACHED
 
-#27 [dicompot linux/arm64 stage-1 3/3] WORKDIR /opt/dicompot
+#27 [dicompot linux/amd64 stage-1 3/3] WORKDIR /opt/dicompot
 #27 CACHED
 
 #28 [dicompot] exporting to image
 #28 exporting layers done
-#28 exporting manifest sha256:a7032c1defdbbebd16ebf64c51ae9ef4ff017fc7d56c03ab0927708a9e252f94 0.0s done
+#28 exporting manifest sha256:a7032c1defdbbebd16ebf64c51ae9ef4ff017fc7d56c03ab0927708a9e252f94 done
 #28 exporting config sha256:165d275e21ae6fb5e4a5a4db209e6451aca0c58f5e111cf9399deee1753f7c6e done
-#28 exporting attestation manifest sha256:0844139b4d2d9c3ebeef4b38618001c1d0e02dcc34546d291d5b797799c9cb68 0.0s done
+#28 exporting attestation manifest sha256:755bc5bcd6abbe39311e165e8e12cf0966b63e08351d540610c6d8901d3522d4 0.0s done
 #28 exporting manifest sha256:22a468afe133da435078ca84666dcb5f8608e0158fd5cff637b7beef6525bb61 done
 #28 exporting config sha256:d3a694ee615c1e7bba480996bd9a3c4bfe78e925dc9e21e6c3303465dea9282c done
-#28 exporting attestation manifest sha256:2dfe75760ec331241ff6e90216b2639402aa9539f5474b5bf01b6e50ffffe236 0.0s done
-#28 exporting manifest list sha256:3001d29a99d3c92750cfcf35b91073661aa0cf19ca2d1dcaafd64bb68e2176c6 0.0s done
+#28 exporting attestation manifest sha256:7ca2791acb48dc841d86370b90f932eaca0c7d1ff18525f64d296de2f7209d24 0.0s done
+#28 exporting manifest list sha256:423102191df629bda3aafda8d20faa6304fc75e81582737a731a8e1aaa61e710
+#28 exporting manifest list sha256:423102191df629bda3aafda8d20faa6304fc75e81582737a731a8e1aaa61e710 0.0s done
 #28 pushing layers
 #28 ...
 
@@ -108,19 +106,19 @@
 #29 DONE 0.0s
 
 #28 [dicompot] exporting to image
-#28 pushing layers 3.1s done
-#28 pushing manifest for docker.io/f0rc3ps/dicompot:24.04.1@sha256:3001d29a99d3c92750cfcf35b91073661aa0cf19ca2d1dcaafd64bb68e2176c6
-#28 pushing manifest for docker.io/f0rc3ps/dicompot:24.04.1@sha256:3001d29a99d3c92750cfcf35b91073661aa0cf19ca2d1dcaafd64bb68e2176c6 2.1s done
+#28 pushing layers 3.0s done
+#28 pushing manifest for docker.io/f0rc3ps/dicompot:24.04.1@sha256:423102191df629bda3aafda8d20faa6304fc75e81582737a731a8e1aaa61e710
+#28 pushing manifest for docker.io/f0rc3ps/dicompot:24.04.1@sha256:423102191df629bda3aafda8d20faa6304fc75e81582737a731a8e1aaa61e710 2.4s done
 #28 ...
 
 #30 [dicompot auth] asc3t1c/dicompot:pull,push token for ghcr.io
 #30 DONE 0.0s
 
 #28 [dicompot] exporting to image
-#28 pushing layers 2.6s done
-#28 pushing manifest for ghcr.io/asc3t1c/dicompot:24.04.1@sha256:3001d29a99d3c92750cfcf35b91073661aa0cf19ca2d1dcaafd64bb68e2176c6
-#28 pushing manifest for ghcr.io/asc3t1c/dicompot:24.04.1@sha256:3001d29a99d3c92750cfcf35b91073661aa0cf19ca2d1dcaafd64bb68e2176c6 1.8s done
-#28 DONE 9.7s
+#28 pushing layers 2.2s done
+#28 pushing manifest for ghcr.io/asc3t1c/dicompot:24.04.1@sha256:423102191df629bda3aafda8d20faa6304fc75e81582737a731a8e1aaa61e710
+#28 pushing manifest for ghcr.io/asc3t1c/dicompot:24.04.1@sha256:423102191df629bda3aafda8d20faa6304fc75e81582737a731a8e1aaa61e710 1.9s done
+#28 DONE 9.6s
 
 #31 [dicompot] resolving provenance for metadata file
 #31 DONE 0.0s

@@ -1,32 +1,32 @@
 #0 building with "mybuilder" instance using docker-container driver
 
 #1 [heralding internal] load build definition from Dockerfile
-#1 transferring dockerfile: 1.71kB 0.0s done
+#1 transferring dockerfile: 1.71kB done
 #1 DONE 0.0s
 
-#2 [heralding linux/amd64 internal] load metadata for docker.io/library/alpine:3.20
+#2 [heralding linux/arm64 internal] load metadata for docker.io/library/alpine:3.20
 #2 ...
 
-#3 [heralding linux/arm64 internal] load metadata for docker.io/library/alpine:3.20
-#3 DONE 0.3s
+#3 [heralding linux/amd64 internal] load metadata for docker.io/library/alpine:3.20
+#3 DONE 0.2s
 
 #4 [heralding internal] load .dockerignore
 #4 transferring context: 2B done
 #4 DONE 0.0s
 
-#2 [heralding linux/amd64 internal] load metadata for docker.io/library/alpine:3.20
-#2 DONE 0.4s
+#2 [heralding linux/arm64 internal] load metadata for docker.io/library/alpine:3.20
+#2 DONE 0.3s
 
-#5 [heralding linux/amd64 1/4] FROM docker.io/library/alpine:3.20@sha256:31687a2fdd021f85955bf2d0c2682e9c0949827560e1db546358ea094f740f12
-#5 resolve docker.io/library/alpine:3.20@sha256:31687a2fdd021f85955bf2d0c2682e9c0949827560e1db546358ea094f740f12 0.1s done
-#5 DONE 0.1s
+#5 [heralding linux/arm64 1/4] FROM docker.io/library/alpine:3.20@sha256:31687a2fdd021f85955bf2d0c2682e9c0949827560e1db546358ea094f740f12
+#5 resolve docker.io/library/alpine:3.20@sha256:31687a2fdd021f85955bf2d0c2682e9c0949827560e1db546358ea094f740f12 0.0s done
+#5 DONE 0.0s
 
-#6 [heralding linux/arm64 1/4] FROM docker.io/library/alpine:3.20@sha256:31687a2fdd021f85955bf2d0c2682e9c0949827560e1db546358ea094f740f12
-#6 resolve docker.io/library/alpine:3.20@sha256:31687a2fdd021f85955bf2d0c2682e9c0949827560e1db546358ea094f740f12 0.1s done
-#6 DONE 0.1s
+#6 [heralding linux/amd64 1/4] FROM docker.io/library/alpine:3.20@sha256:31687a2fdd021f85955bf2d0c2682e9c0949827560e1db546358ea094f740f12
+#6 resolve docker.io/library/alpine:3.20@sha256:31687a2fdd021f85955bf2d0c2682e9c0949827560e1db546358ea094f740f12 0.0s done
+#6 DONE 0.0s
 
 #7 [heralding internal] load build context
-#7 transferring context: 104B 0.0s done
+#7 transferring context: 104B done
 #7 DONE 0.0s
 
 #8 [heralding linux/arm64 2/4] COPY dist/ /root/dist/
@@ -51,12 +51,11 @@
 #14 exporting layers done
 #14 exporting manifest sha256:0f585d3a1464858d7c1609eb3ef9943cdb84cfe971a0cfa5559fb4cb2d61a8a2 done
 #14 exporting config sha256:b8b33ba163e9a6bc208a67021698ef745eb0e8883ffc031461709c5acb754fdc done
-#14 exporting attestation manifest sha256:024433291ce1c86d0de05caee16de1e54b015397242fce33fced68422a5c20d3 0.0s done
-#14 exporting manifest sha256:833f3544ef9f328ec58b3aab5363301ce5f74ca6f2640133271251bcd0e030ae
+#14 exporting attestation manifest sha256:79fccfa6439c0eea50248b494d45272c00db3dd142892bde32fa4148f239482c 0.0s done
 #14 exporting manifest sha256:833f3544ef9f328ec58b3aab5363301ce5f74ca6f2640133271251bcd0e030ae done
 #14 exporting config sha256:f77d0715b498dbd0bcf2aab49970480ee0d9c120bdcd05508508cb8a226be5db done
-#14 exporting attestation manifest sha256:6e446827c8ae6d707c1f48d15c339b050770b6399777b8ef0420b5e5f8e4a6c1 0.0s done
-#14 exporting manifest list sha256:3a5fca2473d5b09bd2f10094d8126804891673daada878f79e6e4b36b908a8d6 0.0s done
+#14 exporting attestation manifest sha256:46e3b59f08a2bee2972a5cab3aff4ef5bb37d57736d189acd1df8ec95003ce5e 0.0s done
+#14 exporting manifest list sha256:0b4f2efccf50f5ca1be03d37c44badc14355dbc072a9f0c89f6559a4d5251d86 0.0s done
 #14 pushing layers
 #14 ...
 
@@ -64,19 +63,19 @@
 #15 DONE 0.0s
 
 #14 [heralding] exporting to image
-#14 pushing layers 2.9s done
-#14 pushing manifest for docker.io/f0rc3ps/heralding:24.04.1@sha256:3a5fca2473d5b09bd2f10094d8126804891673daada878f79e6e4b36b908a8d6
-#14 pushing manifest for docker.io/f0rc3ps/heralding:24.04.1@sha256:3a5fca2473d5b09bd2f10094d8126804891673daada878f79e6e4b36b908a8d6 2.3s done
+#14 pushing layers 3.1s done
+#14 pushing manifest for docker.io/f0rc3ps/heralding:24.04.1@sha256:0b4f2efccf50f5ca1be03d37c44badc14355dbc072a9f0c89f6559a4d5251d86
+#14 pushing manifest for docker.io/f0rc3ps/heralding:24.04.1@sha256:0b4f2efccf50f5ca1be03d37c44badc14355dbc072a9f0c89f6559a4d5251d86 2.2s done
 #14 ...
 
 #16 [heralding auth] asc3t1c/heralding:pull,push token for ghcr.io
 #16 DONE 0.0s
 
 #14 [heralding] exporting to image
-#14 pushing layers 2.4s done
-#14 pushing manifest for ghcr.io/asc3t1c/heralding:24.04.1@sha256:3a5fca2473d5b09bd2f10094d8126804891673daada878f79e6e4b36b908a8d6
-#14 pushing manifest for ghcr.io/asc3t1c/heralding:24.04.1@sha256:3a5fca2473d5b09bd2f10094d8126804891673daada878f79e6e4b36b908a8d6 2.0s done
-#14 DONE 9.7s
+#14 pushing layers 2.3s done
+#14 pushing manifest for ghcr.io/asc3t1c/heralding:24.04.1@sha256:0b4f2efccf50f5ca1be03d37c44badc14355dbc072a9f0c89f6559a4d5251d86
+#14 pushing manifest for ghcr.io/asc3t1c/heralding:24.04.1@sha256:0b4f2efccf50f5ca1be03d37c44badc14355dbc072a9f0c89f6559a4d5251d86 1.6s done
+#14 DONE 9.2s
 
 #17 [heralding] resolving provenance for metadata file
 #17 DONE 0.0s

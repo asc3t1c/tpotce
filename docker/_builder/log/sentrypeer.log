@@ -4,41 +4,42 @@
 #1 transferring dockerfile: 693B done
 #1 DONE 0.0s
 
-#2 [sentrypeer linux/arm64 internal] load metadata for docker.io/library/alpine:edge
-#2 DONE 1.5s
+#2 [sentrypeer linux/amd64 internal] load metadata for docker.io/library/alpine:edge
+#2 ...
 
-#3 [sentrypeer linux/amd64 internal] load metadata for docker.io/library/alpine:edge
-#3 DONE 1.5s
+#3 [sentrypeer linux/arm64 internal] load metadata for docker.io/library/alpine:edge
+#3 DONE 0.3s
 
 #4 [sentrypeer internal] load .dockerignore
-#4 transferring context: 2B 0.0s done
+#4 transferring context: 2B done
 #4 DONE 0.0s
+
+#2 [sentrypeer linux/amd64 internal] load metadata for docker.io/library/alpine:edge
+#2 DONE 0.5s
 
 #5 [sentrypeer linux/arm64 1/2] FROM docker.io/library/alpine:edge@sha256:115729ec5cb049ba6359c3ab005ac742012d92bbaa5b8bc1a878f1e8f62c0cb8
 #5 resolve docker.io/library/alpine:edge@sha256:115729ec5cb049ba6359c3ab005ac742012d92bbaa5b8bc1a878f1e8f62c0cb8 0.0s done
-#5 DONE 0.1s
+#5 DONE 0.0s
 
-#6 [sentrypeer linux/arm64 2/2] RUN apk -U upgrade --no-cache && 	apk -U add --no-cache -X http://dl-cdn.alpinelinux.org/alpine/edge/testing 		sentrypeer &&     mkdir -p /var/log/sentrypeer &&     addgroup -g 2000 sentrypeer &&     adduser -S -H -s /bin/ash -u 2000 -D -g 2000 sentrypeer &&     chown -R sentrypeer:sentrypeer /usr/bin/sentrypeer &&     rm -rf /root/*            /var/cache/apk/*
-#6 CACHED
+#6 [sentrypeer linux/amd64 1/2] FROM docker.io/library/alpine:edge@sha256:115729ec5cb049ba6359c3ab005ac742012d92bbaa5b8bc1a878f1e8f62c0cb8
+#6 resolve docker.io/library/alpine:edge@sha256:115729ec5cb049ba6359c3ab005ac742012d92bbaa5b8bc1a878f1e8f62c0cb8 0.0s done
+#6 DONE 0.0s
 
-#7 [sentrypeer linux/amd64 1/2] FROM docker.io/library/alpine:edge@sha256:115729ec5cb049ba6359c3ab005ac742012d92bbaa5b8bc1a878f1e8f62c0cb8
-#7 resolve docker.io/library/alpine:edge@sha256:115729ec5cb049ba6359c3ab005ac742012d92bbaa5b8bc1a878f1e8f62c0cb8 0.0s done
-#7 DONE 0.1s
+#7 [sentrypeer linux/amd64 2/2] RUN apk -U upgrade --no-cache && 	apk -U add --no-cache -X http://dl-cdn.alpinelinux.org/alpine/edge/testing 		sentrypeer &&     mkdir -p /var/log/sentrypeer &&     addgroup -g 2000 sentrypeer &&     adduser -S -H -s /bin/ash -u 2000 -D -g 2000 sentrypeer &&     chown -R sentrypeer:sentrypeer /usr/bin/sentrypeer &&     rm -rf /root/*            /var/cache/apk/*
+#7 CACHED
 
-#8 [sentrypeer linux/amd64 2/2] RUN apk -U upgrade --no-cache && 	apk -U add --no-cache -X http://dl-cdn.alpinelinux.org/alpine/edge/testing 		sentrypeer &&     mkdir -p /var/log/sentrypeer &&     addgroup -g 2000 sentrypeer &&     adduser -S -H -s /bin/ash -u 2000 -D -g 2000 sentrypeer &&     chown -R sentrypeer:sentrypeer /usr/bin/sentrypeer &&     rm -rf /root/*            /var/cache/apk/*
+#8 [sentrypeer linux/arm64 2/2] RUN apk -U upgrade --no-cache && 	apk -U add --no-cache -X http://dl-cdn.alpinelinux.org/alpine/edge/testing 		sentrypeer &&     mkdir -p /var/log/sentrypeer &&     addgroup -g 2000 sentrypeer &&     adduser -S -H -s /bin/ash -u 2000 -D -g 2000 sentrypeer &&     chown -R sentrypeer:sentrypeer /usr/bin/sentrypeer &&     rm -rf /root/*            /var/cache/apk/*
 #8 CACHED
 
 #9 [sentrypeer] exporting to image
-#9 exporting layers
 #9 exporting layers done
 #9 exporting manifest sha256:273767ffe9ec1876577d8514a6b362db245e54411f128537e7f8901ebbf10962 done
 #9 exporting config sha256:69344e0d35d6f9395bd3e09249e92860e8163bb88f812379b88e92c632ce4a07 0.0s done
-#9 exporting attestation manifest sha256:02b333277fa7a4780cdf9995f77b75897d82142b3389601f08c59261f6709883 0.0s done
+#9 exporting attestation manifest sha256:741b0903b95495a01f218d83e1e818b76c8627b93b94a67def456a38c550fb39 0.0s done
 #9 exporting manifest sha256:f2cdeaeac245f8bb2cc9d1c46a829692c7e392a5a4b7ccd1cd1c86ced19ec9e5 done
 #9 exporting config sha256:8ac007a8f1104224b7bca1e5ba317a11e567216d38f15d1aa9aea4b7fe0ad723 done
-#9 exporting attestation manifest sha256:6643263fb42f3dd824330de8bb473aec90a9c766d3db38bf626b870c57e0ba11 0.0s done
-#9 exporting manifest list sha256:bcfc6de615288b86141359c9e1059a416d64255f6abee45f34152f86d4b7725e
-#9 exporting manifest list sha256:bcfc6de615288b86141359c9e1059a416d64255f6abee45f34152f86d4b7725e 0.0s done
+#9 exporting attestation manifest sha256:cec5e83d89b72faf84d877ac94730db8244a8dd3f961b784ffa90f9786b49f3b 0.0s done
+#9 exporting manifest list sha256:76bb1b9e090a0569be7801c6e1d4cad49109c373ce4089c6b9e5838bbf5e594f done
 #9 pushing layers
 #9 ...
 
@@ -46,19 +47,20 @@
 #10 DONE 0.0s
 
 #9 [sentrypeer] exporting to image
-#9 pushing layers 2.3s done
-#9 pushing manifest for docker.io/f0rc3ps/sentrypeer:24.04.1@sha256:bcfc6de615288b86141359c9e1059a416d64255f6abee45f34152f86d4b7725e
-#9 pushing manifest for docker.io/f0rc3ps/sentrypeer:24.04.1@sha256:bcfc6de615288b86141359c9e1059a416d64255f6abee45f34152f86d4b7725e 2.1s done
+#9 pushing layers 3.7s done
+#9 pushing manifest for docker.io/f0rc3ps/sentrypeer:24.04.1@sha256:76bb1b9e090a0569be7801c6e1d4cad49109c373ce4089c6b9e5838bbf5e594f
+#9 pushing manifest for docker.io/f0rc3ps/sentrypeer:24.04.1@sha256:76bb1b9e090a0569be7801c6e1d4cad49109c373ce4089c6b9e5838bbf5e594f 5.7s done
+#9 pushing layers
 #9 ...
 
 #11 [sentrypeer auth] asc3t1c/sentrypeer:pull,push token for ghcr.io
 #11 DONE 0.0s
 
 #9 [sentrypeer] exporting to image
-#9 pushing layers 1.4s done
-#9 pushing manifest for ghcr.io/asc3t1c/sentrypeer:24.04.1@sha256:bcfc6de615288b86141359c9e1059a416d64255f6abee45f34152f86d4b7725e
-#9 pushing manifest for ghcr.io/asc3t1c/sentrypeer:24.04.1@sha256:bcfc6de615288b86141359c9e1059a416d64255f6abee45f34152f86d4b7725e 2.7s done
-#9 DONE 8.7s
+#9 pushing layers 5.3s done
+#9 pushing manifest for ghcr.io/asc3t1c/sentrypeer:24.04.1@sha256:76bb1b9e090a0569be7801c6e1d4cad49109c373ce4089c6b9e5838bbf5e594f
+#9 pushing manifest for ghcr.io/asc3t1c/sentrypeer:24.04.1@sha256:76bb1b9e090a0569be7801c6e1d4cad49109c373ce4089c6b9e5838bbf5e594f 2.0s done
+#9 DONE 16.8s
 
 #12 [sentrypeer] resolving provenance for metadata file
 #12 DONE 0.0s

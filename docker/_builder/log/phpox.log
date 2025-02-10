@@ -4,48 +4,49 @@
 #1 transferring dockerfile: 1.17kB 0.0s done
 #1 DONE 0.0s
 
-#2 [phpox linux/arm64 internal] load metadata for docker.io/library/alpine:3.20
+#2 [phpox linux/amd64 internal] load metadata for docker.io/library/alpine:3.20
 #2 ...
 
-#3 [phpox linux/amd64 internal] load metadata for docker.io/library/alpine:3.20
-#3 DONE 0.2s
+#3 [phpox linux/arm64 internal] load metadata for docker.io/library/alpine:3.20
+#3 DONE 0.3s
 
-#4 [phpox linux/arm64 builder 1/7] FROM docker.io/library/alpine:3.20@sha256:31687a2fdd021f85955bf2d0c2682e9c0949827560e1db546358ea094f740f12
+#4 [phpox linux/amd64 builder 1/7] FROM docker.io/library/alpine:3.20@sha256:31687a2fdd021f85955bf2d0c2682e9c0949827560e1db546358ea094f740f12
 #4 resolve docker.io/library/alpine:3.20@sha256:31687a2fdd021f85955bf2d0c2682e9c0949827560e1db546358ea094f740f12 0.0s done
 #4 CACHED
 
-#5 [phpox linux/amd64 builder 1/7] FROM docker.io/library/alpine:3.20@sha256:31687a2fdd021f85955bf2d0c2682e9c0949827560e1db546358ea094f740f12
+#5 [phpox linux/arm64 builder 1/7] FROM docker.io/library/alpine:3.20@sha256:31687a2fdd021f85955bf2d0c2682e9c0949827560e1db546358ea094f740f12
 #5 resolve docker.io/library/alpine:3.20@sha256:31687a2fdd021f85955bf2d0c2682e9c0949827560e1db546358ea094f740f12 0.0s done
 #5 CACHED
 
-#2 [phpox linux/arm64 internal] load metadata for docker.io/library/alpine:3.20
-#2 DONE 0.2s
+#2 [phpox linux/amd64 internal] load metadata for docker.io/library/alpine:3.20
+#2 DONE 0.3s
 
 #6 [phpox internal] load .dockerignore
-#6 transferring context: 2B done
+#6 transferring context: 2B 0.0s done
 #6 DONE 0.0s
 
-#7 [phpox linux/amd64 2/3] RUN apk --no-cache -U upgrade &&     apk --no-cache -U add 		build-base 		file 		git 		make 		php83 		php83-dev 		py3-aiohttp 		python3 		python3-dev 		re2c &&     git clone https://github.com/mushorg/BFR -b v1.0.0 /opt/BFR &&     cd /opt/BFR &&     phpize83 &&     ./configure       --with-php-config=/usr/bin/php-config83       --enable-bfr &&     make &&     make install &&     cd / &&     rm -rf /opt/BFR /tmp/* /var/tmp/* &&     echo "zend_extension = "$(find /usr -name bfr.so) >> /etc/php83/php.ini &&     git clone https://github.com/mushorg/phpox /opt/phpox &&     cd /opt/phpox &&     git checkout 55a6cbdc2c62f08eb45acffaf84f23f06a1d4703 &&     make &&     apk del --purge build-base                     git                     php83-dev                     python3-dev &&     rm -rf /root/* /var/cache/apk/* /opt/phpox/.git
+#7 [phpox linux/arm64 2/3] RUN apk --no-cache -U upgrade &&     apk --no-cache -U add 		build-base 		file 		git 		make 		php83 		php83-dev 		py3-aiohttp 		python3 		python3-dev 		re2c &&     git clone https://github.com/mushorg/BFR -b v1.0.0 /opt/BFR &&     cd /opt/BFR &&     phpize83 &&     ./configure       --with-php-config=/usr/bin/php-config83       --enable-bfr &&     make &&     make install &&     cd / &&     rm -rf /opt/BFR /tmp/* /var/tmp/* &&     echo "zend_extension = "$(find /usr -name bfr.so) >> /etc/php83/php.ini &&     git clone https://github.com/mushorg/phpox /opt/phpox &&     cd /opt/phpox &&     git checkout 55a6cbdc2c62f08eb45acffaf84f23f06a1d4703 &&     make &&     apk del --purge build-base                     git                     php83-dev                     python3-dev &&     rm -rf /root/* /var/cache/apk/* /opt/phpox/.git
 #7 CACHED
 
-#8 [phpox linux/amd64 3/3] WORKDIR /opt/phpox
+#8 [phpox linux/arm64 3/3] WORKDIR /opt/phpox
 #8 CACHED
 
-#9 [phpox linux/arm64 2/3] RUN apk --no-cache -U upgrade &&     apk --no-cache -U add 		build-base 		file 		git 		make 		php83 		php83-dev 		py3-aiohttp 		python3 		python3-dev 		re2c &&     git clone https://github.com/mushorg/BFR -b v1.0.0 /opt/BFR &&     cd /opt/BFR &&     phpize83 &&     ./configure       --with-php-config=/usr/bin/php-config83       --enable-bfr &&     make &&     make install &&     cd / &&     rm -rf /opt/BFR /tmp/* /var/tmp/* &&     echo "zend_extension = "$(find /usr -name bfr.so) >> /etc/php83/php.ini &&     git clone https://github.com/mushorg/phpox /opt/phpox &&     cd /opt/phpox &&     git checkout 55a6cbdc2c62f08eb45acffaf84f23f06a1d4703 &&     make &&     apk del --purge build-base                     git                     php83-dev                     python3-dev &&     rm -rf /root/* /var/cache/apk/* /opt/phpox/.git
+#9 [phpox linux/amd64 2/3] RUN apk --no-cache -U upgrade &&     apk --no-cache -U add 		build-base 		file 		git 		make 		php83 		php83-dev 		py3-aiohttp 		python3 		python3-dev 		re2c &&     git clone https://github.com/mushorg/BFR -b v1.0.0 /opt/BFR &&     cd /opt/BFR &&     phpize83 &&     ./configure       --with-php-config=/usr/bin/php-config83       --enable-bfr &&     make &&     make install &&     cd / &&     rm -rf /opt/BFR /tmp/* /var/tmp/* &&     echo "zend_extension = "$(find /usr -name bfr.so) >> /etc/php83/php.ini &&     git clone https://github.com/mushorg/phpox /opt/phpox &&     cd /opt/phpox &&     git checkout 55a6cbdc2c62f08eb45acffaf84f23f06a1d4703 &&     make &&     apk del --purge build-base                     git                     php83-dev                     python3-dev &&     rm -rf /root/* /var/cache/apk/* /opt/phpox/.git
 #9 CACHED
 
-#10 [phpox linux/arm64 3/3] WORKDIR /opt/phpox
+#10 [phpox linux/amd64 3/3] WORKDIR /opt/phpox
 #10 CACHED
 
 #11 [phpox] exporting to image
 #11 exporting layers done
-#11 exporting manifest sha256:339caf5362081e8fd1882684c3c2293a3548fe7c42d1c677e6267dceb37286b0 0.0s done
-#11 exporting config sha256:647c9d4acf32ed50b8ff3b34272192ffa11b8e36af537785ce99560d3e8bee34 0.0s done
-#11 exporting attestation manifest sha256:ffe8742ca80f2604c2514e02fdabb38e1746eb9864c71fd0a10a441d8c74c823 0.0s done
+#11 exporting manifest sha256:339caf5362081e8fd1882684c3c2293a3548fe7c42d1c677e6267dceb37286b0 done
+#11 exporting config sha256:647c9d4acf32ed50b8ff3b34272192ffa11b8e36af537785ce99560d3e8bee34 done
+#11 exporting attestation manifest sha256:309dc1f02a4ab57937a8e9db10e59ab675f3429ec972b2afffd9e1fb756bb0cc 0.0s done
 #11 exporting manifest sha256:52c1b80798512e7b70e475bf0323047cba15c54bcfaa3234091be5c99731da58 done
 #11 exporting config sha256:fedb841a6921c747bbdae479c2b807deff9c5546228cb794a0a189cf79e27303 done
-#11 exporting attestation manifest sha256:1a9264ecc8f9e69a58a9ff6efd8b81b3106f22aa34b301202eb5f931c42327af 0.0s done
-#11 exporting manifest list sha256:46a0ea56d9098e8e0b327dda96d1c1af5ebc5dee4bfa97c3a41ac083b7af48d6 0.0s done
+#11 exporting attestation manifest sha256:b024ab06ae1001a6a39afd45a41ef920ce9a5e90df513c05984d126cee8f4133 0.0s done
+#11 exporting manifest list sha256:78e7ac5b742cb09bdd8873a234da67a8ee14e719e6ecc9ea1b7acf2cfa1b81bc
+#11 exporting manifest list sha256:78e7ac5b742cb09bdd8873a234da67a8ee14e719e6ecc9ea1b7acf2cfa1b81bc 0.0s done
 #11 pushing layers
 #11 ...
 
@@ -53,19 +54,19 @@
 #12 DONE 0.0s
 
 #11 [phpox] exporting to image
-#11 pushing layers 2.2s done
-#11 pushing manifest for docker.io/f0rc3ps/phpox:24.04.1@sha256:46a0ea56d9098e8e0b327dda96d1c1af5ebc5dee4bfa97c3a41ac083b7af48d6
-#11 pushing manifest for docker.io/f0rc3ps/phpox:24.04.1@sha256:46a0ea56d9098e8e0b327dda96d1c1af5ebc5dee4bfa97c3a41ac083b7af48d6 2.1s done
+#11 pushing layers 1.7s done
+#11 pushing manifest for docker.io/f0rc3ps/phpox:24.04.1@sha256:78e7ac5b742cb09bdd8873a234da67a8ee14e719e6ecc9ea1b7acf2cfa1b81bc
+#11 pushing manifest for docker.io/f0rc3ps/phpox:24.04.1@sha256:78e7ac5b742cb09bdd8873a234da67a8ee14e719e6ecc9ea1b7acf2cfa1b81bc 2.1s done
 #11 ...
 
 #13 [phpox auth] asc3t1c/phpox:pull,push token for ghcr.io
 #13 DONE 0.0s
 
 #11 [phpox] exporting to image
-#11 pushing layers 1.6s done
-#11 pushing manifest for ghcr.io/asc3t1c/phpox:24.04.1@sha256:46a0ea56d9098e8e0b327dda96d1c1af5ebc5dee4bfa97c3a41ac083b7af48d6
-#11 pushing manifest for ghcr.io/asc3t1c/phpox:24.04.1@sha256:46a0ea56d9098e8e0b327dda96d1c1af5ebc5dee4bfa97c3a41ac083b7af48d6 1.6s done
-#11 DONE 7.7s
+#11 pushing layers 1.9s done
+#11 pushing manifest for ghcr.io/asc3t1c/phpox:24.04.1@sha256:78e7ac5b742cb09bdd8873a234da67a8ee14e719e6ecc9ea1b7acf2cfa1b81bc
+#11 pushing manifest for ghcr.io/asc3t1c/phpox:24.04.1@sha256:78e7ac5b742cb09bdd8873a234da67a8ee14e719e6ecc9ea1b7acf2cfa1b81bc 1.5s done
+#11 DONE 7.4s
 
 #14 [phpox] resolving provenance for metadata file
 #14 DONE 0.0s
