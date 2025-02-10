@@ -2,9 +2,9 @@
 
 Suppose you need support: For full support, automation, backup, and customization: `500$` every month, per server, or `$37000` every year with full support for 10 servers, it depends on the packet support! You can ask questions at: seccyboxopsec@gmail.com  The other choice is free, you can download install it, and try it personally, without any support! Kind Regards
 
-***NOTE:***
+# NOTE:
 
-Click on the wallpaper to go into the demo and buy it if you need help with installation!
+***Click on the wallpaper to go into the demo and buy it if you need help with installation!***
 
 [![T-Pot](doc/tpotsocial.png)]()
 
