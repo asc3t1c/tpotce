@@ -1,93 +1,96 @@
 #0 building with "mybuilder" instance using docker-container driver
 
 #1 [galah internal] load build definition from Dockerfile
-#1 transferring dockerfile: 585B done
+#1 transferring dockerfile: 585B 0.0s done
 #1 DONE 0.0s
 
-#2 [galah linux/arm64 internal] load metadata for docker.io/library/golang:1.23-alpine
+#2 [galah linux/amd64 internal] load metadata for docker.io/library/golang:1.23-alpine
 #2 ...
 
-#3 [galah linux/amd64 internal] load metadata for docker.io/library/golang:1.23-alpine
-#3 DONE 0.2s
+#3 [galah linux/arm64 internal] load metadata for docker.io/library/golang:1.23-alpine
+#3 DONE 0.8s
 
 #4 [galah linux/amd64 internal] load metadata for docker.io/library/alpine:3.20
 #4 ...
 
-#5 [galah linux/arm64 internal] load metadata for docker.io/library/alpine:3.20
-#5 DONE 0.4s
+#2 [galah linux/amd64 internal] load metadata for docker.io/library/golang:1.23-alpine
+#2 DONE 2.0s
 
-#2 [galah linux/arm64 internal] load metadata for docker.io/library/golang:1.23-alpine
-#2 DONE 0.4s
+#5 [galah linux/arm64 internal] load metadata for docker.io/library/alpine:3.20
+#5 ...
 
 #4 [galah linux/amd64 internal] load metadata for docker.io/library/alpine:3.20
-#4 DONE 0.4s
+#4 DONE 2.3s
+
+#5 [galah linux/arm64 internal] load metadata for docker.io/library/alpine:3.20
+#5 DONE 2.3s
 
 #6 [galah internal] load .dockerignore
 #6 transferring context: 2B done
 #6 DONE 0.0s
 
-#7 [galah linux/amd64 builder 1/4] FROM docker.io/library/golang:1.23-alpine@sha256:2c49857f2295e89b23b28386e57e018a86620a8fede5003900f2d138ba9c4037
-#7 resolve docker.io/library/golang:1.23-alpine@sha256:2c49857f2295e89b23b28386e57e018a86620a8fede5003900f2d138ba9c4037 0.1s done
+#7 [galah linux/arm64 builder 1/4] FROM docker.io/library/golang:1.23-alpine@sha256:2c49857f2295e89b23b28386e57e018a86620a8fede5003900f2d138ba9c4037
+#7 resolve docker.io/library/golang:1.23-alpine@sha256:2c49857f2295e89b23b28386e57e018a86620a8fede5003900f2d138ba9c4037 0.0s done
 #7 DONE 0.1s
 
-#8 [galah linux/arm64 builder 1/4] FROM docker.io/library/golang:1.23-alpine@sha256:2c49857f2295e89b23b28386e57e018a86620a8fede5003900f2d138ba9c4037
+#8 [galah linux/amd64 builder 1/4] FROM docker.io/library/golang:1.23-alpine@sha256:2c49857f2295e89b23b28386e57e018a86620a8fede5003900f2d138ba9c4037
 #8 resolve docker.io/library/golang:1.23-alpine@sha256:2c49857f2295e89b23b28386e57e018a86620a8fede5003900f2d138ba9c4037 0.1s done
 #8 DONE 0.1s
 
-#9 [galah linux/amd64 stage-1 1/4] FROM docker.io/library/alpine:3.20@sha256:31687a2fdd021f85955bf2d0c2682e9c0949827560e1db546358ea094f740f12
-#9 resolve docker.io/library/alpine:3.20@sha256:31687a2fdd021f85955bf2d0c2682e9c0949827560e1db546358ea094f740f12 0.1s done
+#9 [galah linux/arm64 stage-1 1/4] FROM docker.io/library/alpine:3.20@sha256:31687a2fdd021f85955bf2d0c2682e9c0949827560e1db546358ea094f740f12
+#9 resolve docker.io/library/alpine:3.20@sha256:31687a2fdd021f85955bf2d0c2682e9c0949827560e1db546358ea094f740f12 0.0s done
 #9 DONE 0.1s
 
-#10 [galah linux/arm64 stage-1 1/4] FROM docker.io/library/alpine:3.20@sha256:31687a2fdd021f85955bf2d0c2682e9c0949827560e1db546358ea094f740f12
+#10 [galah linux/amd64 stage-1 1/4] FROM docker.io/library/alpine:3.20@sha256:31687a2fdd021f85955bf2d0c2682e9c0949827560e1db546358ea094f740f12
 #10 resolve docker.io/library/alpine:3.20@sha256:31687a2fdd021f85955bf2d0c2682e9c0949827560e1db546358ea094f740f12 0.1s done
 #10 DONE 0.1s
 
 #11 [galah linux/arm64 stage-1 3/4] COPY --from=builder /opt/galah/ /opt/galah/
 #11 CACHED
 
-#12 [galah linux/arm64 builder 4/4] RUN <<EOF (go mod download...)
+#12 [galah linux/arm64 builder 3/4] WORKDIR /opt/galah
 #12 CACHED
 
 #13 [galah linux/arm64 builder 2/4] RUN <<EOF (apk --no-cache -U upgrade...)
 #13 CACHED
 
-#14 [galah linux/arm64 builder 3/4] WORKDIR /opt/galah
+#14 [galah linux/arm64 builder 4/4] RUN <<EOF (go mod download...)
 #14 CACHED
 
 #15 [galah linux/arm64 stage-1 2/4] RUN apk --no-cache -U upgrade &&     apk --no-cache -U add openssl
 #15 CACHED
 
-#16 [galah linux/arm64 stage-1 4/4] WORKDIR /opt/galah
+#16 [galah linux/amd64 builder 4/4] RUN <<EOF (go mod download...)
 #16 CACHED
 
 #17 [galah linux/amd64 builder 2/4] RUN <<EOF (apk --no-cache -U upgrade...)
 #17 CACHED
 
-#18 [galah linux/amd64 stage-1 2/4] RUN apk --no-cache -U upgrade &&     apk --no-cache -U add openssl
+#18 [galah linux/amd64 builder 3/4] WORKDIR /opt/galah
 #18 CACHED
 
-#19 [galah linux/amd64 stage-1 3/4] COPY --from=builder /opt/galah/ /opt/galah/
+#19 [galah linux/amd64 stage-1 2/4] RUN apk --no-cache -U upgrade &&     apk --no-cache -U add openssl
 #19 CACHED
 
-#20 [galah linux/amd64 builder 3/4] WORKDIR /opt/galah
+#20 [galah linux/amd64 stage-1 3/4] COPY --from=builder /opt/galah/ /opt/galah/
 #20 CACHED
 
-#21 [galah linux/amd64 builder 4/4] RUN <<EOF (go mod download...)
+#21 [galah linux/amd64 stage-1 4/4] WORKDIR /opt/galah
 #21 CACHED
 
-#22 [galah linux/amd64 stage-1 4/4] WORKDIR /opt/galah
+#22 [galah linux/arm64 stage-1 4/4] WORKDIR /opt/galah
 #22 CACHED
 
 #23 [galah] exporting to image
-#23 exporting layers
 #23 exporting layers done
 #23 exporting manifest sha256:3568b767af2f86232bf115b0c5adafdb94a00e23404fb2e4832e53111afe52a2 done
 #23 exporting config sha256:a71489885e8c69a774627a86b6ed161dbb2598822aef698af5f50b38df02b50a done
-#23 exporting attestation manifest sha256:d832b908d32772835679ae005339bd36b41a73e3344d43e584c8a1b379c0e0f3 0.0s done
-#23 exporting manifest sha256:73624f319fca47ebbc1c5e137b3742518d0ac5cbd6f7c1ba7a9f5b9621968fb7 done
-#23 exporting config sha256:601c6197f3400aebc6e99f9c5d800b04be0aad7d913ffd79f40a04ec6622a42c done
-#23 exporting attestation manifest sha256:daa68028acb579745d9a1f866ccb79d1f6f99b387e95df2ce528ab5ea6970310 0.0s done
-#23 exporting manifest list sha256:26968dd129d9dc416f10478793db5eae589ac5e6782ec9ae728e06ef4a4e4f96 0.0s done
+#23 exporting attestation manifest sha256:1a23cdc02ac140f2e4db0535d35071201baf855d5d31fa7a035acd7fe88ad414 0.0s done
+#23 exporting manifest sha256:73624f319fca47ebbc1c5e137b3742518d0ac5cbd6f7c1ba7a9f5b9621968fb7 0.0s done
+#23 exporting config sha256:601c6197f3400aebc6e99f9c5d800b04be0aad7d913ffd79f40a04ec6622a42c
+#23 exporting config sha256:601c6197f3400aebc6e99f9c5d800b04be0aad7d913ffd79f40a04ec6622a42c 0.0s done
+#23 exporting attestation manifest sha256:16143b3308dac2cfc6ebfb9c07ab58e868540a9833b792faa54a95a676bdfbc3 0.0s done
+#23 exporting manifest list sha256:a1b01d8319fbacc879aced9bb9280958b9fe8f29a7781740e630f9cf67a1afd0 0.0s done
 #23 pushing layers
 #23 ...
 
@@ -95,19 +98,20 @@
 #24 DONE 0.0s
 
 #23 [galah] exporting to image
-#23 pushing layers 2.9s done
-#23 pushing manifest for docker.io/f0rc3ps/galah:24.04.1@sha256:26968dd129d9dc416f10478793db5eae589ac5e6782ec9ae728e06ef4a4e4f96
-#23 pushing manifest for docker.io/f0rc3ps/galah:24.04.1@sha256:26968dd129d9dc416f10478793db5eae589ac5e6782ec9ae728e06ef4a4e4f96 2.4s done
+#23 pushing layers 7.5s done
+#23 pushing manifest for docker.io/f0rc3ps/galah:24.04.1@sha256:a1b01d8319fbacc879aced9bb9280958b9fe8f29a7781740e630f9cf67a1afd0
+#23 pushing manifest for docker.io/f0rc3ps/galah:24.04.1@sha256:a1b01d8319fbacc879aced9bb9280958b9fe8f29a7781740e630f9cf67a1afd0 6.6s done
+#23 pushing layers
 #23 ...
 
 #25 [galah auth] asc3t1c/galah:pull,push token for ghcr.io
 #25 DONE 0.0s
 
 #23 [galah] exporting to image
-#23 pushing layers 2.2s done
-#23 pushing manifest for ghcr.io/asc3t1c/galah:24.04.1@sha256:26968dd129d9dc416f10478793db5eae589ac5e6782ec9ae728e06ef4a4e4f96
-#23 pushing manifest for ghcr.io/asc3t1c/galah:24.04.1@sha256:26968dd129d9dc416f10478793db5eae589ac5e6782ec9ae728e06ef4a4e4f96 1.9s done
-#23 DONE 9.5s
+#23 pushing layers 3.3s done
+#23 pushing manifest for ghcr.io/asc3t1c/galah:24.04.1@sha256:a1b01d8319fbacc879aced9bb9280958b9fe8f29a7781740e630f9cf67a1afd0
+#23 pushing manifest for ghcr.io/asc3t1c/galah:24.04.1@sha256:a1b01d8319fbacc879aced9bb9280958b9fe8f29a7781740e630f9cf67a1afd0 2.3s done
+#23 DONE 19.9s
 
 #26 [galah] resolving provenance for metadata file
 #26 DONE 0.0s

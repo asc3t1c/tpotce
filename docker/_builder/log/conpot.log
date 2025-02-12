@@ -1,17 +1,14 @@
 #0 building with "mybuilder" instance using docker-container driver
 
 #1 [conpot internal] load build definition from Dockerfile
-#1 transferring dockerfile: 3.71kB done
+#1 transferring dockerfile: 3.71kB 0.0s done
 #1 DONE 0.0s
 
-#2 [conpot linux/amd64 internal] load metadata for docker.io/library/alpine:3.19
-#2 ...
+#2 [conpot linux/arm64 internal] load metadata for docker.io/library/alpine:3.19
+#2 DONE 0.7s
 
-#3 [conpot linux/arm64 internal] load metadata for docker.io/library/alpine:3.19
-#3 DONE 0.4s
-
-#2 [conpot linux/amd64 internal] load metadata for docker.io/library/alpine:3.19
-#2 DONE 0.4s
+#3 [conpot linux/amd64 internal] load metadata for docker.io/library/alpine:3.19
+#3 DONE 0.7s
 
 #4 [conpot internal] load .dockerignore
 #4 transferring context: 2B done
@@ -45,12 +42,12 @@
 #12 exporting layers done
 #12 exporting manifest sha256:7b246befea07460f141672606d959e9c8deac945b35ee0a5d921801a6b0b45c0 done
 #12 exporting config sha256:a499f33433afb6d20f924a5616f09894d7c1086cec41c977bab53bd0831cae40 done
-#12 exporting attestation manifest sha256:82980e9a01d076ef36f61c575cb72f776249e7f8b9a4088390ee35a758cde6b7 0.0s done
-#12 exporting manifest sha256:d37e88bdf39375f7063eef61dd4d21d3baa4427be723e885cd3c4f50a6d10e81 0.0s done
-#12 exporting config sha256:de7a19baad83ccaba0a25c8ee495d4247394db1d97bb61c4e12545c0ad6e9c45 0.0s done
-#12 exporting attestation manifest sha256:9a04022bee434fd766af99e18271f05801b7856bd7275c4f6e2904b5adcc222d
-#12 exporting attestation manifest sha256:9a04022bee434fd766af99e18271f05801b7856bd7275c4f6e2904b5adcc222d 0.0s done
-#12 exporting manifest list sha256:c74eed3af915327f055c34c3982d51068502e137a436d42bb2268870edf4189a 0.0s done
+#12 exporting attestation manifest sha256:d4878625b709545de7e807d62094c767bea21699a95a06328a0839601f4b438a 0.0s done
+#12 exporting manifest sha256:d37e88bdf39375f7063eef61dd4d21d3baa4427be723e885cd3c4f50a6d10e81 done
+#12 exporting config sha256:de7a19baad83ccaba0a25c8ee495d4247394db1d97bb61c4e12545c0ad6e9c45 done
+#12 exporting attestation manifest sha256:530cbc028cdf4b395b43a19de6dd6cb4d4b8126afab29e5ed8f98090e4293f24 0.0s done
+#12 exporting manifest list sha256:081d93952e3b3c3576e48e9791322e7de4435d4b8c08d25eb3e42f453c1f8830
+#12 exporting manifest list sha256:081d93952e3b3c3576e48e9791322e7de4435d4b8c08d25eb3e42f453c1f8830 0.0s done
 #12 pushing layers
 #12 ...
 
@@ -58,19 +55,19 @@
 #13 DONE 0.0s
 
 #12 [conpot] exporting to image
-#12 pushing layers 2.6s done
-#12 pushing manifest for docker.io/f0rc3ps/conpot:24.04.1@sha256:c74eed3af915327f055c34c3982d51068502e137a436d42bb2268870edf4189a
-#12 pushing manifest for docker.io/f0rc3ps/conpot:24.04.1@sha256:c74eed3af915327f055c34c3982d51068502e137a436d42bb2268870edf4189a 2.2s done
+#12 pushing layers 3.4s done
+#12 pushing manifest for docker.io/f0rc3ps/conpot:24.04.1@sha256:081d93952e3b3c3576e48e9791322e7de4435d4b8c08d25eb3e42f453c1f8830
+#12 pushing manifest for docker.io/f0rc3ps/conpot:24.04.1@sha256:081d93952e3b3c3576e48e9791322e7de4435d4b8c08d25eb3e42f453c1f8830 2.8s done
 #12 ...
 
 #14 [conpot auth] asc3t1c/conpot:pull,push token for ghcr.io
 #14 DONE 0.0s
 
 #12 [conpot] exporting to image
-#12 pushing layers 2.0s done
-#12 pushing manifest for ghcr.io/asc3t1c/conpot:24.04.1@sha256:c74eed3af915327f055c34c3982d51068502e137a436d42bb2268870edf4189a
-#12 pushing manifest for ghcr.io/asc3t1c/conpot:24.04.1@sha256:c74eed3af915327f055c34c3982d51068502e137a436d42bb2268870edf4189a 2.0s done
-#12 DONE 9.0s
+#12 pushing layers 3.8s done
+#12 pushing manifest for ghcr.io/asc3t1c/conpot:24.04.1@sha256:081d93952e3b3c3576e48e9791322e7de4435d4b8c08d25eb3e42f453c1f8830
+#12 pushing manifest for ghcr.io/asc3t1c/conpot:24.04.1@sha256:081d93952e3b3c3576e48e9791322e7de4435d4b8c08d25eb3e42f453c1f8830 2.2s done
+#12 DONE 12.4s
 
 #15 [conpot] resolving provenance for metadata file
 #15 DONE 0.0s

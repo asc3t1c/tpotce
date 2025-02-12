@@ -4,59 +4,62 @@
 #1 transferring dockerfile: 966B 0.0s done
 #1 DONE 0.0s
 
-#2 [adbhoney auth] library/alpine:pull token for registry-1.docker.io
-#2 DONE 0.0s
+#2 [adbhoney linux/amd64 internal] load metadata for docker.io/library/alpine:3.20
+#2 ...
 
-#3 [adbhoney linux/arm64 internal] load metadata for docker.io/library/alpine:3.20
-#3 ...
+#3 [adbhoney auth] library/alpine:pull token for registry-1.docker.io
+#3 DONE 0.0s
 
-#4 [adbhoney linux/amd64 internal] load metadata for docker.io/library/alpine:3.20
-#4 DONE 1.2s
+#4 [adbhoney linux/arm64 internal] load metadata for docker.io/library/alpine:3.20
+#4 ...
 
-#3 [adbhoney linux/arm64 internal] load metadata for docker.io/library/alpine:3.20
-#3 DONE 1.2s
+#2 [adbhoney linux/amd64 internal] load metadata for docker.io/library/alpine:3.20
+#2 DONE 1.3s
 
 #5 [adbhoney internal] load .dockerignore
-#5 transferring context: 2B done
+#5 transferring context: 2B 0.0s done
 #5 DONE 0.0s
 
-#6 [adbhoney linux/arm64 builder 1/3] FROM docker.io/library/alpine:3.20@sha256:31687a2fdd021f85955bf2d0c2682e9c0949827560e1db546358ea094f740f12
-#6 resolve docker.io/library/alpine:3.20@sha256:31687a2fdd021f85955bf2d0c2682e9c0949827560e1db546358ea094f740f12 0.1s done
-#6 DONE 0.1s
+#4 [adbhoney linux/arm64 internal] load metadata for docker.io/library/alpine:3.20
+#4 DONE 1.4s
 
-#7 [adbhoney internal] load build context
-#7 transferring context: 100B done
+#6 [adbhoney linux/arm64 builder 1/3] FROM docker.io/library/alpine:3.20@sha256:31687a2fdd021f85955bf2d0c2682e9c0949827560e1db546358ea094f740f12
+#6 resolve docker.io/library/alpine:3.20@sha256:31687a2fdd021f85955bf2d0c2682e9c0949827560e1db546358ea094f740f12 0.0s done
+#6 DONE 0.0s
+
+#7 [adbhoney linux/amd64 builder 1/3] FROM docker.io/library/alpine:3.20@sha256:31687a2fdd021f85955bf2d0c2682e9c0949827560e1db546358ea094f740f12
+#7 resolve docker.io/library/alpine:3.20@sha256:31687a2fdd021f85955bf2d0c2682e9c0949827560e1db546358ea094f740f12 0.0s done
 #7 DONE 0.0s
 
-#8 [adbhoney linux/amd64 builder 1/3] FROM docker.io/library/alpine:3.20@sha256:31687a2fdd021f85955bf2d0c2682e9c0949827560e1db546358ea094f740f12
-#8 resolve docker.io/library/alpine:3.20@sha256:31687a2fdd021f85955bf2d0c2682e9c0949827560e1db546358ea094f740f12 0.1s done
-#8 DONE 0.1s
+#8 [adbhoney internal] load build context
+#8 transferring context: 100B done
+#8 DONE 0.0s
 
-#9 [adbhoney linux/amd64 builder 2/3] COPY dist/ /root/dist/
+#9 [adbhoney linux/amd64 builder 3/3] RUN	APK --no-cache -U upgrade && 	apk --no-cache -U add 		build-base 		git 		procps 		py3-psutil 		py3-requests 		py3-pip 		python3 && 		pip3 install --break-system-packages pyinstaller &&     git clone https://github.com/t3chn0m4g3/ADBHoney /opt/adbhoney &&     cd /opt/adbhoney && 	git checkout 42a73cd8a82ddd4d137de70ac37b1a8b2e3e0119 &&     cp /root/dist/adbhoney.cfg /opt/adbhoney &&     sed -i 's/dst_ip/dest_ip/' /opt/adbhoney/adbhoney/core.py &&     sed -i 's/dst_port/dest_port/' /opt/adbhoney/adbhoney/core.py &&     pyinstaller adbhoney.spec
 #9 CACHED
 
 #10 [adbhoney linux/amd64 stage-1 3/4] COPY --from=builder /opt/adbhoney/dist/adbhoney/ /opt/adbhoney/
 #10 CACHED
 
-#11 [adbhoney linux/amd64 builder 3/3] RUN	APK --no-cache -U upgrade && 	apk --no-cache -U add 		build-base 		git 		procps 		py3-psutil 		py3-requests 		py3-pip 		python3 && 		pip3 install --break-system-packages pyinstaller &&     git clone https://github.com/t3chn0m4g3/ADBHoney /opt/adbhoney &&     cd /opt/adbhoney && 	git checkout 42a73cd8a82ddd4d137de70ac37b1a8b2e3e0119 &&     cp /root/dist/adbhoney.cfg /opt/adbhoney &&     sed -i 's/dst_ip/dest_ip/' /opt/adbhoney/adbhoney/core.py &&     sed -i 's/dst_port/dest_port/' /opt/adbhoney/adbhoney/core.py &&     pyinstaller adbhoney.spec
+#11 [adbhoney linux/amd64 builder 2/3] COPY dist/ /root/dist/
 #11 CACHED
 
 #12 [adbhoney linux/amd64 stage-1 2/4] RUN apk --no-cache -U upgrade
 #12 CACHED
 
-#13 [adbhoney linux/amd64 stage-1 4/4] WORKDIR /opt/adbhoney/
+#13 [adbhoney linux/arm64 builder 3/3] RUN	APK --no-cache -U upgrade && 	apk --no-cache -U add 		build-base 		git 		procps 		py3-psutil 		py3-requests 		py3-pip 		python3 && 		pip3 install --break-system-packages pyinstaller &&     git clone https://github.com/t3chn0m4g3/ADBHoney /opt/adbhoney &&     cd /opt/adbhoney && 	git checkout 42a73cd8a82ddd4d137de70ac37b1a8b2e3e0119 &&     cp /root/dist/adbhoney.cfg /opt/adbhoney &&     sed -i 's/dst_ip/dest_ip/' /opt/adbhoney/adbhoney/core.py &&     sed -i 's/dst_port/dest_port/' /opt/adbhoney/adbhoney/core.py &&     pyinstaller adbhoney.spec
 #13 CACHED
 
-#14 [adbhoney linux/arm64 builder 3/3] RUN	APK --no-cache -U upgrade && 	apk --no-cache -U add 		build-base 		git 		procps 		py3-psutil 		py3-requests 		py3-pip 		python3 && 		pip3 install --break-system-packages pyinstaller &&     git clone https://github.com/t3chn0m4g3/ADBHoney /opt/adbhoney &&     cd /opt/adbhoney && 	git checkout 42a73cd8a82ddd4d137de70ac37b1a8b2e3e0119 &&     cp /root/dist/adbhoney.cfg /opt/adbhoney &&     sed -i 's/dst_ip/dest_ip/' /opt/adbhoney/adbhoney/core.py &&     sed -i 's/dst_port/dest_port/' /opt/adbhoney/adbhoney/core.py &&     pyinstaller adbhoney.spec
+#14 [adbhoney linux/arm64 builder 2/3] COPY dist/ /root/dist/
 #14 CACHED
 
 #15 [adbhoney linux/arm64 stage-1 2/4] RUN apk --no-cache -U upgrade
 #15 CACHED
 
-#16 [adbhoney linux/arm64 builder 2/3] COPY dist/ /root/dist/
+#16 [adbhoney linux/arm64 stage-1 3/4] COPY --from=builder /opt/adbhoney/dist/adbhoney/ /opt/adbhoney/
 #16 CACHED
 
-#17 [adbhoney linux/arm64 stage-1 3/4] COPY --from=builder /opt/adbhoney/dist/adbhoney/ /opt/adbhoney/
+#17 [adbhoney linux/amd64 stage-1 4/4] WORKDIR /opt/adbhoney/
 #17 CACHED
 
 #18 [adbhoney linux/arm64 stage-1 4/4] WORKDIR /opt/adbhoney/
@@ -65,12 +68,12 @@
 #19 [adbhoney] exporting to image
 #19 exporting layers done
 #19 exporting manifest sha256:b8491e4124bfd48c57452af100a1c189c51e331ba08474ee4c5dd208d150f18b done
-#19 exporting config sha256:47f04bb81dc2ba6bdcfa62b03616f0b09363f6d34cb2b502ef459f7c2a4d1b21 0.0s done
-#19 exporting attestation manifest sha256:2aadc3320859d4ce8ad42a09da6c9d56a3a1883b882975094ea417f48088e17d 0.0s done
+#19 exporting config sha256:47f04bb81dc2ba6bdcfa62b03616f0b09363f6d34cb2b502ef459f7c2a4d1b21 done
+#19 exporting attestation manifest sha256:9f67dab6d35832e33760b792d606bc0f09238e4bbba04bfee72668802effbfbf 0.0s done
 #19 exporting manifest sha256:ca4be5495a3e100373ddc84fe5626ec327a0042a62a360b9bb622f5eb110ccf8 0.0s done
 #19 exporting config sha256:812874bf751a8040593fd26b45505ca46a4b2d824181f448c9bafbd180b52c41 done
-#19 exporting attestation manifest sha256:3cddedc7eda789369a3393ee06b5d59bf190df35e0d379e8c90a4000821ece26 0.0s done
-#19 exporting manifest list sha256:3f2539967577c51f9c2a3d29ab494c22d9c076d7a255107eb6ef5c8f8756e3a0 0.0s done
+#19 exporting attestation manifest sha256:c037b1bf30f7f6147d844a3ec8059443fd8e9386b92a2ec629a8bfe14b409d05 0.0s done
+#19 exporting manifest list sha256:c527cfa3c1993cbb7b662107dc72432bb709e82811c278be770032ba37ab2312 0.0s done
 #19 pushing layers
 #19 ...
 
@@ -78,19 +81,19 @@
 #20 DONE 0.0s
 
 #19 [adbhoney] exporting to image
-#19 pushing layers 2.8s done
-#19 pushing manifest for docker.io/f0rc3ps/adbhoney:24.04.1@sha256:3f2539967577c51f9c2a3d29ab494c22d9c076d7a255107eb6ef5c8f8756e3a0
-#19 pushing manifest for docker.io/f0rc3ps/adbhoney:24.04.1@sha256:3f2539967577c51f9c2a3d29ab494c22d9c076d7a255107eb6ef5c8f8756e3a0 2.5s done
+#19 pushing layers 3.2s done
+#19 pushing manifest for docker.io/f0rc3ps/adbhoney:24.04.1@sha256:c527cfa3c1993cbb7b662107dc72432bb709e82811c278be770032ba37ab2312
+#19 pushing manifest for docker.io/f0rc3ps/adbhoney:24.04.1@sha256:c527cfa3c1993cbb7b662107dc72432bb709e82811c278be770032ba37ab2312 2.9s done
 #19 ...
 
 #21 [adbhoney auth] asc3t1c/adbhoney:pull,push token for ghcr.io
 #21 DONE 0.0s
 
 #19 [adbhoney] exporting to image
-#19 pushing layers 2.2s done
-#19 pushing manifest for ghcr.io/asc3t1c/adbhoney:24.04.1@sha256:3f2539967577c51f9c2a3d29ab494c22d9c076d7a255107eb6ef5c8f8756e3a0
-#19 pushing manifest for ghcr.io/asc3t1c/adbhoney:24.04.1@sha256:3f2539967577c51f9c2a3d29ab494c22d9c076d7a255107eb6ef5c8f8756e3a0 1.8s done
-#19 DONE 9.6s
+#19 pushing layers 2.6s done
+#19 pushing manifest for ghcr.io/asc3t1c/adbhoney:24.04.1@sha256:c527cfa3c1993cbb7b662107dc72432bb709e82811c278be770032ba37ab2312
+#19 pushing manifest for ghcr.io/asc3t1c/adbhoney:24.04.1@sha256:c527cfa3c1993cbb7b662107dc72432bb709e82811c278be770032ba37ab2312 1.8s done
+#19 DONE 10.6s
 
 #22 [adbhoney] resolving provenance for metadata file
 #22 DONE 0.0s

@@ -5,102 +5,105 @@
 #1 DONE 0.0s
 
 #2 [h0neytr4p linux/arm64 internal] load metadata for docker.io/library/golang:1.23-alpine
-#2 DONE 0.2s
+#2 ...
 
 #3 [h0neytr4p linux/amd64 internal] load metadata for docker.io/library/golang:1.23-alpine
 #3 DONE 0.2s
 
-#4 [h0neytr4p linux/arm64 builder 1/4] FROM docker.io/library/golang:1.23-alpine@sha256:2c49857f2295e89b23b28386e57e018a86620a8fede5003900f2d138ba9c4037
-#4 resolve docker.io/library/golang:1.23-alpine@sha256:2c49857f2295e89b23b28386e57e018a86620a8fede5003900f2d138ba9c4037 0.0s done
+#4 [h0neytr4p internal] load .dockerignore
+#4 transferring context: 2B done
 #4 DONE 0.0s
+
+#2 [h0neytr4p linux/arm64 internal] load metadata for docker.io/library/golang:1.23-alpine
+#2 DONE 1.7s
 
 #5 [h0neytr4p linux/amd64 builder 1/4] FROM docker.io/library/golang:1.23-alpine@sha256:2c49857f2295e89b23b28386e57e018a86620a8fede5003900f2d138ba9c4037
 #5 resolve docker.io/library/golang:1.23-alpine@sha256:2c49857f2295e89b23b28386e57e018a86620a8fede5003900f2d138ba9c4037 0.0s done
 #5 DONE 0.0s
 
-#6 [h0neytr4p internal] load .dockerignore
-#6 transferring context: 2B done
-#6 DONE 0.0s
+#6 [h0neytr4p linux/amd64 builder  7/10] RUN go mod tidy
+#6 CACHED
 
-#7 [h0neytr4p linux/amd64 builder  5/10] RUN git clone https://github.com/t3chn0m4g3/h0neytr4p -b v0.33 /app
+#7 [h0neytr4p linux/amd64 builder  3/10] RUN apk -U upgrade
 #7 CACHED
 
-#8 [h0neytr4p linux/amd64 stage-1 2/5] COPY --from=builder /app/traps /opt/h0neytr4p/traps
+#8 [h0neytr4p linux/amd64 builder 10/10] RUN chmod 444 app.key app.crt
 #8 CACHED
 
-#9 [h0neytr4p linux/amd64 stage-1 3/5] COPY --from=builder /app/app.key /opt/h0neytr4p/
+#9 [h0neytr4p linux/amd64 builder  8/10] RUN go build -o /app/main
 #9 CACHED
 
-#10 [h0neytr4p linux/amd64 builder  2/10] WORKDIR /app
+#10 [h0neytr4p linux/amd64 stage-1 3/5] COPY --from=builder /app/app.key /opt/h0neytr4p/
 #10 CACHED
 
-#11 [h0neytr4p linux/amd64 builder 10/10] RUN chmod 444 app.key app.crt
+#11 [h0neytr4p linux/amd64 builder  5/10] RUN git clone https://github.com/t3chn0m4g3/h0neytr4p -b v0.33 /app
 #11 CACHED
 
-#12 [h0neytr4p linux/amd64 builder  3/10] RUN apk -U upgrade
+#12 [h0neytr4p linux/amd64 builder  9/10] RUN openssl req           -nodes           -x509           -sha512           -newkey rsa:4096           -keyout "app.key"           -out "app.crt"           -days 3650           -subj '/C=AU/ST=Some-State/O=Internet Widgits Pty Ltd'
 #12 CACHED
 
-#13 [h0neytr4p linux/amd64 stage-1 4/5] COPY --from=builder /app/app.crt /opt/h0neytr4p/
+#13 [h0neytr4p linux/amd64 builder  4/10] RUN apk -U add git openssl
 #13 CACHED
 
-#14 [h0neytr4p linux/amd64 builder  9/10] RUN openssl req           -nodes           -x509           -sha512           -newkey rsa:4096           -keyout "app.key"           -out "app.crt"           -days 3650           -subj '/C=AU/ST=Some-State/O=Internet Widgits Pty Ltd'
+#14 [h0neytr4p linux/amd64 stage-1 2/5] COPY --from=builder /app/traps /opt/h0neytr4p/traps
 #14 CACHED
 
-#15 [h0neytr4p linux/amd64 builder  4/10] RUN apk -U add git openssl
+#15 [h0neytr4p linux/amd64 builder  2/10] WORKDIR /app
 #15 CACHED
 
-#16 [h0neytr4p linux/amd64 stage-1 1/5] COPY --from=builder /app/main /opt/h0neytr4p/h0neytr4p
+#16 [h0neytr4p linux/amd64 stage-1 4/5] COPY --from=builder /app/app.crt /opt/h0neytr4p/
 #16 CACHED
 
-#17 [h0neytr4p linux/amd64 builder  8/10] RUN go build -o /app/main
+#17 [h0neytr4p linux/amd64 builder  6/10] RUN go mod download
 #17 CACHED
 
-#18 [h0neytr4p linux/amd64 builder  7/10] RUN go mod tidy
+#18 [h0neytr4p linux/amd64 stage-1 1/5] COPY --from=builder /app/main /opt/h0neytr4p/h0neytr4p
 #18 CACHED
 
-#19 [h0neytr4p linux/amd64 builder  6/10] RUN go mod download
+#19 [h0neytr4p linux/amd64 stage-1 5/5] WORKDIR /opt/h0neytr4p
 #19 CACHED
 
-#20 [h0neytr4p linux/amd64 stage-1 5/5] WORKDIR /opt/h0neytr4p
-#20 CACHED
+#20 [h0neytr4p linux/arm64 builder 1/4] FROM docker.io/library/golang:1.23-alpine@sha256:2c49857f2295e89b23b28386e57e018a86620a8fede5003900f2d138ba9c4037
+#20 resolve docker.io/library/golang:1.23-alpine@sha256:2c49857f2295e89b23b28386e57e018a86620a8fede5003900f2d138ba9c4037 0.0s done
+#20 DONE 0.0s
 
-#21 [h0neytr4p linux/arm64 builder  8/10] RUN go build -o /app/main
+#21 [h0neytr4p linux/arm64 builder 10/10] RUN chmod 444 app.key app.crt
 #21 CACHED
 
-#22 [h0neytr4p linux/arm64 builder  6/10] RUN go mod download
+#22 [h0neytr4p linux/arm64 builder  8/10] RUN go build -o /app/main
 #22 CACHED
 
-#23 [h0neytr4p linux/arm64 builder  5/10] RUN git clone https://github.com/t3chn0m4g3/h0neytr4p -b v0.33 /app
+#23 [h0neytr4p linux/arm64 builder  7/10] RUN go mod tidy
 #23 CACHED
 
-#24 [h0neytr4p linux/arm64 stage-1 1/5] COPY --from=builder /app/main /opt/h0neytr4p/h0neytr4p
+#24 [h0neytr4p linux/arm64 builder  4/10] RUN apk -U add git openssl
 #24 CACHED
 
-#25 [h0neytr4p linux/arm64 stage-1 4/5] COPY --from=builder /app/app.crt /opt/h0neytr4p/
+#25 [h0neytr4p linux/arm64 builder  3/10] RUN apk -U upgrade
 #25 CACHED
 
-#26 [h0neytr4p linux/arm64 builder  7/10] RUN go mod tidy
+#26 [h0neytr4p linux/arm64 builder  2/10] WORKDIR /app
 #26 CACHED
 
-#27 [h0neytr4p linux/arm64 builder  2/10] WORKDIR /app
+#27 [h0neytr4p linux/arm64 stage-1 4/5] COPY --from=builder /app/app.crt /opt/h0neytr4p/
 #27 CACHED
 
-#28 [h0neytr4p linux/arm64 builder  9/10] RUN openssl req           -nodes           -x509           -sha512           -newkey rsa:4096           -keyout "app.key"           -out "app.crt"           -days 3650           -subj '/C=AU/ST=Some-State/O=Internet Widgits Pty Ltd'
+#28 [h0neytr4p linux/arm64 stage-1 2/5] COPY --from=builder /app/traps /opt/h0neytr4p/traps
 #28 CACHED
 
-#29 [h0neytr4p linux/arm64 builder  3/10] RUN apk -U upgrade
+#29 [h0neytr4p linux/arm64 stage-1 3/5] COPY --from=builder /app/app.key /opt/h0neytr4p/
 #29 CACHED
 
-#30 [h0neytr4p linux/arm64 stage-1 3/5] COPY --from=builder /app/app.key /opt/h0neytr4p/
+#30 [h0neytr4p linux/arm64 builder  6/10] RUN go mod download
 #30 CACHED
 
-#31 [h0neytr4p linux/arm64 stage-1 2/5] COPY --from=builder /app/traps /opt/h0neytr4p/traps
+#31 [h0neytr4p linux/arm64 builder  9/10] RUN openssl req           -nodes           -x509           -sha512           -newkey rsa:4096           -keyout "app.key"           -out "app.crt"           -days 3650           -subj '/C=AU/ST=Some-State/O=Internet Widgits Pty Ltd'
 #31 CACHED
 
-#32 [h0neytr4p linux/arm64 builder 10/10] RUN chmod 444 app.key app.crt
+#32 [h0neytr4p linux/arm64 stage-1 1/5] COPY --from=builder /app/main /opt/h0neytr4p/h0neytr4p
 #32 CACHED
 
-#33 [h0neytr4p linux/arm64 builder  4/10] RUN apk -U add git openssl
+#33 [h0neytr4p linux/arm64 builder  5/10] RUN git clone https://github.com/t3chn0m4g3/h0neytr4p -b v0.33 /app
 #33 CACHED
 
 #34 [h0neytr4p linux/arm64 stage-1 5/5] WORKDIR /opt/h0neytr4p
@@ -108,14 +111,14 @@
 
 #35 [h0neytr4p] exporting to image
 #35 exporting layers done
-#35 exporting manifest sha256:fd7cf5e1edbaaff8d42a9cf56545b09dc39c622c65cc59bb74fb437acbb00954 done
+#35 exporting manifest sha256:fd7cf5e1edbaaff8d42a9cf56545b09dc39c622c65cc59bb74fb437acbb00954 0.0s done
 #35 exporting config sha256:1ed1e7e2df5960ff16fc32c3bc55f9bb6617402ab693ad12c61b1242a3a44cfd done
-#35 exporting attestation manifest sha256:31cdf303ecd78fb87da80afb9ee6565a68ad5053e3ae29876e3d0ad9748f1681 0.0s done
-#35 exporting manifest sha256:e00731b3f2e17c273f5728ebc9fe73e6cbe182151f2c720d5b02ab051eb804a7 done
-#35 exporting config sha256:0014946be631112063c554c9c87c57005a96aabaf02530acea754f1f4940302f
-#35 exporting config sha256:0014946be631112063c554c9c87c57005a96aabaf02530acea754f1f4940302f done
-#35 exporting attestation manifest sha256:72834f103c8adbcefb3e00d17faf01e6f8d63b8b5627c0ef6238300a107964e3 0.0s done
-#35 exporting manifest list sha256:1dad3b8c710fc854935022b03362fd0c8bda83aa5ed5c40a885c4171f5cfb88b 0.0s done
+#35 exporting attestation manifest sha256:1a70712c2a8a08cc93365430996d791a0c888d0531085e52e936ebd2b437abbf
+#35 exporting attestation manifest sha256:1a70712c2a8a08cc93365430996d791a0c888d0531085e52e936ebd2b437abbf 0.0s done
+#35 exporting manifest sha256:e00731b3f2e17c273f5728ebc9fe73e6cbe182151f2c720d5b02ab051eb804a7 0.0s done
+#35 exporting config sha256:0014946be631112063c554c9c87c57005a96aabaf02530acea754f1f4940302f 0.0s done
+#35 exporting attestation manifest sha256:175f6a436395a4df11d3b9a26c4d2887f4a752723dbedcc6b21fef3e14b6ac2e 0.0s done
+#35 exporting manifest list sha256:364da4f23d5ebdb3b0510976df41d1b5616793f64541d3d8f9a82e75a47a883a 0.1s done
 #35 pushing layers
 #35 ...
 
@@ -123,19 +126,20 @@
 #36 DONE 0.0s
 
 #35 [h0neytr4p] exporting to image
-#35 pushing layers 3.0s done
-#35 pushing manifest for docker.io/f0rc3ps/h0neytr4p:24.04.1@sha256:1dad3b8c710fc854935022b03362fd0c8bda83aa5ed5c40a885c4171f5cfb88b
-#35 pushing manifest for docker.io/f0rc3ps/h0neytr4p:24.04.1@sha256:1dad3b8c710fc854935022b03362fd0c8bda83aa5ed5c40a885c4171f5cfb88b 2.2s done
+#35 pushing layers 5.2s done
+#35 pushing manifest for docker.io/f0rc3ps/h0neytr4p:24.04.1@sha256:364da4f23d5ebdb3b0510976df41d1b5616793f64541d3d8f9a82e75a47a883a
+#35 pushing manifest for docker.io/f0rc3ps/h0neytr4p:24.04.1@sha256:364da4f23d5ebdb3b0510976df41d1b5616793f64541d3d8f9a82e75a47a883a 6.0s done
+#35 pushing layers
 #35 ...
 
 #37 [h0neytr4p auth] asc3t1c/h0neytr4p:pull,push token for ghcr.io
 #37 DONE 0.0s
 
 #35 [h0neytr4p] exporting to image
-#35 pushing layers 2.6s done
-#35 pushing manifest for ghcr.io/asc3t1c/h0neytr4p:24.04.1@sha256:1dad3b8c710fc854935022b03362fd0c8bda83aa5ed5c40a885c4171f5cfb88b
-#35 pushing manifest for ghcr.io/asc3t1c/h0neytr4p:24.04.1@sha256:1dad3b8c710fc854935022b03362fd0c8bda83aa5ed5c40a885c4171f5cfb88b 1.5s done
-#35 DONE 9.4s
+#35 pushing layers 3.5s done
+#35 pushing manifest for ghcr.io/asc3t1c/h0neytr4p:24.04.1@sha256:364da4f23d5ebdb3b0510976df41d1b5616793f64541d3d8f9a82e75a47a883a
+#35 pushing manifest for ghcr.io/asc3t1c/h0neytr4p:24.04.1@sha256:364da4f23d5ebdb3b0510976df41d1b5616793f64541d3d8f9a82e75a47a883a 2.0s done
+#35 DONE 17.2s
 
 #38 [h0neytr4p] resolving provenance for metadata file
 #38 DONE 0.0s

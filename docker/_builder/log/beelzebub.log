@@ -4,111 +4,115 @@
 #1 transferring dockerfile: 1.03kB 0.0s done
 #1 DONE 0.0s
 
-#2 [beelzebub auth] library/golang:pull token for registry-1.docker.io
-#2 DONE 0.0s
+#2 [beelzebub linux/arm64 internal] load metadata for docker.io/library/golang:1.23-alpine
+#2 ...
 
-#3 [beelzebub linux/arm64 internal] load metadata for docker.io/library/golang:1.23-alpine
-#3 ...
+#3 [beelzebub auth] library/golang:pull token for registry-1.docker.io
+#3 DONE 0.0s
 
 #4 [beelzebub linux/amd64 internal] load metadata for docker.io/library/golang:1.23-alpine
-#4 DONE 1.2s
+#4 ...
 
-#3 [beelzebub linux/arm64 internal] load metadata for docker.io/library/golang:1.23-alpine
-#3 DONE 1.2s
+#2 [beelzebub linux/arm64 internal] load metadata for docker.io/library/golang:1.23-alpine
+#2 DONE 1.5s
+
+#4 [beelzebub linux/amd64 internal] load metadata for docker.io/library/golang:1.23-alpine
+#4 DONE 1.5s
 
 #5 [beelzebub internal] load .dockerignore
-#5 transferring context: 2B 0.0s done
+#5 transferring context: 2B done
 #5 DONE 0.0s
 
-#6 [beelzebub linux/arm64 builder 1/9] FROM docker.io/library/golang:1.23-alpine@sha256:2c49857f2295e89b23b28386e57e018a86620a8fede5003900f2d138ba9c4037
+#6 [beelzebub linux/amd64 builder 1/9] FROM docker.io/library/golang:1.23-alpine@sha256:2c49857f2295e89b23b28386e57e018a86620a8fede5003900f2d138ba9c4037
 #6 resolve docker.io/library/golang:1.23-alpine@sha256:2c49857f2295e89b23b28386e57e018a86620a8fede5003900f2d138ba9c4037 0.0s done
-#6 DONE 0.0s
+#6 DONE 0.1s
 
-#7 [beelzebub linux/arm64 builder 2/9] RUN apk -U add git
-#7 CACHED
+#7 [beelzebub linux/arm64 builder 1/9] FROM docker.io/library/golang:1.23-alpine@sha256:2c49857f2295e89b23b28386e57e018a86620a8fede5003900f2d138ba9c4037
+#7 resolve docker.io/library/golang:1.23-alpine@sha256:2c49857f2295e89b23b28386e57e018a86620a8fede5003900f2d138ba9c4037 0.0s done
+#7 DONE 0.1s
 
-#8 [beelzebub linux/arm64 builder 9/9] RUN sed -i 's/passwordRegex: "^(root|qwerty|Smoker666|123456|jenkins|minecraft|sinus|alex|postgres|Ly123456)$"/passwordRegex: ".*"/g' /root/beelzebub/configurations/services/ssh-22.yaml
+#8 [beelzebub linux/amd64 builder 9/9] RUN sed -i 's/passwordRegex: "^(root|qwerty|Smoker666|123456|jenkins|minecraft|sinus|alex|postgres|Ly123456)$"/passwordRegex: ".*"/g' /root/beelzebub/configurations/services/ssh-22.yaml
 #8 CACHED
 
-#9 [beelzebub linux/arm64 stage-1 3/4] COPY --from=builder /root/beelzebub/configurations /opt/beelzebub/configurations
+#9 [beelzebub linux/amd64 builder 5/9] WORKDIR /root/beelzebub
 #9 CACHED
 
-#10 [beelzebub linux/arm64 builder 6/9] RUN go mod download
+#10 [beelzebub linux/amd64 stage-1 1/4] COPY --from=builder /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
 #10 CACHED
 
-#11 [beelzebub linux/arm64 builder 7/9] RUN go build -o main .
+#11 [beelzebub linux/amd64 builder 8/9] RUN sed -i "s#logsPath: ./log#logsPath: ./configurations/log/beelzebub.json#g" /root/beelzebub/configurations/beelzebub.yaml
 #11 CACHED
 
-#12 [beelzebub linux/arm64 builder 3/9] WORKDIR /root
+#12 [beelzebub linux/amd64 builder 2/9] RUN apk -U add git
 #12 CACHED
 
-#13 [beelzebub linux/arm64 builder 4/9] RUN git clone https://github.com/t3chn0m4g3/beelzebub &&     cd beelzebub &&     git checkout 0b9aba53ec1671f669d22782758142a1d411b858
+#13 [beelzebub linux/amd64 builder 7/9] RUN go build -o main .
 #13 CACHED
 
-#14 [beelzebub linux/arm64 stage-1 2/4] COPY --from=builder /root/beelzebub/main /opt/beelzebub/
+#14 [beelzebub linux/amd64 stage-1 2/4] COPY --from=builder /root/beelzebub/main /opt/beelzebub/
 #14 CACHED
 
-#15 [beelzebub linux/arm64 stage-1 1/4] COPY --from=builder /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
+#15 [beelzebub linux/amd64 builder 6/9] RUN go mod download
 #15 CACHED
 
-#16 [beelzebub linux/arm64 builder 5/9] WORKDIR /root/beelzebub
+#16 [beelzebub linux/amd64 stage-1 3/4] COPY --from=builder /root/beelzebub/configurations /opt/beelzebub/configurations
 #16 CACHED
 
-#17 [beelzebub linux/arm64 builder 8/9] RUN sed -i "s#logsPath: ./log#logsPath: ./configurations/log/beelzebub.json#g" /root/beelzebub/configurations/beelzebub.yaml
+#17 [beelzebub linux/amd64 builder 4/9] RUN git clone https://github.com/t3chn0m4g3/beelzebub &&     cd beelzebub &&     git checkout 0b9aba53ec1671f669d22782758142a1d411b858
 #17 CACHED
 
-#18 [beelzebub linux/arm64 stage-1 4/4] WORKDIR /opt/beelzebub
+#18 [beelzebub linux/amd64 builder 3/9] WORKDIR /root
 #18 CACHED
 
-#19 [beelzebub linux/amd64 builder 1/9] FROM docker.io/library/golang:1.23-alpine@sha256:2c49857f2295e89b23b28386e57e018a86620a8fede5003900f2d138ba9c4037
-#19 resolve docker.io/library/golang:1.23-alpine@sha256:2c49857f2295e89b23b28386e57e018a86620a8fede5003900f2d138ba9c4037 0.1s done
-#19 DONE 0.1s
+#19 [beelzebub linux/arm64 builder 4/9] RUN git clone https://github.com/t3chn0m4g3/beelzebub &&     cd beelzebub &&     git checkout 0b9aba53ec1671f669d22782758142a1d411b858
+#19 CACHED
 
-#20 [beelzebub linux/amd64 stage-1 2/4] COPY --from=builder /root/beelzebub/main /opt/beelzebub/
+#20 [beelzebub linux/arm64 stage-1 3/4] COPY --from=builder /root/beelzebub/configurations /opt/beelzebub/configurations
 #20 CACHED
 
-#21 [beelzebub linux/amd64 stage-1 1/4] COPY --from=builder /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
+#21 [beelzebub linux/arm64 stage-1 1/4] COPY --from=builder /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
 #21 CACHED
 
-#22 [beelzebub linux/amd64 builder 9/9] RUN sed -i 's/passwordRegex: "^(root|qwerty|Smoker666|123456|jenkins|minecraft|sinus|alex|postgres|Ly123456)$"/passwordRegex: ".*"/g' /root/beelzebub/configurations/services/ssh-22.yaml
+#22 [beelzebub linux/arm64 builder 6/9] RUN go mod download
 #22 CACHED
 
-#23 [beelzebub linux/amd64 builder 5/9] WORKDIR /root/beelzebub
+#23 [beelzebub linux/arm64 builder 5/9] WORKDIR /root/beelzebub
 #23 CACHED
 
-#24 [beelzebub linux/amd64 builder 3/9] WORKDIR /root
+#24 [beelzebub linux/arm64 builder 7/9] RUN go build -o main .
 #24 CACHED
 
-#25 [beelzebub linux/amd64 builder 6/9] RUN go mod download
+#25 [beelzebub linux/arm64 builder 9/9] RUN sed -i 's/passwordRegex: "^(root|qwerty|Smoker666|123456|jenkins|minecraft|sinus|alex|postgres|Ly123456)$"/passwordRegex: ".*"/g' /root/beelzebub/configurations/services/ssh-22.yaml
 #25 CACHED
 
-#26 [beelzebub linux/amd64 builder 7/9] RUN go build -o main .
+#26 [beelzebub linux/arm64 builder 3/9] WORKDIR /root
 #26 CACHED
 
-#27 [beelzebub linux/amd64 builder 2/9] RUN apk -U add git
+#27 [beelzebub linux/arm64 stage-1 2/4] COPY --from=builder /root/beelzebub/main /opt/beelzebub/
 #27 CACHED
 
-#28 [beelzebub linux/amd64 builder 4/9] RUN git clone https://github.com/t3chn0m4g3/beelzebub &&     cd beelzebub &&     git checkout 0b9aba53ec1671f669d22782758142a1d411b858
+#28 [beelzebub linux/arm64 builder 2/9] RUN apk -U add git
 #28 CACHED
 
-#29 [beelzebub linux/amd64 stage-1 3/4] COPY --from=builder /root/beelzebub/configurations /opt/beelzebub/configurations
+#29 [beelzebub linux/arm64 builder 8/9] RUN sed -i "s#logsPath: ./log#logsPath: ./configurations/log/beelzebub.json#g" /root/beelzebub/configurations/beelzebub.yaml
 #29 CACHED
 
-#30 [beelzebub linux/amd64 builder 8/9] RUN sed -i "s#logsPath: ./log#logsPath: ./configurations/log/beelzebub.json#g" /root/beelzebub/configurations/beelzebub.yaml
+#30 [beelzebub linux/amd64 stage-1 4/4] WORKDIR /opt/beelzebub
 #30 CACHED
 
-#31 [beelzebub linux/amd64 stage-1 4/4] WORKDIR /opt/beelzebub
+#31 [beelzebub linux/arm64 stage-1 4/4] WORKDIR /opt/beelzebub
 #31 CACHED
 
 #32 [beelzebub] exporting to image
+#32 exporting layers
 #32 exporting layers done
-#32 exporting manifest sha256:1e9837db779c6472e71e455285fe88ace917da2c048dfb67c7107c1550b1a444 done
+#32 exporting manifest sha256:1e9837db779c6472e71e455285fe88ace917da2c048dfb67c7107c1550b1a444 0.0s done
 #32 exporting config sha256:cc3c8cf2d9cffb57678ec1fb0f76cf73aea392ecfd50439ee15818ec9f425f57 done
-#32 exporting attestation manifest sha256:e95bd670b7ca4924feeb68fe3dcc2d99bb0849cea40dd6e651c514f030c11a0f 0.0s done
-#32 exporting manifest sha256:f6ab15247c3a36920368b50e7a027c24e673273e29a0eae1db54832531d96f83 0.0s done
+#32 exporting attestation manifest sha256:08207c16b2ab0d2562931d6545ab95f7c38dc532a8a2107ffc6525981cb70d4b 0.0s done
+#32 exporting manifest sha256:f6ab15247c3a36920368b50e7a027c24e673273e29a0eae1db54832531d96f83 done
 #32 exporting config sha256:1b562958bff6a466e0d686240b79d1a5525b1df2b8b6ec94c3e97fde6a75759f done
-#32 exporting attestation manifest sha256:d1725e0a2db71ab90ed92e42fdffcd56247a708ff07a795175345f12811244e2 0.0s done
-#32 exporting manifest list sha256:171839399998cd59913a234b75cce04754d77b8865eac04df1c8fdfa410e3b84 0.0s done
+#32 exporting attestation manifest sha256:bba515f23026e431fef0f6a56ffd77d3e95bb1f6f7a91118a8f1bd952624f829 0.0s done
+#32 exporting manifest list sha256:254cf28164d1ebfe4fb102add249502dfbc28fd84b8623a6fd63e6e64d6748f5 0.0s done
 #32 pushing layers
 #32 ...
 
@@ -116,19 +120,19 @@
 #33 DONE 0.0s
 
 #32 [beelzebub] exporting to image
-#32 pushing layers 2.5s done
-#32 pushing manifest for docker.io/f0rc3ps/beelzebub:24.04.1@sha256:171839399998cd59913a234b75cce04754d77b8865eac04df1c8fdfa410e3b84
-#32 pushing manifest for docker.io/f0rc3ps/beelzebub:24.04.1@sha256:171839399998cd59913a234b75cce04754d77b8865eac04df1c8fdfa410e3b84 2.3s done
+#32 pushing layers 3.4s done
+#32 pushing manifest for docker.io/f0rc3ps/beelzebub:24.04.1@sha256:254cf28164d1ebfe4fb102add249502dfbc28fd84b8623a6fd63e6e64d6748f5
+#32 pushing manifest for docker.io/f0rc3ps/beelzebub:24.04.1@sha256:254cf28164d1ebfe4fb102add249502dfbc28fd84b8623a6fd63e6e64d6748f5 2.8s done
 #32 ...
 
 #34 [beelzebub auth] asc3t1c/beelzebub:pull,push token for ghcr.io
 #34 DONE 0.0s
 
 #32 [beelzebub] exporting to image
-#32 pushing layers 2.3s done
-#32 pushing manifest for ghcr.io/asc3t1c/beelzebub:24.04.1@sha256:171839399998cd59913a234b75cce04754d77b8865eac04df1c8fdfa410e3b84
-#32 pushing manifest for ghcr.io/asc3t1c/beelzebub:24.04.1@sha256:171839399998cd59913a234b75cce04754d77b8865eac04df1c8fdfa410e3b84 1.9s done
-#32 DONE 9.1s
+#32 pushing layers 2.7s done
+#32 pushing manifest for ghcr.io/asc3t1c/beelzebub:24.04.1@sha256:254cf28164d1ebfe4fb102add249502dfbc28fd84b8623a6fd63e6e64d6748f5
+#32 pushing manifest for ghcr.io/asc3t1c/beelzebub:24.04.1@sha256:254cf28164d1ebfe4fb102add249502dfbc28fd84b8623a6fd63e6e64d6748f5 1.6s done
+#32 DONE 10.6s
 
 #35 [beelzebub] resolving provenance for metadata file
 #35 DONE 0.0s

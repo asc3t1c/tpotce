@@ -1,48 +1,52 @@
 #0 building with "mybuilder" instance using docker-container driver
 
 #1 [fatt internal] load build definition from Dockerfile
-#1 transferring dockerfile: 1.16kB done
+#1 transferring dockerfile: 1.16kB 0.0s done
 #1 DONE 0.0s
 
-#2 [fatt linux/amd64 internal] load metadata for docker.io/library/alpine:3.20
-#2 DONE 0.2s
+#2 [fatt linux/arm64 internal] load metadata for docker.io/library/alpine:3.20
+#2 ...
 
-#3 [fatt linux/arm64 internal] load metadata for docker.io/library/alpine:3.20
-#3 DONE 0.3s
+#3 [fatt linux/amd64 internal] load metadata for docker.io/library/alpine:3.20
+#3 DONE 1.3s
 
 #4 [fatt internal] load .dockerignore
 #4 transferring context: 2B done
 #4 DONE 0.0s
 
-#5 [fatt linux/amd64 1/3] FROM docker.io/library/alpine:3.20@sha256:31687a2fdd021f85955bf2d0c2682e9c0949827560e1db546358ea094f740f12
+#2 [fatt linux/arm64 internal] load metadata for docker.io/library/alpine:3.20
+#2 DONE 1.5s
+
+#5 [fatt linux/arm64 1/3] FROM docker.io/library/alpine:3.20@sha256:31687a2fdd021f85955bf2d0c2682e9c0949827560e1db546358ea094f740f12
 #5 resolve docker.io/library/alpine:3.20@sha256:31687a2fdd021f85955bf2d0c2682e9c0949827560e1db546358ea094f740f12 0.0s done
 #5 DONE 0.0s
 
-#6 [fatt linux/amd64 2/3] RUN apk --no-cache -U upgrade &&     apk --no-cache -U add 		git 		libcap 		py3-libxml2 		py3-lxml 		py3-pip 		python3 		python3-dev 		tshark &&     addgroup -g 2000 fatt &&     adduser -S -s /bin/ash -u 2000 -D -g 2000 fatt &&     mkdir -p /opt &&     cd /opt &&     git clone https://github.com/0x4D31/fatt &&     cd fatt &&     git checkout c29e553514281e50781f86932b82337a5ada5640 &&     mkdir -p log &&     pip3 install --no-cache-dir --break-system-packages pyshark &&     chgrp fatt /usr/bin/dumpcap &&     setcap cap_net_raw,cap_net_admin=+eip /usr/bin/dumpcap &&     chown fatt:fatt -R /opt/fatt/* &&     apk del --purge git             python3-dev &&     rm -rf /root/*             /var/cache/apk/*             /opt/fatt/.git
+#6 [fatt linux/arm64 2/3] RUN apk --no-cache -U upgrade &&     apk --no-cache -U add 		git 		libcap 		py3-libxml2 		py3-lxml 		py3-pip 		python3 		python3-dev 		tshark &&     addgroup -g 2000 fatt &&     adduser -S -s /bin/ash -u 2000 -D -g 2000 fatt &&     mkdir -p /opt &&     cd /opt &&     git clone https://github.com/0x4D31/fatt &&     cd fatt &&     git checkout c29e553514281e50781f86932b82337a5ada5640 &&     mkdir -p log &&     pip3 install --no-cache-dir --break-system-packages pyshark &&     chgrp fatt /usr/bin/dumpcap &&     setcap cap_net_raw,cap_net_admin=+eip /usr/bin/dumpcap &&     chown fatt:fatt -R /opt/fatt/* &&     apk del --purge git             python3-dev &&     rm -rf /root/*             /var/cache/apk/*             /opt/fatt/.git
 #6 CACHED
 
-#7 [fatt linux/amd64 3/3] WORKDIR /opt/fatt
+#7 [fatt linux/arm64 3/3] WORKDIR /opt/fatt
 #7 CACHED
 
-#8 [fatt linux/arm64 1/3] FROM docker.io/library/alpine:3.20@sha256:31687a2fdd021f85955bf2d0c2682e9c0949827560e1db546358ea094f740f12
+#8 [fatt linux/amd64 1/3] FROM docker.io/library/alpine:3.20@sha256:31687a2fdd021f85955bf2d0c2682e9c0949827560e1db546358ea094f740f12
 #8 resolve docker.io/library/alpine:3.20@sha256:31687a2fdd021f85955bf2d0c2682e9c0949827560e1db546358ea094f740f12 0.0s done
 #8 DONE 0.0s
 
-#9 [fatt linux/arm64 2/3] RUN apk --no-cache -U upgrade &&     apk --no-cache -U add 		git 		libcap 		py3-libxml2 		py3-lxml 		py3-pip 		python3 		python3-dev 		tshark &&     addgroup -g 2000 fatt &&     adduser -S -s /bin/ash -u 2000 -D -g 2000 fatt &&     mkdir -p /opt &&     cd /opt &&     git clone https://github.com/0x4D31/fatt &&     cd fatt &&     git checkout c29e553514281e50781f86932b82337a5ada5640 &&     mkdir -p log &&     pip3 install --no-cache-dir --break-system-packages pyshark &&     chgrp fatt /usr/bin/dumpcap &&     setcap cap_net_raw,cap_net_admin=+eip /usr/bin/dumpcap &&     chown fatt:fatt -R /opt/fatt/* &&     apk del --purge git             python3-dev &&     rm -rf /root/*             /var/cache/apk/*             /opt/fatt/.git
+#9 [fatt linux/amd64 2/3] RUN apk --no-cache -U upgrade &&     apk --no-cache -U add 		git 		libcap 		py3-libxml2 		py3-lxml 		py3-pip 		python3 		python3-dev 		tshark &&     addgroup -g 2000 fatt &&     adduser -S -s /bin/ash -u 2000 -D -g 2000 fatt &&     mkdir -p /opt &&     cd /opt &&     git clone https://github.com/0x4D31/fatt &&     cd fatt &&     git checkout c29e553514281e50781f86932b82337a5ada5640 &&     mkdir -p log &&     pip3 install --no-cache-dir --break-system-packages pyshark &&     chgrp fatt /usr/bin/dumpcap &&     setcap cap_net_raw,cap_net_admin=+eip /usr/bin/dumpcap &&     chown fatt:fatt -R /opt/fatt/* &&     apk del --purge git             python3-dev &&     rm -rf /root/*             /var/cache/apk/*             /opt/fatt/.git
 #9 CACHED
 
-#10 [fatt linux/arm64 3/3] WORKDIR /opt/fatt
+#10 [fatt linux/amd64 3/3] WORKDIR /opt/fatt
 #10 CACHED
 
 #11 [fatt] exporting to image
 #11 exporting layers done
 #11 exporting manifest sha256:8ba8d13125bbaeff55d251113fa77e1a7bbcfdab232326be3a5acbf9ca7d112d done
 #11 exporting config sha256:67b61dbe6f07be999b69a76440809632adf9a653d4842dd3a5ece3ebd9f7b818 done
-#11 exporting attestation manifest sha256:ddb7331f15f83e00d134050239d39835163379a2ea027c1655893b1dcc3d5850 0.0s done
+#11 exporting attestation manifest sha256:73c6c64408c1fef10d10de9d2d4f27231ff4445c3842798df909154ed06c1695 0.0s done
 #11 exporting manifest sha256:9817c4b740b580309ed9f1091f49bf89efb1d17af5c20380a992211ef7d69ad1 done
+#11 exporting config sha256:0ae8beb2663c3dfeac2566832318ac3fa8c3225beb092d1ede037388ee230fe3
 #11 exporting config sha256:0ae8beb2663c3dfeac2566832318ac3fa8c3225beb092d1ede037388ee230fe3 done
-#11 exporting attestation manifest sha256:5bc61856c457a126ae6b126acf5bf654e9cb0602e3ed1311b3ede0ce28d59ca5 0.0s done
-#11 exporting manifest list sha256:529d18faf0f071c055d6b0d0b7d2ba87c04c772aabefec1a394209cf938d25c9 0.0s done
+#11 exporting attestation manifest sha256:0f8eb250e20b27bd5a829323106c3e1f154a141403f969edb518f76339e8ad57 0.0s done
+#11 exporting manifest list sha256:4fa80025aca0f57fee1c3543e0f8f52f6284234688f6dacf981d687c70ccfeb6 0.0s done
 #11 pushing layers
 #11 ...
 
@@ -50,19 +54,20 @@
 #12 DONE 0.0s
 
 #11 [fatt] exporting to image
-#11 pushing layers 2.3s done
-#11 pushing manifest for docker.io/f0rc3ps/fatt:24.04.1@sha256:529d18faf0f071c055d6b0d0b7d2ba87c04c772aabefec1a394209cf938d25c9
-#11 pushing manifest for docker.io/f0rc3ps/fatt:24.04.1@sha256:529d18faf0f071c055d6b0d0b7d2ba87c04c772aabefec1a394209cf938d25c9 2.1s done
+#11 pushing layers 5.3s done
+#11 pushing manifest for docker.io/f0rc3ps/fatt:24.04.1@sha256:4fa80025aca0f57fee1c3543e0f8f52f6284234688f6dacf981d687c70ccfeb6
+#11 pushing manifest for docker.io/f0rc3ps/fatt:24.04.1@sha256:4fa80025aca0f57fee1c3543e0f8f52f6284234688f6dacf981d687c70ccfeb6 9.1s done
+#11 pushing layers
 #11 ...
 
 #13 [fatt auth] asc3t1c/fatt:pull,push token for ghcr.io
 #13 DONE 0.0s
 
 #11 [fatt] exporting to image
-#11 pushing layers 2.6s done
-#11 pushing manifest for ghcr.io/asc3t1c/fatt:24.04.1@sha256:529d18faf0f071c055d6b0d0b7d2ba87c04c772aabefec1a394209cf938d25c9
-#11 pushing manifest for ghcr.io/asc3t1c/fatt:24.04.1@sha256:529d18faf0f071c055d6b0d0b7d2ba87c04c772aabefec1a394209cf938d25c9 1.8s done
-#11 DONE 9.0s
+#11 pushing layers 2.2s done
+#11 pushing manifest for ghcr.io/asc3t1c/fatt:24.04.1@sha256:4fa80025aca0f57fee1c3543e0f8f52f6284234688f6dacf981d687c70ccfeb6
+#11 pushing manifest for ghcr.io/asc3t1c/fatt:24.04.1@sha256:4fa80025aca0f57fee1c3543e0f8f52f6284234688f6dacf981d687c70ccfeb6 2.3s done
+#11 DONE 19.1s
 
 #14 [fatt] resolving provenance for metadata file
 #14 DONE 0.0s
