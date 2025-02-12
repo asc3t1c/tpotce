@@ -1,0 +1,94 @@
+#0 building with "mybuilder" instance using docker-container driver
+
+#1 [hellpot internal] load build definition from Dockerfile
+#1 transferring dockerfile: 1.02kB 0.0s done
+#1 DONE 0.0s
+
+#2 [hellpot linux/amd64 internal] load metadata for docker.io/library/golang:1.23-alpine
+#2 DONE 1.0s
+
+#3 [hellpot linux/arm64 internal] load metadata for docker.io/library/golang:1.23-alpine
+#3 ...
+
+#4 [hellpot internal] load .dockerignore
+#4 transferring context: 2B done
+#4 DONE 0.0s
+
+#3 [hellpot linux/arm64 internal] load metadata for docker.io/library/golang:1.23-alpine
+#3 DONE 2.6s
+
+#5 [hellpot linux/arm64 builder 1/3] FROM docker.io/library/golang:1.23-alpine@sha256:2c49857f2295e89b23b28386e57e018a86620a8fede5003900f2d138ba9c4037
+#5 resolve docker.io/library/golang:1.23-alpine@sha256:2c49857f2295e89b23b28386e57e018a86620a8fede5003900f2d138ba9c4037 0.0s done
+#5 DONE 0.0s
+
+#6 [hellpot linux/amd64 builder 1/3] FROM docker.io/library/golang:1.23-alpine@sha256:2c49857f2295e89b23b28386e57e018a86620a8fede5003900f2d138ba9c4037
+#6 resolve docker.io/library/golang:1.23-alpine@sha256:2c49857f2295e89b23b28386e57e018a86620a8fede5003900f2d138ba9c4037 0.0s done
+#6 DONE 0.0s
+
+#7 [hellpot internal] load build context
+#7 transferring context: 62B done
+#7 DONE 0.0s
+
+#8 [hellpot linux/amd64 stage-1 2/3] COPY --from=builder /root/dist/config.toml /opt/hellpot/config/
+#8 CACHED
+
+#9 [hellpot linux/amd64 builder 3/3] RUN apk --no-cache -U upgrade &&     apk --no-cache -U add 		build-base 		git 		g++ &&     cd /root &&     git clone https://github.com/yunginnanet/HellPot &&     cd HellPot &&     git checkout c48b70110148918255f93df4fa49c675ba5a5754 &&     sed -i 's#logFileName := "HellPot"#logFileName := "hellpot"#g' internal/config/logger.go &&     go mod download &&     go vet -v ./... &&     go test -v ./... &&     export CGO_ENABLED=0 &&     export VERSION=`git tag --sort=-version:refname | head -n 1` &&     go build -trimpath 		-ldflags "-s -w -X main.version=$VERSION" 		cmd/HellPot/HellPot.go
+#9 CACHED
+
+#10 [hellpot linux/amd64 stage-1 1/3] COPY --from=builder /root/HellPot/HellPot /opt/hellpot/
+#10 CACHED
+
+#11 [hellpot linux/amd64 builder 2/3] COPY dist/ /root/dist/
+#11 CACHED
+
+#12 [hellpot linux/amd64 stage-1 3/3] WORKDIR /opt/hellpot
+#12 CACHED
+
+#13 [hellpot linux/arm64 builder 2/3] COPY dist/ /root/dist/
+#13 CACHED
+
+#14 [hellpot linux/arm64 stage-1 2/3] COPY --from=builder /root/dist/config.toml /opt/hellpot/config/
+#14 CACHED
+
+#15 [hellpot linux/arm64 builder 3/3] RUN apk --no-cache -U upgrade &&     apk --no-cache -U add 		build-base 		git 		g++ &&     cd /root &&     git clone https://github.com/yunginnanet/HellPot &&     cd HellPot &&     git checkout c48b70110148918255f93df4fa49c675ba5a5754 &&     sed -i 's#logFileName := "HellPot"#logFileName := "hellpot"#g' internal/config/logger.go &&     go mod download &&     go vet -v ./... &&     go test -v ./... &&     export CGO_ENABLED=0 &&     export VERSION=`git tag --sort=-version:refname | head -n 1` &&     go build -trimpath 		-ldflags "-s -w -X main.version=$VERSION" 		cmd/HellPot/HellPot.go
+#15 CACHED
+
+#16 [hellpot linux/arm64 stage-1 1/3] COPY --from=builder /root/HellPot/HellPot /opt/hellpot/
+#16 CACHED
+
+#17 [hellpot linux/arm64 stage-1 3/3] WORKDIR /opt/hellpot
+#17 CACHED
+
+#18 [hellpot] exporting to image
+#18 exporting layers done
+#18 exporting manifest sha256:b10296abae6c473bd584493b85d4cd0669e205c0791893023bba0a8b1d43cbe5 done
+#18 exporting config sha256:460e2ccd91abfc1f1956eda4fb4ceeaa3364902d0c6089d0aa99665dbc61fd98 done
+#18 exporting attestation manifest sha256:a2098e288c959ff9b8f217d5b63ea77b64fef3a3082281731db14fb07305e3b7 0.0s done
+#18 exporting manifest sha256:4bde5d798902c40f583a25d22d2393c6973edad576fd5cfb22e40418f463a1c0 done
+#18 exporting config sha256:fb7d17a8a69aa9040d6ce9399cf006a81368f6ec3ba26d7f89c203004d22627b done
+#18 exporting attestation manifest sha256:4184c45e65afaf5e6cb37ff87a88de384fb9f35f4e5e04646448eec423cb1b00 0.0s done
+#18 exporting manifest list sha256:cb49840dde330a164aa844cc1dba2a7c59a77a8fecda0f9966bb463addb45d76 0.0s done
+#18 pushing layers
+#18 ...
+
+#19 [hellpot auth] f0rc3ps/hellpot:pull,push token for registry-1.docker.io
+#19 DONE 0.0s
+
+#18 [hellpot] exporting to image
+#18 pushing layers 6.5s done
+#18 pushing manifest for docker.io/f0rc3ps/hellpot:24.04.1@sha256:cb49840dde330a164aa844cc1dba2a7c59a77a8fecda0f9966bb463addb45d76
+#18 pushing manifest for docker.io/f0rc3ps/hellpot:24.04.1@sha256:cb49840dde330a164aa844cc1dba2a7c59a77a8fecda0f9966bb463addb45d76 7.4s done
+#18 pushing layers
+#18 ...
+
+#20 [hellpot auth] asc3t1c/hellpot:pull,push token for ghcr.io
+#20 DONE 0.0s
+
+#18 [hellpot] exporting to image
+#18 pushing layers 5.3s done
+#18 pushing manifest for ghcr.io/asc3t1c/hellpot:24.04.1@sha256:cb49840dde330a164aa844cc1dba2a7c59a77a8fecda0f9966bb463addb45d76
+#18 pushing manifest for ghcr.io/asc3t1c/hellpot:24.04.1@sha256:cb49840dde330a164aa844cc1dba2a7c59a77a8fecda0f9966bb463addb45d76 2.5s done
+#18 DONE 21.8s
+
+#21 [hellpot] resolving provenance for metadata file
+#21 DONE 0.0s

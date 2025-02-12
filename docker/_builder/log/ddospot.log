@@ -1,0 +1,118 @@
+#0 building with "mybuilder" instance using docker-container driver
+
+#1 [ddospot internal] load build definition from Dockerfile
+#1 transferring dockerfile: 2.01kB 0.0s done
+#1 DONE 0.0s
+
+#2 [ddospot linux/amd64 internal] load metadata for docker.io/library/alpine:3.20
+#2 ...
+
+#3 [ddospot linux/arm64 internal] load metadata for docker.io/library/alpine:3.20
+#3 DONE 1.6s
+
+#4 [ddospot internal] load .dockerignore
+#4 transferring context: 2B done
+#4 DONE 0.0s
+
+#2 [ddospot linux/amd64 internal] load metadata for docker.io/library/alpine:3.20
+#2 DONE 1.8s
+
+#5 [ddospot linux/arm64 builder 1/5] FROM docker.io/library/alpine:3.20@sha256:31687a2fdd021f85955bf2d0c2682e9c0949827560e1db546358ea094f740f12
+#5 resolve docker.io/library/alpine:3.20@sha256:31687a2fdd021f85955bf2d0c2682e9c0949827560e1db546358ea094f740f12 0.0s done
+#5 DONE 0.0s
+
+#6 [ddospot linux/amd64 builder 1/5] FROM docker.io/library/alpine:3.20@sha256:31687a2fdd021f85955bf2d0c2682e9c0949827560e1db546358ea094f740f12
+#6 resolve docker.io/library/alpine:3.20@sha256:31687a2fdd021f85955bf2d0c2682e9c0949827560e1db546358ea094f740f12 0.0s done
+#6 DONE 0.0s
+
+#7 [ddospot internal] load build context
+#7 transferring context: 66B done
+#7 DONE 0.0s
+
+#8 [ddospot linux/amd64 stage-1 4/6] COPY --from=builder /opt/ddospot/ddospot/global.conf /opt/ddospot/ddospot/
+#8 CACHED
+
+#9 [ddospot linux/amd64 stage-1 3/6] COPY --from=builder /opt/ddospot/ddospot/dist/ddospot/ /opt/ddospot/ddospot
+#9 CACHED
+
+#10 [ddospot linux/amd64 builder 2/5] COPY dist/ /root/dist/
+#10 CACHED
+
+#11 [ddospot linux/amd64 stage-1 2/6] RUN apk --no-cache -U upgrade
+#11 CACHED
+
+#12 [ddospot linux/amd64 builder 3/5] RUN apk --no-cache -U upgrade &&     apk --no-cache -U add 		build-base 		git 		py3-colorama 		py3-greenlet 		py3-pip 		py3-schedule 		py3-sqlalchemy 		py3-twisted 		py3-wheel 		python3 		python3-dev &&     mkdir -p /opt &&     cd /opt/ &&     git clone https://github.com/t3chn0m4g3/ddospot &&     cd ddospot &&     git checkout 66b94f3cf56c66e2e26b55feff9e65493cfadf3c &&     cp /root/dist/requirements.txt . &&     pip3 install --break-system-packages -r ddospot/requirements.txt &&     pip3 install --break-system-packages pyinstaller
+#12 CACHED
+
+#13 [ddospot linux/amd64 builder 4/5] WORKDIR /opt/ddospot/ddospot
+#13 CACHED
+
+#14 [ddospot linux/amd64 stage-1 5/6] COPY --from=builder /opt/ddospot/ddospot/pots /opt/ddospot/ddospot/pots
+#14 CACHED
+
+#15 [ddospot linux/amd64 builder 5/5] RUN pyinstaller ddospot.py        --add-data "core:core"        --hidden-import core        --hidden-import cmd        --hidden-import configparser        --hidden-import colorama        --hidden-import tabulate        --hidden-import logging.handlers        --hidden-import hpfeeds        --hidden-import json        --hidden-import http.server        --hidden-import sys        --hidden-import sqlalchemy        --hidden-import sqlalchemy.ext.declarative        --hidden-import schedule        --hidden-import twisted        --hidden-import twisted.internet        --hidden-import twisted.internet.reactor        --hidden-import twisted.names.client        --hidden-import twisted.names.server        --hidden-import twisted.python        --hidden-import OpenSSL.crypto        --hidden-import OpenSSL.SSL
+#15 CACHED
+
+#16 [ddospot linux/amd64 stage-1 6/6] WORKDIR /opt/ddospot/ddospot
+#16 CACHED
+
+#17 [ddospot linux/arm64 stage-1 2/6] RUN apk --no-cache -U upgrade
+#17 CACHED
+
+#18 [ddospot linux/arm64 stage-1 3/6] COPY --from=builder /opt/ddospot/ddospot/dist/ddospot/ /opt/ddospot/ddospot
+#18 CACHED
+
+#19 [ddospot linux/arm64 stage-1 5/6] COPY --from=builder /opt/ddospot/ddospot/pots /opt/ddospot/ddospot/pots
+#19 CACHED
+
+#20 [ddospot linux/arm64 builder 5/5] RUN pyinstaller ddospot.py        --add-data "core:core"        --hidden-import core        --hidden-import cmd        --hidden-import configparser        --hidden-import colorama        --hidden-import tabulate        --hidden-import logging.handlers        --hidden-import hpfeeds        --hidden-import json        --hidden-import http.server        --hidden-import sys        --hidden-import sqlalchemy        --hidden-import sqlalchemy.ext.declarative        --hidden-import schedule        --hidden-import twisted        --hidden-import twisted.internet        --hidden-import twisted.internet.reactor        --hidden-import twisted.names.client        --hidden-import twisted.names.server        --hidden-import twisted.python        --hidden-import OpenSSL.crypto        --hidden-import OpenSSL.SSL
+#20 CACHED
+
+#21 [ddospot linux/arm64 builder 4/5] WORKDIR /opt/ddospot/ddospot
+#21 CACHED
+
+#22 [ddospot linux/arm64 stage-1 4/6] COPY --from=builder /opt/ddospot/ddospot/global.conf /opt/ddospot/ddospot/
+#22 CACHED
+
+#23 [ddospot linux/arm64 builder 3/5] RUN apk --no-cache -U upgrade &&     apk --no-cache -U add 		build-base 		git 		py3-colorama 		py3-greenlet 		py3-pip 		py3-schedule 		py3-sqlalchemy 		py3-twisted 		py3-wheel 		python3 		python3-dev &&     mkdir -p /opt &&     cd /opt/ &&     git clone https://github.com/t3chn0m4g3/ddospot &&     cd ddospot &&     git checkout 66b94f3cf56c66e2e26b55feff9e65493cfadf3c &&     cp /root/dist/requirements.txt . &&     pip3 install --break-system-packages -r ddospot/requirements.txt &&     pip3 install --break-system-packages pyinstaller
+#23 CACHED
+
+#24 [ddospot linux/arm64 builder 2/5] COPY dist/ /root/dist/
+#24 CACHED
+
+#25 [ddospot linux/arm64 stage-1 6/6] WORKDIR /opt/ddospot/ddospot
+#25 CACHED
+
+#26 [ddospot] exporting to image
+#26 exporting layers done
+#26 exporting manifest sha256:e66dd32a2729241248e0546998a9711c61110311e80c406e859c280f5ee5e5fb done
+#26 exporting config sha256:09346980a640adc697f79eaf453500b1173e6d671b724571c7681d02d96eb230 done
+#26 exporting attestation manifest sha256:2d7cde4317a96475a154f962039344e792ad09158eb26939cf3e71fcdd0a1ca7 0.0s done
+#26 exporting manifest sha256:8bb066ef2188854b35b2a38ad295cca5aafb2ee0ec0ace7331682ab154fe6974 done
+#26 exporting config sha256:8139f59b96d8145cdfb2a1561ab20a69e0a3ef834d5246efef62c806905449a0 done
+#26 exporting attestation manifest sha256:fa115a4c009f1f21b2dcb1ce52935511684b612921a5bd830f05a75b3f21cf69 0.0s done
+#26 exporting manifest list sha256:7f388d6b9c2e6c04da1109eedac61f09ad5a81161afcddf1de7c67eaa18a6079 0.0s done
+#26 pushing layers
+#26 ...
+
+#27 [ddospot auth] f0rc3ps/ddospot:pull,push token for registry-1.docker.io
+#27 DONE 0.0s
+
+#26 [ddospot] exporting to image
+#26 pushing layers 7.9s done
+#26 pushing manifest for docker.io/f0rc3ps/ddospot:24.04.1@sha256:7f388d6b9c2e6c04da1109eedac61f09ad5a81161afcddf1de7c67eaa18a6079
+#26 pushing manifest for docker.io/f0rc3ps/ddospot:24.04.1@sha256:7f388d6b9c2e6c04da1109eedac61f09ad5a81161afcddf1de7c67eaa18a6079 6.5s done
+#26 pushing layers
+#26 ...
+
+#28 [ddospot auth] asc3t1c/ddospot:pull,push token for ghcr.io
+#28 DONE 0.0s
+
+#26 [ddospot] exporting to image
+#26 pushing layers 2.3s done
+#26 pushing manifest for ghcr.io/asc3t1c/ddospot:24.04.1@sha256:7f388d6b9c2e6c04da1109eedac61f09ad5a81161afcddf1de7c67eaa18a6079
+#26 pushing manifest for ghcr.io/asc3t1c/ddospot:24.04.1@sha256:7f388d6b9c2e6c04da1109eedac61f09ad5a81161afcddf1de7c67eaa18a6079 3.8s done
+#26 DONE 20.6s
+
+#29 [ddospot] resolving provenance for metadata file
+#29 DONE 0.0s

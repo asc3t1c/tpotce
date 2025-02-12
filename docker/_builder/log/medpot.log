@@ -1,0 +1,99 @@
+#0 building with "mybuilder" instance using docker-container driver
+
+#1 [medpot internal] load build definition from Dockerfile
+#1 transferring dockerfile: 983B done
+#1 DONE 0.0s
+
+#2 [medpot auth] library/golang:pull token for registry-1.docker.io
+#2 DONE 0.0s
+
+#3 [medpot linux/arm64 internal] load metadata for docker.io/library/golang:1.23-alpine
+#3 ...
+
+#4 [medpot linux/amd64 internal] load metadata for docker.io/library/golang:1.23-alpine
+#4 DONE 2.6s
+
+#3 [medpot linux/arm64 internal] load metadata for docker.io/library/golang:1.23-alpine
+#3 DONE 2.6s
+
+#5 [medpot internal] load .dockerignore
+#5 transferring context: 2B done
+#5 DONE 0.0s
+
+#6 [medpot linux/amd64 builder 1/3] FROM docker.io/library/golang:1.23-alpine@sha256:2c49857f2295e89b23b28386e57e018a86620a8fede5003900f2d138ba9c4037
+#6 resolve docker.io/library/golang:1.23-alpine@sha256:2c49857f2295e89b23b28386e57e018a86620a8fede5003900f2d138ba9c4037 0.0s done
+#6 DONE 0.0s
+
+#7 [medpot linux/amd64 stage-1 3/4] COPY --from=builder /usr/local/go/src/medpot/dist/etc/ews.cfg /etc/ews.cfg
+#7 CACHED
+
+#8 [medpot linux/amd64 builder 2/3] RUN apk --no-cache -U upgrade &&     apk --no-cache -U add         build-base         git         g++
+#8 CACHED
+
+#9 [medpot linux/amd64 builder 3/3] RUN mkdir -p /usr/local/go/src/medpot &&     git clone https://github.com/schmalle/medpot /usr/local/go/src/medpot &&     cd /usr/local/go/src/medpot &&     git checkout 75a2e6134cf926c35b6017d62542274434c87388 &&     go mod init github.com/schmalle/medpot &&     go mod tidy &&     go mod download &&     cp dist/etc/ews.cfg /etc/ &&     go build medpot
+#9 CACHED
+
+#10 [medpot linux/amd64 stage-1 1/4] COPY --from=builder /usr/local/go/src/medpot/medpot /opt/medpot/medpot
+#10 CACHED
+
+#11 [medpot linux/amd64 stage-1 2/4] COPY --from=builder /usr/local/go/src/medpot/template/*.xml /opt/medpot/
+#11 CACHED
+
+#12 [medpot linux/amd64 stage-1 4/4] WORKDIR /opt/medpot
+#12 CACHED
+
+#13 [medpot linux/arm64 builder 1/3] FROM docker.io/library/golang:1.23-alpine@sha256:2c49857f2295e89b23b28386e57e018a86620a8fede5003900f2d138ba9c4037
+#13 resolve docker.io/library/golang:1.23-alpine@sha256:2c49857f2295e89b23b28386e57e018a86620a8fede5003900f2d138ba9c4037 0.0s done
+#13 DONE 0.0s
+
+#14 [medpot linux/arm64 stage-1 1/4] COPY --from=builder /usr/local/go/src/medpot/medpot /opt/medpot/medpot
+#14 CACHED
+
+#15 [medpot linux/arm64 stage-1 3/4] COPY --from=builder /usr/local/go/src/medpot/dist/etc/ews.cfg /etc/ews.cfg
+#15 CACHED
+
+#16 [medpot linux/arm64 builder 3/3] RUN mkdir -p /usr/local/go/src/medpot &&     git clone https://github.com/schmalle/medpot /usr/local/go/src/medpot &&     cd /usr/local/go/src/medpot &&     git checkout 75a2e6134cf926c35b6017d62542274434c87388 &&     go mod init github.com/schmalle/medpot &&     go mod tidy &&     go mod download &&     cp dist/etc/ews.cfg /etc/ &&     go build medpot
+#16 CACHED
+
+#17 [medpot linux/arm64 builder 2/3] RUN apk --no-cache -U upgrade &&     apk --no-cache -U add         build-base         git         g++
+#17 CACHED
+
+#18 [medpot linux/arm64 stage-1 2/4] COPY --from=builder /usr/local/go/src/medpot/template/*.xml /opt/medpot/
+#18 CACHED
+
+#19 [medpot linux/arm64 stage-1 4/4] WORKDIR /opt/medpot
+#19 CACHED
+
+#20 [medpot] exporting to image
+#20 exporting layers done
+#20 exporting manifest sha256:20ad9fb5c65bd1e25a7268f18de4300ba8ff883762542856606e89f68a1c5ad8 done
+#20 exporting config sha256:6b928c0a5bef9592f0906252b40c6152b5e61434570f1f4d545e522120a95f36 done
+#20 exporting attestation manifest sha256:0a82418cd96a8a2b887e107b4fdb08221c2b315ecaf55f8b7e09fc98fabf0be5 0.0s done
+#20 exporting manifest sha256:27acc3031e7ea86978f183de87d7625d13abea0c2564ac6894a22e7c62b06394 done
+#20 exporting config sha256:29d8aa78866d72ff860073e99edaf8a0989ae91ac78e1029c68ed374182fbedc done
+#20 exporting attestation manifest sha256:3bd58299496a7044624babfc528b69d933bbbb34da556768324191990e07791c 0.0s done
+#20 exporting manifest list sha256:a6b82affd52f82794b4c4039542c5cd98df2e20a189fe684e3c45bd5b285ff76 done
+#20 pushing layers
+#20 ...
+
+#21 [medpot auth] f0rc3ps/medpot:pull,push token for registry-1.docker.io
+#21 DONE 0.0s
+
+#20 [medpot] exporting to image
+#20 pushing layers 5.7s done
+#20 pushing manifest for docker.io/f0rc3ps/medpot:24.04.1@sha256:a6b82affd52f82794b4c4039542c5cd98df2e20a189fe684e3c45bd5b285ff76
+#20 pushing manifest for docker.io/f0rc3ps/medpot:24.04.1@sha256:a6b82affd52f82794b4c4039542c5cd98df2e20a189fe684e3c45bd5b285ff76 5.2s done
+#20 pushing layers
+#20 ...
+
+#22 [medpot auth] asc3t1c/medpot:pull,push token for ghcr.io
+#22 DONE 0.0s
+
+#20 [medpot] exporting to image
+#20 pushing layers 3.3s done
+#20 pushing manifest for ghcr.io/asc3t1c/medpot:24.04.1@sha256:a6b82affd52f82794b4c4039542c5cd98df2e20a189fe684e3c45bd5b285ff76
+#20 pushing manifest for ghcr.io/asc3t1c/medpot:24.04.1@sha256:a6b82affd52f82794b4c4039542c5cd98df2e20a189fe684e3c45bd5b285ff76 2.2s done
+#20 DONE 16.5s
+
+#23 [medpot] resolving provenance for metadata file
+#23 DONE 0.0s

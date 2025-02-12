@@ -1,0 +1,76 @@
+#0 building with "mybuilder" instance using docker-container driver
+
+#1 [mailoney internal] load build definition from Dockerfile
+#1 transferring dockerfile: 965B 0.0s done
+#1 DONE 0.0s
+
+#2 [mailoney auth] library/alpine:pull token for registry-1.docker.io
+#2 DONE 0.0s
+
+#3 [mailoney linux/arm64 internal] load metadata for docker.io/library/alpine:3.19
+#3 ...
+
+#4 [mailoney linux/amd64 internal] load metadata for docker.io/library/alpine:3.19
+#4 DONE 1.0s
+
+#5 [mailoney internal] load .dockerignore
+#5 transferring context: 2B done
+#5 DONE 0.0s
+
+#3 [mailoney linux/arm64 internal] load metadata for docker.io/library/alpine:3.19
+#3 DONE 1.0s
+
+#6 [mailoney linux/arm64 1/3] FROM docker.io/library/alpine:3.19@sha256:6380aa6b04faa579332d4c9d1f65bd7093012ba6e01d9bbcd5e2d8a4f9fae38f
+#6 resolve docker.io/library/alpine:3.19@sha256:6380aa6b04faa579332d4c9d1f65bd7093012ba6e01d9bbcd5e2d8a4f9fae38f 0.0s done
+#6 DONE 0.0s
+
+#7 [mailoney linux/arm64 2/3] RUN apk --no-cache -U upgrade &&     apk --no-cache -U add 		git 		libcap 		python3 &&     git clone https://github.com/t3chn0m4g3/mailoney /opt/mailoney &&     cd /opt/mailoney &&     git checkout 06e54bd410e0044d26d8462321f1b2811318db0b &&     addgroup -g 2000 mailoney &&     adduser -S -H -s /bin/ash -u 2000 -D -g 2000 mailoney &&     chown -R mailoney:mailoney /opt/mailoney &&     setcap cap_net_bind_service=+ep $(readlink -f $(type -P python3)) &&     apk del --purge git &&     rm -rf /root/* /var/cache/apk/* /opt/mailoney/.git
+#7 CACHED
+
+#8 [mailoney linux/arm64 3/3] WORKDIR /opt/mailoney/
+#8 CACHED
+
+#9 [mailoney linux/amd64 1/3] FROM docker.io/library/alpine:3.19@sha256:6380aa6b04faa579332d4c9d1f65bd7093012ba6e01d9bbcd5e2d8a4f9fae38f
+#9 resolve docker.io/library/alpine:3.19@sha256:6380aa6b04faa579332d4c9d1f65bd7093012ba6e01d9bbcd5e2d8a4f9fae38f 0.0s done
+#9 DONE 0.0s
+
+#10 [mailoney linux/amd64 2/3] RUN apk --no-cache -U upgrade &&     apk --no-cache -U add 		git 		libcap 		python3 &&     git clone https://github.com/t3chn0m4g3/mailoney /opt/mailoney &&     cd /opt/mailoney &&     git checkout 06e54bd410e0044d26d8462321f1b2811318db0b &&     addgroup -g 2000 mailoney &&     adduser -S -H -s /bin/ash -u 2000 -D -g 2000 mailoney &&     chown -R mailoney:mailoney /opt/mailoney &&     setcap cap_net_bind_service=+ep $(readlink -f $(type -P python3)) &&     apk del --purge git &&     rm -rf /root/* /var/cache/apk/* /opt/mailoney/.git
+#10 CACHED
+
+#11 [mailoney linux/amd64 3/3] WORKDIR /opt/mailoney/
+#11 CACHED
+
+#12 [mailoney] exporting to image
+#12 exporting layers done
+#12 exporting manifest sha256:989daf642c3a0261019731ce59597f09e39698e231d8656c7dfd0979da78d43d done
+#12 exporting config sha256:a17bdb4bc1f66ff3fefb7863e96daa4f43e557bb43bd9d9b72c96564aebfd2e4
+#12 exporting config sha256:a17bdb4bc1f66ff3fefb7863e96daa4f43e557bb43bd9d9b72c96564aebfd2e4 done
+#12 exporting attestation manifest sha256:41d3bb2937120bb5ae13a04846f7dd9498298eb9bdf60c8b6b6b9b78a16abf71 0.0s done
+#12 exporting manifest sha256:a73d9834913f0187222142b5266811936d3bf7d07af1148981ce9a5cfd0becd5 done
+#12 exporting config sha256:1098a2e7b9421edd36fedc28ac38cee914cb9db791a7e3cf201008fc0e3e591b done
+#12 exporting attestation manifest sha256:bd0b703853e0167c202c770aaa2c2455f5e8338fecf7c441e9614901a4ee7f2c 0.0s done
+#12 exporting manifest list sha256:90ea476971a9bd86914fd3bc547d5110d7dd0d9e3987d1570c021f3eba49b207 done
+#12 pushing layers
+#12 ...
+
+#13 [mailoney auth] f0rc3ps/mailoney:pull,push token for registry-1.docker.io
+#13 DONE 0.0s
+
+#12 [mailoney] exporting to image
+#12 pushing layers 6.4s done
+#12 pushing manifest for docker.io/f0rc3ps/mailoney:24.04.1@sha256:90ea476971a9bd86914fd3bc547d5110d7dd0d9e3987d1570c021f3eba49b207
+#12 pushing manifest for docker.io/f0rc3ps/mailoney:24.04.1@sha256:90ea476971a9bd86914fd3bc547d5110d7dd0d9e3987d1570c021f3eba49b207 7.2s done
+#12 pushing layers
+#12 ...
+
+#14 [mailoney auth] asc3t1c/mailoney:pull,push token for ghcr.io
+#14 DONE 0.0s
+
+#12 [mailoney] exporting to image
+#12 pushing layers 4.3s done
+#12 pushing manifest for ghcr.io/asc3t1c/mailoney:24.04.1@sha256:90ea476971a9bd86914fd3bc547d5110d7dd0d9e3987d1570c021f3eba49b207
+#12 pushing manifest for ghcr.io/asc3t1c/mailoney:24.04.1@sha256:90ea476971a9bd86914fd3bc547d5110d7dd0d9e3987d1570c021f3eba49b207 2.0s done
+#12 DONE 20.0s
+
+#15 [mailoney] resolving provenance for metadata file
+#15 DONE 0.0s
