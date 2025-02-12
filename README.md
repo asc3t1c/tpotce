@@ -2,7 +2,7 @@
 
 Suppose you need support: For full support, automation, backup, and customization: `500$` every month, per server, or `$37000` every year with full support for 10 servers, it depends on the packet support! You can ask questions at: seccyboxopsec@gmail.com  The other choice is free, you can download install it, and try it personally, without any support! 
 
-***IMPORTANT:*** Every `SINGLE` installation of OPSEC-T-pot from our team, is `$75` external service!
+***IMPORTANT:*** Every `SINGLE` installation and configuration of OPSEC-T-pot from our team, is `$75` external service!
 
 Kind Regards
 
