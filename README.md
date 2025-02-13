@@ -6,7 +6,7 @@ Suppose you need support: For full support, automation, backup, and customizatio
 
 ORDER YOUR DEMO on `seccyboxopsec@gmail.com`!
 
-*1 - 2  days: `$3500`
+* 1 - 2  days: `$3500`
 
 - - ***Include:***
   - Demonstration of installation and base coinfiguration.
