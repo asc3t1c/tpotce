@@ -9,7 +9,7 @@ Suppose you need support: For full support, automation, backup, and customizatio
 ```
 PREDICT CYBER ATTACKS AGAINST YOUR COMPANY!
 TAKE ACTION IN TIME!
-ORDER YOUR LIVE DEMO on `seccyboxopsec@gmail.com`!
+ORDER YOUR LIVE DEMO on seccyboxopsec@gmail.com!
 ```
 
 * 1 - 2  days: `$3500`
