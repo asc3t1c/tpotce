@@ -4,6 +4,17 @@ Suppose you need support: For full support, automation, backup, and customizatio
 
 ***IMPORTANT:*** Every `SINGLE` installation and configuration of OPSEC-T-pot from our team, is `$75` external service!
 
+ORDER YOUR DEMO on `seccyboxopsec@gmail.com`!
+
+*1 - 2  days: `$3500`
+
+- - ***Include:***
+  - Demonstration of installation and base coinfiguration.
+  - Demonstration of any kind of criminal cyber attacks!
+  - Explenation of all these attacks.
+  - Talking about IT defense in all aspects
+  - Questions.
+
 Kind Regards
 
 # NOTE:
