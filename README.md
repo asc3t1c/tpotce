@@ -25,6 +25,14 @@ Kind Regards
 
 ------------------------------------------------------------------------------------------------------------------------
 
+### CONTRACTS:
+
+```
+IMPORTANT! After signing a contract, a distribution copy will be locked only for the client, and public updates will be STOPPED!
+For the security and reliability of your company!
+Thank you
+```
+
 # NOTE:
 
 ***Click on the wallpaper to go into the demo video installation and buy it if you need help installing OPSEC-T-pot. The price is `$25`, thank you.***
