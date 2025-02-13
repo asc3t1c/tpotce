@@ -15,7 +15,7 @@ ORDER YOUR LIVE DEMO on seccyboxopsec@gmail.com!
 * 1 - 2  days: `$5750`
 
 - - ***Include:***
-  - Demonstration of installation and base coinfiguration.
+  - Demonstration of installation and coinfiguration.
   - Demonstration of any kind of criminal cyber attacks!
   - Explenation of all these attacks.
   - Talking about IT defense in all aspects
