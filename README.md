@@ -25,7 +25,7 @@ Kind Regards
 
 ------------------------------------------------------------------------------------------------------------------------
 
-### CONTRACTS:
+### SUPPORT and CONTRACTS for SUPPORT:
 
 ```
 IMPORTANT! After signing a contract, a distribution copy will be locked only for the client, and public updates will be STOPPED!
