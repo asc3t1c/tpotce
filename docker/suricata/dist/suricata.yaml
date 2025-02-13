@@ -1005,7 +1005,7 @@ app-layer:
         detection-ports:
           dp: 53
       udp:
-        enabled: no
+        enabled: yes
         detection-ports:
           dp: 53
     http:
