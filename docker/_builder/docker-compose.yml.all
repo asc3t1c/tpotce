@@ -418,4 +418,3 @@ services:
         - ${TPOT_GHCR_REPO}/spiderfoot:${TPOT_VERSION}
       context: ../spiderfoot/
       <<: *common-build
-
