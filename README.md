@@ -12,7 +12,7 @@ TAKE ACTION IN TIME!
 ORDER YOUR LIVE DEMO on seccyboxopsec@gmail.com!
 ```
 
-* 1 - 2  days: `$3500`
+* 1 - 2  days: `$5750`
 
 - - ***Include:***
   - Demonstration of installation and base coinfiguration.
