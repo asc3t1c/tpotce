@@ -42,7 +42,7 @@ Thank you
 
 ### ATTACKING OPSEC-T-Pot - VIDEO DEMO:
 
-<a href="https://www.patreon.com/posts/opsec-t-pot-burp-122264600">Scanning and attack against OPSEC-T-Pot with</a><a href="https://portswigger.net/burp/releases#professional">Burp Suite</a>
+<a href="https://www.patreon.com/posts/opsec-t-pot-burp-122264600">Scanning and attack against OPSEC-T-Pot with </a><a href="https://portswigger.net/burp/releases#professional">Burp Suite</a>
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------
 
