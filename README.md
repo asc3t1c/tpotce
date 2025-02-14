@@ -4,10 +4,6 @@ Suppose you need support: For full support, automation, backup, and customizatio
 
 ***IMPORTANT:*** Every `SINGLE` installation and configuration of OPSEC-T-pot from our team, is `$75` external service!
 
-### VIDEO DEMO:
-
-<a href="https://www.patreon.com/posts/opsec-t-pot-burp-122264600">Scanning and attack against OPSEC-T-Pot with</a><a href="https://portswigger.net/burp/releases#professional">Burp Suite</a>
-
 ------------------------------------------------------------------------------------------------------------------------
 ### ORDER YOUR LIVE DEMO!
 ```
@@ -43,6 +39,12 @@ Thank you
 
 [![T-Pot](doc/tpotsocial.png)](https://www.patreon.com/posts/opsec-t-pot-how-121936310)
 
+
+### ATTACKING OPSEC-T-Pot - VIDEO DEMO:
+
+<a href="https://www.patreon.com/posts/opsec-t-pot-burp-122264600">Scanning and attack against OPSEC-T-Pot with</a><a href="https://portswigger.net/burp/releases#professional">Burp Suite</a>
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------
 
 T-Pot is the all in one, optionally distributed, multiarch (amd64, arm64) honeypot plattform, supporting 20+ honeypots and countless visualization options using the Elastic Stack, animated live attack maps and lots of security tools to further improve the deception experience.
 <br><br>
