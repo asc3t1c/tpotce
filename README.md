@@ -39,6 +39,11 @@ Thank you
 
 [![T-Pot](doc/tpotsocial.png)](https://www.patreon.com/posts/opsec-t-pot-how-121936310)
 
+### VIDEO DEMO:
+
+[Scanning and attack against OPSEC-T-Pot with [Burp Suite](https://portswigger.net/burp/releases#professional)](https://www.patreon.com/posts/opsec-t-pot-burp-122264600)
+
+
 T-Pot is the all in one, optionally distributed, multiarch (amd64, arm64) honeypot plattform, supporting 20+ honeypots and countless visualization options using the Elastic Stack, animated live attack maps and lots of security tools to further improve the deception experience.
 <br><br>
 
