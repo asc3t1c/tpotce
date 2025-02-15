@@ -1,12 +1,5 @@
 #!/usr/bin/env bash
 
-################################
-# Installing outside resources # 
-################################
-echo "Installing of outside SRC..."
-sleep 3;
-cd tpotce/docker/bunkerweb/
-bash update.sh
 
 myINSTALL_NOTIFICATION="### Now installing required packages ..."
 myUSER=$(whoami)
