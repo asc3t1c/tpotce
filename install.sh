@@ -183,14 +183,6 @@ echo "###            Feed data endlessly to attackers, bots and scanners."
 echo "###            Also runs a Denial of Service Honeypot (ddospot)."
 echo
 
-################################
-# Installing outside resources # 
-################################
-echo "Installing of outside SRC..."
-sleep 3;
-cd docker/bunkerweb/
-docker compose up -d
-
 while true; do
   read -p "### Install Type? (h/s/l/i/m/t) " myTPOT_TYPE
   case "${myTPOT_TYPE}" in
@@ -319,9 +311,13 @@ echo "### Now pulling images ..."
 sudo docker compose -f /home/${myUSER}/tpotce/docker-compose.yml pull
 echo
 
-# Installing from sources:
-cd docker/bunkerweb
-docker-compose up -d
+################################
+# Installing outside resources # 
+################################
+echo "Installing of outside SRC..."
+sleep 3;
+cd docker/bunkerweb/
+docker compose up -d
 
 # Show running services
 echo "### Please review for possible honeypot port conflicts."
