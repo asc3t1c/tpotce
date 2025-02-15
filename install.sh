@@ -118,7 +118,8 @@ fi
 echo "Installing a BunkerWeb please wait..."
 mkdir -p bunkerweb
 cd bunkerweb
-curl -s https://raw.githubusercontent.com/asc3t1c/tpotce/refs/heads/master/docker/bunkerweb/install.sh | bash
+wget https://raw.githubusercontent.com/asc3t1c/tpotce/refs/heads/master/docker/bunkerweb/install.sh
+bash install.sh
 sleep 3;
 cd 
 
