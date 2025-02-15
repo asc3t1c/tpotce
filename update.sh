@@ -1,6 +1,7 @@
 #!/bin/bash
 
 echo "Updating a BunkerWeb please wait..."
+cd 
 cd bunkerweb
 wget https://raw.githubusercontent.com/asc3t1c/tpotce/refs/heads/master/docker/bunkerweb/update.sh
 bash update.sh
