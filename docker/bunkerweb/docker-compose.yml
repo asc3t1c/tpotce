@@ -2,7 +2,7 @@ services:
   bunkerweb:
     image: bunkerity/bunkerweb:1.5.10
     ports:
-      - 81:8080
+      - 85:8080
       - 4443:8443
     labels:
       - "bunkerweb.INSTANCE=yes"
