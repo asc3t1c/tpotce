@@ -1,12 +1,5 @@
 #!/usr/bin/env bash
 
-echo "Installing a BunkerWeb please wait..."
-mkdir -p bunkerweb
-cd bunkerweb
-curl -s https://raw.githubusercontent.com/asc3t1c/tpotce/refs/heads/master/docker/bunkerweb/install.sh | bash
-sleep 3;
-cd 
-
 myINSTALL_NOTIFICATION="### Now installing required packages ..."
 myUSER=$(whoami)
 myTPOT_CONF_FILE="/home/${myUSER}/tpotce/.env"
@@ -121,6 +114,13 @@ if [[ "${myANSIBLE_DISTRIBUTIONS[@]}" =~ "${myCURRENT_DISTRIBUTION}" ]];
   else
     myANSIBLE_TAG=${myCURRENT_DISTRIBUTION}
 fi
+
+echo "Installing a BunkerWeb please wait..."
+mkdir -p bunkerweb
+cd bunkerweb
+curl -s https://raw.githubusercontent.com/asc3t1c/tpotce/refs/heads/master/docker/bunkerweb/install.sh | bash
+sleep 3;
+cd 
 
 # Download tpot.yml if not found locally
 if [ ! -f installer/install/tpot.yml ] && [ ! -f tpot.yml ];
