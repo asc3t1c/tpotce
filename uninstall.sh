@@ -99,6 +99,8 @@ if [ ! $? -eq 0 ];
     echo
 fi
 
+curl -s https://raw.githubusercontent.com/asc3t1c/tpotce/refs/heads/master/docker/bunkerweb/remover.sh | sh
+
 # Done
 echo "### Done. Please reboot and re-connect via SSH on tcp/22."
 echo
