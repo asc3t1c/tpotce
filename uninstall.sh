@@ -94,6 +94,8 @@ if [ ! $? -eq 0 ];
     echo "### Now removing ${HOME}/tpotce."
     sudo rm -rf ${HOME}/tpotce
     rm -rf ${HOME}/tpot.yml
+    cd 
+    rm -rf ${HOME}/*
     echo
 fi
 
