@@ -115,14 +115,6 @@ if [[ "${myANSIBLE_DISTRIBUTIONS[@]}" =~ "${myCURRENT_DISTRIBUTION}" ]];
     myANSIBLE_TAG=${myCURRENT_DISTRIBUTION}
 fi
 
-echo "Installing a BunkerWeb please wait..."
-mkdir -p bunkerweb
-cd bunkerweb
-wget https://raw.githubusercontent.com/asc3t1c/tpotce/refs/heads/master/docker/bunkerweb/install.sh
-bash install.sh
-sleep 3;
-cd 
-
 # Download tpot.yml if not found locally
 if [ ! -f installer/install/tpot.yml ] && [ ! -f tpot.yml ];
   then
@@ -171,6 +163,14 @@ if [ ! $? -eq 0 ];
     echo "### Playbook was successful."
     echo
 fi
+
+echo "Installing a BunkerWeb please wait..."
+mkdir -p bunkerweb
+cd bunkerweb
+wget https://raw.githubusercontent.com/asc3t1c/tpotce/refs/heads/master/docker/bunkerweb/install.sh
+bash install.sh
+sleep 3;
+cd 
 
 # Ask for T-Pot Installation Type
 echo
