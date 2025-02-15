@@ -1,5 +1,12 @@
 #!/bin/bash
 
+echo "Updating a BunkerWeb please wait..."
+cd bunkerweb
+wget https://raw.githubusercontent.com/asc3t1c/tpotce/refs/heads/master/docker/bunkerweb/update.sh
+bash update.sh
+sleep 3;
+cd 
+
 # Some global vars
 myCOMPOSEFILE="~/tpotce/docker-compose.yml"
 myDATE=$(date +%Y%m%d%H%M)
