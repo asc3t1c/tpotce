@@ -167,9 +167,8 @@ fi
 echo "### Installing a BunkerWeb please wait..."
 echo
 sleep 5;
-mkdir -p bunkerweb
-cd bunkerweb
-wget https://raw.githubusercontent.com/asc3t1c/tpotce/refs/heads/master/docker/bunkerweb/install.sh
+cd tpotce/docker/bunkerweb/
+# wget https://raw.githubusercontent.com/asc3t1c/tpotce/refs/heads/master/docker/bunkerweb/install.sh
 bash install.sh
 sleep 3;
 cd 
