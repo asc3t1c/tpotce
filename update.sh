@@ -169,18 +169,6 @@ function fuUPDATER () {
 	fuREMOVEOLDIMAGES "ghcr.io/asc3t1c/*:dev"
 	fuREMOVEOLDIMAGES "f0rc3ps/*:24.04"
 	fuREMOVEOLDIMAGES "ghcr.io/asc3t1c/*:24.04"
-        
-	############################
-	# Update outside resources # 
-	############################
-	echo "Updating of outside SRC..."
-        docker stop bunkerweb-bw-docker-1 bunkerweb-bw-scheduler-1 bunkerweb-bw-ui-1
-	docker rm bunkerweb-bw-docker-1 bunkerweb-bw-scheduler-1 bunkerweb-bw-ui-1
-        sleep 3;
-	cd docker/bunkerweb/
-	bash update.sh
-        cd ../../
-	docker compose up -d
 	
  	echo
 	echo "### If you made changes to docker-compose.yml please ensure to add them again."
@@ -227,6 +215,18 @@ fuBACKUP
 fuSELFUPDATE "$0" "$@"
 fuUPDATER
 fuRESTORE
+
+	############################
+	# Update outside resources # 
+	############################
+	echo "Updating of outside SRC..."
+        docker stop bunkerweb-bw-docker-1 bunkerweb-bw-scheduler-1 bunkerweb-bw-ui-1
+	docker rm bunkerweb-bw-docker-1 bunkerweb-bw-scheduler-1 bunkerweb-bw-ui-1
+        sleep 3;
+	cd docker/bunkerweb/
+	bash update.sh
+        cd ../../
+	docker compose up -d
 
 echo
 echo "### Done. You can now start T-Pot using 'systemctl start tpot' or 'docker compose up -d'."
