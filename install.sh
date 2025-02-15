@@ -310,6 +310,10 @@ echo "### Now pulling images ..."
 sudo docker compose -f /home/${myUSER}/tpotce/docker-compose.yml pull
 echo
 
+# Installing from sources:
+cd docker/bunkerweb
+docker-compose up -d
+
 # Show running services
 echo "### Please review for possible honeypot port conflicts."
 echo "### While SSH is taken care of, other services such as"
