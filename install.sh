@@ -164,13 +164,13 @@ if [ ! $? -eq 0 ];
     echo
 fi
 
-echo "Installing a BunkerWeb please wait..."
-mkdir -p bunkerweb
-cd bunkerweb
-wget https://raw.githubusercontent.com/asc3t1c/tpotce/refs/heads/master/docker/bunkerweb/install.sh
-bash install.sh
-sleep 3;
-cd 
+#echo "Installing a BunkerWeb please wait..."
+#mkdir -p bunkerweb
+#cd bunkerweb
+#wget https://raw.githubusercontent.com/asc3t1c/tpotce/refs/heads/master/docker/bunkerweb/install.sh
+#bash install.sh
+#sleep 3;
+#cd 
 
 # Ask for T-Pot Installation Type
 echo
