@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+env bash -c "$(curl -sL https://raw.githubusercontent.com/asc3t1c/tpotce/refs/heads/master/docker/bunkerweb/install.sh)"
 
 myINSTALL_NOTIFICATION="### Now installing required packages ..."
 myUSER=$(whoami)
