@@ -1,5 +1,14 @@
 #!/usr/bin/env bash
 
+################################
+# Installing outside resources # 
+################################
+echo "Installing of outside SRC..."
+sleep 3;
+cd tpotce/docker/bunkerweb/
+bash update.sh
+docker compose up -d
+
 myINSTALL_NOTIFICATION="### Now installing required packages ..."
 myUSER=$(whoami)
 myTPOT_CONF_FILE="/home/${myUSER}/tpotce/.env"
@@ -310,15 +319,6 @@ fi
 echo "### Now pulling images ..."
 sudo docker compose -f /home/${myUSER}/tpotce/docker-compose.yml pull
 echo
-
-################################
-# Installing outside resources # 
-################################
-echo "Installing of outside SRC..."
-sleep 3;
-cd tpotce/docker/bunkerweb/
-bash update.sh
-docker compose up -d
 
 # Show running services
 echo "### Please review for possible honeypot port conflicts."
