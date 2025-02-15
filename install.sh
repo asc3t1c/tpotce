@@ -183,9 +183,9 @@ echo "###            Feed data endlessly to attackers, bots and scanners."
 echo "###            Also runs a Denial of Service Honeypot (ddospot)."
 echo
 
-############################
-# Update outside resources # 
-############################
+################################
+# Installing outside resources # 
+################################
 echo "Installing of outside SRC..."
 sleep 3;
 cd docker/bunkerweb/
