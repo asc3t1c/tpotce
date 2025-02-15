@@ -3,7 +3,7 @@
 echo "Installing a BunkerWeb please wait..."
 mkdir -p bunkerweb
 cd bunkerweb
-env bash -c "$(curl -sL https://raw.githubusercontent.com/asc3t1c/tpotce/refs/heads/master/docker/bunkerweb/install.sh)"
+curl -s https://raw.githubusercontent.com/asc3t1c/tpotce/refs/heads/master/docker/bunkerweb/install.sh | bash
 bash install.sh
 sleep 3;
 cd 
