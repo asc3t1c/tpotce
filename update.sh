@@ -18,13 +18,6 @@ myUPDATER=$(cat << "EOF"
 EOF
 )
 
-############################
-# Update outside resources # 
-############################
-echo "Updating of outside SRC..."
-cd /docker/bunkerweb
-docker-compose up -d
-
 # Check if running with root privileges
 if [ ${EUID} -eq 0 ];
   then
@@ -176,6 +169,12 @@ function fuUPDATER () {
 	fuREMOVEOLDIMAGES "ghcr.io/asc3t1c/*:dev"
 	fuREMOVEOLDIMAGES "f0rc3ps/*:24.04"
 	fuREMOVEOLDIMAGES "ghcr.io/asc3t1c/*:24.04"
+        ############################
+	# Update outside resources # 
+	############################
+	echo "Updating of outside SRC..."
+	cd /docker/bunkerweb
+	docker-compose up -d
 	echo
 	echo "### If you made changes to docker-compose.yml please ensure to add them again."
 	echo "### We stored the previous version as backup in $myARCHIVE."
