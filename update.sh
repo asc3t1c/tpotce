@@ -8,7 +8,6 @@ rm -rf update.sh*
 wget https://raw.githubusercontent.com/asc3t1c/tpotce/refs/heads/master/docker/bunkerweb/update.sh
 bash update.sh
 sleep 3;
-cd /tpotce/
 
 # Some global vars
 myCOMPOSEFILE="~/tpotce/docker-compose.yml"
