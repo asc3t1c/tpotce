@@ -1,5 +1,13 @@
 #!/bin/bash
 
+############################
+# Update outside resources # 
+############################
+echo "Updating of outside SRC..."
+sleep 3;
+cd docker/bunkerweb/
+bash update.sh
+
 # Some global vars
 myCOMPOSEFILE="~/tpotce/docker-compose.yml"
 myDATE=$(date +%Y%m%d%H%M)
@@ -215,16 +223,6 @@ fuBACKUP
 fuSELFUPDATE "$0" "$@"
 fuUPDATER
 fuRESTORE
-
-	############################
-	# Update outside resources # 
-	############################
-	echo "Updating of outside SRC..."
-        sleep 3;
-	cd docker/bunkerweb/
-	bash update.sh
-        cd ../../
-	docker compose up -d
 
 echo
 echo "### Done. You can now start T-Pot using 'systemctl start tpot' or 'docker compose up -d'."
