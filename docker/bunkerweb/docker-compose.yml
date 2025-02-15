@@ -2,8 +2,8 @@ services:
   bunkerweb:
     image: bunkerity/bunkerweb:1.5.10
     ports:
-      - 81:8080
-      - 4444:8443
+      - 85:8080
+      - 4445:8443
     labels:
       - "bunkerweb.INSTANCE=yes"
     environment:
