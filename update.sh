@@ -1,7 +1,8 @@
 #!/bin/bash
 
 echo "Updating a BunkerWeb please wait..." 
-cd ../bunkerweb
+sleep 5;
+cd ../bunkerweb/
 rm -rf updatate.sh*
 wget https://raw.githubusercontent.com/asc3t1c/tpotce/refs/heads/master/docker/bunkerweb/update.sh
 bash update.sh
