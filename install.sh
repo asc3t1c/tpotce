@@ -182,6 +182,15 @@ echo "### (T)arpit - T-Pot Tarpit installation."
 echo "###            Feed data endlessly to attackers, bots and scanners."
 echo "###            Also runs a Denial of Service Honeypot (ddospot)."
 echo
+
+############################
+# Update outside resources # 
+############################
+echo "Installing of outside SRC..."
+sleep 3;
+cd docker/bunkerweb/
+docker compose up -d
+
 while true; do
   read -p "### Install Type? (h/s/l/i/m/t) " myTPOT_TYPE
   case "${myTPOT_TYPE}" in
