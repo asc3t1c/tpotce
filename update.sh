@@ -177,8 +177,10 @@ function fuUPDATER () {
         docker stop bunkerweb-bw-docker-1 bunkerweb-bw-scheduler-1 bunkerweb-bw-ui-1
 	docker rm bunkerweb-bw-docker-1 bunkerweb-bw-scheduler-1 bunkerweb-bw-ui-1
         sleep 3;
-	# cd docker/bunkerweb/
-	# docker compose up -d
+	cd docker/bunkerweb/
+	bash update.sh
+        cd ../../
+	docker compose up -d
 	
  	echo
 	echo "### If you made changes to docker-compose.yml please ensure to add them again."
