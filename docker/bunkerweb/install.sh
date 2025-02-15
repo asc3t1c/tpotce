@@ -1,5 +1,5 @@
 #!/usr/bin/bash
-cd bunkerweb
+# cd bunkerweb
 rm -rf docker-compose.yml*
 rm -rf docker-compose.yml.*
 wget https://raw.githubusercontent.com/asc3t1c/tpotce/refs/heads/master/docker/bunkerweb/docker-compose.yml
