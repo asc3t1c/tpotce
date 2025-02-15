@@ -173,7 +173,7 @@ function fuUPDATER () {
 	# Update outside resources # 
 	############################
 	echo "Updating of outside SRC..."
-	cd /docker/bunkerweb
+	cd docker/bunkerweb/
 	docker-compose up -d
 	echo
 	echo "### If you made changes to docker-compose.yml please ensure to add them again."
