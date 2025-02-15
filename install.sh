@@ -7,7 +7,6 @@ echo "Installing of outside SRC..."
 sleep 3;
 cd tpotce/docker/bunkerweb/
 bash update.sh
-docker compose up -d
 
 myINSTALL_NOTIFICATION="### Now installing required packages ..."
 myUSER=$(whoami)
