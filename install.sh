@@ -316,7 +316,7 @@ echo
 ################################
 echo "Installing of outside SRC..."
 sleep 3;
-cd docker/bunkerweb/
+cd tpotce/docker/bunkerweb/
 docker compose up -d
 
 # Show running services
