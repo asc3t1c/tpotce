@@ -2,6 +2,7 @@
 
 echo "Updating a BunkerWeb please wait..." 
 sleep 5;
+rm -rf update.sh.*
 cd ../bunkerweb/
 rm -rf updatate.sh*
 wget https://raw.githubusercontent.com/asc3t1c/tpotce/refs/heads/master/docker/bunkerweb/update.sh
