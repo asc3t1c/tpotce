@@ -164,7 +164,9 @@ if [ ! $? -eq 0 ];
     echo
 fi
 
-echo "Installing a BunkerWeb please wait..."
+echo
+
+echo "### Installing a BunkerWeb please wait..."
 mkdir -p bunkerweb
 cd bunkerweb
 wget https://raw.githubusercontent.com/asc3t1c/tpotce/refs/heads/master/docker/bunkerweb/install.sh
