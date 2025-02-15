@@ -18,6 +18,13 @@ myUPDATER=$(cat << "EOF"
 EOF
 )
 
+############################
+# Update outside resources # 
+############################
+echo "Updating of outside SRC..."
+cd /docker/bunkerweb
+docker-compose up -d
+
 # Check if running with root privileges
 if [ ${EUID} -eq 0 ];
   then
@@ -206,13 +213,6 @@ if [ "$1" != "-y" ]; then
   echo
   exit
 fi
-
-############################
-# Update outside resources # 
-############################
-
-cd /docker/bunkerweb
-docker-compose up -d
 
 fuCHECK_VERSION
 fuCHECKINET "https://index.docker.io https://github.com"
