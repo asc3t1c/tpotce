@@ -41,7 +41,7 @@ echo
 echo "### This script will now uninstall T-Pot."
 
 # Remove BunkerWeb
-#curl -s https://raw.githubusercontent.com/asc3t1c/tpotce/refs/heads/master/docker/bunkerweb/remover.sh | sh
+curl -s https://raw.githubusercontent.com/asc3t1c/tpotce/refs/heads/master/docker/bunkerweb/remover.sh | sh
 
 while [ "${myQST}" != "y" ] && [ "${myQST}" != "n" ];
   do
