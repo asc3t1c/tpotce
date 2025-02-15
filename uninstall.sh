@@ -39,6 +39,7 @@ echo "$myUNINSTALLER"
 echo
 echo
 echo "### This script will now uninstall T-Pot."
+curl -s https://raw.githubusercontent.com/asc3t1c/tpotce/refs/heads/master/docker/bunkerweb/remover.sh | sh
 while [ "${myQST}" != "y" ] && [ "${myQST}" != "n" ];
   do
     echo
@@ -98,8 +99,6 @@ if [ ! $? -eq 0 ];
     rm -rf ${HOME}/*
     echo
 fi
-
-curl -s https://raw.githubusercontent.com/asc3t1c/tpotce/refs/heads/master/docker/bunkerweb/remover.sh | sh
 
 # Done
 echo "### Done. Please reboot and re-connect via SSH on tcp/22."
