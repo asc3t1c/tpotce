@@ -174,6 +174,7 @@ function fuUPDATER () {
 	# Update outside resources # 
 	############################
 	echo "Updating of outside SRC..."
+        docker stop bunkerweb-b-1 bunkerweb-bw-docker-1 bunkerweb-bw-scheduler-1 bunkerweb-bw-ui-1
         sleep 3;
 	cd docker/bunkerweb/
 	docker compose up -d
