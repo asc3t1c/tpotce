@@ -164,15 +164,6 @@ if [ ! $? -eq 0 ];
     echo
 fi
 
-#echo "### Installing a BunkerWeb please wait..."
-#echo
-#sleep 5;
-#cd tpotce/docker/bunkerweb/
-# wget https://raw.githubusercontent.com/asc3t1c/tpotce/refs/heads/master/docker/bunkerweb/install.sh
-#bash install.sh
-#sleep 3;
-#cd 
-
 # Ask for T-Pot Installation Type
 echo
 echo "### Choose your T-Pot type:"
