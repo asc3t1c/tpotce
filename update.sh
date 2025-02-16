@@ -216,16 +216,6 @@ fuSELFUPDATE "$0" "$@"
 fuUPDATER
 fuRESTORE
 
-#echo "Updating a BunkerWeb please wait..." 
-#sleep 5;
-#rm -rf update.sh.*
-#cd ../bunkerweb/
-#rm -rf update.sh*
-#wget https://raw.githubusercontent.com/asc3t1c/tpotce/refs/heads/master/docker/bunkerweb/update.sh
-#bash update.sh
-#cd 
-#sleep 3;
-
 echo
 echo "### Done. You can now start T-Pot using 'systemctl start tpot' or 'docker compose up -d'."
 echo
