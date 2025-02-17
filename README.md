@@ -256,8 +256,8 @@ Depending on the [supported Linux distro images](#choose-your-distro), hive / se
 
 | T-Pot Type | RAM  | Storage   | Description                                                                                      |
 | :--------- | :--- | :-------- | :----------------------------------------------------------------------------------------------- |
-| Hive       | 16GB | 256GB SSD | As a rule of thumb, the more honeypots, sensors & data, the more RAM and storage is needed.      |
-| Sensor     | 8GB  | 128GB SSD | Since honeypot logs are persisted (~/tpotce/data) for 30 days, storage depends on attack volume. |
+| Hive       | 32GB | 512GB SSD | As a rule of thumb, the more honeypots, sensors & data, the more RAM and storage is needed.      |
+| Sensor     | 16GB  | 256GB SSD | Since honeypot logs are persisted (~/tpotce/data) for 30 days, storage depends on attack volume. |
 
 T-Pot does require ...
 - an IPv4 address via DHCP or statically assigned
