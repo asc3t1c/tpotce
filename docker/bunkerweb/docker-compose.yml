@@ -8,7 +8,7 @@ services:
     # This is the name that will be used to identify the instance in the Scheduler
     image: bunkerity/bunkerweb:1.6.0
     ports:
-      - "8585:8080/tcp"
+      - "85:8080/tcp"
       - "4445:8443/tcp"
       - "4445:8443/udp" # For QUIC / HTTP3 support
     environment:
@@ -25,7 +25,7 @@ services:
       BUNKERWEB_INSTANCES: "bunkerweb" # Make sure to set the correct instance name
       SERVER_NAME: ""
       MULTISITE: "yes"
-      UI_HOST: "http://bw-ui:7000" # Change it if needed
+      UI_HOST: "http://bw-ui:9759" # Change it if needed
     volumes:
       - bw-data:/data # This is used to persist the cache and other data like the backups
     restart: "unless-stopped"
