@@ -187,7 +187,7 @@ echo "###            Feed data endlessly to attackers, bots and scanners."
 echo
 
 while true; do
-  read -p "### Install Type? (h/s/l/i/m/t/b) " myTPOT_TYPE
+  read -p "### Install Type? (h/s/l/i/m/t) " myTPOT_TYPE
   case "${myTPOT_TYPE}" in
     h|H)
       echo
