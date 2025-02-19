@@ -320,10 +320,10 @@ echo "### Now pulling images ..."
 sudo docker compose -f /home/${myUSER}/tpotce/docker-compose.yml pull
 echo
 
-echo "### Install BunkerWeb ..."
-echo
-cd tpotce/docker/bunkerweb/
-bash installer.sh
+# echo "### Install BunkerWeb ..."
+# echo
+# cd tpotce/docker/bunkerweb/
+# bash installer.sh
 # Online
 # curl -s https://raw.githubusercontent.com/asc3t1c/tpotce/refs/heads/master/docker/bunkerweb/installer.sh | bash
 
