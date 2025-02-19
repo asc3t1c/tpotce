@@ -1,22 +1,5 @@
 #!/usr/bin/env bash
 
-echo "
-       ____              _          __          __  _     
-      |  _ \            | |         \ \        / / | |    
-      | |_) |_   _ _ __ | | _____ _ _\ \  /\  / /__| |__  
-      |  _ <| | | | '_ \| |/ / _ \ '__\ \/  \/ / _ \ '_ \ 
-      | |_) | |_| | | | |   <  __/ |   \  /\  /  __/ |_) |
-      |____/ \__,_|_| |_|_|\_\___|_|    \/  \/ \___|_.__/ 
-      
-      "
-      echo 
-
-echo "### Uninstall BunkerWeb ..."
-echo
-sleep 5;
-sudo curl -s https://raw.githubusercontent.com/asc3t1c/tpotce/refs/heads/master/docker/bunkerweb/remover.sh | bash
-echo
-
 myUNINSTALL_NOTIFICATION="### Now installing required packages ..."
 myUSER=$(whoami)
 myTPOT_CONF_FILE="/home/${myUSER}/tpotce/.env"
