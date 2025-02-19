@@ -5,10 +5,10 @@ myUSER=$(whoami)
 myTPOT_CONF_FILE="/home/${myUSER}/tpotce/.env"
 myANSIBLE_TPOT_PLAYBOOK="installer/remove/tpot.yml"
 
-echo "### Uninstall BunkerWeb ..."
-echo
-cd docker/bunkerweb/
-bash remover.sh
+#echo "### Uninstall BunkerWeb ..."
+#echo
+#cd docker/bunkerweb/
+#bash remover.sh
 
 myUNINSTALLER=$(cat << "EOF"
  _____     ____       _     _   _       _           _        _ _
