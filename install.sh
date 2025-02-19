@@ -313,7 +313,7 @@ echo
 
 echo "### Install BunkerWeb ..."
 echo
-cd tpotce/docker/bunkerweb
+cd tpotce/docker/bunkerweb/
 bash install.sh
 # Online
 # curl -s https://raw.githubusercontent.com/asc3t1c/tpotce/refs/heads/master/docker/bunkerweb/installer.sh | bash
