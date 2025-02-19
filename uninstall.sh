@@ -37,14 +37,16 @@ fi
 # Begin of Uninstaller
 echo "$myUNINSTALLER"
 echo
+echo
+echo "### This script will now uninstall T-Pot."
+
 
 echo "### Uninstall BunkerWeb ..."
 echo
 cd docker/bunkerweb/
 bash remover.sh
 
-echo
-echo "### This script will now uninstall T-Pot."
+
 while [ "${myQST}" != "y" ] && [ "${myQST}" != "n" ];
   do
     echo
