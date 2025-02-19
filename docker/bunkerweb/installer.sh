@@ -8,5 +8,5 @@ docker compose up -d
 #docker stop bunkerweb-bw-docker-1 bunkerweb-bw-db-1 bunkerweb-bunkerweb-1 bunkerweb-bw-scheduler-1 bunkerweb-bw-ui-1
 #docker compose up -d
 systemctl start tpot.service
-echo "WARNING: DON'T RUN INSTALLER AGAIN ON THE CURRENT INSTALLATION!"
+echo "WARNING: DON'T RUN INSTALLER AGAIN OVER THE CURRENT INSTALLATION!"
 sleep 3;
