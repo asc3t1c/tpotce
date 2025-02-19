@@ -311,10 +311,10 @@ sudo docker compose -f /home/${myUSER}/tpotce/docker-compose.yml pull
 echo
 
 ### Integrated BunkerWeb
-echo "### Installing BunkerWeb ..."
-echo
-cd tpotce/docker/bunkerweb/
-bash installer.sh
+#echo "### Installing BunkerWeb ..."
+#echo
+#cd tpotce/docker/bunkerweb/
+#bash installer.sh
 # Online
 # curl -s https://raw.githubusercontent.com/asc3t1c/tpotce/refs/heads/master/docker/bunkerweb/installer.sh | bash
 
