@@ -53,6 +53,7 @@ if [ "${myQST}" = "n" ];
     exit 0
 fi
 
+# Uninstall BunkerWeb
 echo "### Uninstall BunkerWeb ..."
 echo
 cd docker/bunkerweb/
