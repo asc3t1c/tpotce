@@ -5,11 +5,6 @@ myUSER=$(whoami)
 myTPOT_CONF_FILE="/home/${myUSER}/tpotce/.env"
 myANSIBLE_TPOT_PLAYBOOK="installer/remove/tpot.yml"
 
-#echo "### Uninstall BunkerWeb ..."
-#echo
-#cd docker/bunkerweb/
-#bash remover.sh
-
 myUNINSTALLER=$(cat << "EOF"
  _____     ____       _     _   _       _           _        _ _
 |_   _|   |  _ \ ___ | |_  | | | |_ __ (_)_ __  ___| |_ __ _| | | ___ _ __
@@ -57,6 +52,11 @@ if [ "${myQST}" = "n" ];
     echo
     exit 0
 fi
+
+echo "### Uninstall BunkerWeb ..."
+echo
+cd docker/bunkerweb/
+bash remover.sh
 
 # Define tag for Ansible
 myANSIBLE_DISTRIBUTIONS=("Fedora Linux" "Debian GNU/Linux" "Raspbian GNU/Linux" "Rocky Linux")
