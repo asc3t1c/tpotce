@@ -39,6 +39,7 @@ echo "$myUNINSTALLER"
 echo
 
 echo "### Uninstall BunkerWeb ..."
+echo
 cd docker/bunkerweb/
 bash remover.sh
 
