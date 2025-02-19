@@ -53,12 +53,6 @@ if [ "${myQST}" = "n" ];
     exit 0
 fi
 
-# Uninstall BunkerWeb
-echo "### Uninstall BunkerWeb ..."
-echo
-cd docker/bunkerweb/
-bash remover.sh
-
 # Define tag for Ansible
 myANSIBLE_DISTRIBUTIONS=("Fedora Linux" "Debian GNU/Linux" "Raspbian GNU/Linux" "Rocky Linux")
 if [[ "${myANSIBLE_DISTRIBUTIONS[@]}" =~ "${myCURRENT_DISTRIBUTION}" ]];
@@ -87,6 +81,12 @@ echo "### Now running T-Pot Ansible Uninstallation Playbook ..."
 echo
 rm ${HOME}/uninstall_tpot.log > /dev/null 2>&1
 ANSIBLE_LOG_PATH=${HOME}/uninstall_tpot.log ansible-playbook ${myANSIBLE_TPOT_PLAYBOOK} -i 127.0.0.1, -c local --tags "${myANSIBLE_TAG}" ${myANSIBLE_BECOME_OPTION}
+
+# Uninstall BunkerWeb
+echo "### Uninstall BunkerWeb ..."
+echo
+cd docker/bunkerweb/
+bash remover.sh
 
 # Something went wrong
 if [ ! $? -eq 0 ];
