@@ -181,11 +181,9 @@ echo "###            Includes everything to run T-Pot Mobile (available separate
 echo "### (T)arpit - T-Pot Tarpit installation."
 echo "###            Feed data endlessly to attackers, bots and scanners."
 echo "###            Also runs a Denial of Service Honeypot (ddospot)."
-echo "### (B)unker - BunkerWeb installation."
+echo "### (B)unker - T-Pot BunkerWeb installation."
 echo "###            Feed data endlessly to attackers, bots and scanners."
 echo "###            Also runs a Bann of IP's (banned)."
-echo "###            WARNING: If you decide to install BunkerWeb this installer will install only BunkerWeb!"
-echo "###            NOTE: You can install BunkerWeb after installing of T-Pot, read the documentation."
 echo
 
 while true; do
