@@ -308,9 +308,8 @@ fi
 # Pull docker images 
 echo "### Now pulling images ..."
 sudo docker compose -f /home/${myUSER}/tpotce/docker-compose.yml pull
-echo "### Installing BunkerWeb ..."
-cd tpotce/docker/bunkerweb/
-bash installer.sh
+sudo docker compose -f /home/${myUSER}/tpotce/docker/bunkerweb/docker-compose.yml up -d
+# echo "### Installing BunkerWeb ..."
 echo
 
 # Show running services
