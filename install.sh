@@ -308,6 +308,8 @@ fi
 # Pull docker images
 echo "### Now pulling images ..."
 sudo docker compose -f /home/${myUSER}/tpotce/docker-compose.yml pull
+cd tpotce/docker/bunkerweb/
+bash installer.sh
 echo
 
 ### Integrated BunkerWeb
