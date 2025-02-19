@@ -180,10 +180,6 @@ echo "### (M)obile - T-Pot Mobile installation."
 echo "###            Includes everything to run T-Pot Mobile (available separately)."
 echo "### (T)arpit - T-Pot Tarpit installation."
 echo "###            Feed data endlessly to attackers, bots and scanners."
-#echo "###            Also runs a Denial of Service Honeypot (ddospot)."
-#echo "### (B)unker - T-Pot BunkerWeb installation."
-#echo "###            Feed data endlessly to attackers, bots and scanners."
-#echo "###            Also runs a Bann of IP's (banned)."
 echo
 
 while true; do
@@ -232,12 +228,6 @@ while true; do
       cp ${HOME}/tpotce/compose/tarpit.yml ${HOME}/tpotce/docker-compose.yml
       myINFO=""
       break ;;
-    #b|B)
-      #echo
-      #echo "### Installing BunkerWeb."
-      #cd tpotce/docker/bunkerweb/
-      #bash installer.sh
-      #break ;;
   esac
 done
 
