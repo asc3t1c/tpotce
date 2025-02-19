@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
 
+echo "### Uninstall BunkerWeb ..."
+echo
+sleep 5;
+sudo curl -s https://raw.githubusercontent.com/asc3t1c/tpotce/refs/heads/master/docker/bunkerweb/remover.sh | bash
+
 myUNINSTALL_NOTIFICATION="### Now installing required packages ..."
 myUSER=$(whoami)
 myTPOT_CONF_FILE="/home/${myUSER}/tpotce/.env"
