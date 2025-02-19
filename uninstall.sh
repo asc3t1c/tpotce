@@ -66,6 +66,13 @@ fi
 sudo -n true > /dev/null 2>&1
 if [ $? -eq 1 ];
   then
+  
+    # Uninstall BunkerWeb
+    echo "### Uninstall BunkerWeb ..."
+    echo
+    cd docker/bunkerweb/
+    bash remover.sh
+    
     myANSIBLE_BECOME_OPTION="--ask-become-pass"
     echo "### ‘sudo‘ not acquired, setting ansible become option to ${myANSIBLE_BECOME_OPTION}."
     echo "### Ansible will ask for the ‘BECOME password‘ which is typically the password you ’sudo’ with."
@@ -75,12 +82,6 @@ if [ $? -eq 1 ];
     echo "### ‘sudo‘ acquired, setting ansible become option to ${myANSIBLE_BECOME_OPTION}."
     echo
 fi
-
-# Uninstall BunkerWeb
-echo "### Uninstall BunkerWeb ..."
-echo
-cd docker/bunkerweb/
-bash remover.sh
 
 # Run Ansible Playbook
 echo "### Now running T-Pot Ansible Uninstallation Playbook ..."
