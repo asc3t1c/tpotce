@@ -189,7 +189,7 @@ echo "###            NOTE: You can install BunkerWeb after installing of T-Pot, 
 echo
 
 while true; do
-  read -p "### Install Type? (h/s/l/i/m/t) " myTPOT_TYPE
+  read -p "### Install Type? (h/s/l/i/m/t/b) " myTPOT_TYPE
   case "${myTPOT_TYPE}" in
     h|H)
       echo
