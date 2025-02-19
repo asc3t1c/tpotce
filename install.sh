@@ -305,20 +305,13 @@ if [ "${myTPOT_TYPE}" == "HIVE" ];
 	sed -i "s|^WEB_USER=.*|WEB_USER=${myWEB_USER_ENC_B64}|" ${myTPOT_CONF_FILE}
 fi
 
-# Pull docker images
+# Pull docker images 
 echo "### Now pulling images ..."
 sudo docker compose -f /home/${myUSER}/tpotce/docker-compose.yml pull
+echo "### Installing BunkerWeb ..."
 cd tpotce/docker/bunkerweb/
 bash installer.sh
 echo
-
-### Integrated BunkerWeb
-#echo "### Installing BunkerWeb ..."
-#echo
-#cd tpotce/docker/bunkerweb/
-#bash installer.sh
-# Online
-# curl -s https://raw.githubusercontent.com/asc3t1c/tpotce/refs/heads/master/docker/bunkerweb/installer.sh | bash
 
 # Show running services
 echo "### Please review for possible honeypot port conflicts."
