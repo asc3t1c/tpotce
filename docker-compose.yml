@@ -856,7 +856,6 @@ services:
      - ${TPOT_DATA_PATH}/spiderfoot:/home/spiderfoot/.spiderfoot
 
 # TheHive
-services:
   elasticsearch:
     image: elasticsearch:7.9.1
     environment:
