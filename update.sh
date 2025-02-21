@@ -219,7 +219,7 @@ fuRESTORE
 # Update peppermint
 echo "### Updating peppermint ..."
 cd docker/peppermint/
-bash peppermint.sh
+bash peppermint_update.sh
 
 echo
 echo "### Done. You can now start T-Pot using 'systemctl start tpot' or 'docker compose up -d'."
