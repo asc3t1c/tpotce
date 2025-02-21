@@ -1,4 +1,4 @@
-### TheHive
+services:
   elasticsearch:
     image: elasticsearch:7.9.1
     environment:
