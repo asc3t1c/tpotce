@@ -24,8 +24,8 @@ services:
     depends_on:
       - peppermint_postgres
     environment:
-      DB_USERNAME: "peppermint"
-      DB_PASSWORD: "1234"
+      DB_USERNAME: "user"
+      DB_PASSWORD: "password"
       DB_HOST: "peppermint_postgres"
       SECRET: 'peppermint4life'
 
