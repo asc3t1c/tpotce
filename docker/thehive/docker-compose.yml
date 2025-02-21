@@ -5,7 +5,7 @@ services:
     container_name: elasticsearch_thehive
     restart: unless-stopped
     ports:
-      - '0.0.0.0:9300:9300'
+      - '0.0.0.0:9200:9200'
     environment:
       - http.host=0.0.0.0
       - discovery.type=single-node
