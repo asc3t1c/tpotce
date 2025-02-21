@@ -1,4 +1,4 @@
-# version: "3.1"
+version: "3.1"
 
 services:
   peppermint_postgres:
@@ -6,7 +6,7 @@ services:
     image: postgres:latest
     restart: always
     ports:
-      - 5555:5555
+      - 5777:5777
     volumes:
       - pgdata:/var/lib/postgresql/data
     environment:
@@ -24,8 +24,8 @@ services:
     depends_on:
       - peppermint_postgres
     environment:
-      DB_USERNAME: "user"
-      DB_PASSWORD: "password"
+      DB_USERNAME: "peppermint"
+      DB_PASSWORD: "1234"
       DB_HOST: "peppermint_postgres"
       SECRET: 'peppermint4life'
 
