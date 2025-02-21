@@ -310,7 +310,7 @@ echo "### Now pulling images ..."
 sudo docker compose -f /home/${myUSER}/tpotce/docker-compose.yml pull
 # Install TheHive
 #echo "### Installing TheHive ..."
-#docker compose -f /home/${myUSER}/tpotce/docker/thehive/docker-compose.yml up -d
+docker compose -f /home/${myUSER}/tpotce/docker/peppermint/docker-compose.yml up -d
 echo
 
 # Show running services
