@@ -308,8 +308,9 @@ fi
 # Pull docker images 
 echo "### Now pulling images ..."
 sudo docker compose -f /home/${myUSER}/tpotce/docker-compose.yml pull
+
 # Install peppermint
-echo "### Installing peppermint ..."
+echo 
 cd /home/${myUSER}/tpotce/docker/peppermint/
 bash peppermint.sh
 echo
