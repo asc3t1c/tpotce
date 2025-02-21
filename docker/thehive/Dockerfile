@@ -1,5 +1,5 @@
 FROM openjdk:8 as build-env
-LABEL maintainer="Ilya Glotov <contact@ilyaglotov.com>" \
+LABEL maintainer="nu11secur1ty" \
       repository="https://github.com/TheHive-Project/TheHive"
 
 ARG THEHIVE_VERSION=3.4.0
