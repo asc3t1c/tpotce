@@ -1,4 +1,4 @@
-version: '2'
+
 services:
   elasticsearch:
     image: 'elasticsearch:7.11.1'
