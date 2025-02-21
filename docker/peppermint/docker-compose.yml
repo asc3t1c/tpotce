@@ -6,7 +6,7 @@ services:
     image: postgres:latest
     restart: always
     ports:
-      - 5432:5432
+      - 5555:5555
     volumes:
       - pgdata:/var/lib/postgresql/data
     environment:
