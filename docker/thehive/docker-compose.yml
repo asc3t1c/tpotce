@@ -2,7 +2,7 @@
 services:
   elasticsearch_thehive:
     image: 'elasticsearch:7.11.1'
-    container_name: elasticsearch
+    container_name: elasticsearch_thehive
     restart: unless-stopped
     ports:
       - '0.0.0.0:9300:9300'
@@ -37,7 +37,7 @@ services:
       - '${JOB_DIRECTORY}:${JOB_DIRECTORY}'
       - '/var/run/docker.sock:/var/run/docker.sock'
     depends_on:
-      - elasticsearch
+      - elasticsearch_thehive
     ports:
       - '0.0.0.0:9001:9001'
   thehive:
