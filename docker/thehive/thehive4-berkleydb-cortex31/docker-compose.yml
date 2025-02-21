@@ -1,11 +1,11 @@
-version: '3.8'
+# version: '3.8'
 services:
   elasticsearch:
     image: 'elasticsearch:7.11.1'
     container_name: elasticsearch
     restart: unless-stopped
     ports:
-      - '0.0.0.0:9299:9299'
+      - '0.0.0.0:9200:9200'
     environment:
       - http.host=0.0.0.0
       - discovery.type=single-node
