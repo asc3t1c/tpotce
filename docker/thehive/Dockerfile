@@ -1,4 +1,4 @@
-FROM openjdk:8 as build-env
+FROM openjdk:8 AS builder
 LABEL maintainer="nu11secur1ty" \
       repository="https://github.com/TheHive-Project/TheHive"
 
