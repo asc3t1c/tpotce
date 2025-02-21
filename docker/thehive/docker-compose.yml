@@ -1,6 +1,6 @@
 
 services:
-  elasticsearch:
+  elasticsearch_thehive:
     image: 'elasticsearch:7.11.1'
     container_name: elasticsearch
     restart: unless-stopped
