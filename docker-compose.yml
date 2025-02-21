@@ -23,7 +23,6 @@ networks:
   wordpot_local:
   nginx_local:
   ewsposter_local:
-  thehive_local:
 
 services:
 
