@@ -217,7 +217,7 @@ fuUPDATER
 fuRESTORE
 
 echo "### Updating TheHive ..."
-docker compose -f /home/${myUSER}/tpotce/docker/thehive/docker-compose.yml up -d
+docker compose -f tpotce/docker/thehive/docker-compose.yml up -d
 echo
 
 echo
