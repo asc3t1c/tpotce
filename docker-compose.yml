@@ -857,7 +857,7 @@ services:
 
 # TheHive
   elasticsearch:
-    image: elasticsearch:7.9.1
+    image: elasticsearch:8.16.1
     environment:
       - http.host=0.0.0.0
       - discovery.type=single-node
