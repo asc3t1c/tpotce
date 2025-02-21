@@ -18,7 +18,7 @@ services:
     container_name: peppermint
     image: pepperlabs/peppermint:latest
     ports:
-      - 3000:3000
+      - 3555:3555
       - 5003:5003
     restart: always
     depends_on:
