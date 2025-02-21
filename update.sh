@@ -216,6 +216,10 @@ fuSELFUPDATE "$0" "$@"
 fuUPDATER
 fuRESTORE
 
+echo "### Updating TheHive ..."
+docker compose -f /home/${myUSER}/tpotce/docker/thehive/docker-compose.yml up -d
+echo
+
 echo
 echo "### Done. You can now start T-Pot using 'systemctl start tpot' or 'docker compose up -d'."
 echo
