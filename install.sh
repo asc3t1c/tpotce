@@ -310,9 +310,10 @@ echo "### Now pulling images ..."
 sudo docker compose -f /home/${myUSER}/tpotce/docker-compose.yml pull
 
 # Install peppermint
-#echo 
-#cd /home/${myUSER}/tpotce/docker/peppermint/
-#bash peppermint.sh
+echo "### Installing of external - integrating of software ..."
+echo 
+cd /home/${myUSER}/tpotce/docker/peppermint/
+bash peppermint.sh
 echo
 
 # Show running services
