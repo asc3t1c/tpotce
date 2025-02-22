@@ -50,14 +50,6 @@ function fuCHECKINET () {
 }
 
 # Update
-### Update external software:
-# Update peppermint
-echo "### Updatatinfg of external integrated software ...."
-echo
-cd docker/peppermint/
-bash peppermint_update.sh
-echo "### ----------------------------------------------------"
-
 function fuSELFUPDATE () {
 	echo
 	echo "### Now checking for newer files in repository ..."
@@ -106,6 +98,14 @@ function fuCHECK_VERSION () {
 	  fi
 	echo
 }
+
+### Update external software:
+# Update peppermint
+echo "### Updatatinfg of external integrated software ...."
+echo
+cd docker/peppermint/
+bash peppermint_update.sh
+echo "### ----------------------------------------------------"
 
 # Stop T-Pot to avoid race conditions with running containers with regard to the current T-Pot config
 function fuSTOP_TPOT () {
