@@ -50,6 +50,14 @@ function fuCHECKINET () {
 }
 
 # Update
+### Update external software:
+# Update peppermint
+echo "### Updatatinfg of external integrated software ...."
+echo
+cd docker/peppermint/
+bash peppermint_update.sh
+echo "### ----------------------------------------------------"
+
 function fuSELFUPDATE () {
 	echo
 	echo "### Now checking for newer files in repository ..."
@@ -215,12 +223,6 @@ fuBACKUP
 fuSELFUPDATE "$0" "$@"
 fuUPDATER
 fuRESTORE
-
-# Update peppermint
-echo "### Updatatinfg of external integrated software ...."
-echo
-cd docker/peppermint/
-bash peppermint_update.sh
 
 echo
 echo "### Done. You can now start T-Pot using 'systemctl start tpot' or 'docker compose up -d'."
