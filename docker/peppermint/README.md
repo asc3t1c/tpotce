@@ -6,9 +6,6 @@
   </a>
   <img src="https://img.shields.io/docker/pulls/pepperlabs/peppermint" />
 </p>
-<p align="center">
-    <img src="./static/logo.svg" alt="Logo" height="80px" >
-</p>
 <p align="center">This project is supported by:</p>
 <p align="center">
   <a href="https://www.digitalocean.com/">
