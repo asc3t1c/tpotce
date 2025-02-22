@@ -2,4 +2,4 @@
 # Install
 echo "### Installing peppermint ..."
 sleep 5;
-docker compose -f docker-compose.yml up -d
+sudo docker compose -f docker-compose.yml up -d
