@@ -320,6 +320,7 @@ echo
 echo "### Please review for possible honeypot port conflicts."
 echo "### While SSH is taken care of, other services such as"
 echo "### SMTP, HTTP, etc. might prevent T-Pot from starting."
+echo "### WARNING: DON'T FORGET TO SETUP A STRONG PASSWORDS FOR YOUR EXTERNAL SOFTWARE!."
 echo
 sudo grc netstat -tulpen
 echo
