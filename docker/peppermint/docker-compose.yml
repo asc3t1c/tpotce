@@ -6,7 +6,7 @@ services:
     image: postgres:latest
     restart: always
     ports:
-      - 5432:5432
+      - 5433:5432
     volumes:
       - pgdata:/var/lib/postgresql/data
     environment:
@@ -18,14 +18,14 @@ services:
     container_name: peppermint
     image: pepperlabs/peppermint:latest
     ports:
-      - 3000:3000
+      - 3003:3000
       - 5003:5003
     restart: always
     depends_on:
       - peppermint_postgres
     environment:
-      DB_USERNAME: "user"
-      DB_PASSWORD: "password"
+      DB_USERNAME: "peppermint"
+      DB_PASSWORD: "1234"
       DB_HOST: "peppermint_postgres"
       SECRET: 'peppermint4life'
 
