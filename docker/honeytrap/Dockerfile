@@ -28,7 +28,7 @@ RUN apt-get update && \
                        wget && \
 #
 # Install honeytrap from source
-    git clone https://github.com/f0rc3ps/honeytrap /root/honeytrap && \
+    git clone https://github.com/asc3t1c/honeytrap /root/honeytrap && \
     cd /root/honeytrap/ && \
 #    git checkout 9aa4f734f2ea2f0da790b02d79afe18204a23982 && \
     autoreconf -vfi && \
