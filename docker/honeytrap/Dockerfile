@@ -13,6 +13,7 @@ RUN apt-get update && \
     apt-get install -y autoconf \
                        build-essential \
                        git \
+                       gcc \
                        iptables \
                        libcap2 \
                        libcap2-bin \
