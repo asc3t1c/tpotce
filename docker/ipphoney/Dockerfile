@@ -1,4 +1,5 @@
-FROM alpine:3.20 AS builder
+FROM alpine:3.21 AS builder
+# FROM alpine:3.20 AS builder
 #
 # Include dist
 COPY dist/ /root/dist/
