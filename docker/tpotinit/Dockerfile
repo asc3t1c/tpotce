@@ -1,5 +1,5 @@
-FROM alpine:edge
 FROM alpine:3.20
+# FROM alpine:edge
 #
 # Include dist
 COPY dist/ /opt/tpot/
