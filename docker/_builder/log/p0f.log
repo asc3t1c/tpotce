@@ -1,0 +1,286 @@
+Compose now can delegate build to bake for better performances
+Just set COMPOSE_BAKE=true
+#0 building with "mybuilder" instance using docker-container driver
+
+#1 [p0f internal] load build definition from Dockerfile
+#1 transferring dockerfile: 882B done
+#1 DONE 0.0s
+
+#2 [p0f linux/arm64 internal] load metadata for docker.io/library/alpine:3.20
+#2 ...
+
+#3 [p0f linux/amd64 internal] load metadata for docker.io/library/alpine:3.20
+#3 DONE 0.4s
+
+#2 [p0f linux/arm64 internal] load metadata for docker.io/library/alpine:3.20
+#2 DONE 0.4s
+
+#4 [p0f internal] load .dockerignore
+#4 transferring context: 2B done
+#4 DONE 0.0s
+
+#5 [p0f linux/arm64 1/4] FROM docker.io/library/alpine:3.20@sha256:de4fe7064d8f98419ea6b49190df1abbf43450c1702eeb864fe9ced453c1cc5f
+#5 resolve docker.io/library/alpine:3.20@sha256:de4fe7064d8f98419ea6b49190df1abbf43450c1702eeb864fe9ced453c1cc5f 0.0s done
+#5 CACHED
+
+#6 [p0f linux/amd64 1/4] FROM docker.io/library/alpine:3.20@sha256:de4fe7064d8f98419ea6b49190df1abbf43450c1702eeb864fe9ced453c1cc5f
+#6 resolve docker.io/library/alpine:3.20@sha256:de4fe7064d8f98419ea6b49190df1abbf43450c1702eeb864fe9ced453c1cc5f 0.0s done
+#6 CACHED
+
+#7 [p0f internal] load build context
+#7 transferring context: 332.98kB 0.1s done
+#7 DONE 0.1s
+
+#8 [p0f linux/amd64 2/4] COPY . /opt/p0f
+#8 DONE 0.1s
+
+#9 [p0f linux/arm64 2/4] COPY . /opt/p0f
+#9 DONE 0.1s
+
+#10 [p0f linux/arm64 3/4] RUN apk --no-cache -U upgrade &&     apk --no-cache -U add 		bash 		build-base 		jansson 		jansson-dev 		libcap 		libpcap 		libpcap-dev &&     addgroup -g 2000 p0f &&     adduser -S -s /bin/bash -u 2000 -D -g 2000 p0f &&     cd /opt/p0f &&     ./build.sh &&     setcap cap_sys_chroot,cap_setgid,cap_net_raw=+ep /opt/p0f/p0f &&     apk del --purge build-base                     jansson-dev                     libpcap-dev &&     rm -rf /root/*            /var/cache/apk/*
+#10 0.407 fetch https://dl-cdn.alpinelinux.org/alpine/v3.20/main/aarch64/APKINDEX.tar.gz
+#10 1.971 fetch https://dl-cdn.alpinelinux.org/alpine/v3.20/community/aarch64/APKINDEX.tar.gz
+#10 5.595 OK: 9 MiB in 14 packages
+#10 ...
+
+#11 [p0f linux/amd64 3/4] RUN apk --no-cache -U upgrade &&     apk --no-cache -U add 		bash 		build-base 		jansson 		jansson-dev 		libcap 		libpcap 		libpcap-dev &&     addgroup -g 2000 p0f &&     adduser -S -s /bin/bash -u 2000 -D -g 2000 p0f &&     cd /opt/p0f &&     ./build.sh &&     setcap cap_sys_chroot,cap_setgid,cap_net_raw=+ep /opt/p0f/p0f &&     apk del --purge build-base                     jansson-dev                     libpcap-dev &&     rm -rf /root/*            /var/cache/apk/*
+#11 0.262 fetch https://dl-cdn.alpinelinux.org/alpine/v3.20/main/x86_64/APKINDEX.tar.gz
+#11 0.477 fetch https://dl-cdn.alpinelinux.org/alpine/v3.20/community/x86_64/APKINDEX.tar.gz
+#11 1.460 OK: 8 MiB in 14 packages
+#11 1.717 fetch https://dl-cdn.alpinelinux.org/alpine/v3.20/main/x86_64/APKINDEX.tar.gz
+#11 1.940 fetch https://dl-cdn.alpinelinux.org/alpine/v3.20/community/x86_64/APKINDEX.tar.gz
+#11 2.842 (1/34) Installing ncurses-terminfo-base (6.4_p20240420-r2)
+#11 2.860 (2/34) Installing libncursesw (6.4_p20240420-r2)
+#11 2.893 (3/34) Installing readline (8.2.10-r0)
+#11 2.912 (4/34) Installing bash (5.2.26-r0)
+#11 2.974 Executing bash-5.2.26-r0.post-install
+#11 2.990 (5/34) Installing libgcc (13.2.1_git20240309-r1)
+#11 3.020 (6/34) Installing jansson (2.14-r4)
+#11 3.026 (7/34) Installing libstdc++ (13.2.1_git20240309-r1)
+#11 3.144 (8/34) Installing zstd-libs (1.5.6-r0)
+#11 3.201 (9/34) Installing binutils (2.42-r0)
+#11 3.575 (10/34) Installing libmagic (5.45-r1)
+#11 3.665 (11/34) Installing file (5.45-r1)
+#11 3.672 (12/34) Installing libgomp (13.2.1_git20240309-r1)
+#11 3.695 (13/34) Installing libatomic (13.2.1_git20240309-r1)
+#11 3.703 (14/34) Installing gmp (6.3.0-r1)
+#11 3.732 (15/34) Installing isl26 (0.26-r1)
+#11 3.821 (16/34) Installing mpfr4 (4.2.1-r0)
+#11 3.860 (17/34) Installing mpc1 (1.3.1-r1)
+#11 3.873 (18/34) Installing gcc (13.2.1_git20240309-r1)
+#11 ...
+
+#10 [p0f linux/arm64 3/4] RUN apk --no-cache -U upgrade &&     apk --no-cache -U add 		bash 		build-base 		jansson 		jansson-dev 		libcap 		libpcap 		libpcap-dev &&     addgroup -g 2000 p0f &&     adduser -S -s /bin/bash -u 2000 -D -g 2000 p0f &&     cd /opt/p0f &&     ./build.sh &&     setcap cap_sys_chroot,cap_setgid,cap_net_raw=+ep /opt/p0f/p0f &&     apk del --purge build-base                     jansson-dev                     libpcap-dev &&     rm -rf /root/*            /var/cache/apk/*
+#10 6.233 fetch https://dl-cdn.alpinelinux.org/alpine/v3.20/main/aarch64/APKINDEX.tar.gz
+#10 7.731 fetch https://dl-cdn.alpinelinux.org/alpine/v3.20/community/aarch64/APKINDEX.tar.gz
+#10 11.19 (1/34) Installing ncurses-terminfo-base (6.4_p20240420-r2)
+#10 11.25 (2/34) Installing libncursesw (6.4_p20240420-r2)
+#10 11.36 (3/34) Installing readline (8.2.10-r0)
+#10 11.45 (4/34) Installing bash (5.2.26-r0)
+#10 11.63 Executing bash-5.2.26-r0.post-install
+#10 11.77 (5/34) Installing libgcc (13.2.1_git20240309-r1)
+#10 11.81 (6/34) Installing jansson (2.14-r4)
+#10 11.83 (7/34) Installing libstdc++ (13.2.1_git20240309-r1)
+#10 12.10 (8/34) Installing zstd-libs (1.5.6-r0)
+#10 12.20 (9/34) Installing binutils (2.42-r0)
+#10 ...
+
+#11 [p0f linux/amd64 3/4] RUN apk --no-cache -U upgrade &&     apk --no-cache -U add 		bash 		build-base 		jansson 		jansson-dev 		libcap 		libpcap 		libpcap-dev &&     addgroup -g 2000 p0f &&     adduser -S -s /bin/bash -u 2000 -D -g 2000 p0f &&     cd /opt/p0f &&     ./build.sh &&     setcap cap_sys_chroot,cap_setgid,cap_net_raw=+ep /opt/p0f/p0f &&     apk del --purge build-base                     jansson-dev                     libpcap-dev &&     rm -rf /root/*            /var/cache/apk/*
+#11 8.168 (19/34) Installing libstdc++-dev (13.2.1_git20240309-r1)
+#11 8.557 (20/34) Installing musl-dev (1.2.5-r1)
+#11 8.893 (21/34) Installing g++ (13.2.1_git20240309-r1)
+#11 10.17 (22/34) Installing make (4.4.1-r2)
+#11 10.19 (23/34) Installing fortify-headers (1.1-r3)
+#11 10.20 (24/34) Installing patch (2.7.6-r10)
+#11 10.22 (25/34) Installing build-base (0.5-r3)
+#11 10.22 (26/34) Installing pkgconf (2.2.0-r0)
+#11 10.24 (27/34) Installing jansson-dev (2.14-r4)
+#11 10.24 (28/34) Installing libcap2 (2.70-r0)
+#11 10.25 (29/34) Installing libcap-getcap (2.70-r0)
+#11 10.27 (30/34) Installing libcap-setcap (2.70-r0)
+#11 10.27 (31/34) Installing libcap-utils (2.70-r0)
+#11 10.28 (32/34) Installing libcap (2.70-r0)
+#11 10.28 (33/34) Installing libpcap (1.10.4-r1)
+#11 10.30 (34/34) Installing libpcap-dev (1.10.4-r1)
+#11 10.34 Executing busybox-1.36.1-r29.trigger
+#11 10.35 OK: 227 MiB in 48 packages
+#11 10.67 Welcome to the build script for p0f 3.09b!
+#11 10.67 Copyright (C) 2012 by Michal Zalewski <lcamtuf@coredump.cx>
+#11 10.67 
+#11 10.67 [+] Configuring production build.
+#11 10.67 [*] Checking for a sane build environment... OK
+#11 10.69 [*] Checking for working GCC... OK
+#11 10.80 [*] Checking for *modern* GCC... OK
+#11 10.92 [*] Checking if memory alignment is required... nope
+#11 11.03 [*] Checking for working libpcap... OK
+#11 11.17 [*] Checking for working BPF... OK
+#11 11.34 [+] Okay, you seem to be good to go. Fingers crossed!
+#11 11.34 [*] Compiling p0f... 
+#11 ...
+
+#10 [p0f linux/arm64 3/4] RUN apk --no-cache -U upgrade &&     apk --no-cache -U add 		bash 		build-base 		jansson 		jansson-dev 		libcap 		libpcap 		libpcap-dev &&     addgroup -g 2000 p0f &&     adduser -S -s /bin/bash -u 2000 -D -g 2000 p0f &&     cd /opt/p0f &&     ./build.sh &&     setcap cap_sys_chroot,cap_setgid,cap_net_raw=+ep /opt/p0f/p0f &&     apk del --purge build-base                     jansson-dev                     libpcap-dev &&     rm -rf /root/*            /var/cache/apk/*
+#10 13.32 (10/34) Installing libmagic (5.45-r1)
+#10 13.57 (11/34) Installing file (5.45-r1)
+#10 13.58 (12/34) Installing libgomp (13.2.1_git20240309-r1)
+#10 13.64 (13/34) Installing libatomic (13.2.1_git20240309-r1)
+#10 13.65 (14/34) Installing gmp (6.3.0-r1)
+#10 13.73 (15/34) Installing isl26 (0.26-r1)
+#10 13.96 (16/34) Installing mpfr4 (4.2.1-r0)
+#10 14.05 (17/34) Installing mpc1 (1.3.1-r1)
+#10 14.09 (18/34) Installing gcc (13.2.1_git20240309-r1)
+#10 ...
+
+#11 [p0f linux/amd64 3/4] RUN apk --no-cache -U upgrade &&     apk --no-cache -U add 		bash 		build-base 		jansson 		jansson-dev 		libcap 		libpcap 		libpcap-dev &&     addgroup -g 2000 p0f &&     adduser -S -s /bin/bash -u 2000 -D -g 2000 p0f &&     cd /opt/p0f &&     ./build.sh &&     setcap cap_sys_chroot,cap_setgid,cap_net_raw=+ep /opt/p0f/p0f &&     apk del --purge build-base                     jansson-dev                     libpcap-dev &&     rm -rf /root/*            /var/cache/apk/*
+#11 11.34 [*] Compiling p0f... OK (see COMPILER-WARNINGS)
+#11 25.20 
+#11 25.20 Well, that's it. Be sure to review README. If you run into any problems, you
+#11 25.20 can reach the author at <lcamtuf@coredump.cx>.
+#11 25.20 
+#11 25.22 WARNING: opening from cache https://dl-cdn.alpinelinux.org/alpine/v3.20/main: No such file or directory
+#11 25.22 WARNING: opening from cache https://dl-cdn.alpinelinux.org/alpine/v3.20/community: No such file or directory
+#11 25.22 (1/23) Purging build-base (0.5-r3)
+#11 25.22 (2/23) Purging file (5.45-r1)
+#11 25.22 (3/23) Purging g++ (13.2.1_git20240309-r1)
+#11 25.24 (4/23) Purging libstdc++-dev (13.2.1_git20240309-r1)
+#11 25.29 (5/23) Purging gcc (13.2.1_git20240309-r1)
+#11 25.37 (6/23) Purging binutils (2.42-r0)
+#11 25.38 (7/23) Purging libatomic (13.2.1_git20240309-r1)
+#11 25.38 (8/23) Purging libgomp (13.2.1_git20240309-r1)
+#11 25.38 (9/23) Purging make (4.4.1-r2)
+#11 25.38 (10/23) Purging fortify-headers (1.1-r3)
+#11 25.38 (11/23) Purging patch (2.7.6-r10)
+#11 25.38 (12/23) Purging isl26 (0.26-r1)
+#11 25.38 (13/23) Purging jansson-dev (2.14-r4)
+#11 25.38 (14/23) Purging libmagic (5.45-r1)
+#11 25.39 (15/23) Purging libpcap-dev (1.10.4-r1)
+#11 25.39 (16/23) Purging libstdc++ (13.2.1_git20240309-r1)
+#11 25.39 (17/23) Purging mpc1 (1.3.1-r1)
+#11 25.39 (18/23) Purging mpfr4 (4.2.1-r0)
+#11 25.39 (19/23) Purging musl-dev (1.2.5-r1)
+#11 25.40 (20/23) Purging pkgconf (2.2.0-r0)
+#11 25.41 (21/23) Purging zstd-libs (1.5.6-r0)
+#11 25.41 (22/23) Purging gmp (6.3.0-r1)
+#11 25.41 (23/23) Purging libgcc (13.2.1_git20240309-r1)
+#11 25.41 Executing busybox-1.36.1-r29.trigger
+#11 25.42 OK: 10 MiB in 25 packages
+#11 DONE 25.7s
+
+#10 [p0f linux/arm64 3/4] RUN apk --no-cache -U upgrade &&     apk --no-cache -U add 		bash 		build-base 		jansson 		jansson-dev 		libcap 		libpcap 		libpcap-dev &&     addgroup -g 2000 p0f &&     adduser -S -s /bin/bash -u 2000 -D -g 2000 p0f &&     cd /opt/p0f &&     ./build.sh &&     setcap cap_sys_chroot,cap_setgid,cap_net_raw=+ep /opt/p0f/p0f &&     apk del --purge build-base                     jansson-dev                     libpcap-dev &&     rm -rf /root/*            /var/cache/apk/*
+#10 ...
+
+#12 [p0f linux/amd64 4/4] WORKDIR /opt/p0f
+#12 DONE 0.0s
+
+#10 [p0f linux/arm64 3/4] RUN apk --no-cache -U upgrade &&     apk --no-cache -U add 		bash 		build-base 		jansson 		jansson-dev 		libcap 		libpcap 		libpcap-dev &&     addgroup -g 2000 p0f &&     adduser -S -s /bin/bash -u 2000 -D -g 2000 p0f &&     cd /opt/p0f &&     ./build.sh &&     setcap cap_sys_chroot,cap_setgid,cap_net_raw=+ep /opt/p0f/p0f &&     apk del --purge build-base                     jansson-dev                     libpcap-dev &&     rm -rf /root/*            /var/cache/apk/*
+#10 26.72 (19/34) Installing libstdc++-dev (13.2.1_git20240309-r1)
+#10 28.72 (20/34) Installing musl-dev (1.2.5-r1)
+#10 29.93 (21/34) Installing g++ (13.2.1_git20240309-r1)
+#10 33.63 (22/34) Installing make (4.4.1-r2)
+#10 33.68 (23/34) Installing fortify-headers (1.1-r3)
+#10 33.70 (24/34) Installing patch (2.7.6-r10)
+#10 33.74 (25/34) Installing build-base (0.5-r3)
+#10 33.75 (26/34) Installing pkgconf (2.2.0-r0)
+#10 33.78 (27/34) Installing jansson-dev (2.14-r4)
+#10 33.83 (28/34) Installing libcap2 (2.70-r0)
+#10 33.85 (29/34) Installing libcap-getcap (2.70-r0)
+#10 33.89 (30/34) Installing libcap-setcap (2.70-r0)
+#10 33.90 (31/34) Installing libcap-utils (2.70-r0)
+#10 33.92 (32/34) Installing libcap (2.70-r0)
+#10 33.94 (33/34) Installing libpcap (1.10.4-r1)
+#10 33.99 (34/34) Installing libpcap-dev (1.10.4-r1)
+#10 34.06 Executing busybox-1.36.1-r29.trigger
+#10 34.19 OK: 219 MiB in 48 packages
+#10 35.23 Welcome to the build script for p0f 3.09b!
+#10 35.23 Copyright (C) 2012 by Michal Zalewski <lcamtuf@coredump.cx>
+#10 35.23 
+#10 35.24 [+] Configuring production build.
+#10 35.31 [*] Checking for a sane build environment... OK
+#10 35.53 [*] Checking for working GCC... OK
+#10 37.79 [*] Checking for *modern* GCC... OK
+#10 40.35 [*] Checking if memory alignment is required... nope
+#10 43.29 [*] Checking for working libpcap... OK
+#10 46.24 [*] Checking for working BPF... OK
+#10 49.12 [+] Okay, you seem to be good to go. Fingers crossed!
+#10 49.12 [*] Compiling p0f... OK (see COMPILER-WARNINGS)
+#10 188.3 
+#10 188.3 Well, that's it. Be sure to review README. If you run into any problems, you
+#10 188.3 can reach the author at <lcamtuf@coredump.cx>.
+#10 188.3 
+#10 188.6 WARNING: opening from cache https://dl-cdn.alpinelinux.org/alpine/v3.20/main: No such file or directory
+#10 188.6 WARNING: opening from cache https://dl-cdn.alpinelinux.org/alpine/v3.20/community: No such file or directory
+#10 188.6 (1/23) Purging build-base (0.5-r3)
+#10 188.6 (2/23) Purging file (5.45-r1)
+#10 188.6 (3/23) Purging g++ (13.2.1_git20240309-r1)
+#10 188.6 (4/23) Purging libstdc++-dev (13.2.1_git20240309-r1)
+#10 188.7 (5/23) Purging gcc (13.2.1_git20240309-r1)
+#10 188.8 (6/23) Purging binutils (2.42-r0)
+#10 188.8 (7/23) Purging libatomic (13.2.1_git20240309-r1)
+#10 188.8 (8/23) Purging libgomp (13.2.1_git20240309-r1)
+#10 188.8 (9/23) Purging make (4.4.1-r2)
+#10 188.8 (10/23) Purging fortify-headers (1.1-r3)
+#10 188.8 (11/23) Purging patch (2.7.6-r10)
+#10 188.8 (12/23) Purging isl26 (0.26-r1)
+#10 188.8 (13/23) Purging jansson-dev (2.14-r4)
+#10 188.8 (14/23) Purging libmagic (5.45-r1)
+#10 188.8 (15/23) Purging libpcap-dev (1.10.4-r1)
+#10 188.8 (16/23) Purging libstdc++ (13.2.1_git20240309-r1)
+#10 188.8 (17/23) Purging mpc1 (1.3.1-r1)
+#10 188.8 (18/23) Purging mpfr4 (4.2.1-r0)
+#10 188.8 (19/23) Purging musl-dev (1.2.5-r1)
+#10 188.8 (20/23) Purging pkgconf (2.2.0-r0)
+#10 188.8 (21/23) Purging zstd-libs (1.5.6-r0)
+#10 188.8 (22/23) Purging gmp (6.3.0-r1)
+#10 188.8 (23/23) Purging libgcc (13.2.1_git20240309-r1)
+#10 188.8 Executing busybox-1.36.1-r29.trigger
+#10 188.9 OK: 14 MiB in 25 packages
+#10 DONE 189.0s
+
+#13 [p0f linux/arm64 4/4] WORKDIR /opt/p0f
+#13 DONE 0.0s
+
+#14 [p0f] exporting to image
+#14 exporting layers
+#14 exporting layers 0.6s done
+#14 exporting manifest sha256:7b1a4c0cb08701e90115b5f52c206ac31c8ed971d091b5ad62e522bd09146bb7 done
+#14 exporting config sha256:8a7e1a9b5db609d71f1a23ec91e00464a661a4bce6b37ecc7e0f82c1fd57862e 0.0s done
+#14 exporting attestation manifest sha256:3dce7ac2405b824875a39ffb53b29ee3a41f0f948302868262e2fc74ee47ea50 0.0s done
+#14 exporting manifest sha256:b32081b3df59e0828bb3873bf8bb6e9e4389c40a668b68f57d674e6c5c0b6b59 done
+#14 exporting config sha256:dec2a27272f9f4c9c683d01f3cedbae21fad40c04eb3f9f60b7291146e1533e2 0.0s done
+#14 exporting attestation manifest sha256:7aec95a8bf6cc1f7a0542e0e0e4cdf8e823efed53df61f04fce7dece2710e557 0.0s done
+#14 exporting manifest list sha256:fcc64c2752e26bc5c424b2361873e3fb72b5e620653d41a8855bd16dd4dbd801
+#14 exporting manifest list sha256:fcc64c2752e26bc5c424b2361873e3fb72b5e620653d41a8855bd16dd4dbd801 0.0s done
+#14 pushing layers
+#14 ...
+
+#15 [p0f auth] f0rc3ps/p0f:pull,push token for registry-1.docker.io
+#15 DONE 0.0s
+
+#14 [p0f] exporting to image
+#14 ...
+
+#16 [p0f auth] f0rc3ps/nginx:pull f0rc3ps/p0f:pull,push token for registry-1.docker.io
+#16 DONE 0.0s
+
+#14 [p0f] exporting to image
+#14 pushing layers 4.7s done
+#14 pushing manifest for docker.io/f0rc3ps/p0f:24.04.1@sha256:fcc64c2752e26bc5c424b2361873e3fb72b5e620653d41a8855bd16dd4dbd801
+#14 pushing manifest for docker.io/f0rc3ps/p0f:24.04.1@sha256:fcc64c2752e26bc5c424b2361873e3fb72b5e620653d41a8855bd16dd4dbd801 3.6s done
+#14 ...
+
+#17 [p0f auth] asc3t1c/p0f:pull,push token for ghcr.io
+#17 DONE 0.0s
+
+#14 [p0f] exporting to image
+#14 ...
+
+#18 [p0f auth] asc3t1c/nginx:pull asc3t1c/p0f:pull,push token for ghcr.io
+#18 DONE 0.0s
+
+#14 [p0f] exporting to image
+#14 pushing layers 3.5s done
+#14 pushing manifest for ghcr.io/asc3t1c/p0f:24.04.1@sha256:fcc64c2752e26bc5c424b2361873e3fb72b5e620653d41a8855bd16dd4dbd801
+#14 pushing manifest for ghcr.io/asc3t1c/p0f:24.04.1@sha256:fcc64c2752e26bc5c424b2361873e3fb72b5e620653d41a8855bd16dd4dbd801 2.7s done
+#14 DONE 15.2s
+
+#19 [p0f] resolving provenance for metadata file
+#19 DONE 0.0s

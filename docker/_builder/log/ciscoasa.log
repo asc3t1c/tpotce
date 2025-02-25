@@ -1,0 +1,98 @@
+Compose now can delegate build to bake for better performances
+Just set COMPOSE_BAKE=true
+#0 building with "mybuilder" instance using docker-container driver
+
+#1 [ciscoasa internal] load build definition from Dockerfile
+#1 transferring dockerfile: 1.06kB 0.0s done
+#1 DONE 0.0s
+
+#2 [ciscoasa linux/arm64 internal] load metadata for docker.io/library/alpine:3.20
+#2 ...
+
+#3 [ciscoasa linux/amd64 internal] load metadata for docker.io/library/alpine:3.20
+#3 DONE 0.2s
+
+#4 [ciscoasa internal] load .dockerignore
+#4 transferring context: 2B done
+#4 DONE 0.0s
+
+#2 [ciscoasa linux/arm64 internal] load metadata for docker.io/library/alpine:3.20
+#2 DONE 0.4s
+
+#5 [ciscoasa linux/amd64 builder 1/5] FROM docker.io/library/alpine:3.20@sha256:de4fe7064d8f98419ea6b49190df1abbf43450c1702eeb864fe9ced453c1cc5f
+#5 resolve docker.io/library/alpine:3.20@sha256:de4fe7064d8f98419ea6b49190df1abbf43450c1702eeb864fe9ced453c1cc5f 0.0s done
+#5 DONE 0.0s
+
+#6 [ciscoasa linux/arm64 builder 1/5] FROM docker.io/library/alpine:3.20@sha256:de4fe7064d8f98419ea6b49190df1abbf43450c1702eeb864fe9ced453c1cc5f
+#6 resolve docker.io/library/alpine:3.20@sha256:de4fe7064d8f98419ea6b49190df1abbf43450c1702eeb864fe9ced453c1cc5f 0.0s done
+#6 DONE 0.0s
+
+#7 [ciscoasa linux/amd64 builder 3/4] WORKDIR /opt/ciscoasa_honeypot
+#7 CACHED
+
+#8 [ciscoasa linux/amd64 stage-1 2/6] RUN apk --no-cache -U upgrade
+#8 CACHED
+
+#9 [ciscoasa linux/amd64 stage-1 3/4] COPY --from=builder /opt/ciscoasa_honeypot/dist/ /opt/
+#9 CACHED
+
+#10 [ciscoasa linux/amd64 builder 4/4] RUN pyinstaller asa_server.py --add-data "./asa:./asa"
+#10 CACHED
+
+#11 [ciscoasa linux/amd64 builder 2/4] RUN apk --no-cache -U upgrade && 	apk --no-cache -U add 		build-base 		git 		libffi 		libffi-dev 		openssl 		openssl-dev 		py3-pip 		python3 		python3-dev && 	mkdir -p /opt/ &&     cd /opt/ &&     git clone https://github.com/t3chn0m4g3/ciscoasa_honeypot &&     cd ciscoasa_honeypot && 	git checkout 4bd2795cfa14320a87c00b7159fa3b7d6a8ba254 &&     sed -i "s/git+git/git+https/g" requirements.txt &&     pip3 install --break-system-packages pyinstaller &&     pip3 install --break-system-packages --no-cache-dir -r requirements.txt
+#11 CACHED
+
+#12 [ciscoasa linux/amd64 stage-1 4/4] WORKDIR /opt/asa_server/
+#12 CACHED
+
+#13 [ciscoasa linux/arm64 builder 4/4] RUN pyinstaller asa_server.py --add-data "./asa:./asa"
+#13 CACHED
+
+#14 [ciscoasa linux/arm64 stage-1 3/4] COPY --from=builder /opt/ciscoasa_honeypot/dist/ /opt/
+#14 CACHED
+
+#15 [ciscoasa linux/arm64 builder 2/4] RUN apk --no-cache -U upgrade && 	apk --no-cache -U add 		build-base 		git 		libffi 		libffi-dev 		openssl 		openssl-dev 		py3-pip 		python3 		python3-dev && 	mkdir -p /opt/ &&     cd /opt/ &&     git clone https://github.com/t3chn0m4g3/ciscoasa_honeypot &&     cd ciscoasa_honeypot && 	git checkout 4bd2795cfa14320a87c00b7159fa3b7d6a8ba254 &&     sed -i "s/git+git/git+https/g" requirements.txt &&     pip3 install --break-system-packages pyinstaller &&     pip3 install --break-system-packages --no-cache-dir -r requirements.txt
+#15 CACHED
+
+#16 [ciscoasa linux/arm64 builder 3/4] WORKDIR /opt/ciscoasa_honeypot
+#16 CACHED
+
+#17 [ciscoasa linux/arm64 stage-1 2/6] RUN apk --no-cache -U upgrade
+#17 CACHED
+
+#18 [ciscoasa linux/arm64 stage-1 4/4] WORKDIR /opt/asa_server/
+#18 CACHED
+
+#19 [ciscoasa] exporting to image
+#19 exporting layers done
+#19 exporting manifest sha256:848e9505fb8c68da55a3c20a6809fa5b193397425a996830c34ab3cb2d1148e9 0.0s done
+#19 exporting config sha256:6ee52317ddee0002b812199d5cab29983b5d24a97a0cddae0d87177d322e8a71 0.0s done
+#19 exporting attestation manifest sha256:2c756e551f19729e21619e8200c13d932c64146b766c5f5ed51f32ca86969f89 0.0s done
+#19 exporting manifest sha256:ae6209253c675ee32387228bc9b142157f25bd9a42118f77fd20a18ff55253ee done
+#19 exporting config sha256:f5249b261747c015c124b83745b41027a8a25306880efb8985dc7634fd10c0f5 done
+#19 exporting attestation manifest sha256:a503eee5d48b4221d9ac5f5b968b8bd691eb1200119bfe8760373ba89ffd22bf 0.0s done
+#19 exporting manifest list sha256:42b67698768db222c8a1d16be45a56910ab3346b446ffee0ec69b3dc42aa4a17
+#19 exporting manifest list sha256:42b67698768db222c8a1d16be45a56910ab3346b446ffee0ec69b3dc42aa4a17 0.0s done
+#19 pushing layers
+#19 ...
+
+#20 [ciscoasa auth] f0rc3ps/ciscoasa:pull,push token for registry-1.docker.io
+#20 DONE 0.0s
+
+#19 [ciscoasa] exporting to image
+#19 pushing layers 3.0s done
+#19 pushing manifest for docker.io/f0rc3ps/ciscoasa:24.04.1@sha256:42b67698768db222c8a1d16be45a56910ab3346b446ffee0ec69b3dc42aa4a17
+#19 pushing manifest for docker.io/f0rc3ps/ciscoasa:24.04.1@sha256:42b67698768db222c8a1d16be45a56910ab3346b446ffee0ec69b3dc42aa4a17 2.3s done
+#19 ...
+
+#21 [ciscoasa auth] asc3t1c/ciscoasa:pull,push token for ghcr.io
+#21 DONE 0.0s
+
+#19 [ciscoasa] exporting to image
+#19 pushing layers 2.9s done
+#19 pushing manifest for ghcr.io/asc3t1c/ciscoasa:24.04.1@sha256:42b67698768db222c8a1d16be45a56910ab3346b446ffee0ec69b3dc42aa4a17
+#19 pushing manifest for ghcr.io/asc3t1c/ciscoasa:24.04.1@sha256:42b67698768db222c8a1d16be45a56910ab3346b446ffee0ec69b3dc42aa4a17 2.0s done
+#19 DONE 10.3s
+
+#22 [ciscoasa] resolving provenance for metadata file
+#22 DONE 0.0s

@@ -1,0 +1,242 @@
+Compose now can delegate build to bake for better performances
+Just set COMPOSE_BAKE=true
+#0 building with "mybuilder" instance using docker-container driver
+
+#1 [mailoney internal] load build definition from Dockerfile
+#1 transferring dockerfile: 965B 0.0s done
+#1 DONE 0.1s
+
+#2 [mailoney linux/amd64 internal] load metadata for docker.io/library/alpine:3.19
+#2 ...
+
+#3 [mailoney auth] library/alpine:pull token for registry-1.docker.io
+#3 DONE 0.0s
+
+#4 [mailoney linux/arm64 internal] load metadata for docker.io/library/alpine:3.19
+#4 DONE 3.6s
+
+#2 [mailoney linux/amd64 internal] load metadata for docker.io/library/alpine:3.19
+#2 DONE 3.6s
+
+#5 [mailoney internal] load .dockerignore
+#5 transferring context: 2B done
+#5 DONE 0.0s
+
+#6 [mailoney linux/arm64 1/3] FROM docker.io/library/alpine:3.19@sha256:e5d0aea7f7d2954678a9a6269ca2d06e06591881161961ea59e974dff3f12377
+#6 resolve docker.io/library/alpine:3.19@sha256:e5d0aea7f7d2954678a9a6269ca2d06e06591881161961ea59e974dff3f12377 0.0s done
+#6 CACHED
+
+#7 [mailoney linux/amd64 1/3] FROM docker.io/library/alpine:3.19@sha256:e5d0aea7f7d2954678a9a6269ca2d06e06591881161961ea59e974dff3f12377
+#7 resolve docker.io/library/alpine:3.19@sha256:e5d0aea7f7d2954678a9a6269ca2d06e06591881161961ea59e974dff3f12377 0.0s done
+#7 CACHED
+
+#8 [mailoney linux/amd64 2/3] RUN apk --no-cache -U upgrade &&     apk --no-cache -U add 		git 		libcap 		python3 &&     git clone https://github.com/t3chn0m4g3/mailoney /opt/mailoney &&     cd /opt/mailoney &&     git checkout 06e54bd410e0044d26d8462321f1b2811318db0b &&     addgroup -g 2000 mailoney &&     adduser -S -H -s /bin/ash -u 2000 -D -g 2000 mailoney &&     chown -R mailoney:mailoney /opt/mailoney &&     setcap cap_net_bind_service=+ep $(readlink -f $(type -P python3)) &&     apk del --purge git &&     rm -rf /root/* /var/cache/apk/* /opt/mailoney/.git
+#8 0.283 fetch https://dl-cdn.alpinelinux.org/alpine/v3.19/main/x86_64/APKINDEX.tar.gz
+#8 0.581 fetch https://dl-cdn.alpinelinux.org/alpine/v3.19/community/x86_64/APKINDEX.tar.gz
+#8 1.509 OK: 7 MiB in 15 packages
+#8 1.721 fetch https://dl-cdn.alpinelinux.org/alpine/v3.19/main/x86_64/APKINDEX.tar.gz
+#8 2.021 fetch https://dl-cdn.alpinelinux.org/alpine/v3.19/community/x86_64/APKINDEX.tar.gz
+#8 2.869 (1/32) Installing ca-certificates (20241121-r1)
+#8 2.949 (2/32) Installing brotli-libs (1.1.0-r1)
+#8 3.003 (3/32) Installing c-ares (1.27.0-r0)
+#8 3.016 (4/32) Installing libunistring (1.1-r2)
+#8 3.095 (5/32) Installing libidn2 (2.3.4-r4)
+#8 3.117 (6/32) Installing nghttp2-libs (1.58.0-r0)
+#8 3.132 (7/32) Installing libpsl (0.21.5-r0)
+#8 3.143 (8/32) Installing libcurl (8.12.1-r0)
+#8 3.183 (9/32) Installing libexpat (2.6.4-r0)
+#8 3.202 (10/32) Installing pcre2 (10.42-r2)
+#8 3.241 (11/32) Installing git (2.43.6-r0)
+#8 3.632 (12/32) Installing libcap2 (2.69-r1)
+#8 3.641 (13/32) Installing libcap-getcap (2.69-r1)
+#8 3.648 (14/32) Installing libcap-setcap (2.69-r1)
+#8 3.656 (15/32) Installing libcap-utils (2.69-r1)
+#8 3.665 (16/32) Installing libcap (2.69-r1)
+#8 3.671 (17/32) Installing libbz2 (1.0.8-r6)
+#8 3.687 (18/32) Installing libffi (3.4.4-r3)
+#8 3.694 (19/32) Installing gdbm (1.23-r1)
+#8 3.707 (20/32) Installing xz-libs (5.4.5-r0)
+#8 3.731 (21/32) Installing libgcc (13.2.1_git20231014-r0)
+#8 3.746 (22/32) Installing libstdc++ (13.2.1_git20231014-r0)
+#8 3.859 (23/32) Installing mpdecimal (2.5.1-r2)
+#8 3.876 (24/32) Installing ncurses-terminfo-base (6.4_p20231125-r0)
+#8 3.891 (25/32) Installing libncursesw (6.4_p20231125-r0)
+#8 3.921 (26/32) Installing libpanelw (6.4_p20231125-r0)
+#8 3.928 (27/32) Installing readline (8.2.1-r2)
+#8 3.953 (28/32) Installing sqlite-libs (3.44.2-r0)
+#8 4.042 (29/32) Installing python3 (3.11.11-r0)
+#8 5.039 (30/32) Installing python3-pycache-pyc0 (3.11.11-r0)
+#8 5.779 (31/32) Installing pyc (3.11.11-r0)
+#8 5.783 (32/32) Installing python3-pyc (3.11.11-r0)
+#8 5.789 Executing busybox-1.36.1-r19.trigger
+#8 5.846 Executing ca-certificates-20241121-r1.trigger
+#8 5.998 OK: 63 MiB in 47 packages
+#8 6.246 Cloning into '/opt/mailoney'...
+#8 7.077 Note: switching to '06e54bd410e0044d26d8462321f1b2811318db0b'.
+#8 7.077 
+#8 7.077 You are in 'detached HEAD' state. You can look around, make experimental
+#8 7.077 changes and commit them, and you can discard any commits you make in this
+#8 7.077 state without impacting any branches by switching back to a branch.
+#8 7.077 
+#8 7.077 If you want to create a new branch to retain commits you create, you may
+#8 7.077 do so (now or later) by using -c with the switch command. Example:
+#8 7.077 
+#8 7.077   git switch -c <new-branch-name>
+#8 7.077 
+#8 7.077 Or undo this operation with:
+#8 7.077 
+#8 7.077   git switch -
+#8 7.077 
+#8 7.077 Turn off this advice by setting config variable advice.detachedHead to false
+#8 7.077 
+#8 7.078 HEAD is now at 06e54bd add test
+#8 7.138 WARNING: opening from cache https://dl-cdn.alpinelinux.org/alpine/v3.19/main: No such file or directory
+#8 7.140 WARNING: opening from cache https://dl-cdn.alpinelinux.org/alpine/v3.19/community: No such file or directory
+#8 7.145 (1/10) Purging git (2.43.6-r0)
+#8 7.157 (2/10) Purging libcurl (8.12.1-r0)
+#8 7.161 (3/10) Purging ca-certificates (20241121-r1)
+#8 7.171 Executing ca-certificates-20241121-r1.post-deinstall
+#8 7.220 (4/10) Purging libpsl (0.21.5-r0)
+#8 7.223 (5/10) Purging nghttp2-libs (1.58.0-r0)
+#8 7.223 (6/10) Purging pcre2 (10.42-r2)
+#8 7.223 (7/10) Purging brotli-libs (1.1.0-r1)
+#8 7.223 (8/10) Purging c-ares (1.27.0-r0)
+#8 7.223 (9/10) Purging libidn2 (2.3.4-r4)
+#8 7.223 (10/10) Purging libunistring (1.1-r2)
+#8 7.223 Executing busybox-1.36.1-r19.trigger
+#8 7.243 OK: 52 MiB in 37 packages
+#8 DONE 7.6s
+
+#9 [mailoney linux/arm64 2/3] RUN apk --no-cache -U upgrade &&     apk --no-cache -U add 		git 		libcap 		python3 &&     git clone https://github.com/t3chn0m4g3/mailoney /opt/mailoney &&     cd /opt/mailoney &&     git checkout 06e54bd410e0044d26d8462321f1b2811318db0b &&     addgroup -g 2000 mailoney &&     adduser -S -H -s /bin/ash -u 2000 -D -g 2000 mailoney &&     chown -R mailoney:mailoney /opt/mailoney &&     setcap cap_net_bind_service=+ep $(readlink -f $(type -P python3)) &&     apk del --purge git &&     rm -rf /root/* /var/cache/apk/* /opt/mailoney/.git
+#9 0.538 fetch https://dl-cdn.alpinelinux.org/alpine/v3.19/main/aarch64/APKINDEX.tar.gz
+#9 3.005 fetch https://dl-cdn.alpinelinux.org/alpine/v3.19/community/aarch64/APKINDEX.tar.gz
+#9 ...
+
+#10 [mailoney linux/amd64 3/3] WORKDIR /opt/mailoney/
+#10 DONE 0.1s
+
+#9 [mailoney linux/arm64 2/3] RUN apk --no-cache -U upgrade &&     apk --no-cache -U add 		git 		libcap 		python3 &&     git clone https://github.com/t3chn0m4g3/mailoney /opt/mailoney &&     cd /opt/mailoney &&     git checkout 06e54bd410e0044d26d8462321f1b2811318db0b &&     addgroup -g 2000 mailoney &&     adduser -S -H -s /bin/ash -u 2000 -D -g 2000 mailoney &&     chown -R mailoney:mailoney /opt/mailoney &&     setcap cap_net_bind_service=+ep $(readlink -f $(type -P python3)) &&     apk del --purge git &&     rm -rf /root/* /var/cache/apk/* /opt/mailoney/.git
+#9 7.801 OK: 8 MiB in 15 packages
+#9 8.479 fetch https://dl-cdn.alpinelinux.org/alpine/v3.19/main/aarch64/APKINDEX.tar.gz
+#9 10.30 fetch https://dl-cdn.alpinelinux.org/alpine/v3.19/community/aarch64/APKINDEX.tar.gz
+#9 13.71 (1/32) Installing ca-certificates (20241121-r1)
+#9 13.84 (2/32) Installing brotli-libs (1.1.0-r1)
+#9 14.00 (3/32) Installing c-ares (1.27.0-r0)
+#9 14.05 (4/32) Installing libunistring (1.1-r2)
+#9 14.23 (5/32) Installing libidn2 (2.3.4-r4)
+#9 14.28 (6/32) Installing nghttp2-libs (1.58.0-r0)
+#9 14.32 (7/32) Installing libpsl (0.21.5-r0)
+#9 14.35 (8/32) Installing libcurl (8.12.1-r0)
+#9 14.44 (9/32) Installing libexpat (2.6.4-r0)
+#9 14.47 (10/32) Installing pcre2 (10.42-r2)
+#9 14.55 (11/32) Installing git (2.43.6-r0)
+#9 15.84 (12/32) Installing libcap2 (2.69-r1)
+#9 15.87 (13/32) Installing libcap-getcap (2.69-r1)
+#9 15.88 (14/32) Installing libcap-setcap (2.69-r1)
+#9 15.93 (15/32) Installing libcap-utils (2.69-r1)
+#9 15.95 (16/32) Installing libcap (2.69-r1)
+#9 15.96 (17/32) Installing libbz2 (1.0.8-r6)
+#9 16.00 (18/32) Installing libffi (3.4.4-r3)
+#9 16.02 (19/32) Installing gdbm (1.23-r1)
+#9 16.05 (20/32) Installing xz-libs (5.4.5-r0)
+#9 16.12 (21/32) Installing libgcc (13.2.1_git20231014-r0)
+#9 16.16 (22/32) Installing libstdc++ (13.2.1_git20231014-r0)
+#9 16.53 (23/32) Installing mpdecimal (2.5.1-r2)
+#9 16.57 (24/32) Installing ncurses-terminfo-base (6.4_p20231125-r0)
+#9 16.61 (25/32) Installing libncursesw (6.4_p20231125-r0)
+#9 16.69 (26/32) Installing libpanelw (6.4_p20231125-r0)
+#9 16.71 (27/32) Installing readline (8.2.1-r2)
+#9 16.77 (28/32) Installing sqlite-libs (3.44.2-r0)
+#9 17.04 (29/32) Installing python3 (3.11.11-r0)
+#9 20.36 (30/32) Installing python3-pycache-pyc0 (3.11.11-r0)
+#9 22.09 (31/32) Installing pyc (3.11.11-r0)
+#9 22.10 (32/32) Installing python3-pyc (3.11.11-r0)
+#9 22.12 Executing busybox-1.36.1-r19.trigger
+#9 22.30 Executing ca-certificates-20241121-r1.trigger
+#9 23.52 OK: 68 MiB in 47 packages
+#9 24.17 Cloning into '/opt/mailoney'...
+#9 27.25 Note: switching to '06e54bd410e0044d26d8462321f1b2811318db0b'.
+#9 27.25 
+#9 27.25 You are in 'detached HEAD' state. You can look around, make experimental
+#9 27.25 changes and commit them, and you can discard any commits you make in this
+#9 27.25 state without impacting any branches by switching back to a branch.
+#9 27.25 
+#9 27.25 If you want to create a new branch to retain commits you create, you may
+#9 27.25 do so (now or later) by using -c with the switch command. Example:
+#9 27.25 
+#9 27.25   git switch -c <new-branch-name>
+#9 27.25 
+#9 27.25 Or undo this operation with:
+#9 27.25 
+#9 27.25   git switch -
+#9 27.25 
+#9 27.25 Turn off this advice by setting config variable advice.detachedHead to false
+#9 27.25 
+#9 27.26 HEAD is now at 06e54bd add test
+#9 27.76 WARNING: opening from cache https://dl-cdn.alpinelinux.org/alpine/v3.19/main: No such file or directory
+#9 27.76 WARNING: opening from cache https://dl-cdn.alpinelinux.org/alpine/v3.19/community: No such file or directory
+#9 27.78 (1/10) Purging git (2.43.6-r0)
+#9 27.80 (2/10) Purging libcurl (8.12.1-r0)
+#9 27.80 (3/10) Purging ca-certificates (20241121-r1)
+#9 27.81 Executing ca-certificates-20241121-r1.post-deinstall
+#9 28.00 (4/10) Purging libpsl (0.21.5-r0)
+#9 28.00 (5/10) Purging nghttp2-libs (1.58.0-r0)
+#9 28.01 (6/10) Purging pcre2 (10.42-r2)
+#9 28.01 (7/10) Purging brotli-libs (1.1.0-r1)
+#9 28.01 (8/10) Purging c-ares (1.27.0-r0)
+#9 28.01 (9/10) Purging libidn2 (2.3.4-r4)
+#9 28.01 (10/10) Purging libunistring (1.1-r2)
+#9 28.01 Executing busybox-1.36.1-r19.trigger
+#9 28.18 OK: 56 MiB in 37 packages
+#9 DONE 28.5s
+
+#11 [mailoney linux/arm64 3/3] WORKDIR /opt/mailoney/
+#11 DONE 0.1s
+
+#12 [mailoney] exporting to image
+#12 exporting layers
+#12 exporting layers 4.5s done
+#12 exporting manifest sha256:a083740ed424b21745231fc19f3afa9d9de7e1023688ada1af4edc4238ab0507
+#12 exporting manifest sha256:a083740ed424b21745231fc19f3afa9d9de7e1023688ada1af4edc4238ab0507 0.0s done
+#12 exporting config sha256:b9c575f5339517992510db098d866939b57b806274e6a84f96a1679cf21a53cb 0.0s done
+#12 exporting attestation manifest sha256:9709c05fce67bc15c76ef250f415007816d2f8bc2f9fa3082df60aae8cdfa9dc 0.0s done
+#12 exporting manifest sha256:092d634e4797fc7c96b2fec1026d2541482a37b6fdd2f1138e403e7e766ea212 0.0s done
+#12 exporting config sha256:1981b2880ca3e2596ca932df138bc585e49bc14e5ed8cca30dcaf674e120da06 0.0s done
+#12 exporting attestation manifest sha256:94a20e447a1e1e0c6b369a7fc1d31251fd642e247228389aeee2919f6bc2b634
+#12 exporting attestation manifest sha256:94a20e447a1e1e0c6b369a7fc1d31251fd642e247228389aeee2919f6bc2b634 0.0s done
+#12 exporting manifest list sha256:da8ceeabe58a15f80902cddb89600a510b5b4929645503a6c80d9515855926ab 0.0s done
+#12 pushing layers
+#12 ...
+
+#13 [mailoney auth] f0rc3ps/mailoney:pull,push token for registry-1.docker.io
+#13 DONE 0.0s
+
+#12 [mailoney] exporting to image
+#12 ...
+
+#14 [mailoney auth] f0rc3ps/ewsposter:pull f0rc3ps/mailoney:pull,push token for registry-1.docker.io
+#14 DONE 0.0s
+
+#12 [mailoney] exporting to image
+#12 pushing layers 19.5s done
+#12 pushing manifest for docker.io/f0rc3ps/mailoney:24.04.1@sha256:da8ceeabe58a15f80902cddb89600a510b5b4929645503a6c80d9515855926ab
+#12 pushing manifest for docker.io/f0rc3ps/mailoney:24.04.1@sha256:da8ceeabe58a15f80902cddb89600a510b5b4929645503a6c80d9515855926ab 3.4s done
+#12 ...
+
+#15 [mailoney auth] asc3t1c/mailoney:pull,push token for ghcr.io
+#15 DONE 0.0s
+
+#12 [mailoney] exporting to image
+#12 ...
+
+#16 [mailoney auth] asc3t1c/ewsposter:pull asc3t1c/mailoney:pull,push token for ghcr.io
+#16 DONE 0.0s
+
+#12 [mailoney] exporting to image
+#12 pushing layers 9.0s done
+#12 pushing manifest for ghcr.io/asc3t1c/mailoney:24.04.1@sha256:da8ceeabe58a15f80902cddb89600a510b5b4929645503a6c80d9515855926ab
+#12 pushing manifest for ghcr.io/asc3t1c/mailoney:24.04.1@sha256:da8ceeabe58a15f80902cddb89600a510b5b4929645503a6c80d9515855926ab 2.6s done
+#12 DONE 39.1s
+
+#17 [mailoney] resolving provenance for metadata file
+#17 DONE 0.0s

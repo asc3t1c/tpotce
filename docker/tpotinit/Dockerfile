@@ -1,5 +1,4 @@
-FROM alpine:3.20
-# FROM alpine:edge
+FROM alpine:edge
 #
 # Include dist
 COPY dist/ /opt/tpot/
@@ -27,12 +26,9 @@ RUN apk --no-cache -U upgrade && \
         openssl \
         pigz \
         tar \
-	uuidgen \
-        yq-go && \
-  # Old packages
-  #      uuidgen && \
-  #  apk --no-cache -U add --repository=https://dl-cdn.alpinelinux.org/alpine/edge/community \
-  #      yq && \
+        uuidgen && \
+    apk --no-cache -U add --repository=https://dl-cdn.alpinelinux.org/alpine/edge/community \
+        yq && \
 #
 # Setup user, logrotate permissions
     addgroup -g 2000 tpot && \

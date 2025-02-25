@@ -1,0 +1,921 @@
+Compose now can delegate build to bake for better performances
+Just set COMPOSE_BAKE=true
+#0 building with "mybuilder" instance using docker-container driver
+
+#1 [spiderfoot internal] load build definition from Dockerfile
+#1 transferring dockerfile: 2.37kB 0.0s done
+#1 DONE 0.0s
+
+#2 [spiderfoot linux/amd64 internal] load metadata for docker.io/library/alpine:3.20
+#2 ...
+
+#3 [spiderfoot linux/arm64 internal] load metadata for docker.io/library/alpine:3.20
+#3 DONE 0.4s
+
+#2 [spiderfoot linux/amd64 internal] load metadata for docker.io/library/alpine:3.20
+#2 DONE 0.5s
+
+#4 [spiderfoot internal] load .dockerignore
+#4 transferring context:
+#4 transferring context: 2B done
+#4 DONE 0.2s
+
+#5 [spiderfoot internal] load build context
+#5 DONE 0.0s
+
+#6 [spiderfoot linux/arm64 1/4] FROM docker.io/library/alpine:3.20@sha256:de4fe7064d8f98419ea6b49190df1abbf43450c1702eeb864fe9ced453c1cc5f
+#6 resolve docker.io/library/alpine:3.20@sha256:de4fe7064d8f98419ea6b49190df1abbf43450c1702eeb864fe9ced453c1cc5f 0.1s done
+#6 CACHED
+
+#5 [spiderfoot internal] load build context
+#5 transferring context: 346B 0.0s done
+#5 DONE 0.0s
+
+#7 [spiderfoot linux/amd64 1/4] FROM docker.io/library/alpine:3.20@sha256:de4fe7064d8f98419ea6b49190df1abbf43450c1702eeb864fe9ced453c1cc5f
+#7 resolve docker.io/library/alpine:3.20@sha256:de4fe7064d8f98419ea6b49190df1abbf43450c1702eeb864fe9ced453c1cc5f 0.1s done
+#7 CACHED
+
+#8 [spiderfoot linux/arm64 2/4] COPY dist/ /root/dist/
+#8 DONE 0.1s
+
+#9 [spiderfoot linux/amd64 2/4] COPY dist/ /root/dist/
+#9 DONE 0.1s
+
+#10 [spiderfoot linux/amd64 3/4] RUN apk --no-cache -U upgrade && 	apk --no-cache -U add 		build-base 		curl 		git 		jpeg-dev 		libffi-dev 		libxml2 		libxml2-dev 		libxslt 		libxslt-dev 		musl 		musl-dev 		openjpeg-dev 		openssl 		openssl-dev 		python3 		python3-dev 		py3-cryptography 		py3-ipaddr 		py3-beautifulsoup4 		py3-dnspython 		py3-exifread 		py3-future 		py3-jaraco.classes 		py3-jaraco.context 		py3-jaraco.functools 		py3-lxml 		py3-mako 		py3-more-itertools 		py3-netaddr 		py3-networkx 		py3-openssl 		py3-pillow 		py3-portend 		py3-phonenumbers 		py3-pip 		py3-pysocks 		py3-requests 		py3-tempora 		py3-wheel 		py3-xlsxwriter 		py3-yaml 		swig 		tinyxml 		tinyxml-dev 		zlib-dev &&     addgroup -g 2000 spiderfoot &&     adduser -S -s /bin/ash -u 2000 -D -g 2000 spiderfoot && 	git config --global --add safe.directory /home/spiderfoot &&     git clone https://github.com/smicallef/spiderfoot /home/spiderfoot &&     cd /home/spiderfoot &&     git checkout 0f815a203afebf05c98b605dba5cf0475a0ee5fd &&     pip3 install --no-cache-dir --break-system-packages --upgrade pip &&     cp /root/dist/requirements.txt . &&     pip3 install --no-cache-dir --break-system-packages --no-cache-dir -r requirements.txt &&     mkdir -p /home/spiderfoot/.spiderfoot/logs &&     chown -R spiderfoot:spiderfoot /home/spiderfoot &&     sed -i "s#'root': '\/'#'root': '\/spiderfoot'#" /home/spiderfoot/sf.py &&     sed -i "s#'root', '\/'#'root', '\/spiderfoot'#" /home/spiderfoot/sf.py &&     apk del --purge build-base 		gcc 		git 		libffi-dev 		libxml2-dev 		libxslt-dev 		musl-dev 		openssl-dev 		python3-dev 		swig 		tinyxml-dev && 	rm -rf /var/cache/apk/* /home/spiderfoot/.git
+#10 0.179 fetch https://dl-cdn.alpinelinux.org/alpine/v3.20/main/x86_64/APKINDEX.tar.gz
+#10 0.423 fetch https://dl-cdn.alpinelinux.org/alpine/v3.20/community/x86_64/APKINDEX.tar.gz
+#10 1.306 OK: 8 MiB in 14 packages
+#10 1.485 fetch https://dl-cdn.alpinelinux.org/alpine/v3.20/main/x86_64/APKINDEX.tar.gz
+#10 1.803 fetch https://dl-cdn.alpinelinux.org/alpine/v3.20/community/x86_64/APKINDEX.tar.gz
+#10 3.725 (1/212) Installing libgcc (13.2.1_git20240309-r1)
+#10 3.745 (2/212) Installing jansson (2.14-r4)
+#10 3.755 (3/212) Installing libstdc++ (13.2.1_git20240309-r1)
+#10 3.863 (4/212) Installing zstd-libs (1.5.6-r0)
+#10 3.911 (5/212) Installing binutils (2.42-r0)
+#10 4.258 (6/212) Installing libmagic (5.45-r1)
+#10 4.356 (7/212) Installing file (5.45-r1)
+#10 4.366 (8/212) Installing libgomp (13.2.1_git20240309-r1)
+#10 4.394 (9/212) Installing libatomic (13.2.1_git20240309-r1)
+#10 4.401 (10/212) Installing gmp (6.3.0-r1)
+#10 4.431 (11/212) Installing isl26 (0.26-r1)
+#10 4.520 (12/212) Installing mpfr4 (4.2.1-r0)
+#10 4.557 (13/212) Installing mpc1 (1.3.1-r1)
+#10 4.571 (14/212) Installing gcc (13.2.1_git20240309-r1)
+#10 8.987 (15/212) Installing libstdc++-dev (13.2.1_git20240309-r1)
+#10 9.405 (16/212) Installing musl-dev (1.2.5-r1)
+#10 9.763 (17/212) Installing g++ (13.2.1_git20240309-r1)
+#10 ...
+
+#11 [spiderfoot linux/arm64 3/4] RUN apk --no-cache -U upgrade && 	apk --no-cache -U add 		build-base 		curl 		git 		jpeg-dev 		libffi-dev 		libxml2 		libxml2-dev 		libxslt 		libxslt-dev 		musl 		musl-dev 		openjpeg-dev 		openssl 		openssl-dev 		python3 		python3-dev 		py3-cryptography 		py3-ipaddr 		py3-beautifulsoup4 		py3-dnspython 		py3-exifread 		py3-future 		py3-jaraco.classes 		py3-jaraco.context 		py3-jaraco.functools 		py3-lxml 		py3-mako 		py3-more-itertools 		py3-netaddr 		py3-networkx 		py3-openssl 		py3-pillow 		py3-portend 		py3-phonenumbers 		py3-pip 		py3-pysocks 		py3-requests 		py3-tempora 		py3-wheel 		py3-xlsxwriter 		py3-yaml 		swig 		tinyxml 		tinyxml-dev 		zlib-dev &&     addgroup -g 2000 spiderfoot &&     adduser -S -s /bin/ash -u 2000 -D -g 2000 spiderfoot && 	git config --global --add safe.directory /home/spiderfoot &&     git clone https://github.com/smicallef/spiderfoot /home/spiderfoot &&     cd /home/spiderfoot &&     git checkout 0f815a203afebf05c98b605dba5cf0475a0ee5fd &&     pip3 install --no-cache-dir --break-system-packages --upgrade pip &&     cp /root/dist/requirements.txt . &&     pip3 install --no-cache-dir --break-system-packages --no-cache-dir -r requirements.txt &&     mkdir -p /home/spiderfoot/.spiderfoot/logs &&     chown -R spiderfoot:spiderfoot /home/spiderfoot &&     sed -i "s#'root': '\/'#'root': '\/spiderfoot'#" /home/spiderfoot/sf.py &&     sed -i "s#'root', '\/'#'root', '\/spiderfoot'#" /home/spiderfoot/sf.py &&     apk del --purge build-base 		gcc 		git 		libffi-dev 		libxml2-dev 		libxslt-dev 		musl-dev 		openssl-dev 		python3-dev 		swig 		tinyxml-dev && 	rm -rf /var/cache/apk/* /home/spiderfoot/.git
+#11 0.363 fetch https://dl-cdn.alpinelinux.org/alpine/v3.20/main/aarch64/APKINDEX.tar.gz
+#11 1.755 fetch https://dl-cdn.alpinelinux.org/alpine/v3.20/community/aarch64/APKINDEX.tar.gz
+#11 5.079 OK: 9 MiB in 14 packages
+#11 5.584 fetch https://dl-cdn.alpinelinux.org/alpine/v3.20/main/aarch64/APKINDEX.tar.gz
+#11 6.945 fetch https://dl-cdn.alpinelinux.org/alpine/v3.20/community/aarch64/APKINDEX.tar.gz
+#11 9.944 (1/211) Installing libgcc (13.2.1_git20240309-r1)
+#11 10.02 (2/211) Installing jansson (2.14-r4)
+#11 10.10 (3/211) Installing libstdc++ (13.2.1_git20240309-r1)
+#11 10.48 (4/211) Installing zstd-libs (1.5.6-r0)
+#11 10.67 (5/211) Installing binutils (2.42-r0)
+#11 ...
+
+#10 [spiderfoot linux/amd64 3/4] RUN apk --no-cache -U upgrade && 	apk --no-cache -U add 		build-base 		curl 		git 		jpeg-dev 		libffi-dev 		libxml2 		libxml2-dev 		libxslt 		libxslt-dev 		musl 		musl-dev 		openjpeg-dev 		openssl 		openssl-dev 		python3 		python3-dev 		py3-cryptography 		py3-ipaddr 		py3-beautifulsoup4 		py3-dnspython 		py3-exifread 		py3-future 		py3-jaraco.classes 		py3-jaraco.context 		py3-jaraco.functools 		py3-lxml 		py3-mako 		py3-more-itertools 		py3-netaddr 		py3-networkx 		py3-openssl 		py3-pillow 		py3-portend 		py3-phonenumbers 		py3-pip 		py3-pysocks 		py3-requests 		py3-tempora 		py3-wheel 		py3-xlsxwriter 		py3-yaml 		swig 		tinyxml 		tinyxml-dev 		zlib-dev &&     addgroup -g 2000 spiderfoot &&     adduser -S -s /bin/ash -u 2000 -D -g 2000 spiderfoot && 	git config --global --add safe.directory /home/spiderfoot &&     git clone https://github.com/smicallef/spiderfoot /home/spiderfoot &&     cd /home/spiderfoot &&     git checkout 0f815a203afebf05c98b605dba5cf0475a0ee5fd &&     pip3 install --no-cache-dir --break-system-packages --upgrade pip &&     cp /root/dist/requirements.txt . &&     pip3 install --no-cache-dir --break-system-packages --no-cache-dir -r requirements.txt &&     mkdir -p /home/spiderfoot/.spiderfoot/logs &&     chown -R spiderfoot:spiderfoot /home/spiderfoot &&     sed -i "s#'root': '\/'#'root': '\/spiderfoot'#" /home/spiderfoot/sf.py &&     sed -i "s#'root', '\/'#'root', '\/spiderfoot'#" /home/spiderfoot/sf.py &&     apk del --purge build-base 		gcc 		git 		libffi-dev 		libxml2-dev 		libxslt-dev 		musl-dev 		openssl-dev 		python3-dev 		swig 		tinyxml-dev && 	rm -rf /var/cache/apk/* /home/spiderfoot/.git
+#10 11.36 (18/212) Installing make (4.4.1-r2)
+#10 11.37 (19/212) Installing fortify-headers (1.1-r3)
+#10 11.38 (20/212) Installing patch (2.7.6-r10)
+#10 11.40 (21/212) Installing build-base (0.5-r3)
+#10 11.41 (22/212) Installing ca-certificates (20241121-r1)
+#10 11.47 (23/212) Installing brotli-libs (1.1.0-r2)
+#10 11.53 (24/212) Installing c-ares (1.33.1-r0)
+#10 11.56 (25/212) Installing libunistring (1.2-r0)
+#10 11.64 (26/212) Installing libidn2 (2.3.7-r0)
+#10 11.67 (27/212) Installing nghttp2-libs (1.62.1-r0)
+#10 11.69 (28/212) Installing libpsl (0.21.5-r1)
+#10 11.70 (29/212) Installing libcurl (8.12.1-r0)
+#10 11.73 (30/212) Installing curl (8.12.1-r0)
+#10 11.76 (31/212) Installing libexpat (2.6.4-r0)
+#10 11.77 (32/212) Installing pcre2 (10.43-r0)
+#10 11.81 (33/212) Installing git (2.45.3-r0)
+#10 12.18 (34/212) Installing git-init-template (2.45.3-r0)
+#10 12.19 (35/212) Installing libjpeg-turbo (3.0.3-r0)
+#10 12.22 (36/212) Installing libturbojpeg (3.0.3-r0)
+#10 12.26 (37/212) Installing pkgconf (2.2.0-r0)
+#10 12.29 (38/212) Installing libjpeg-turbo-dev (3.0.3-r0)
+#10 12.30 (39/212) Installing jpeg-dev (9e-r1)
+#10 12.30 (40/212) Installing linux-headers (6.6-r0)
+#10 12.56 (41/212) Installing libffi (3.4.6-r0)
+#10 12.56 (42/212) Installing libffi-dev (3.4.6-r0)
+#10 12.58 (43/212) Installing xz-libs (5.6.2-r0)
+#10 12.61 (44/212) Installing libxml2 (2.12.7-r0)
+#10 12.66 (45/212) Installing zlib-dev (1.3.1-r1)
+#10 12.67 (46/212) Installing xz (5.6.2-r0)
+#10 12.69 (47/212) Installing xz-dev (5.6.2-r0)
+#10 12.71 (48/212) Installing libxml2-utils (2.12.7-r0)
+#10 12.72 (49/212) Installing libxml2-dev (2.12.7-r0)
+#10 12.75 (50/212) Installing libgpg-error (1.49-r0)
+#10 12.77 (51/212) Installing libgcrypt (1.10.3-r0)
+#10 12.83 (52/212) Installing libxslt (1.1.39-r1)
+#10 12.85 (53/212) Installing libxslt-dev (1.1.39-r1)
+#10 12.88 (54/212) Installing lcms2 (2.16-r0)
+#10 12.91 (55/212) Installing openjpeg (2.5.2-r0)
+#10 12.94 (56/212) Installing libpng (1.6.44-r0)
+#10 12.96 (57/212) Installing libsharpyuv (1.3.2-r0)
+#10 12.97 (58/212) Installing libwebp (1.3.2-r0)
+#10 13.00 (59/212) Installing tiff (4.6.0t-r0)
+#10 13.04 (60/212) Installing openjpeg-tools (2.5.2-r0)
+#10 13.07 (61/212) Installing openjpeg-dev (2.5.2-r0)
+#10 13.12 (62/212) Installing openssl (3.3.3-r0)
+#10 13.16 (63/212) Installing openssl-dev (3.3.3-r0)
+#10 13.23 (64/212) Installing libbz2 (1.0.8-r6)
+#10 13.24 (65/212) Installing gdbm (1.23-r1)
+#10 13.26 (66/212) Installing mpdecimal (4.0.0-r0)
+#10 13.28 (67/212) Installing ncurses-terminfo-base (6.4_p20240420-r2)
+#10 13.30 (68/212) Installing libncursesw (6.4_p20240420-r2)
+#10 13.33 (69/212) Installing libpanelw (6.4_p20240420-r2)
+#10 13.34 (70/212) Installing readline (8.2.10-r0)
+#10 13.37 (71/212) Installing sqlite-libs (3.45.3-r1)
+#10 13.46 (72/212) Installing python3 (3.12.9-r0)
+#10 14.55 (73/212) Installing python3-pycache-pyc0 (3.12.9-r0)
+#10 15.13 (74/212) Installing pyc (3.12.9-r0)
+#10 15.14 (75/212) Installing py3-soupsieve (2.5-r1)
+#10 15.18 (76/212) Installing py3-soupsieve-pyc (2.5-r1)
+#10 15.24 (77/212) Installing py3-beautifulsoup4-pyc (4.12.3-r2)
+#10 15.29 (78/212) Installing python3-pyc (3.12.9-r0)
+#10 15.29 (79/212) Installing py3-beautifulsoup4 (4.12.3-r2)
+#10 15.35 (80/212) Installing py3-cparser (2.22-r1)
+#10 15.38 (81/212) Installing py3-cparser-pyc (2.22-r1)
+#10 15.41 (82/212) Installing py3-cffi (1.16.0-r1)
+#10 15.45 (83/212) Installing py3-cffi-pyc (1.16.0-r1)
+#10 15.49 (84/212) Installing py3-cryptography (42.0.7-r0)
+#10 15.59 (85/212) Installing py3-cryptography-pyc (42.0.7-r0)
+#10 15.64 (86/212) Installing py3-dnspython (2.6.1-r1)
+#10 15.75 (87/212) Installing py3-dnspython-pyc (2.6.1-r1)
+#10 15.88 (88/212) Installing py3-exifread (3.0.0-r2)
+#10 15.92 (89/212) Installing py3-exifread-pyc (3.0.0-r2)
+#10 15.97 (90/212) Installing py3-future (1.0.0-r1)
+#10 16.06 (91/212) Installing py3-future-pyc (1.0.0-r1)
+#10 16.22 (92/212) Installing py3-ipaddr (2.2.0-r10)
+#10 16.24 (93/212) Installing py3-ipaddr-pyc (2.2.0-r10)
+#10 16.29 (94/212) Installing py3-more-itertools (10.2.0-r1)
+#10 16.31 (95/212) Installing py3-more-itertools-pyc (10.2.0-r1)
+#10 16.33 (96/212) Installing py3-jaraco.classes (3.4.0-r1)
+#10 16.34 (97/212) Installing py3-jaraco.classes-pyc (3.4.0-r1)
+#10 16.34 (98/212) Installing py3-jaraco.context (5.3.0-r0)
+#10 16.38 (99/212) Installing py3-jaraco.context-pyc (5.3.0-r0)
+#10 16.42 (100/212) Installing py3-jaraco.functools (4.0.1-r0)
+#10 16.47 (101/212) Installing py3-jaraco.functools-pyc (4.0.1-r0)
+#10 16.50 (102/212) Installing py3-lxml (5.1.0-r0)
+#10 16.72 (103/212) Installing py3-lxml-pyc (5.1.0-r0)
+#10 16.75 (104/212) Installing py3-markupsafe (2.1.5-r1)
+#10 16.76 (105/212) Installing py3-markupsafe-pyc (2.1.5-r1)
+#10 16.77 (106/212) Installing py3-mako (1.3.3-r0)
+#10 16.83 (107/212) Installing py3-mako-pyc (1.3.3-r0)
+#10 16.90 (108/212) Installing py3-netaddr (0.10.1-r1)
+#10 17.25 (109/212) Installing py3-netaddr-pyc (0.10.1-r1)
+#10 17.31 (110/212) Installing libxau (1.0.11-r4)
+#10 17.31 (111/212) Installing libmd (1.1.0-r0)
+#10 17.33 (112/212) Installing libbsd (0.12.2-r0)
+#10 17.33 (113/212) Installing libxdmcp (1.1.5-r1)
+#10 17.34 (114/212) Installing libxcb (1.16.1-r0)
+#10 17.38 (115/212) Installing libx11 (1.8.9-r1)
+#10 17.52 (116/212) Installing libxext (1.3.6-r2)
+#10 17.53 (117/212) Installing libxrender (0.9.11-r5)
+#10 17.54 (118/212) Installing freetype (2.13.2-r0)
+#10 17.58 (119/212) Installing fontconfig (2.15.0-r1)
+#10 17.63 (120/212) Installing pixman (0.43.2-r0)
+#10 17.66 (121/212) Installing cairo (1.18.0-r0)
+#10 17.73 (122/212) Installing py3-cairo (1.26.0-r1)
+#10 17.78 (123/212) Installing py3-cairo-pyc (1.26.0-r1)
+#10 17.82 (124/212) Installing py3-certifi (2024.2.2-r1)
+#10 17.83 (125/212) Installing py3-certifi-pyc (2024.2.2-r1)
+#10 17.84 (126/212) Installing libquadmath (13.2.1_git20240309-r1)
+#10 17.90 (127/212) Installing libgfortran (13.2.1_git20240309-r1)
+#10 18.05 (128/212) Installing openblas (0.3.28-r0)
+#10 19.46 (129/212) Installing py3-numpy (1.25.2-r1)
+#10 20.17 (130/212) Installing py3-numpy-pyc (1.25.2-r1)
+#10 20.43 (131/212) Installing py3-contourpy (1.2.1-r1)
+#10 20.50 (132/212) Installing py3-contourpy-pyc (1.2.1-r1)
+#10 20.56 (133/212) Installing py3-cycler (0.12.1-r1)
+#10 20.61 (134/212) Installing py3-cycler-pyc (0.12.1-r1)
+#10 20.65 (135/212) Installing py3-six (1.16.0-r9)
+#10 20.66 (136/212) Installing py3-six-pyc (1.16.0-r9)
+#10 20.67 (137/212) Installing py3-dateutil (2.9.0-r1)
+#10 20.71 (138/212) Installing py3-dateutil-pyc (2.9.0-r1)
+#10 20.75 (139/212) Installing py3-fonttools (4.51.0-r1)
+#10 21.07 (140/212) Installing py3-fonttools-pyc (4.51.0-r1)
+#10 21.40 (141/212) Installing py3-kiwisolver (1.4.5-r1)
+#10 21.45 (142/212) Installing py3-kiwisolver-pyc (1.4.5-r1)
+#10 21.48 (143/212) Installing py3-parsing (3.1.2-r1)
+#10 21.51 (144/212) Installing py3-parsing-pyc (3.1.2-r1)
+#10 21.55 (145/212) Installing py3-packaging (24.0-r1)
+#10 21.56 (146/212) Installing py3-packaging-pyc (24.0-r1)
+#10 21.58 (147/212) Installing libimagequant (4.2.2-r0)
+#10 21.61 (148/212) Installing libwebpdemux (1.3.2-r0)
+#10 21.62 (149/212) Installing libwebpmux (1.3.2-r0)
+#10 21.63 (150/212) Installing py3-pillow (10.3.0-r2)
+#10 21.70 (151/212) Installing py3-pillow-pyc (10.3.0-r2)
+#10 21.79 (152/212) Installing py3-tz (2024.1-r1)
+#10 21.93 (153/212) Installing py3-tz-pyc (2024.1-r1)
+#10 21.94 (154/212) Installing tzdata (2025a-r0)
+#10 22.08 (155/212) Installing tcl (8.6.14-r1)
+#10 ...
+
+#11 [spiderfoot linux/arm64 3/4] RUN apk --no-cache -U upgrade && 	apk --no-cache -U add 		build-base 		curl 		git 		jpeg-dev 		libffi-dev 		libxml2 		libxml2-dev 		libxslt 		libxslt-dev 		musl 		musl-dev 		openjpeg-dev 		openssl 		openssl-dev 		python3 		python3-dev 		py3-cryptography 		py3-ipaddr 		py3-beautifulsoup4 		py3-dnspython 		py3-exifread 		py3-future 		py3-jaraco.classes 		py3-jaraco.context 		py3-jaraco.functools 		py3-lxml 		py3-mako 		py3-more-itertools 		py3-netaddr 		py3-networkx 		py3-openssl 		py3-pillow 		py3-portend 		py3-phonenumbers 		py3-pip 		py3-pysocks 		py3-requests 		py3-tempora 		py3-wheel 		py3-xlsxwriter 		py3-yaml 		swig 		tinyxml 		tinyxml-dev 		zlib-dev &&     addgroup -g 2000 spiderfoot &&     adduser -S -s /bin/ash -u 2000 -D -g 2000 spiderfoot && 	git config --global --add safe.directory /home/spiderfoot &&     git clone https://github.com/smicallef/spiderfoot /home/spiderfoot &&     cd /home/spiderfoot &&     git checkout 0f815a203afebf05c98b605dba5cf0475a0ee5fd &&     pip3 install --no-cache-dir --break-system-packages --upgrade pip &&     cp /root/dist/requirements.txt . &&     pip3 install --no-cache-dir --break-system-packages --no-cache-dir -r requirements.txt &&     mkdir -p /home/spiderfoot/.spiderfoot/logs &&     chown -R spiderfoot:spiderfoot /home/spiderfoot &&     sed -i "s#'root': '\/'#'root': '\/spiderfoot'#" /home/spiderfoot/sf.py &&     sed -i "s#'root', '\/'#'root', '\/spiderfoot'#" /home/spiderfoot/sf.py &&     apk del --purge build-base 		gcc 		git 		libffi-dev 		libxml2-dev 		libxslt-dev 		musl-dev 		openssl-dev 		python3-dev 		swig 		tinyxml-dev && 	rm -rf /var/cache/apk/* /home/spiderfoot/.git
+#11 11.97 (6/211) Installing libmagic (5.45-r1)
+#11 12.25 (7/211) Installing file (5.45-r1)
+#11 12.27 (8/211) Installing libgomp (13.2.1_git20240309-r1)
+#11 12.33 (9/211) Installing libatomic (13.2.1_git20240309-r1)
+#11 12.35 (10/211) Installing gmp (6.3.0-r1)
+#11 12.46 (11/211) Installing isl26 (0.26-r1)
+#11 12.74 (12/211) Installing mpfr4 (4.2.1-r0)
+#11 12.83 (13/211) Installing mpc1 (1.3.1-r1)
+#11 12.85 (14/211) Installing gcc (13.2.1_git20240309-r1)
+#11 ...
+
+#10 [spiderfoot linux/amd64 3/4] RUN apk --no-cache -U upgrade && 	apk --no-cache -U add 		build-base 		curl 		git 		jpeg-dev 		libffi-dev 		libxml2 		libxml2-dev 		libxslt 		libxslt-dev 		musl 		musl-dev 		openjpeg-dev 		openssl 		openssl-dev 		python3 		python3-dev 		py3-cryptography 		py3-ipaddr 		py3-beautifulsoup4 		py3-dnspython 		py3-exifread 		py3-future 		py3-jaraco.classes 		py3-jaraco.context 		py3-jaraco.functools 		py3-lxml 		py3-mako 		py3-more-itertools 		py3-netaddr 		py3-networkx 		py3-openssl 		py3-pillow 		py3-portend 		py3-phonenumbers 		py3-pip 		py3-pysocks 		py3-requests 		py3-tempora 		py3-wheel 		py3-xlsxwriter 		py3-yaml 		swig 		tinyxml 		tinyxml-dev 		zlib-dev &&     addgroup -g 2000 spiderfoot &&     adduser -S -s /bin/ash -u 2000 -D -g 2000 spiderfoot && 	git config --global --add safe.directory /home/spiderfoot &&     git clone https://github.com/smicallef/spiderfoot /home/spiderfoot &&     cd /home/spiderfoot &&     git checkout 0f815a203afebf05c98b605dba5cf0475a0ee5fd &&     pip3 install --no-cache-dir --break-system-packages --upgrade pip &&     cp /root/dist/requirements.txt . &&     pip3 install --no-cache-dir --break-system-packages --no-cache-dir -r requirements.txt &&     mkdir -p /home/spiderfoot/.spiderfoot/logs &&     chown -R spiderfoot:spiderfoot /home/spiderfoot &&     sed -i "s#'root': '\/'#'root': '\/spiderfoot'#" /home/spiderfoot/sf.py &&     sed -i "s#'root', '\/'#'root', '\/spiderfoot'#" /home/spiderfoot/sf.py &&     apk del --purge build-base 		gcc 		git 		libffi-dev 		libxml2-dev 		libxslt-dev 		musl-dev 		openssl-dev 		python3-dev 		swig 		tinyxml-dev && 	rm -rf /var/cache/apk/* /home/spiderfoot/.git
+#10 22.28 (156/212) Installing libxft (2.3.8-r3)
+#10 22.30 (157/212) Installing tk (8.6.14-r0)
+#10 22.41 (158/212) Installing python3-tkinter (3.12.3-r0)
+#10 22.50 (159/212) Installing python3-tkinter-pyc (3.12.3-r0)
+#10 22.58 (160/212) Installing qhull (2020.2-r3)
+#10 23.21 (161/212) Installing py3-matplotlib (3.7.3-r1)
+#10 24.96 (162/212) Installing py3-matplotlib-pyc (3.7.3-r1)
+#10 25.32 (163/212) Installing py3-attrs (23.2.0-r1)
+#10 25.37 (164/212) Installing py3-attrs-pyc (23.2.0-r1)
+#10 25.39 (165/212) Installing py3-tzdata (2024.1-r1)
+#10 25.54 (166/212) Installing py3-tzdata-pyc (2024.1-r1)
+#10 25.59 (167/212) Installing py3-pandas (2.0.3-r2)
+#10 26.97 (168/212) Installing py3-pandas-pyc (2.0.3-r2)
+#10 28.08 (169/212) Installing py3-platformdirs (4.2.2-r0)
+#10 28.09 (170/212) Installing py3-platformdirs-pyc (4.2.2-r0)
+#10 28.10 (171/212) Installing py3-charset-normalizer (3.3.2-r1)
+#10 28.12 (172/212) Installing py3-charset-normalizer-pyc (3.3.2-r1)
+#10 28.14 (173/212) Installing py3-idna (3.7-r0)
+#10 28.15 (174/212) Installing py3-idna-pyc (3.7-r0)
+#10 28.17 (175/212) Installing py3-urllib3 (1.26.18-r1)
+#10 28.22 (176/212) Installing py3-urllib3-pyc (1.26.18-r1)
+#10 28.27 (177/212) Installing py3-requests (2.32.3-r0)
+#10 28.30 (178/212) Installing py3-requests-pyc (2.32.3-r0)
+#10 28.33 (179/212) Installing py3-pooch (1.8.1-r1)
+#10 28.37 (180/212) Installing py3-pooch-pyc (1.8.1-r1)
+#10 28.42 (181/212) Installing py3-scipy (1.11.4-r2)
+#10 32.44 (182/212) Installing py3-scipy-pyc (1.11.4-r2)
+#10 33.04 (183/212) Installing py3-networkx (3.2.1-r1)
+#10 33.21 (184/212) Installing py3-networkx-pyc (3.2.1-r1)
+#10 33.48 (185/212) Installing py3-openssl (24.1.0-r1)
+#10 33.50 (186/212) Installing py3-openssl-pyc (24.1.0-r1)
+#10 33.52 (187/212) Installing py3-phonenumbers (8.13.35-r0)
+#10 33.97 (188/212) Installing py3-phonenumbers-pyc (8.13.35-r0)
+#10 34.58 (189/212) Installing py3-setuptools (70.3.0-r0)
+#10 34.71 (190/212) Installing py3-setuptools-pyc (70.3.0-r0)
+#10 34.90 (191/212) Installing py3-pip (24.0-r2)
+#10 35.15 (192/212) Installing py3-pip-pyc (24.0-r2)
+#10 35.55 (193/212) Installing py3-tempora (5.5.1-r1)
+#10 35.58 (194/212) Installing py3-tempora-pyc (5.5.1-r1)
+#10 35.62 (195/212) Installing py3-portend (3.2.0-r1)
+#10 35.66 (196/212) Installing py3-portend-pyc (3.2.0-r1)
+#10 35.71 (197/212) Installing py3-pysocks (1.7.1-r7)
+#10 35.76 (198/212) Installing py3-pysocks-pyc (1.7.1-r7)
+#10 35.80 (199/212) Installing py3-wheel (0.42.0-r1)
+#10 35.85 (200/212) Installing py3-wheel-pyc (0.42.0-r1)
+#10 35.88 (201/212) Installing py3-xlsxwriter (3.2.0-r0)
+#10 35.97 (202/212) Installing py3-xlsxwriter-pyc (3.2.0-r0)
+#10 36.26 (203/212) Installing yaml (0.2.5-r2)
+#10 ...
+
+#11 [spiderfoot linux/arm64 3/4] RUN apk --no-cache -U upgrade && 	apk --no-cache -U add 		build-base 		curl 		git 		jpeg-dev 		libffi-dev 		libxml2 		libxml2-dev 		libxslt 		libxslt-dev 		musl 		musl-dev 		openjpeg-dev 		openssl 		openssl-dev 		python3 		python3-dev 		py3-cryptography 		py3-ipaddr 		py3-beautifulsoup4 		py3-dnspython 		py3-exifread 		py3-future 		py3-jaraco.classes 		py3-jaraco.context 		py3-jaraco.functools 		py3-lxml 		py3-mako 		py3-more-itertools 		py3-netaddr 		py3-networkx 		py3-openssl 		py3-pillow 		py3-portend 		py3-phonenumbers 		py3-pip 		py3-pysocks 		py3-requests 		py3-tempora 		py3-wheel 		py3-xlsxwriter 		py3-yaml 		swig 		tinyxml 		tinyxml-dev 		zlib-dev &&     addgroup -g 2000 spiderfoot &&     adduser -S -s /bin/ash -u 2000 -D -g 2000 spiderfoot && 	git config --global --add safe.directory /home/spiderfoot &&     git clone https://github.com/smicallef/spiderfoot /home/spiderfoot &&     cd /home/spiderfoot &&     git checkout 0f815a203afebf05c98b605dba5cf0475a0ee5fd &&     pip3 install --no-cache-dir --break-system-packages --upgrade pip &&     cp /root/dist/requirements.txt . &&     pip3 install --no-cache-dir --break-system-packages --no-cache-dir -r requirements.txt &&     mkdir -p /home/spiderfoot/.spiderfoot/logs &&     chown -R spiderfoot:spiderfoot /home/spiderfoot &&     sed -i "s#'root': '\/'#'root': '\/spiderfoot'#" /home/spiderfoot/sf.py &&     sed -i "s#'root', '\/'#'root', '\/spiderfoot'#" /home/spiderfoot/sf.py &&     apk del --purge build-base 		gcc 		git 		libffi-dev 		libxml2-dev 		libxslt-dev 		musl-dev 		openssl-dev 		python3-dev 		swig 		tinyxml-dev && 	rm -rf /var/cache/apk/* /home/spiderfoot/.git
+#11 26.17 (15/211) Installing libstdc++-dev (13.2.1_git20240309-r1)
+#11 28.19 (16/211) Installing musl-dev (1.2.5-r1)
+#11 29.07 (17/211) Installing g++ (13.2.1_git20240309-r1)
+#11 34.55 (18/211) Installing make (4.4.1-r2)
+#11 34.59 (19/211) Installing fortify-headers (1.1-r3)
+#11 34.61 (20/211) Installing patch (2.7.6-r10)
+#11 34.65 (21/211) Installing build-base (0.5-r3)
+#11 34.65 (22/211) Installing ca-certificates (20241121-r1)
+#11 34.77 (23/211) Installing brotli-libs (1.1.0-r2)
+#11 34.92 (24/211) Installing c-ares (1.33.1-r0)
+#11 35.02 (25/211) Installing libunistring (1.2-r0)
+#11 35.22 (26/211) Installing libidn2 (2.3.7-r0)
+#11 35.27 (27/211) Installing nghttp2-libs (1.62.1-r0)
+#11 35.30 (28/211) Installing libpsl (0.21.5-r1)
+#11 35.34 (29/211) Installing libcurl (8.12.1-r0)
+#11 35.45 (30/211) Installing curl (8.12.1-r0)
+#11 35.51 (31/211) Installing libexpat (2.6.4-r0)
+#11 35.54 (32/211) Installing pcre2 (10.43-r0)
+#11 35.64 (33/211) Installing git (2.45.3-r0)
+#11 ...
+
+#10 [spiderfoot linux/amd64 3/4] RUN apk --no-cache -U upgrade && 	apk --no-cache -U add 		build-base 		curl 		git 		jpeg-dev 		libffi-dev 		libxml2 		libxml2-dev 		libxslt 		libxslt-dev 		musl 		musl-dev 		openjpeg-dev 		openssl 		openssl-dev 		python3 		python3-dev 		py3-cryptography 		py3-ipaddr 		py3-beautifulsoup4 		py3-dnspython 		py3-exifread 		py3-future 		py3-jaraco.classes 		py3-jaraco.context 		py3-jaraco.functools 		py3-lxml 		py3-mako 		py3-more-itertools 		py3-netaddr 		py3-networkx 		py3-openssl 		py3-pillow 		py3-portend 		py3-phonenumbers 		py3-pip 		py3-pysocks 		py3-requests 		py3-tempora 		py3-wheel 		py3-xlsxwriter 		py3-yaml 		swig 		tinyxml 		tinyxml-dev 		zlib-dev &&     addgroup -g 2000 spiderfoot &&     adduser -S -s /bin/ash -u 2000 -D -g 2000 spiderfoot && 	git config --global --add safe.directory /home/spiderfoot &&     git clone https://github.com/smicallef/spiderfoot /home/spiderfoot &&     cd /home/spiderfoot &&     git checkout 0f815a203afebf05c98b605dba5cf0475a0ee5fd &&     pip3 install --no-cache-dir --break-system-packages --upgrade pip &&     cp /root/dist/requirements.txt . &&     pip3 install --no-cache-dir --break-system-packages --no-cache-dir -r requirements.txt &&     mkdir -p /home/spiderfoot/.spiderfoot/logs &&     chown -R spiderfoot:spiderfoot /home/spiderfoot &&     sed -i "s#'root': '\/'#'root': '\/spiderfoot'#" /home/spiderfoot/sf.py &&     sed -i "s#'root', '\/'#'root', '\/spiderfoot'#" /home/spiderfoot/sf.py &&     apk del --purge build-base 		gcc 		git 		libffi-dev 		libxml2-dev 		libxslt-dev 		musl-dev 		openssl-dev 		python3-dev 		swig 		tinyxml-dev && 	rm -rf /var/cache/apk/* /home/spiderfoot/.git
+#10 36.27 (204/212) Installing py3-yaml (6.0.1-r3)
+#10 36.34 (205/212) Installing py3-yaml-pyc (6.0.1-r3)
+#10 36.36 (206/212) Installing python3-dev (3.12.9-r0)
+#10 ...
+
+#11 [spiderfoot linux/arm64 3/4] RUN apk --no-cache -U upgrade && 	apk --no-cache -U add 		build-base 		curl 		git 		jpeg-dev 		libffi-dev 		libxml2 		libxml2-dev 		libxslt 		libxslt-dev 		musl 		musl-dev 		openjpeg-dev 		openssl 		openssl-dev 		python3 		python3-dev 		py3-cryptography 		py3-ipaddr 		py3-beautifulsoup4 		py3-dnspython 		py3-exifread 		py3-future 		py3-jaraco.classes 		py3-jaraco.context 		py3-jaraco.functools 		py3-lxml 		py3-mako 		py3-more-itertools 		py3-netaddr 		py3-networkx 		py3-openssl 		py3-pillow 		py3-portend 		py3-phonenumbers 		py3-pip 		py3-pysocks 		py3-requests 		py3-tempora 		py3-wheel 		py3-xlsxwriter 		py3-yaml 		swig 		tinyxml 		tinyxml-dev 		zlib-dev &&     addgroup -g 2000 spiderfoot &&     adduser -S -s /bin/ash -u 2000 -D -g 2000 spiderfoot && 	git config --global --add safe.directory /home/spiderfoot &&     git clone https://github.com/smicallef/spiderfoot /home/spiderfoot &&     cd /home/spiderfoot &&     git checkout 0f815a203afebf05c98b605dba5cf0475a0ee5fd &&     pip3 install --no-cache-dir --break-system-packages --upgrade pip &&     cp /root/dist/requirements.txt . &&     pip3 install --no-cache-dir --break-system-packages --no-cache-dir -r requirements.txt &&     mkdir -p /home/spiderfoot/.spiderfoot/logs &&     chown -R spiderfoot:spiderfoot /home/spiderfoot &&     sed -i "s#'root': '\/'#'root': '\/spiderfoot'#" /home/spiderfoot/sf.py &&     sed -i "s#'root', '\/'#'root', '\/spiderfoot'#" /home/spiderfoot/sf.py &&     apk del --purge build-base 		gcc 		git 		libffi-dev 		libxml2-dev 		libxslt-dev 		musl-dev 		openssl-dev 		python3-dev 		swig 		tinyxml-dev && 	rm -rf /var/cache/apk/* /home/spiderfoot/.git
+#11 36.75 (34/211) Installing git-init-template (2.45.3-r0)
+#11 36.77 (35/211) Installing libjpeg-turbo (3.0.3-r0)
+#11 36.86 (36/211) Installing libturbojpeg (3.0.3-r0)
+#11 36.96 (37/211) Installing pkgconf (2.2.0-r0)
+#11 36.99 (38/211) Installing libjpeg-turbo-dev (3.0.3-r0)
+#11 37.04 (39/211) Installing jpeg-dev (9e-r1)
+#11 37.05 (40/211) Installing linux-headers (6.6-r0)
+#11 37.87 (41/211) Installing libffi (3.4.6-r0)
+#11 37.89 (42/211) Installing libffi-dev (3.4.6-r0)
+#11 37.93 (43/211) Installing xz-libs (5.6.2-r0)
+#11 37.98 (44/211) Installing libxml2 (2.12.7-r0)
+#11 38.12 (45/211) Installing zlib-dev (1.3.1-r1)
+#11 38.15 (46/211) Installing xz (5.6.2-r0)
+#11 38.21 (47/211) Installing xz-dev (5.6.2-r0)
+#11 38.27 (48/211) Installing libxml2-utils (2.12.7-r0)
+#11 38.33 (49/211) Installing libxml2-dev (2.12.7-r0)
+#11 38.40 (50/211) Installing libgpg-error (1.49-r0)
+#11 38.47 (51/211) Installing libgcrypt (1.10.3-r0)
+#11 38.62 (52/211) Installing libxslt (1.1.39-r1)
+#11 38.69 (53/211) Installing libxslt-dev (1.1.39-r1)
+#11 38.73 (54/211) Installing lcms2 (2.16-r0)
+#11 38.80 (55/211) Installing openjpeg (2.5.2-r0)
+#11 38.88 (56/211) Installing libpng (1.6.44-r0)
+#11 38.92 (57/211) Installing libsharpyuv (1.3.2-r0)
+#11 38.95 (58/211) Installing libwebp (1.3.2-r0)
+#11 39.03 (59/211) Installing tiff (4.6.0t-r0)
+#11 39.12 (60/211) Installing openjpeg-tools (2.5.2-r0)
+#11 39.19 (61/211) Installing openjpeg-dev (2.5.2-r0)
+#11 39.28 (62/211) Installing openssl (3.3.3-r0)
+#11 39.40 (63/211) Installing openssl-dev (3.3.3-r0)
+#11 39.57 (64/211) Installing libbz2 (1.0.8-r6)
+#11 39.60 (65/211) Installing gdbm (1.23-r1)
+#11 39.63 (66/211) Installing mpdecimal (4.0.0-r0)
+#11 39.67 (67/211) Installing ncurses-terminfo-base (6.4_p20240420-r2)
+#11 39.70 (68/211) Installing libncursesw (6.4_p20240420-r2)
+#11 39.77 (69/211) Installing libpanelw (6.4_p20240420-r2)
+#11 39.79 (70/211) Installing readline (8.2.10-r0)
+#11 39.84 (71/211) Installing sqlite-libs (3.45.3-r1)
+#11 40.07 (72/211) Installing python3 (3.12.9-r0)
+#11 ...
+
+#10 [spiderfoot linux/amd64 3/4] RUN apk --no-cache -U upgrade && 	apk --no-cache -U add 		build-base 		curl 		git 		jpeg-dev 		libffi-dev 		libxml2 		libxml2-dev 		libxslt 		libxslt-dev 		musl 		musl-dev 		openjpeg-dev 		openssl 		openssl-dev 		python3 		python3-dev 		py3-cryptography 		py3-ipaddr 		py3-beautifulsoup4 		py3-dnspython 		py3-exifread 		py3-future 		py3-jaraco.classes 		py3-jaraco.context 		py3-jaraco.functools 		py3-lxml 		py3-mako 		py3-more-itertools 		py3-netaddr 		py3-networkx 		py3-openssl 		py3-pillow 		py3-portend 		py3-phonenumbers 		py3-pip 		py3-pysocks 		py3-requests 		py3-tempora 		py3-wheel 		py3-xlsxwriter 		py3-yaml 		swig 		tinyxml 		tinyxml-dev 		zlib-dev &&     addgroup -g 2000 spiderfoot &&     adduser -S -s /bin/ash -u 2000 -D -g 2000 spiderfoot && 	git config --global --add safe.directory /home/spiderfoot &&     git clone https://github.com/smicallef/spiderfoot /home/spiderfoot &&     cd /home/spiderfoot &&     git checkout 0f815a203afebf05c98b605dba5cf0475a0ee5fd &&     pip3 install --no-cache-dir --break-system-packages --upgrade pip &&     cp /root/dist/requirements.txt . &&     pip3 install --no-cache-dir --break-system-packages --no-cache-dir -r requirements.txt &&     mkdir -p /home/spiderfoot/.spiderfoot/logs &&     chown -R spiderfoot:spiderfoot /home/spiderfoot &&     sed -i "s#'root': '\/'#'root': '\/spiderfoot'#" /home/spiderfoot/sf.py &&     sed -i "s#'root', '\/'#'root', '\/spiderfoot'#" /home/spiderfoot/sf.py &&     apk del --purge build-base 		gcc 		git 		libffi-dev 		libxml2-dev 		libxslt-dev 		musl-dev 		openssl-dev 		python3-dev 		swig 		tinyxml-dev && 	rm -rf /var/cache/apk/* /home/spiderfoot/.git
+#10 42.65 (207/212) Installing gc (8.2.6-r0)
+#10 42.70 (208/212) Installing guile-libs (3.0.9-r0)
+#10 42.79 (209/212) Installing guile (3.0.9-r0)
+#10 44.16 (210/212) Installing swig (4.2.1-r2)
+#10 44.48 (211/212) Installing tinyxml (2.6.2-r4)
+#10 44.52 (212/212) Installing tinyxml-dev (2.6.2-r4)
+#10 44.58 Executing busybox-1.36.1-r29.trigger
+#10 44.61 Executing ca-certificates-20241121-r1.trigger
+#10 44.72 OK: 821 MiB in 226 packages
+#10 45.01 Cloning into '/home/spiderfoot'...
+#10 ...
+
+#11 [spiderfoot linux/arm64 3/4] RUN apk --no-cache -U upgrade && 	apk --no-cache -U add 		build-base 		curl 		git 		jpeg-dev 		libffi-dev 		libxml2 		libxml2-dev 		libxslt 		libxslt-dev 		musl 		musl-dev 		openjpeg-dev 		openssl 		openssl-dev 		python3 		python3-dev 		py3-cryptography 		py3-ipaddr 		py3-beautifulsoup4 		py3-dnspython 		py3-exifread 		py3-future 		py3-jaraco.classes 		py3-jaraco.context 		py3-jaraco.functools 		py3-lxml 		py3-mako 		py3-more-itertools 		py3-netaddr 		py3-networkx 		py3-openssl 		py3-pillow 		py3-portend 		py3-phonenumbers 		py3-pip 		py3-pysocks 		py3-requests 		py3-tempora 		py3-wheel 		py3-xlsxwriter 		py3-yaml 		swig 		tinyxml 		tinyxml-dev 		zlib-dev &&     addgroup -g 2000 spiderfoot &&     adduser -S -s /bin/ash -u 2000 -D -g 2000 spiderfoot && 	git config --global --add safe.directory /home/spiderfoot &&     git clone https://github.com/smicallef/spiderfoot /home/spiderfoot &&     cd /home/spiderfoot &&     git checkout 0f815a203afebf05c98b605dba5cf0475a0ee5fd &&     pip3 install --no-cache-dir --break-system-packages --upgrade pip &&     cp /root/dist/requirements.txt . &&     pip3 install --no-cache-dir --break-system-packages --no-cache-dir -r requirements.txt &&     mkdir -p /home/spiderfoot/.spiderfoot/logs &&     chown -R spiderfoot:spiderfoot /home/spiderfoot &&     sed -i "s#'root': '\/'#'root': '\/spiderfoot'#" /home/spiderfoot/sf.py &&     sed -i "s#'root', '\/'#'root', '\/spiderfoot'#" /home/spiderfoot/sf.py &&     apk del --purge build-base 		gcc 		git 		libffi-dev 		libxml2-dev 		libxslt-dev 		musl-dev 		openssl-dev 		python3-dev 		swig 		tinyxml-dev && 	rm -rf /var/cache/apk/* /home/spiderfoot/.git
+#11 43.01 (73/211) Installing python3-pycache-pyc0 (3.12.9-r0)
+#11 44.54 (74/211) Installing pyc (3.12.9-r0)
+#11 44.55 (75/211) Installing py3-soupsieve (2.5-r1)
+#11 44.61 (76/211) Installing py3-soupsieve-pyc (2.5-r1)
+#11 44.69 (77/211) Installing py3-beautifulsoup4-pyc (4.12.3-r2)
+#11 44.78 (78/211) Installing python3-pyc (3.12.9-r0)
+#11 44.79 (79/211) Installing py3-beautifulsoup4 (4.12.3-r2)
+#11 44.92 (80/211) Installing py3-cparser (2.22-r1)
+#11 44.97 (81/211) Installing py3-cparser-pyc (2.22-r1)
+#11 45.04 (82/211) Installing py3-cffi (1.16.0-r1)
+#11 45.11 (83/211) Installing py3-cffi-pyc (1.16.0-r1)
+#11 45.19 (84/211) Installing py3-cryptography (42.0.7-r0)
+#11 45.45 (85/211) Installing py3-cryptography-pyc (42.0.7-r0)
+#11 45.54 (86/211) Installing py3-dnspython (2.6.1-r1)
+#11 45.67 (87/211) Installing py3-dnspython-pyc (2.6.1-r1)
+#11 45.93 (88/211) Installing py3-exifread (3.0.0-r2)
+#11 46.02 (89/211) Installing py3-exifread-pyc (3.0.0-r2)
+#11 46.11 (90/211) Installing py3-future (1.0.0-r1)
+#11 46.36 (91/211) Installing py3-future-pyc (1.0.0-r1)
+#11 46.65 (92/211) Installing py3-ipaddr (2.2.0-r10)
+#11 46.70 (93/211) Installing py3-ipaddr-pyc (2.2.0-r10)
+#11 46.77 (94/211) Installing py3-more-itertools (10.2.0-r1)
+#11 46.84 (95/211) Installing py3-more-itertools-pyc (10.2.0-r1)
+#11 46.93 (96/211) Installing py3-jaraco.classes (3.4.0-r1)
+#11 46.99 (97/211) Installing py3-jaraco.classes-pyc (3.4.0-r1)
+#11 47.04 (98/211) Installing py3-jaraco.context (5.3.0-r0)
+#11 47.10 (99/211) Installing py3-jaraco.context-pyc (5.3.0-r0)
+#11 47.14 (100/211) Installing py3-jaraco.functools (4.0.1-r0)
+#11 47.21 (101/211) Installing py3-jaraco.functools-pyc (4.0.1-r0)
+#11 47.26 (102/211) Installing py3-lxml (5.1.0-r0)
+#11 47.95 (103/211) Installing py3-lxml-pyc (5.1.0-r0)
+#11 48.05 (104/211) Installing py3-markupsafe (2.1.5-r1)
+#11 48.08 (105/211) Installing py3-markupsafe-pyc (2.1.5-r1)
+#11 48.09 (106/211) Installing py3-mako (1.3.3-r0)
+#11 48.17 (107/211) Installing py3-mako-pyc (1.3.3-r0)
+#11 48.27 (108/211) Installing py3-netaddr (0.10.1-r1)
+#11 49.12 (109/211) Installing py3-netaddr-pyc (0.10.1-r1)
+#11 49.20 (110/211) Installing libxau (1.0.11-r4)
+#11 49.21 (111/211) Installing libmd (1.1.0-r0)
+#11 49.23 (112/211) Installing libbsd (0.12.2-r0)
+#11 49.26 (113/211) Installing libxdmcp (1.1.5-r1)
+#11 49.29 (114/211) Installing libxcb (1.16.1-r0)
+#11 49.43 (115/211) Installing libx11 (1.8.9-r1)
+#11 49.73 (116/211) Installing libxext (1.3.6-r2)
+#11 49.77 (117/211) Installing libxrender (0.9.11-r5)
+#11 49.79 (118/211) Installing freetype (2.13.2-r0)
+#11 49.89 (119/211) Installing fontconfig (2.15.0-r1)
+#11 50.00 (120/211) Installing pixman (0.43.2-r0)
+#11 50.06 (121/211) Installing cairo (1.18.0-r0)
+#11 50.21 (122/211) Installing py3-cairo (1.26.0-r1)
+#11 50.29 (123/211) Installing py3-cairo-pyc (1.26.0-r1)
+#11 50.33 (124/211) Installing py3-certifi (2024.2.2-r1)
+#11 50.35 (125/211) Installing py3-certifi-pyc (2024.2.2-r1)
+#11 50.37 (126/211) Installing libgfortran (13.2.1_git20240309-r1)
+#11 50.56 (127/211) Installing openblas (0.3.28-r0)
+#11 ...
+
+#10 [spiderfoot linux/amd64 3/4] RUN apk --no-cache -U upgrade && 	apk --no-cache -U add 		build-base 		curl 		git 		jpeg-dev 		libffi-dev 		libxml2 		libxml2-dev 		libxslt 		libxslt-dev 		musl 		musl-dev 		openjpeg-dev 		openssl 		openssl-dev 		python3 		python3-dev 		py3-cryptography 		py3-ipaddr 		py3-beautifulsoup4 		py3-dnspython 		py3-exifread 		py3-future 		py3-jaraco.classes 		py3-jaraco.context 		py3-jaraco.functools 		py3-lxml 		py3-mako 		py3-more-itertools 		py3-netaddr 		py3-networkx 		py3-openssl 		py3-pillow 		py3-portend 		py3-phonenumbers 		py3-pip 		py3-pysocks 		py3-requests 		py3-tempora 		py3-wheel 		py3-xlsxwriter 		py3-yaml 		swig 		tinyxml 		tinyxml-dev 		zlib-dev &&     addgroup -g 2000 spiderfoot &&     adduser -S -s /bin/ash -u 2000 -D -g 2000 spiderfoot && 	git config --global --add safe.directory /home/spiderfoot &&     git clone https://github.com/smicallef/spiderfoot /home/spiderfoot &&     cd /home/spiderfoot &&     git checkout 0f815a203afebf05c98b605dba5cf0475a0ee5fd &&     pip3 install --no-cache-dir --break-system-packages --upgrade pip &&     cp /root/dist/requirements.txt . &&     pip3 install --no-cache-dir --break-system-packages --no-cache-dir -r requirements.txt &&     mkdir -p /home/spiderfoot/.spiderfoot/logs &&     chown -R spiderfoot:spiderfoot /home/spiderfoot &&     sed -i "s#'root': '\/'#'root': '\/spiderfoot'#" /home/spiderfoot/sf.py &&     sed -i "s#'root', '\/'#'root', '\/spiderfoot'#" /home/spiderfoot/sf.py &&     apk del --purge build-base 		gcc 		git 		libffi-dev 		libxml2-dev 		libxslt-dev 		musl-dev 		openssl-dev 		python3-dev 		swig 		tinyxml-dev && 	rm -rf /var/cache/apk/* /home/spiderfoot/.git
+#10 51.79 Note: switching to '0f815a203afebf05c98b605dba5cf0475a0ee5fd'.
+#10 51.79 
+#10 51.79 You are in 'detached HEAD' state. You can look around, make experimental
+#10 51.79 changes and commit them, and you can discard any commits you make in this
+#10 51.79 state without impacting any branches by switching back to a branch.
+#10 51.79 
+#10 51.79 If you want to create a new branch to retain commits you create, you may
+#10 51.79 do so (now or later) by using -c with the switch command. Example:
+#10 51.79 
+#10 51.79   git switch -c <new-branch-name>
+#10 51.79 
+#10 51.79 Or undo this operation with:
+#10 51.79 
+#10 51.79   git switch -
+#10 51.79 
+#10 51.79 Turn off this advice by setting config variable advice.detachedHead to false
+#10 51.79 
+#10 51.79 HEAD is now at 0f815a20 sfwebui: Update jQuery 3.6.0 to 3.7.1 (#1822)
+#10 55.94 Requirement already satisfied: pip in /usr/lib/python3.12/site-packages (24.0)
+#10 56.14 Collecting pip
+#10 56.23   Downloading pip-25.0.1-py3-none-any.whl.metadata (3.7 kB)
+#10 56.25 Downloading pip-25.0.1-py3-none-any.whl (1.8 MB)
+#10 56.47    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.8/1.8 MB 8.8 MB/s eta 0:00:00
+#10 57.51 Installing collected packages: pip
+#10 57.51   Attempting uninstall: pip
+#10 57.62     Found existing installation: pip 24.0
+#10 57.62     Uninstalling pip-24.0:
+#10 57.76       Successfully uninstalled pip-24.0
+#10 ...
+
+#11 [spiderfoot linux/arm64 3/4] RUN apk --no-cache -U upgrade && 	apk --no-cache -U add 		build-base 		curl 		git 		jpeg-dev 		libffi-dev 		libxml2 		libxml2-dev 		libxslt 		libxslt-dev 		musl 		musl-dev 		openjpeg-dev 		openssl 		openssl-dev 		python3 		python3-dev 		py3-cryptography 		py3-ipaddr 		py3-beautifulsoup4 		py3-dnspython 		py3-exifread 		py3-future 		py3-jaraco.classes 		py3-jaraco.context 		py3-jaraco.functools 		py3-lxml 		py3-mako 		py3-more-itertools 		py3-netaddr 		py3-networkx 		py3-openssl 		py3-pillow 		py3-portend 		py3-phonenumbers 		py3-pip 		py3-pysocks 		py3-requests 		py3-tempora 		py3-wheel 		py3-xlsxwriter 		py3-yaml 		swig 		tinyxml 		tinyxml-dev 		zlib-dev &&     addgroup -g 2000 spiderfoot &&     adduser -S -s /bin/ash -u 2000 -D -g 2000 spiderfoot && 	git config --global --add safe.directory /home/spiderfoot &&     git clone https://github.com/smicallef/spiderfoot /home/spiderfoot &&     cd /home/spiderfoot &&     git checkout 0f815a203afebf05c98b605dba5cf0475a0ee5fd &&     pip3 install --no-cache-dir --break-system-packages --upgrade pip &&     cp /root/dist/requirements.txt . &&     pip3 install --no-cache-dir --break-system-packages --no-cache-dir -r requirements.txt &&     mkdir -p /home/spiderfoot/.spiderfoot/logs &&     chown -R spiderfoot:spiderfoot /home/spiderfoot &&     sed -i "s#'root': '\/'#'root': '\/spiderfoot'#" /home/spiderfoot/sf.py &&     sed -i "s#'root', '\/'#'root', '\/spiderfoot'#" /home/spiderfoot/sf.py &&     apk del --purge build-base 		gcc 		git 		libffi-dev 		libxml2-dev 		libxslt-dev 		musl-dev 		openssl-dev 		python3-dev 		swig 		tinyxml-dev && 	rm -rf /var/cache/apk/* /home/spiderfoot/.git
+#11 51.92 (128/211) Installing py3-numpy (1.25.2-r1)
+#11 53.16 (129/211) Installing py3-numpy-pyc (1.25.2-r1)
+#11 53.75 (130/211) Installing py3-contourpy (1.2.1-r1)
+#11 53.86 (131/211) Installing py3-contourpy-pyc (1.2.1-r1)
+#11 53.93 (132/211) Installing py3-cycler (0.12.1-r1)
+#11 53.98 (133/211) Installing py3-cycler-pyc (0.12.1-r1)
+#11 54.02 (134/211) Installing py3-six (1.16.0-r9)
+#11 54.06 (135/211) Installing py3-six-pyc (1.16.0-r9)
+#11 54.09 (136/211) Installing py3-dateutil (2.9.0-r1)
+#11 54.17 (137/211) Installing py3-dateutil-pyc (2.9.0-r1)
+#11 54.23 (138/211) Installing py3-fonttools (4.51.0-r1)
+#11 55.20 (139/211) Installing py3-fonttools-pyc (4.51.0-r1)
+#11 55.88 (140/211) Installing py3-kiwisolver (1.4.5-r1)
+#11 55.95 (141/211) Installing py3-kiwisolver-pyc (1.4.5-r1)
+#11 55.99 (142/211) Installing py3-parsing (3.1.2-r1)
+#11 56.04 (143/211) Installing py3-parsing-pyc (3.1.2-r1)
+#11 56.11 (144/211) Installing py3-packaging (24.0-r1)
+#11 56.15 (145/211) Installing py3-packaging-pyc (24.0-r1)
+#11 56.17 (146/211) Installing libimagequant (4.2.2-r0)
+#11 56.26 (147/211) Installing libwebpdemux (1.3.2-r0)
+#11 56.28 (148/211) Installing libwebpmux (1.3.2-r0)
+#11 56.36 (149/211) Installing py3-pillow (10.3.0-r2)
+#11 56.64 (150/211) Installing py3-pillow-pyc (10.3.0-r2)
+#11 56.86 (151/211) Installing py3-tz (2024.1-r1)
+#11 57.14 (152/211) Installing py3-tz-pyc (2024.1-r1)
+#11 57.15 (153/211) Installing tzdata (2025a-r0)
+#11 57.41 (154/211) Installing tcl (8.6.14-r1)
+#11 57.98 (155/211) Installing libxft (2.3.8-r3)
+#11 58.00 (156/211) Installing tk (8.6.14-r0)
+#11 58.24 (157/211) Installing python3-tkinter (3.12.3-r0)
+#11 58.31 (158/211) Installing python3-tkinter-pyc (3.12.3-r0)
+#11 58.50 (159/211) Installing qhull (2020.2-r3)
+#11 58.89 (160/211) Installing py3-matplotlib (3.7.3-r1)
+#11 61.11 (161/211) Installing py3-matplotlib-pyc (3.7.3-r1)
+#11 ...
+
+#10 [spiderfoot linux/amd64 3/4] RUN apk --no-cache -U upgrade && 	apk --no-cache -U add 		build-base 		curl 		git 		jpeg-dev 		libffi-dev 		libxml2 		libxml2-dev 		libxslt 		libxslt-dev 		musl 		musl-dev 		openjpeg-dev 		openssl 		openssl-dev 		python3 		python3-dev 		py3-cryptography 		py3-ipaddr 		py3-beautifulsoup4 		py3-dnspython 		py3-exifread 		py3-future 		py3-jaraco.classes 		py3-jaraco.context 		py3-jaraco.functools 		py3-lxml 		py3-mako 		py3-more-itertools 		py3-netaddr 		py3-networkx 		py3-openssl 		py3-pillow 		py3-portend 		py3-phonenumbers 		py3-pip 		py3-pysocks 		py3-requests 		py3-tempora 		py3-wheel 		py3-xlsxwriter 		py3-yaml 		swig 		tinyxml 		tinyxml-dev 		zlib-dev &&     addgroup -g 2000 spiderfoot &&     adduser -S -s /bin/ash -u 2000 -D -g 2000 spiderfoot && 	git config --global --add safe.directory /home/spiderfoot &&     git clone https://github.com/smicallef/spiderfoot /home/spiderfoot &&     cd /home/spiderfoot &&     git checkout 0f815a203afebf05c98b605dba5cf0475a0ee5fd &&     pip3 install --no-cache-dir --break-system-packages --upgrade pip &&     cp /root/dist/requirements.txt . &&     pip3 install --no-cache-dir --break-system-packages --no-cache-dir -r requirements.txt &&     mkdir -p /home/spiderfoot/.spiderfoot/logs &&     chown -R spiderfoot:spiderfoot /home/spiderfoot &&     sed -i "s#'root': '\/'#'root': '\/spiderfoot'#" /home/spiderfoot/sf.py &&     sed -i "s#'root', '\/'#'root', '\/spiderfoot'#" /home/spiderfoot/sf.py &&     apk del --purge build-base 		gcc 		git 		libffi-dev 		libxml2-dev 		libxslt-dev 		musl-dev 		openssl-dev 		python3-dev 		swig 		tinyxml-dev && 	rm -rf /var/cache/apk/* /home/spiderfoot/.git
+#10 61.59 Successfully installed pip-25.0.1
+#10 61.60 WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv
+#10 63.64 Collecting adblockparser<1,>=0.7 (from -r requirements.txt (line 1))
+#10 63.75   Downloading adblockparser-0.7-py2.py3-none-any.whl.metadata (7.7 kB)
+#10 64.22 Collecting CherryPy<19,>=18.6.1 (from -r requirements.txt (line 2))
+#10 64.23   Downloading CherryPy-18.10.0-py3-none-any.whl.metadata (8.7 kB)
+#10 64.38 Collecting cherrypy-cors<2,>=1.6 (from -r requirements.txt (line 3))
+#10 64.39   Downloading cherrypy_cors-1.7.0-py3-none-any.whl.metadata (3.1 kB)
+#10 64.43 Collecting ipwhois<1.2.0,>=1.1.0 (from -r requirements.txt (line 4))
+#10 64.44   Downloading ipwhois-1.1.0-py2.py3-none-any.whl.metadata (19 kB)
+#10 64.58 Collecting pygexf<0.3,>=0.2.2 (from -r requirements.txt (line 5))
+#10 64.58   Downloading pygexf-0.2.2.tar.gz (5.1 kB)
+#10 64.60   Preparing metadata (setup.py): started
+#10 65.28   Preparing metadata (setup.py): finished with status 'done'
+#10 65.32 Collecting python-whois<0.8,>=0.7.3 (from -r requirements.txt (line 6))
+#10 65.33   Downloading python-whois-0.7.3.tar.gz (91 kB)
+#10 65.41   Preparing metadata (setup.py): started
+#10 66.08   Preparing metadata (setup.py): finished with status 'done'
+#10 66.10 Collecting secure<0.4.0,>=0.3.0 (from -r requirements.txt (line 7))
+#10 66.11   Downloading secure-0.3.0-py3-none-any.whl.metadata (5.5 kB)
+#10 66.16 Collecting python-docx<0.9,>=0.8.11 (from -r requirements.txt (line 8))
+#10 66.17   Downloading python-docx-0.8.11.tar.gz (5.6 MB)
+#10 66.71      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 5.6/5.6 MB 10.6 MB/s eta 0:00:00
+#10 67.24   Preparing metadata (setup.py): started
+#10 68.13   Preparing metadata (setup.py): finished with status 'done'
+#10 68.18 Collecting python-pptx<0.7,>=0.6.21 (from -r requirements.txt (line 9))
+#10 68.19   Downloading python_pptx-0.6.23-py3-none-any.whl.metadata (18 kB)
+#10 68.35 Collecting publicsuffixlist<0.8,>=0.7.9 (from -r requirements.txt (line 10))
+#10 68.36   Downloading publicsuffixlist-0.7.14-py2.py3-none-any.whl.metadata (4.5 kB)
+#10 68.44 Collecting openpyxl<4,>=3.0.9 (from -r requirements.txt (line 11))
+#10 68.45   Downloading openpyxl-3.1.5-py2.py3-none-any.whl.metadata (2.5 kB)
+#10 68.50 Collecting PyPDF2<2,>=1.28.6 (from -r requirements.txt (line 12))
+#10 68.51   Downloading PyPDF2-1.28.6-py3-none-any.whl.metadata (5.3 kB)
+#10 68.69 Collecting cheroot>=8.2.1 (from CherryPy<19,>=18.6.1->-r requirements.txt (line 2))
+#10 68.70   Downloading cheroot-10.0.1-py3-none-any.whl.metadata (7.1 kB)
+#10 68.72 Requirement already satisfied: portend>=2.1.1 in /usr/lib/python3.12/site-packages (from CherryPy<19,>=18.6.1->-r requirements.txt (line 2)) (3.2.0)
+#10 68.72 Requirement already satisfied: more-itertools in /usr/lib/python3.12/site-packages (from CherryPy<19,>=18.6.1->-r requirements.txt (line 2)) (10.2.0)
+#10 68.85 Collecting zc.lockfile (from CherryPy<19,>=18.6.1->-r requirements.txt (line 2))
+#10 68.97   Downloading zc.lockfile-3.0.post1-py3-none-any.whl.metadata (6.2 kB)
+#10 69.11 Collecting jaraco.collections (from CherryPy<19,>=18.6.1->-r requirements.txt (line 2))
+#10 69.12   Downloading jaraco.collections-5.1.0-py3-none-any.whl.metadata (3.9 kB)
+#10 69.33 Collecting httpagentparser>=1.5 (from cherrypy-cors<2,>=1.6->-r requirements.txt (line 3))
+#10 69.44   Downloading httpagentparser-1.9.5.tar.gz (7.7 kB)
+#10 69.47   Preparing metadata (setup.py): started
+#10 70.14   Preparing metadata (setup.py): finished with status 'done'
+#10 70.14 Requirement already satisfied: dnspython in /usr/lib/python3.12/site-packages (from ipwhois<1.2.0,>=1.1.0->-r requirements.txt (line 4)) (2.6.1)
+#10 70.14 Requirement already satisfied: future in /usr/lib/python3.12/site-packages (from python-whois<0.8,>=0.7.3->-r requirements.txt (line 6)) (1.0.0)
+#10 70.15 Requirement already satisfied: lxml>=2.3.2 in /usr/lib/python3.12/site-packages (from python-docx<0.9,>=0.8.11->-r requirements.txt (line 8)) (5.1.0)
+#10 70.15 Requirement already satisfied: Pillow>=3.3.2 in /usr/lib/python3.12/site-packages (from python-pptx<0.7,>=0.6.21->-r requirements.txt (line 9)) (10.3.0)
+#10 70.16 Requirement already satisfied: XlsxWriter>=0.5.7 in /usr/lib/python3.12/site-packages (from python-pptx<0.7,>=0.6.21->-r requirements.txt (line 9)) (3.2.0)
+#10 70.17 Collecting et-xmlfile (from openpyxl<4,>=3.0.9->-r requirements.txt (line 11))
+#10 70.17   Downloading et_xmlfile-2.0.0-py3-none-any.whl.metadata (2.7 kB)
+#10 70.18 Requirement already satisfied: jaraco.functools in /usr/lib/python3.12/site-packages (from cheroot>=8.2.1->CherryPy<19,>=18.6.1->-r requirements.txt (line 2)) (4.0.1)
+#10 70.20 Requirement already satisfied: tempora>=1.8 in /usr/lib/python3.12/site-packages (from portend>=2.1.1->CherryPy<19,>=18.6.1->-r requirements.txt (line 2)) (5.5.1)
+#10 70.35 Collecting jaraco.text (from jaraco.collections->CherryPy<19,>=18.6.1->-r requirements.txt (line 2))
+#10 70.36   Downloading jaraco.text-4.0.0-py3-none-any.whl.metadata (3.7 kB)
+#10 70.38 Requirement already satisfied: setuptools in /usr/lib/python3.12/site-packages (from zc.lockfile->CherryPy<19,>=18.6.1->-r requirements.txt (line 2)) (70.3.0)
+#10 70.38 Requirement already satisfied: pytz in /usr/lib/python3.12/site-packages (from tempora>=1.8->portend>=2.1.1->CherryPy<19,>=18.6.1->-r requirements.txt (line 2)) (2024.1)
+#10 70.39 Requirement already satisfied: jaraco.context>=4.1 in /usr/lib/python3.12/site-packages (from jaraco.text->jaraco.collections->CherryPy<19,>=18.6.1->-r requirements.txt (line 2)) (5.3.0)
+#10 70.52 Collecting autocommand (from jaraco.text->jaraco.collections->CherryPy<19,>=18.6.1->-r requirements.txt (line 2))
+#10 70.54   Downloading autocommand-2.2.2-py3-none-any.whl.metadata (15 kB)
+#10 70.59 Downloading adblockparser-0.7-py2.py3-none-any.whl (13 kB)
+#10 70.61 Downloading CherryPy-18.10.0-py3-none-any.whl (349 kB)
+#10 70.66 Downloading cherrypy_cors-1.7.0-py3-none-any.whl (5.2 kB)
+#10 70.72 Downloading ipwhois-1.1.0-py2.py3-none-any.whl (74 kB)
+#10 70.74 Downloading secure-0.3.0-py3-none-any.whl (9.6 kB)
+#10 70.76 Downloading python_pptx-0.6.23-py3-none-any.whl (471 kB)
+#10 70.84 Downloading publicsuffixlist-0.7.14-py2.py3-none-any.whl (95 kB)
+#10 70.86 Downloading openpyxl-3.1.5-py2.py3-none-any.whl (250 kB)
+#10 70.91 Downloading PyPDF2-1.28.6-py3-none-any.whl (87 kB)
+#10 70.94 Downloading cheroot-10.0.1-py3-none-any.whl (104 kB)
+#10 70.96 Downloading et_xmlfile-2.0.0-py3-none-any.whl (18 kB)
+#10 70.98 Downloading jaraco.collections-5.1.0-py3-none-any.whl (11 kB)
+#10 71.00 Downloading zc.lockfile-3.0.post1-py3-none-any.whl (9.8 kB)
+#10 71.01 Downloading jaraco.text-4.0.0-py3-none-any.whl (11 kB)
+#10 71.02 Downloading autocommand-2.2.2-py3-none-any.whl (19 kB)
+#10 71.08 Building wheels for collected packages: pygexf, python-whois, python-docx, httpagentparser
+#10 71.08   Building wheel for pygexf (setup.py): started
+#10 71.91   Building wheel for pygexf (setup.py): finished with status 'done'
+#10 71.91   Created wheel for pygexf: filename=pygexf-0.2.2-py3-none-any.whl size=5460 sha256=f08ebee00803ff3672c3942613d9dbe00e80e8c62e92718baebb2d036e9f4f1f
+#10 71.91   Stored in directory: /tmp/pip-ephem-wheel-cache-73r6svfn/wheels/9c/59/0a/c7b9237167d87e95f04adf9a0da91bba7091d425a3f2fc1fb9
+#10 71.92   Building wheel for python-whois (setup.py): started
+#10 ...
+
+#11 [spiderfoot linux/arm64 3/4] RUN apk --no-cache -U upgrade && 	apk --no-cache -U add 		build-base 		curl 		git 		jpeg-dev 		libffi-dev 		libxml2 		libxml2-dev 		libxslt 		libxslt-dev 		musl 		musl-dev 		openjpeg-dev 		openssl 		openssl-dev 		python3 		python3-dev 		py3-cryptography 		py3-ipaddr 		py3-beautifulsoup4 		py3-dnspython 		py3-exifread 		py3-future 		py3-jaraco.classes 		py3-jaraco.context 		py3-jaraco.functools 		py3-lxml 		py3-mako 		py3-more-itertools 		py3-netaddr 		py3-networkx 		py3-openssl 		py3-pillow 		py3-portend 		py3-phonenumbers 		py3-pip 		py3-pysocks 		py3-requests 		py3-tempora 		py3-wheel 		py3-xlsxwriter 		py3-yaml 		swig 		tinyxml 		tinyxml-dev 		zlib-dev &&     addgroup -g 2000 spiderfoot &&     adduser -S -s /bin/ash -u 2000 -D -g 2000 spiderfoot && 	git config --global --add safe.directory /home/spiderfoot &&     git clone https://github.com/smicallef/spiderfoot /home/spiderfoot &&     cd /home/spiderfoot &&     git checkout 0f815a203afebf05c98b605dba5cf0475a0ee5fd &&     pip3 install --no-cache-dir --break-system-packages --upgrade pip &&     cp /root/dist/requirements.txt . &&     pip3 install --no-cache-dir --break-system-packages --no-cache-dir -r requirements.txt &&     mkdir -p /home/spiderfoot/.spiderfoot/logs &&     chown -R spiderfoot:spiderfoot /home/spiderfoot &&     sed -i "s#'root': '\/'#'root': '\/spiderfoot'#" /home/spiderfoot/sf.py &&     sed -i "s#'root', '\/'#'root', '\/spiderfoot'#" /home/spiderfoot/sf.py &&     apk del --purge build-base 		gcc 		git 		libffi-dev 		libxml2-dev 		libxslt-dev 		musl-dev 		openssl-dev 		python3-dev 		swig 		tinyxml-dev && 	rm -rf /var/cache/apk/* /home/spiderfoot/.git
+#11 62.64 (162/211) Installing py3-attrs (23.2.0-r1)
+#11 62.72 (163/211) Installing py3-attrs-pyc (23.2.0-r1)
+#11 62.79 (164/211) Installing py3-tzdata (2024.1-r1)
+#11 63.23 (165/211) Installing py3-tzdata-pyc (2024.1-r1)
+#11 63.28 (166/211) Installing py3-pandas (2.0.3-r2)
+#11 66.66 (167/211) Installing py3-pandas-pyc (2.0.3-r2)
+#11 69.86 (168/211) Installing py3-platformdirs (4.2.2-r0)
+#11 69.88 (169/211) Installing py3-platformdirs-pyc (4.2.2-r0)
+#11 69.94 (170/211) Installing py3-charset-normalizer (3.3.2-r1)
+#11 69.97 (171/211) Installing py3-charset-normalizer-pyc (3.3.2-r1)
+#11 70.00 (172/211) Installing py3-idna (3.7-r0)
+#11 70.03 (173/211) Installing py3-idna-pyc (3.7-r0)
+#11 70.07 (174/211) Installing py3-urllib3 (1.26.18-r1)
+#11 70.12 (175/211) Installing py3-urllib3-pyc (1.26.18-r1)
+#11 70.19 (176/211) Installing py3-requests (2.32.3-r0)
+#11 70.22 (177/211) Installing py3-requests-pyc (2.32.3-r0)
+#11 70.28 (178/211) Installing py3-pooch (1.8.1-r1)
+#11 70.38 (179/211) Installing py3-pooch-pyc (1.8.1-r1)
+#11 70.43 (180/211) Installing py3-scipy (1.11.4-r2)
+#11 ...
+
+#10 [spiderfoot linux/amd64 3/4] RUN apk --no-cache -U upgrade && 	apk --no-cache -U add 		build-base 		curl 		git 		jpeg-dev 		libffi-dev 		libxml2 		libxml2-dev 		libxslt 		libxslt-dev 		musl 		musl-dev 		openjpeg-dev 		openssl 		openssl-dev 		python3 		python3-dev 		py3-cryptography 		py3-ipaddr 		py3-beautifulsoup4 		py3-dnspython 		py3-exifread 		py3-future 		py3-jaraco.classes 		py3-jaraco.context 		py3-jaraco.functools 		py3-lxml 		py3-mako 		py3-more-itertools 		py3-netaddr 		py3-networkx 		py3-openssl 		py3-pillow 		py3-portend 		py3-phonenumbers 		py3-pip 		py3-pysocks 		py3-requests 		py3-tempora 		py3-wheel 		py3-xlsxwriter 		py3-yaml 		swig 		tinyxml 		tinyxml-dev 		zlib-dev &&     addgroup -g 2000 spiderfoot &&     adduser -S -s /bin/ash -u 2000 -D -g 2000 spiderfoot && 	git config --global --add safe.directory /home/spiderfoot &&     git clone https://github.com/smicallef/spiderfoot /home/spiderfoot &&     cd /home/spiderfoot &&     git checkout 0f815a203afebf05c98b605dba5cf0475a0ee5fd &&     pip3 install --no-cache-dir --break-system-packages --upgrade pip &&     cp /root/dist/requirements.txt . &&     pip3 install --no-cache-dir --break-system-packages --no-cache-dir -r requirements.txt &&     mkdir -p /home/spiderfoot/.spiderfoot/logs &&     chown -R spiderfoot:spiderfoot /home/spiderfoot &&     sed -i "s#'root': '\/'#'root': '\/spiderfoot'#" /home/spiderfoot/sf.py &&     sed -i "s#'root', '\/'#'root', '\/spiderfoot'#" /home/spiderfoot/sf.py &&     apk del --purge build-base 		gcc 		git 		libffi-dev 		libxml2-dev 		libxslt-dev 		musl-dev 		openssl-dev 		python3-dev 		swig 		tinyxml-dev && 	rm -rf /var/cache/apk/* /home/spiderfoot/.git
+#10 72.81   Building wheel for python-whois (setup.py): finished with status 'done'
+#10 72.82   Created wheel for python-whois: filename=python_whois-0.7.3-py3-none-any.whl size=87703 sha256=ea0beea05ed06b0d94232867b9b42dd3f16510991fe53c1e4294d3e800c40d62
+#10 72.82   Stored in directory: /tmp/pip-ephem-wheel-cache-73r6svfn/wheels/70/c6/b7/d63c1df5e5f4572565835bc00f030236c1664740c2b2be1058
+#10 72.83   Building wheel for python-docx (setup.py): started
+#10 73.93   Building wheel for python-docx (setup.py): finished with status 'done'
+#10 73.93   Created wheel for python-docx: filename=python_docx-0.8.11-py3-none-any.whl size=184488 sha256=77a3029c6fbc798166af2c8dfda3d5de02c86e9b84b298905dc149f36d74ae05
+#10 73.93   Stored in directory: /tmp/pip-ephem-wheel-cache-73r6svfn/wheels/e2/80/66/f9d57f4033ea18bb41c55f2379badd1da48e128c131efe39b5
+#10 73.95   Building wheel for httpagentparser (setup.py): started
+#10 74.95   Building wheel for httpagentparser (setup.py): finished with status 'done'
+#10 74.95   Created wheel for httpagentparser: filename=httpagentparser-1.9.5-py3-none-any.whl size=7541 sha256=ae4f63b8850313c4ca5ecda6c481cf2c879410117972ea4b44edb94c0a8dcfe7
+#10 74.96   Stored in directory: /tmp/pip-ephem-wheel-cache-73r6svfn/wheels/eb/a0/e3/eee2d60368b0dabeb886dc6846a3c014395eac0b4aacf8d248
+#10 74.97 Successfully built pygexf python-whois python-docx httpagentparser
+#10 75.33 Installing collected packages: pygexf, httpagentparser, adblockparser, zc.lockfile, secure, python-whois, python-pptx, python-docx, PyPDF2, publicsuffixlist, ipwhois, et-xmlfile, autocommand, openpyxl, jaraco.text, cheroot, jaraco.collections, CherryPy, cherrypy-cors
+#10 79.38 Successfully installed CherryPy-18.10.0 PyPDF2-1.28.6 adblockparser-0.7 autocommand-2.2.2 cheroot-10.0.1 cherrypy-cors-1.7.0 et-xmlfile-2.0.0 httpagentparser-1.9.5 ipwhois-1.1.0 jaraco.collections-5.1.0 jaraco.text-4.0.0 openpyxl-3.1.5 publicsuffixlist-0.7.14 pygexf-0.2.2 python-docx-0.8.11 python-pptx-0.6.23 python-whois-0.7.3 secure-0.3.0 zc.lockfile-3.0.post1
+#10 79.38 WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+#10 79.77 WARNING: opening from cache https://dl-cdn.alpinelinux.org/alpine/v3.20/main: No such file or directory
+#10 79.77 WARNING: opening from cache https://dl-cdn.alpinelinux.org/alpine/v3.20/community: No such file or directory
+#10 79.77 (1/35) Purging build-base (0.5-r3)
+#10 79.77 (2/35) Purging file (5.45-r1)
+#10 79.77 (3/35) Purging g++ (13.2.1_git20240309-r1)
+#10 79.78 (4/35) Purging libstdc++-dev (13.2.1_git20240309-r1)
+#10 79.82 (5/35) Purging gcc (13.2.1_git20240309-r1)
+#10 79.89 (6/35) Purging binutils (2.42-r0)
+#10 79.90 (7/35) Purging libatomic (13.2.1_git20240309-r1)
+#10 79.90 (8/35) Purging libgomp (13.2.1_git20240309-r1)
+#10 79.90 (9/35) Purging make (4.4.1-r2)
+#10 79.90 (10/35) Purging fortify-headers (1.1-r3)
+#10 79.90 (11/35) Purging patch (2.7.6-r10)
+#10 79.90 (12/35) Purging git-init-template (2.45.3-r0)
+#10 79.90 (13/35) Purging git (2.45.3-r0)
+#10 79.92 (14/35) Purging isl26 (0.26-r1)
+#10 79.92 (15/35) Purging jansson (2.14-r4)
+#10 79.92 (16/35) Purging libffi-dev (3.4.6-r0)
+#10 79.92 (17/35) Purging linux-headers (6.6-r0)
+#10 79.99 (18/35) Purging libmagic (5.45-r1)
+#10 79.99 (19/35) Purging libxslt-dev (1.1.39-r1)
+#10 79.99 (20/35) Purging mpc1 (1.3.1-r1)
+#10 79.99 (21/35) Purging mpfr4 (4.2.1-r0)
+#10 80.00 (22/35) Purging musl-dev (1.2.5-r1)
+#10 80.01 (23/35) Purging openssl-dev (3.3.3-r0)
+#10 80.02 (24/35) Purging python3-dev (3.12.9-r0)
+#10 80.06 (25/35) Purging swig (4.2.1-r2)
+#10 80.10 (26/35) Purging guile (3.0.9-r0)
+#10 80.15 (27/35) Purging tinyxml-dev (2.6.2-r4)
+#10 80.15 (28/35) Purging guile-libs (3.0.9-r0)
+#10 80.15 (29/35) Purging gc (8.2.6-r0)
+#10 80.15 (30/35) Purging gmp (6.3.0-r1)
+#10 80.15 (31/35) Purging libxml2-dev (2.12.7-r0)
+#10 80.16 (32/35) Purging libxml2-utils (2.12.7-r0)
+#10 80.16 (33/35) Purging pcre2 (10.43-r0)
+#10 80.16 (34/35) Purging xz-dev (5.6.2-r0)
+#10 80.16 (35/35) Purging xz (5.6.2-r0)
+#10 80.17 Executing busybox-1.36.1-r29.trigger
+#10 80.19 OK: 437 MiB in 191 packages
+#10 DONE 81.4s
+
+#11 [spiderfoot linux/arm64 3/4] RUN apk --no-cache -U upgrade && 	apk --no-cache -U add 		build-base 		curl 		git 		jpeg-dev 		libffi-dev 		libxml2 		libxml2-dev 		libxslt 		libxslt-dev 		musl 		musl-dev 		openjpeg-dev 		openssl 		openssl-dev 		python3 		python3-dev 		py3-cryptography 		py3-ipaddr 		py3-beautifulsoup4 		py3-dnspython 		py3-exifread 		py3-future 		py3-jaraco.classes 		py3-jaraco.context 		py3-jaraco.functools 		py3-lxml 		py3-mako 		py3-more-itertools 		py3-netaddr 		py3-networkx 		py3-openssl 		py3-pillow 		py3-portend 		py3-phonenumbers 		py3-pip 		py3-pysocks 		py3-requests 		py3-tempora 		py3-wheel 		py3-xlsxwriter 		py3-yaml 		swig 		tinyxml 		tinyxml-dev 		zlib-dev &&     addgroup -g 2000 spiderfoot &&     adduser -S -s /bin/ash -u 2000 -D -g 2000 spiderfoot && 	git config --global --add safe.directory /home/spiderfoot &&     git clone https://github.com/smicallef/spiderfoot /home/spiderfoot &&     cd /home/spiderfoot &&     git checkout 0f815a203afebf05c98b605dba5cf0475a0ee5fd &&     pip3 install --no-cache-dir --break-system-packages --upgrade pip &&     cp /root/dist/requirements.txt . &&     pip3 install --no-cache-dir --break-system-packages --no-cache-dir -r requirements.txt &&     mkdir -p /home/spiderfoot/.spiderfoot/logs &&     chown -R spiderfoot:spiderfoot /home/spiderfoot &&     sed -i "s#'root': '\/'#'root': '\/spiderfoot'#" /home/spiderfoot/sf.py &&     sed -i "s#'root', '\/'#'root', '\/spiderfoot'#" /home/spiderfoot/sf.py &&     apk del --purge build-base 		gcc 		git 		libffi-dev 		libxml2-dev 		libxslt-dev 		musl-dev 		openssl-dev 		python3-dev 		swig 		tinyxml-dev && 	rm -rf /var/cache/apk/* /home/spiderfoot/.git
+#11 75.84 (181/211) Installing py3-scipy-pyc (1.11.4-r2)
+#11 77.04 (182/211) Installing py3-networkx (3.2.1-r1)
+#11 77.44 (183/211) Installing py3-networkx-pyc (3.2.1-r1)
+#11 78.16 (184/211) Installing py3-openssl (24.1.0-r1)
+#11 78.20 (185/211) Installing py3-openssl-pyc (24.1.0-r1)
+#11 78.24 (186/211) Installing py3-phonenumbers (8.13.35-r0)
+#11 79.45 (187/211) Installing py3-phonenumbers-pyc (8.13.35-r0)
+#11 81.24 (188/211) Installing py3-setuptools (70.3.0-r0)
+#11 81.63 (189/211) Installing py3-setuptools-pyc (70.3.0-r0)
+#11 ...
+
+#12 [spiderfoot linux/amd64 4/4] WORKDIR /home/spiderfoot
+#12 DONE 0.4s
+
+#11 [spiderfoot linux/arm64 3/4] RUN apk --no-cache -U upgrade && 	apk --no-cache -U add 		build-base 		curl 		git 		jpeg-dev 		libffi-dev 		libxml2 		libxml2-dev 		libxslt 		libxslt-dev 		musl 		musl-dev 		openjpeg-dev 		openssl 		openssl-dev 		python3 		python3-dev 		py3-cryptography 		py3-ipaddr 		py3-beautifulsoup4 		py3-dnspython 		py3-exifread 		py3-future 		py3-jaraco.classes 		py3-jaraco.context 		py3-jaraco.functools 		py3-lxml 		py3-mako 		py3-more-itertools 		py3-netaddr 		py3-networkx 		py3-openssl 		py3-pillow 		py3-portend 		py3-phonenumbers 		py3-pip 		py3-pysocks 		py3-requests 		py3-tempora 		py3-wheel 		py3-xlsxwriter 		py3-yaml 		swig 		tinyxml 		tinyxml-dev 		zlib-dev &&     addgroup -g 2000 spiderfoot &&     adduser -S -s /bin/ash -u 2000 -D -g 2000 spiderfoot && 	git config --global --add safe.directory /home/spiderfoot &&     git clone https://github.com/smicallef/spiderfoot /home/spiderfoot &&     cd /home/spiderfoot &&     git checkout 0f815a203afebf05c98b605dba5cf0475a0ee5fd &&     pip3 install --no-cache-dir --break-system-packages --upgrade pip &&     cp /root/dist/requirements.txt . &&     pip3 install --no-cache-dir --break-system-packages --no-cache-dir -r requirements.txt &&     mkdir -p /home/spiderfoot/.spiderfoot/logs &&     chown -R spiderfoot:spiderfoot /home/spiderfoot &&     sed -i "s#'root': '\/'#'root': '\/spiderfoot'#" /home/spiderfoot/sf.py &&     sed -i "s#'root', '\/'#'root', '\/spiderfoot'#" /home/spiderfoot/sf.py &&     apk del --purge build-base 		gcc 		git 		libffi-dev 		libxml2-dev 		libxslt-dev 		musl-dev 		openssl-dev 		python3-dev 		swig 		tinyxml-dev && 	rm -rf /var/cache/apk/* /home/spiderfoot/.git
+#11 82.18 (190/211) Installing py3-pip (24.0-r2)
+#11 83.10 (191/211) Installing py3-pip-pyc (24.0-r2)
+#11 83.97 (192/211) Installing py3-tempora (5.5.1-r1)
+#11 84.02 (193/211) Installing py3-tempora-pyc (5.5.1-r1)
+#11 84.06 (194/211) Installing py3-portend (3.2.0-r1)
+#11 84.10 (195/211) Installing py3-portend-pyc (3.2.0-r1)
+#11 84.16 (196/211) Installing py3-pysocks (1.7.1-r7)
+#11 84.21 (197/211) Installing py3-pysocks-pyc (1.7.1-r7)
+#11 84.25 (198/211) Installing py3-wheel (0.42.0-r1)
+#11 84.28 (199/211) Installing py3-wheel-pyc (0.42.0-r1)
+#11 84.34 (200/211) Installing py3-xlsxwriter (3.2.0-r0)
+#11 84.45 (201/211) Installing py3-xlsxwriter-pyc (3.2.0-r0)
+#11 84.57 (202/211) Installing yaml (0.2.5-r2)
+#11 84.60 (203/211) Installing py3-yaml (6.0.1-r3)
+#11 84.65 (204/211) Installing py3-yaml-pyc (6.0.1-r3)
+#11 84.69 (205/211) Installing python3-dev (3.12.9-r0)
+#11 97.52 (206/211) Installing gc (8.2.6-r0)
+#11 97.57 (207/211) Installing guile-libs (3.0.9-r0)
+#11 97.77 (208/211) Installing guile (3.0.9-r0)
+#11 101.4 (209/211) Installing swig (4.2.1-r2)
+#11 102.0 (210/211) Installing tinyxml (2.6.2-r4)
+#11 102.0 (211/211) Installing tinyxml-dev (2.6.2-r4)
+#11 102.2 Executing busybox-1.36.1-r29.trigger
+#11 102.3 Executing ca-certificates-20241121-r1.trigger
+#11 103.4 OK: 810 MiB in 225 packages
+#11 104.1 Cloning into '/home/spiderfoot'...
+#11 121.3 Note: switching to '0f815a203afebf05c98b605dba5cf0475a0ee5fd'.
+#11 121.3 
+#11 121.3 You are in 'detached HEAD' state. You can look around, make experimental
+#11 121.3 changes and commit them, and you can discard any commits you make in this
+#11 121.3 state without impacting any branches by switching back to a branch.
+#11 121.3 
+#11 121.3 If you want to create a new branch to retain commits you create, you may
+#11 121.3 do so (now or later) by using -c with the switch command. Example:
+#11 121.3 
+#11 121.3   git switch -c <new-branch-name>
+#11 121.3 
+#11 121.3 Or undo this operation with:
+#11 121.3 
+#11 121.3   git switch -
+#11 121.3 
+#11 121.3 Turn off this advice by setting config variable advice.detachedHead to false
+#11 121.3 
+#11 121.3 HEAD is now at 0f815a20 sfwebui: Update jQuery 3.6.0 to 3.7.1 (#1822)
+#11 151.4 Requirement already satisfied: pip in /usr/lib/python3.12/site-packages (24.0)
+#11 155.0 Collecting pip
+#11 155.4   Downloading pip-25.0.1-py3-none-any.whl.metadata (3.7 kB)
+#11 155.5 Downloading pip-25.0.1-py3-none-any.whl (1.8 MB)
+#11 156.6    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.8/1.8 MB 2.3 MB/s eta 0:00:00
+#11 169.0 Installing collected packages: pip
+#11 169.0   Attempting uninstall: pip
+#11 169.6     Found existing installation: pip 24.0
+#11 169.6     Uninstalling pip-24.0:
+#11 170.8       Successfully uninstalled pip-24.0
+#11 194.5 Successfully installed pip-25.0.1
+#11 194.5 WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv
+#11 209.8 Collecting adblockparser<1,>=0.7 (from -r requirements.txt (line 1))
+#11 210.3   Downloading adblockparser-0.7-py2.py3-none-any.whl.metadata (7.7 kB)
+#11 211.3 Collecting CherryPy<19,>=18.6.1 (from -r requirements.txt (line 2))
+#11 211.4   Downloading CherryPy-18.10.0-py3-none-any.whl.metadata (8.7 kB)
+#11 211.7 Collecting cherrypy-cors<2,>=1.6 (from -r requirements.txt (line 3))
+#11 211.7   Downloading cherrypy_cors-1.7.0-py3-none-any.whl.metadata (3.1 kB)
+#11 212.1 Collecting ipwhois<1.2.0,>=1.1.0 (from -r requirements.txt (line 4))
+#11 212.1   Downloading ipwhois-1.1.0-py2.py3-none-any.whl.metadata (19 kB)
+#11 212.3 Collecting pygexf<0.3,>=0.2.2 (from -r requirements.txt (line 5))
+#11 212.4   Downloading pygexf-0.2.2.tar.gz (5.1 kB)
+#11 212.5   Preparing metadata (setup.py): started
+#11 218.7   Preparing metadata (setup.py): finished with status 'done'
+#11 218.9 Collecting python-whois<0.8,>=0.7.3 (from -r requirements.txt (line 6))
+#11 218.9   Downloading python-whois-0.7.3.tar.gz (91 kB)
+#11 219.1   Preparing metadata (setup.py): started
+#11 225.1   Preparing metadata (setup.py): finished with status 'done'
+#11 225.3 Collecting secure<0.4.0,>=0.3.0 (from -r requirements.txt (line 7))
+#11 225.3   Downloading secure-0.3.0-py3-none-any.whl.metadata (5.5 kB)
+#11 225.5 Collecting python-docx<0.9,>=0.8.11 (from -r requirements.txt (line 8))
+#11 225.6   Downloading python-docx-0.8.11.tar.gz (5.6 MB)
+#11 226.9      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 5.6/5.6 MB 5.3 MB/s eta 0:00:00
+#11 231.4   Preparing metadata (setup.py): started
+#11 237.6   Preparing metadata (setup.py): finished with status 'done'
+#11 238.0 Collecting python-pptx<0.7,>=0.6.21 (from -r requirements.txt (line 9))
+#11 238.1   Downloading python_pptx-0.6.23-py3-none-any.whl.metadata (18 kB)
+#11 239.4 Collecting publicsuffixlist<0.8,>=0.7.9 (from -r requirements.txt (line 10))
+#11 239.5   Downloading publicsuffixlist-0.7.14-py2.py3-none-any.whl.metadata (4.5 kB)
+#11 240.0 Collecting openpyxl<4,>=3.0.9 (from -r requirements.txt (line 11))
+#11 240.0   Downloading openpyxl-3.1.5-py2.py3-none-any.whl.metadata (2.5 kB)
+#11 240.6 Collecting PyPDF2<2,>=1.28.6 (from -r requirements.txt (line 12))
+#11 240.6   Downloading PyPDF2-1.28.6-py3-none-any.whl.metadata (5.3 kB)
+#11 241.1 Collecting cheroot>=8.2.1 (from CherryPy<19,>=18.6.1->-r requirements.txt (line 2))
+#11 241.2   Downloading cheroot-10.0.1-py3-none-any.whl.metadata (7.1 kB)
+#11 241.3 Requirement already satisfied: portend>=2.1.1 in /usr/lib/python3.12/site-packages (from CherryPy<19,>=18.6.1->-r requirements.txt (line 2)) (3.2.0)
+#11 241.3 Requirement already satisfied: more-itertools in /usr/lib/python3.12/site-packages (from CherryPy<19,>=18.6.1->-r requirements.txt (line 2)) (10.2.0)
+#11 241.5 Collecting zc.lockfile (from CherryPy<19,>=18.6.1->-r requirements.txt (line 2))
+#11 241.5   Downloading zc.lockfile-3.0.post1-py3-none-any.whl.metadata (6.2 kB)
+#11 241.8 Collecting jaraco.collections (from CherryPy<19,>=18.6.1->-r requirements.txt (line 2))
+#11 241.9   Downloading jaraco.collections-5.1.0-py3-none-any.whl.metadata (3.9 kB)
+#11 242.8 Collecting httpagentparser>=1.5 (from cherrypy-cors<2,>=1.6->-r requirements.txt (line 3))
+#11 242.9   Downloading httpagentparser-1.9.5.tar.gz (7.7 kB)
+#11 243.0   Preparing metadata (setup.py): started
+#11 249.4   Preparing metadata (setup.py): finished with status 'done'
+#11 249.5 Requirement already satisfied: dnspython in /usr/lib/python3.12/site-packages (from ipwhois<1.2.0,>=1.1.0->-r requirements.txt (line 4)) (2.6.1)
+#11 249.5 Requirement already satisfied: future in /usr/lib/python3.12/site-packages (from python-whois<0.8,>=0.7.3->-r requirements.txt (line 6)) (1.0.0)
+#11 249.6 Requirement already satisfied: lxml>=2.3.2 in /usr/lib/python3.12/site-packages (from python-docx<0.9,>=0.8.11->-r requirements.txt (line 8)) (5.1.0)
+#11 249.6 Requirement already satisfied: Pillow>=3.3.2 in /usr/lib/python3.12/site-packages (from python-pptx<0.7,>=0.6.21->-r requirements.txt (line 9)) (10.3.0)
+#11 249.6 Requirement already satisfied: XlsxWriter>=0.5.7 in /usr/lib/python3.12/site-packages (from python-pptx<0.7,>=0.6.21->-r requirements.txt (line 9)) (3.2.0)
+#11 249.8 Collecting et-xmlfile (from openpyxl<4,>=3.0.9->-r requirements.txt (line 11))
+#11 249.8   Downloading et_xmlfile-2.0.0-py3-none-any.whl.metadata (2.7 kB)
+#11 249.9 Requirement already satisfied: jaraco.functools in /usr/lib/python3.12/site-packages (from cheroot>=8.2.1->CherryPy<19,>=18.6.1->-r requirements.txt (line 2)) (4.0.1)
+#11 250.1 Requirement already satisfied: tempora>=1.8 in /usr/lib/python3.12/site-packages (from portend>=2.1.1->CherryPy<19,>=18.6.1->-r requirements.txt (line 2)) (5.5.1)
+#11 250.7 Collecting jaraco.text (from jaraco.collections->CherryPy<19,>=18.6.1->-r requirements.txt (line 2))
+#11 250.7   Downloading jaraco.text-4.0.0-py3-none-any.whl.metadata (3.7 kB)
+#11 250.8 Requirement already satisfied: setuptools in /usr/lib/python3.12/site-packages (from zc.lockfile->CherryPy<19,>=18.6.1->-r requirements.txt (line 2)) (70.3.0)
+#11 250.9 Requirement already satisfied: pytz in /usr/lib/python3.12/site-packages (from tempora>=1.8->portend>=2.1.1->CherryPy<19,>=18.6.1->-r requirements.txt (line 2)) (2024.1)
+#11 251.0 Requirement already satisfied: jaraco.context>=4.1 in /usr/lib/python3.12/site-packages (from jaraco.text->jaraco.collections->CherryPy<19,>=18.6.1->-r requirements.txt (line 2)) (5.3.0)
+#11 251.1 Collecting autocommand (from jaraco.text->jaraco.collections->CherryPy<19,>=18.6.1->-r requirements.txt (line 2))
+#11 251.2   Downloading autocommand-2.2.2-py3-none-any.whl.metadata (15 kB)
+#11 251.5 Downloading adblockparser-0.7-py2.py3-none-any.whl (13 kB)
+#11 251.6 Downloading CherryPy-18.10.0-py3-none-any.whl (349 kB)
+#11 251.7 Downloading cherrypy_cors-1.7.0-py3-none-any.whl (5.2 kB)
+#11 251.7 Downloading ipwhois-1.1.0-py2.py3-none-any.whl (74 kB)
+#11 251.8 Downloading secure-0.3.0-py3-none-any.whl (9.6 kB)
+#11 251.8 Downloading python_pptx-0.6.23-py3-none-any.whl (471 kB)
+#11 252.0 Downloading publicsuffixlist-0.7.14-py2.py3-none-any.whl (95 kB)
+#11 252.0 Downloading openpyxl-3.1.5-py2.py3-none-any.whl (250 kB)
+#11 252.1 Downloading PyPDF2-1.28.6-py3-none-any.whl (87 kB)
+#11 252.1 Downloading cheroot-10.0.1-py3-none-any.whl (104 kB)
+#11 252.2 Downloading et_xmlfile-2.0.0-py3-none-any.whl (18 kB)
+#11 252.2 Downloading jaraco.collections-5.1.0-py3-none-any.whl (11 kB)
+#11 252.3 Downloading zc.lockfile-3.0.post1-py3-none-any.whl (9.8 kB)
+#11 252.3 Downloading jaraco.text-4.0.0-py3-none-any.whl (11 kB)
+#11 252.3 Downloading autocommand-2.2.2-py3-none-any.whl (19 kB)
+#11 252.9 Building wheels for collected packages: pygexf, python-whois, python-docx, httpagentparser
+#11 252.9   Building wheel for pygexf (setup.py): started
+#11 259.3   Building wheel for pygexf (setup.py): finished with status 'done'
+#11 259.3   Created wheel for pygexf: filename=pygexf-0.2.2-py3-none-any.whl size=5460 sha256=c045169c2e1d93bb7f67c8085ea5e986c007a45a0cafee69b0ba60d724469f96
+#11 259.3   Stored in directory: /tmp/pip-ephem-wheel-cache-yd05a82w/wheels/9c/59/0a/c7b9237167d87e95f04adf9a0da91bba7091d425a3f2fc1fb9
+#11 259.4   Building wheel for python-whois (setup.py): started
+#11 266.7   Building wheel for python-whois (setup.py): finished with status 'done'
+#11 266.7   Created wheel for python-whois: filename=python_whois-0.7.3-py3-none-any.whl size=87703 sha256=118f42f3dbd087e573e2504a3d01c9bd22eb81c37ceb908c80a77ee681c2b400
+#11 266.7   Stored in directory: /tmp/pip-ephem-wheel-cache-yd05a82w/wheels/70/c6/b7/d63c1df5e5f4572565835bc00f030236c1664740c2b2be1058
+#11 266.8   Building wheel for python-docx (setup.py): started
+#11 275.7   Building wheel for python-docx (setup.py): finished with status 'done'
+#11 275.7   Created wheel for python-docx: filename=python_docx-0.8.11-py3-none-any.whl size=184488 sha256=e86af2604a3b2b21a65129bccdd52c5ae9020b262653ac2e1b321b61092d1e73
+#11 275.7   Stored in directory: /tmp/pip-ephem-wheel-cache-yd05a82w/wheels/e2/80/66/f9d57f4033ea18bb41c55f2379badd1da48e128c131efe39b5
+#11 275.8   Building wheel for httpagentparser (setup.py): started
+#11 283.6   Building wheel for httpagentparser (setup.py): finished with status 'done'
+#11 283.6   Created wheel for httpagentparser: filename=httpagentparser-1.9.5-py3-none-any.whl size=7541 sha256=9c7a9424bc8c0447a5bde203dd1629011fbb589758ecf32e2527451586b1dbff
+#11 283.6   Stored in directory: /tmp/pip-ephem-wheel-cache-yd05a82w/wheels/eb/a0/e3/eee2d60368b0dabeb886dc6846a3c014395eac0b4aacf8d248
+#11 283.6 Successfully built pygexf python-whois python-docx httpagentparser
+#11 286.4 Installing collected packages: pygexf, httpagentparser, adblockparser, zc.lockfile, secure, python-whois, python-pptx, python-docx, PyPDF2, publicsuffixlist, ipwhois, et-xmlfile, autocommand, openpyxl, jaraco.text, cheroot, jaraco.collections, CherryPy, cherrypy-cors
+#11 309.4 Successfully installed CherryPy-18.10.0 PyPDF2-1.28.6 adblockparser-0.7 autocommand-2.2.2 cheroot-10.0.1 cherrypy-cors-1.7.0 et-xmlfile-2.0.0 httpagentparser-1.9.5 ipwhois-1.1.0 jaraco.collections-5.1.0 jaraco.text-4.0.0 openpyxl-3.1.5 publicsuffixlist-0.7.14 pygexf-0.2.2 python-docx-0.8.11 python-pptx-0.6.23 python-whois-0.7.3 secure-0.3.0 zc.lockfile-3.0.post1
+#11 309.4 WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+#11 311.1 WARNING: opening from cache https://dl-cdn.alpinelinux.org/alpine/v3.20/main: No such file or directory
+#11 311.1 WARNING: opening from cache https://dl-cdn.alpinelinux.org/alpine/v3.20/community: No such file or directory
+#11 311.1 (1/35) Purging build-base (0.5-r3)
+#11 311.1 (2/35) Purging file (5.45-r1)
+#11 311.1 (3/35) Purging g++ (13.2.1_git20240309-r1)
+#11 311.1 (4/35) Purging libstdc++-dev (13.2.1_git20240309-r1)
+#11 311.1 (5/35) Purging gcc (13.2.1_git20240309-r1)
+#11 311.2 (6/35) Purging binutils (2.42-r0)
+#11 311.2 (7/35) Purging libatomic (13.2.1_git20240309-r1)
+#11 311.2 (8/35) Purging libgomp (13.2.1_git20240309-r1)
+#11 311.2 (9/35) Purging make (4.4.1-r2)
+#11 311.2 (10/35) Purging fortify-headers (1.1-r3)
+#11 311.2 (11/35) Purging patch (2.7.6-r10)
+#11 311.2 (12/35) Purging git-init-template (2.45.3-r0)
+#11 311.2 (13/35) Purging git (2.45.3-r0)
+#11 311.2 (14/35) Purging isl26 (0.26-r1)
+#11 311.2 (15/35) Purging jansson (2.14-r4)
+#11 311.2 (16/35) Purging libffi-dev (3.4.6-r0)
+#11 311.2 (17/35) Purging linux-headers (6.6-r0)
+#11 311.3 (18/35) Purging libmagic (5.45-r1)
+#11 311.3 (19/35) Purging libxslt-dev (1.1.39-r1)
+#11 311.3 (20/35) Purging mpc1 (1.3.1-r1)
+#11 311.3 (21/35) Purging mpfr4 (4.2.1-r0)
+#11 311.3 (22/35) Purging musl-dev (1.2.5-r1)
+#11 311.3 (23/35) Purging openssl-dev (3.3.3-r0)
+#11 311.3 (24/35) Purging python3-dev (3.12.9-r0)
+#11 311.3 (25/35) Purging swig (4.2.1-r2)
+#11 311.4 (26/35) Purging guile (3.0.9-r0)
+#11 311.4 (27/35) Purging tinyxml-dev (2.6.2-r4)
+#11 311.4 (28/35) Purging guile-libs (3.0.9-r0)
+#11 311.4 (29/35) Purging gc (8.2.6-r0)
+#11 311.4 (30/35) Purging gmp (6.3.0-r1)
+#11 311.4 (31/35) Purging libxml2-dev (2.12.7-r0)
+#11 311.4 (32/35) Purging libxml2-utils (2.12.7-r0)
+#11 311.4 (33/35) Purging pcre2 (10.43-r0)
+#11 311.4 (34/35) Purging xz-dev (5.6.2-r0)
+#11 311.4 (35/35) Purging xz (5.6.2-r0)
+#11 311.4 Executing busybox-1.36.1-r29.trigger
+#11 311.5 OK: 416 MiB in 190 packages
+#11 DONE 311.8s
+
+#13 [spiderfoot linux/arm64 4/4] WORKDIR /home/spiderfoot
+#13 DONE 0.3s
+
+#14 [spiderfoot] exporting to image
+#14 exporting layers
+#14 exporting layers 36.5s done
+#14 exporting manifest sha256:9edb59028599c30aa06e6e8bc9beb2da47659cc77822aad8600dd28a9c8e8f45 done
+#14 exporting config sha256:93ab8113d87a8f17fbc1f83b76a4ab8ce6a8838c1410ee3dd2ff1fb10f94584a done
+#14 exporting attestation manifest sha256:b5dbe849a2a35c7eabe0151706a794fbd54e85c3852577b099fdac8f8a8c4781 0.0s done
+#14 exporting manifest sha256:fa3e2eefa1e16b3b2793ed263db96678c16bcce609784f365025bea7829f0c48 done
+#14 exporting config sha256:16b8c98cc8708854b131ba2f29f828e8221379c6f17dda944fabb47c349d890b done
+#14 exporting attestation manifest sha256:340fc59ff7c516497c8250509bb4abee773c68a7a1c8c22b9d6cb20c431308ec 0.0s done
+#14 exporting manifest list sha256:a392fe925fcfbc098b6f5d6fbba724da9009cd00e080f192762064184c14bf9e
+#14 exporting manifest list sha256:a392fe925fcfbc098b6f5d6fbba724da9009cd00e080f192762064184c14bf9e 0.0s done
+#14 pushing layers
+#14 ...
+
+#15 [spiderfoot auth] f0rc3ps/spiderfoot:pull,push token for registry-1.docker.io
+#15 DONE 0.0s
+
+#14 [spiderfoot] exporting to image
+#14 ...
+
+#16 [spiderfoot auth] f0rc3ps/redishoneypot:pull f0rc3ps/spiderfoot:pull,push token for registry-1.docker.io
+#16 DONE 0.0s
+
+#14 [spiderfoot] exporting to image
+#14 pushing layers 61.9s done
+#14 pushing manifest for docker.io/f0rc3ps/spiderfoot:24.04.1@sha256:a392fe925fcfbc098b6f5d6fbba724da9009cd00e080f192762064184c14bf9e
+#14 pushing manifest for docker.io/f0rc3ps/spiderfoot:24.04.1@sha256:a392fe925fcfbc098b6f5d6fbba724da9009cd00e080f192762064184c14bf9e 3.6s done
+#14 ...
+
+#17 [spiderfoot auth] asc3t1c/spiderfoot:pull,push token for ghcr.io
+#17 DONE 0.0s
+
+#14 [spiderfoot] exporting to image
+#14 ...
+
+#18 [spiderfoot auth] asc3t1c/redishoneypot:pull asc3t1c/spiderfoot:pull,push token for ghcr.io
+#18 DONE 0.0s
+
+#14 [spiderfoot] exporting to image
+#14 pushing layers 59.8s done
+#14 pushing manifest for ghcr.io/asc3t1c/spiderfoot:24.04.1@sha256:a392fe925fcfbc098b6f5d6fbba724da9009cd00e080f192762064184c14bf9e
+#14 ...
+
+#19 [spiderfoot auth] asc3t1c/spiderfoot:pull,push token for ghcr.io
+#19 DONE 0.0s
+
+#14 [spiderfoot] exporting to image
+#14 pushing manifest for ghcr.io/asc3t1c/spiderfoot:24.04.1@sha256:a392fe925fcfbc098b6f5d6fbba724da9009cd00e080f192762064184c14bf9e 2.8s done
+#14 DONE 164.7s
+
+#20 [spiderfoot] resolving provenance for metadata file
+#20 DONE 0.0s

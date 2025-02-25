@@ -1,0 +1,194 @@
+Compose now can delegate build to bake for better performances
+Just set COMPOSE_BAKE=true
+#0 building with "mybuilder" instance using docker-container driver
+
+#1 [sentrypeer internal] load build definition from Dockerfile
+#1 transferring dockerfile: 693B 0.0s done
+#1 DONE 0.0s
+
+#2 [sentrypeer auth] library/alpine:pull token for registry-1.docker.io
+#2 DONE 0.0s
+
+#3 [sentrypeer linux/amd64 internal] load metadata for docker.io/library/alpine:edge
+#3 DONE 4.5s
+
+#4 [sentrypeer linux/arm64 internal] load metadata for docker.io/library/alpine:edge
+#4 DONE 4.5s
+
+#5 [sentrypeer internal] load .dockerignore
+#5 transferring context: 2B done
+#5 DONE 0.1s
+
+#6 [sentrypeer linux/amd64 1/2] FROM docker.io/library/alpine:edge@sha256:115729ec5cb049ba6359c3ab005ac742012d92bbaa5b8bc1a878f1e8f62c0cb8
+#6 resolve docker.io/library/alpine:edge@sha256:115729ec5cb049ba6359c3ab005ac742012d92bbaa5b8bc1a878f1e8f62c0cb8 0.0s done
+#6 DONE 0.0s
+
+#7 [sentrypeer linux/arm64 1/2] FROM docker.io/library/alpine:edge@sha256:115729ec5cb049ba6359c3ab005ac742012d92bbaa5b8bc1a878f1e8f62c0cb8
+#7 resolve docker.io/library/alpine:edge@sha256:115729ec5cb049ba6359c3ab005ac742012d92bbaa5b8bc1a878f1e8f62c0cb8 0.0s done
+#7 sha256:b2e6f696af52b3d1da13b51b22502737ade0e1534387440426158079090a1c74 0B / 3.99MB 0.2s
+#7 sha256:b2e6f696af52b3d1da13b51b22502737ade0e1534387440426158079090a1c74 1.05MB / 3.99MB 0.5s
+#7 sha256:b2e6f696af52b3d1da13b51b22502737ade0e1534387440426158079090a1c74 2.10MB / 3.99MB 0.6s
+#7 ...
+
+#6 [sentrypeer linux/amd64 1/2] FROM docker.io/library/alpine:edge@sha256:115729ec5cb049ba6359c3ab005ac742012d92bbaa5b8bc1a878f1e8f62c0cb8
+#6 sha256:d62bb7eb03b5936dc5a5665fd5a6ede7eab4a6bd0ed965be8c6c3c21e1e53931 3.64MB / 3.64MB 0.8s done
+#6 DONE 1.0s
+
+#7 [sentrypeer linux/arm64 1/2] FROM docker.io/library/alpine:edge@sha256:115729ec5cb049ba6359c3ab005ac742012d92bbaa5b8bc1a878f1e8f62c0cb8
+#7 sha256:b2e6f696af52b3d1da13b51b22502737ade0e1534387440426158079090a1c74 3.99MB / 3.99MB 0.8s done
+#7 extracting sha256:b2e6f696af52b3d1da13b51b22502737ade0e1534387440426158079090a1c74
+#7 ...
+
+#6 [sentrypeer linux/amd64 1/2] FROM docker.io/library/alpine:edge@sha256:115729ec5cb049ba6359c3ab005ac742012d92bbaa5b8bc1a878f1e8f62c0cb8
+#6 extracting sha256:d62bb7eb03b5936dc5a5665fd5a6ede7eab4a6bd0ed965be8c6c3c21e1e53931 0.3s done
+#6 DONE 1.2s
+
+#7 [sentrypeer linux/arm64 1/2] FROM docker.io/library/alpine:edge@sha256:115729ec5cb049ba6359c3ab005ac742012d92bbaa5b8bc1a878f1e8f62c0cb8
+#7 extracting sha256:b2e6f696af52b3d1da13b51b22502737ade0e1534387440426158079090a1c74 0.3s done
+#7 DONE 1.3s
+
+#8 [sentrypeer linux/amd64 2/2] RUN apk -U upgrade --no-cache && 	apk -U add --no-cache -X http://dl-cdn.alpinelinux.org/alpine/edge/testing 		sentrypeer &&     mkdir -p /var/log/sentrypeer &&     addgroup -g 2000 sentrypeer &&     adduser -S -H -s /bin/ash -u 2000 -D -g 2000 sentrypeer &&     chown -R sentrypeer:sentrypeer /usr/bin/sentrypeer &&     rm -rf /root/*            /var/cache/apk/*
+#8 0.158 fetch https://dl-cdn.alpinelinux.org/alpine/edge/main/x86_64/APKINDEX.tar.gz
+#8 0.435 fetch https://dl-cdn.alpinelinux.org/alpine/edge/community/x86_64/APKINDEX.tar.gz
+#8 2.513 Upgrading critical system libraries and apk-tools:
+#8 2.514 (1/2) Installing libapk2 (2.14.9-r1)
+#8 2.566 (2/2) Upgrading apk-tools (2.14.7-r0 -> 2.14.9-r1)
+#8 2.586 Executing busybox-1.37.0-r10.trigger
+#8 2.825 Continuing the upgrade transaction with new apk-tools:
+#8 2.839 fetch https://dl-cdn.alpinelinux.org/alpine/edge/main/x86_64/APKINDEX.tar.gz
+#8 3.058 fetch https://dl-cdn.alpinelinux.org/alpine/edge/community/x86_64/APKINDEX.tar.gz
+#8 4.102 (1/8) Upgrading musl (1.2.5-r9 -> 1.2.5-r10)
+#8 4.146 (2/8) Upgrading busybox (1.37.0-r10 -> 1.37.0-r14)
+#8 4.214 Executing busybox-1.37.0-r14.post-upgrade
+#8 4.287 (3/8) Upgrading busybox-binsh (1.37.0-r10 -> 1.37.0-r14)
+#8 4.298 (4/8) Upgrading alpine-release (3.22.0_alpha20250108-r0 -> 3.22.0_alpha20250108-r1)
+#8 4.309 (5/8) Upgrading libcrypto3 (3.3.2-r4 -> 3.3.3-r0)
+#8 4.492 (6/8) Upgrading libssl3 (3.3.2-r4 -> 3.3.3-r0)
+#8 4.549 (7/8) Upgrading ssl_client (1.37.0-r10 -> 1.37.0-r14)
+#8 4.558 (8/8) Upgrading musl-utils (1.2.5-r9 -> 1.2.5-r10)
+#8 4.572 Executing busybox-1.37.0-r14.trigger
+#8 4.588 OK: 7 MiB in 16 packages
+#8 4.873 fetch http://dl-cdn.alpinelinux.org/alpine/edge/testing/x86_64/APKINDEX.tar.gz
+#8 5.245 fetch https://dl-cdn.alpinelinux.org/alpine/edge/main/x86_64/APKINDEX.tar.gz
+#8 5.522 fetch https://dl-cdn.alpinelinux.org/alpine/edge/community/x86_64/APKINDEX.tar.gz
+#8 6.863 (1/28) Installing brotli-libs (1.1.0-r2)
+#8 6.910 (2/28) Installing c-ares (1.34.4-r0)
+#8 6.937 (3/28) Installing libunistring (1.3-r0)
+#8 7.010 (4/28) Installing libidn2 (2.3.7-r0)
+#8 7.030 (5/28) Installing nghttp2-libs (1.64.0-r0)
+#8 7.043 (6/28) Installing libpsl (0.21.5-r3)
+#8 7.056 (7/28) Installing zstd-libs (1.5.7-r0)
+#8 7.099 (8/28) Installing libcurl (8.12.1-r0)
+#8 7.132 (9/28) Installing jansson (2.14-r4)
+#8 7.140 (10/28) Installing gmp (6.3.0-r3)
+#8 7.170 (11/28) Installing nettle (3.10.1-r0)
+#8 7.208 (12/28) Installing libffi (3.4.6-r0)
+#8 7.217 (13/28) Installing libtasn1 (4.20.0-r0)
+#8 7.227 (14/28) Installing p11-kit (0.25.5-r2)
+#8 7.273 (15/28) Installing gnutls (3.8.8-r0)
+#8 7.377 (16/28) Installing libmicrohttpd (0.9.77-r0)
+#8 7.419 (17/28) Installing argon2-libs (20190702-r5)
+#8 7.424 (18/28) Installing libgcc (14.2.0-r5)
+#8 7.441 (19/28) Installing libstdc++ (14.2.0-r5)
+#8 7.540 (20/28) Installing fmt (11.1.3-r0)
+#8 7.552 (21/28) Installing http-parser (2.9.4-r0)
+#8 7.594 (22/28) Installing jsoncpp (1.9.6-r1)
+#8 7.641 (23/28) Installing opendht-libs (3.1.11-r0)
+#8 7.734 (24/28) Installing libosip2 (5.3.1-r1)
+#8 7.853 (25/28) Installing pcre2 (10.43-r0)
+#8 7.890 (26/28) Installing sqlite-libs (3.49.1-r0)
+#8 7.980 (27/28) Installing libuuid (2.40.4-r0)
+#8 7.990 (28/28) Installing sentrypeer (3.0.2-r0)
+#8 8.030 Executing busybox-1.37.0-r14.trigger
+#8 8.054 OK: 24 MiB in 44 packages
+#8 DONE 8.6s
+
+#9 [sentrypeer linux/arm64 2/2] RUN apk -U upgrade --no-cache && 	apk -U add --no-cache -X http://dl-cdn.alpinelinux.org/alpine/edge/testing 		sentrypeer &&     mkdir -p /var/log/sentrypeer &&     addgroup -g 2000 sentrypeer &&     adduser -S -H -s /bin/ash -u 2000 -D -g 2000 sentrypeer &&     chown -R sentrypeer:sentrypeer /usr/bin/sentrypeer &&     rm -rf /root/*            /var/cache/apk/*
+#9 0.519 fetch https://dl-cdn.alpinelinux.org/alpine/edge/main/aarch64/APKINDEX.tar.gz
+#9 2.615 fetch https://dl-cdn.alpinelinux.org/alpine/edge/community/aarch64/APKINDEX.tar.gz
+#9 8.053 Upgrading critical system libraries and apk-tools:
+#9 8.056 (1/2) Installing libapk2 (2.14.9-r1)
+#9 8.165 (2/2) Upgrading apk-tools (2.14.7-r0 -> 2.14.9-r1)
+#9 8.262 Executing busybox-1.37.0-r10.trigger
+#9 9.231 Continuing the upgrade transaction with new apk-tools:
+#9 9.489 fetch https://dl-cdn.alpinelinux.org/alpine/edge/main/aarch64/APKINDEX.tar.gz
+#9 11.12 fetch https://dl-cdn.alpinelinux.org/alpine/edge/community/aarch64/APKINDEX.tar.gz
+#9 14.89 (1/8) Upgrading musl (1.2.5-r9 -> 1.2.5-r10)
+#9 15.05 (2/8) Upgrading busybox (1.37.0-r10 -> 1.37.0-r14)
+#9 15.21 Executing busybox-1.37.0-r14.post-upgrade
+#9 15.71 (3/8) Upgrading busybox-binsh (1.37.0-r10 -> 1.37.0-r14)
+#9 15.73 (4/8) Upgrading alpine-release (3.22.0_alpha20250108-r0 -> 3.22.0_alpha20250108-r1)
+#9 15.77 (5/8) Upgrading libcrypto3 (3.3.2-r4 -> 3.3.3-r0)
+#9 16.29 (6/8) Upgrading libssl3 (3.3.2-r4 -> 3.3.3-r0)
+#9 16.39 (7/8) Upgrading ssl_client (1.37.0-r10 -> 1.37.0-r14)
+#9 16.41 (8/8) Upgrading musl-utils (1.2.5-r9 -> 1.2.5-r10)
+#9 16.46 Executing busybox-1.37.0-r14.trigger
+#9 16.57 OK: 7 MiB in 16 packages
+#9 17.33 fetch http://dl-cdn.alpinelinux.org/alpine/edge/testing/aarch64/APKINDEX.tar.gz
+#9 18.34 fetch https://dl-cdn.alpinelinux.org/alpine/edge/main/aarch64/APKINDEX.tar.gz
+#9 19.78 fetch https://dl-cdn.alpinelinux.org/alpine/edge/community/aarch64/APKINDEX.tar.gz
+#9 24.50 (1/28) Installing brotli-libs (1.1.0-r2)
+#9 24.78 (2/28) Installing c-ares (1.34.4-r0)
+#9 24.85 (3/28) Installing libunistring (1.3-r0)
+#9 25.05 (4/28) Installing libidn2 (2.3.7-r0)
+#9 25.09 (5/28) Installing nghttp2-libs (1.64.0-r0)
+#9 25.11 (6/28) Installing libpsl (0.21.5-r3)
+#9 25.13 (7/28) Installing zstd-libs (1.5.7-r0)
+#9 25.23 (8/28) Installing libcurl (8.12.1-r0)
+#9 25.33 (9/28) Installing jansson (2.14-r4)
+#9 25.38 (10/28) Installing gmp (6.3.0-r3)
+#9 25.45 (11/28) Installing nettle (3.10.1-r0)
+#9 25.55 (12/28) Installing libffi (3.4.6-r0)
+#9 25.57 (13/28) Installing libtasn1 (4.20.0-r0)
+#9 25.59 (14/28) Installing p11-kit (0.25.5-r2)
+#9 25.72 (15/28) Installing gnutls (3.8.8-r0)
+#9 25.91 (16/28) Installing libmicrohttpd (0.9.77-r0)
+#9 25.96 (17/28) Installing argon2-libs (20190702-r5)
+#9 26.00 (18/28) Installing libgcc (14.2.0-r5)
+#9 26.04 (19/28) Installing libstdc++ (14.2.0-r5)
+#9 26.29 (20/28) Installing fmt (11.1.3-r0)
+#9 26.34 (21/28) Installing http-parser (2.9.4-r0)
+#9 26.39 (22/28) Installing jsoncpp (1.9.6-r1)
+#9 26.45 (23/28) Installing opendht-libs (3.1.11-r0)
+#9 26.64 (24/28) Installing libosip2 (5.3.1-r1)
+#9 27.55 (25/28) Installing pcre2 (10.43-r0)
+#9 27.68 (26/28) Installing sqlite-libs (3.49.1-r0)
+#9 27.88 (27/28) Installing libuuid (2.40.4-r0)
+#9 27.89 (28/28) Installing sentrypeer (3.0.2-r0)
+#9 27.96 Executing busybox-1.37.0-r14.trigger
+#9 28.08 OK: 25 MiB in 44 packages
+#9 DONE 29.1s
+
+#10 [sentrypeer] exporting to image
+#10 exporting layers
+#10 exporting layers 2.4s done
+#10 exporting manifest sha256:5b491e9ee6f6efeff8f1486b8accddbbfa09b555f24af10effa5c34b079ece27 0.0s done
+#10 exporting config sha256:6a5794dab4bc09ed178239b9494b3fc988da5e2fda6302b927299e26988f1bda 0.0s done
+#10 exporting attestation manifest sha256:6f28c59e2ef3aaa7f309a0c7a341d247fe1ef3b86211ae9bc766defd0132fca1 0.0s done
+#10 exporting manifest sha256:afd8c1b5d63640f88b9931c692709db9fe2309ad11616fff420d537dd99206de done
+#10 exporting config sha256:c1348f5dfbd4d269fe23ede04bf4037b361a100b574bd406873fc6d6d1e7e3f6 done
+#10 exporting attestation manifest sha256:54aff1cb929d83b82202eb6bf2c4ad3927070984eb353006a0c2fbd8e5fc46f1 0.0s done
+#10 exporting manifest list sha256:2e86157b81a0a88fef6924b4f32fa51cd49f31d9ae9e3b0a031b3cdec364d54e done
+#10 pushing layers
+#10 ...
+
+#11 [sentrypeer auth] f0rc3ps/sentrypeer:pull,push token for registry-1.docker.io
+#11 DONE 0.0s
+
+#10 [sentrypeer] exporting to image
+#10 pushing layers 6.9s done
+#10 pushing manifest for docker.io/f0rc3ps/sentrypeer:24.04.1@sha256:2e86157b81a0a88fef6924b4f32fa51cd49f31d9ae9e3b0a031b3cdec364d54e
+#10 pushing manifest for docker.io/f0rc3ps/sentrypeer:24.04.1@sha256:2e86157b81a0a88fef6924b4f32fa51cd49f31d9ae9e3b0a031b3cdec364d54e 3.4s done
+#10 ...
+
+#12 [sentrypeer auth] asc3t1c/sentrypeer:pull,push token for ghcr.io
+#12 DONE 0.0s
+
+#10 [sentrypeer] exporting to image
+#10 pushing layers 6.0s done
+#10 pushing manifest for ghcr.io/asc3t1c/sentrypeer:24.04.1@sha256:2e86157b81a0a88fef6924b4f32fa51cd49f31d9ae9e3b0a031b3cdec364d54e
+#10 pushing manifest for ghcr.io/asc3t1c/sentrypeer:24.04.1@sha256:2e86157b81a0a88fef6924b4f32fa51cd49f31d9ae9e3b0a031b3cdec364d54e 2.9s done
+#10 DONE 21.7s
+
+#13 [sentrypeer] resolving provenance for metadata file
+#13 DONE 0.0s

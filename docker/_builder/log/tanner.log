@@ -1,0 +1,1234 @@
+Compose now can delegate build to bake for better performances
+Just set COMPOSE_BAKE=true
+#0 building with "mybuilder" instance using docker-container driver
+
+#1 [tanner internal] load build definition from Dockerfile
+#1 transferring dockerfile: 1.81kB 0.0s done
+#1 DONE 0.0s
+
+#2 [tanner auth] library/alpine:pull token for registry-1.docker.io
+#2 DONE 0.0s
+
+#3 [tanner linux/arm64 internal] load metadata for docker.io/library/alpine:3.17
+#3 DONE 1.6s
+
+#4 [tanner linux/amd64 internal] load metadata for docker.io/library/alpine:3.17
+#4 DONE 1.6s
+
+#5 [tanner internal] load .dockerignore
+#5 transferring context: 2B done
+#5 DONE 0.0s
+
+#6 [tanner linux/amd64 1/4] FROM docker.io/library/alpine:3.17@sha256:8fc3dacfb6d69da8d44e42390de777e48577085db99aa4e4af35f483eb08b989
+#6 resolve docker.io/library/alpine:3.17@sha256:8fc3dacfb6d69da8d44e42390de777e48577085db99aa4e4af35f483eb08b989 0.0s done
+#6 DONE 0.1s
+
+#7 [tanner linux/arm64 1/4] FROM docker.io/library/alpine:3.17@sha256:8fc3dacfb6d69da8d44e42390de777e48577085db99aa4e4af35f483eb08b989
+#7 resolve docker.io/library/alpine:3.17@sha256:8fc3dacfb6d69da8d44e42390de777e48577085db99aa4e4af35f483eb08b989 0.0s done
+#7 ...
+
+#8 [tanner internal] load build context
+#8 transferring context: 1.77kB 0.0s done
+#8 DONE 0.1s
+
+#7 [tanner linux/arm64 1/4] FROM docker.io/library/alpine:3.17@sha256:8fc3dacfb6d69da8d44e42390de777e48577085db99aa4e4af35f483eb08b989
+#7 sha256:61254a502902280aa7caa832f8b3ed5c96aa04faf42ab0ba23ff17638f910f21 0B / 3.28MB 0.2s
+#7 ...
+
+#6 [tanner linux/amd64 1/4] FROM docker.io/library/alpine:3.17@sha256:8fc3dacfb6d69da8d44e42390de777e48577085db99aa4e4af35f483eb08b989
+#6 sha256:fbcfea79c1c4819e0689385057cfd4cbd2ee9ba20e6d420b360644788a22862c 3.39MB / 3.39MB 0.8s done
+#6 DONE 0.9s
+
+#7 [tanner linux/arm64 1/4] FROM docker.io/library/alpine:3.17@sha256:8fc3dacfb6d69da8d44e42390de777e48577085db99aa4e4af35f483eb08b989
+#7 sha256:61254a502902280aa7caa832f8b3ed5c96aa04faf42ab0ba23ff17638f910f21 3.28MB / 3.28MB 1.0s done
+#7 ...
+
+#6 [tanner linux/amd64 1/4] FROM docker.io/library/alpine:3.17@sha256:8fc3dacfb6d69da8d44e42390de777e48577085db99aa4e4af35f483eb08b989
+#6 extracting sha256:fbcfea79c1c4819e0689385057cfd4cbd2ee9ba20e6d420b360644788a22862c 0.3s done
+#6 DONE 1.2s
+
+#7 [tanner linux/arm64 1/4] FROM docker.io/library/alpine:3.17@sha256:8fc3dacfb6d69da8d44e42390de777e48577085db99aa4e4af35f483eb08b989
+#7 extracting sha256:61254a502902280aa7caa832f8b3ed5c96aa04faf42ab0ba23ff17638f910f21
+#7 ...
+
+#9 [tanner linux/amd64 2/4] COPY dist/ /root/dist/
+#9 DONE 0.1s
+
+#7 [tanner linux/arm64 1/4] FROM docker.io/library/alpine:3.17@sha256:8fc3dacfb6d69da8d44e42390de777e48577085db99aa4e4af35f483eb08b989
+#7 extracting sha256:61254a502902280aa7caa832f8b3ed5c96aa04faf42ab0ba23ff17638f910f21 0.3s done
+#7 DONE 1.4s
+
+#10 [tanner linux/amd64 3/4] RUN apk --no-cache -U upgrade &&     apk --no-cache -U add 		build-base 		git 		libcap 		libffi-dev 		openssl-dev 		linux-headers 		py3-aiohttp 		py3-geoip2 		py3-jinja2 		py3-jwt 		py3-mako 		py3-mysqlclient 		py3-packaging 		py3-pip 		py3-redis 		py3-pycodestyle 		py3-setuptools 		py3-tornado 		py3-websocket-client 		py3-wheel 		py3-yaml 		py3-yarl 		python3 		python3-dev && 	git clone https://github.com/mushorg/tanner /opt/tanner &&     cd /opt/tanner/ &&     git checkout 245d628f4023e5462c7035e760a6b5eed0a33fbe &&     cp /root/dist/config.yaml /opt/tanner/tanner/data &&     cp /root/dist/requirements.txt . &&     pip3 install --no-cache-dir -r requirements.txt &&     python3 setup.py install &&     rm -rf .coveragerc            .git            .gitignore            .travis.yml            Tanner.egg-info            build            dist            docker            docs            requirements.txt            setup.py &&     cd / &&     addgroup -g 2000 tanner &&     adduser -S -s /bin/ash -u 2000 -D -g 2000 tanner &&     mkdir /var/log/tanner &&     chown -R tanner:tanner /opt/tanner /var/log/tanner &&     apk del --purge             build-base             git             libcap             libffi-dev             openssl-dev             linux-headers             python3-dev &&     rm -rf /root/*            /tmp/*            /var/tmp/*            /var/cache/apk/*            /opt/tanner/.git
+#10 ...
+
+#11 [tanner linux/arm64 2/4] COPY dist/ /root/dist/
+#11 DONE 0.0s
+
+#10 [tanner linux/amd64 3/4] RUN apk --no-cache -U upgrade &&     apk --no-cache -U add 		build-base 		git 		libcap 		libffi-dev 		openssl-dev 		linux-headers 		py3-aiohttp 		py3-geoip2 		py3-jinja2 		py3-jwt 		py3-mako 		py3-mysqlclient 		py3-packaging 		py3-pip 		py3-redis 		py3-pycodestyle 		py3-setuptools 		py3-tornado 		py3-websocket-client 		py3-wheel 		py3-yaml 		py3-yarl 		python3 		python3-dev && 	git clone https://github.com/mushorg/tanner /opt/tanner &&     cd /opt/tanner/ &&     git checkout 245d628f4023e5462c7035e760a6b5eed0a33fbe &&     cp /root/dist/config.yaml /opt/tanner/tanner/data &&     cp /root/dist/requirements.txt . &&     pip3 install --no-cache-dir -r requirements.txt &&     python3 setup.py install &&     rm -rf .coveragerc            .git            .gitignore            .travis.yml            Tanner.egg-info            build            dist            docker            docs            requirements.txt            setup.py &&     cd / &&     addgroup -g 2000 tanner &&     adduser -S -s /bin/ash -u 2000 -D -g 2000 tanner &&     mkdir /var/log/tanner &&     chown -R tanner:tanner /opt/tanner /var/log/tanner &&     apk del --purge             build-base             git             libcap             libffi-dev             openssl-dev             linux-headers             python3-dev &&     rm -rf /root/*            /tmp/*            /var/tmp/*            /var/cache/apk/*            /opt/tanner/.git
+#10 0.181 fetch https://dl-cdn.alpinelinux.org/alpine/v3.17/main/x86_64/APKINDEX.tar.gz
+#10 0.521 fetch https://dl-cdn.alpinelinux.org/alpine/v3.17/community/x86_64/APKINDEX.tar.gz
+#10 1.259 (1/4) Upgrading musl (1.2.3-r5 -> 1.2.3-r6)
+#10 1.308 (2/4) Upgrading libcrypto3 (3.0.15-r0 -> 3.0.15-r1)
+#10 1.508 (3/4) Upgrading libssl3 (3.0.15-r0 -> 3.0.15-r1)
+#10 1.545 (4/4) Upgrading musl-utils (1.2.3-r5 -> 1.2.3-r6)
+#10 1.564 Executing busybox-1.35.0-r31.trigger
+#10 1.585 OK: 7 MiB in 15 packages
+#10 1.739 fetch https://dl-cdn.alpinelinux.org/alpine/v3.17/main/x86_64/APKINDEX.tar.gz
+#10 2.101 fetch https://dl-cdn.alpinelinux.org/alpine/v3.17/community/x86_64/APKINDEX.tar.gz
+#10 2.646 (1/85) Installing libgcc (12.2.1_git20220924-r4)
+#10 2.660 (2/85) Installing libstdc++ (12.2.1_git20220924-r4)
+#10 2.755 (3/85) Installing binutils (2.39-r2)
+#10 3.062 (4/85) Installing libmagic (5.43-r0)
+#10 3.155 (5/85) Installing file (5.43-r0)
+#10 3.163 (6/85) Installing libgomp (12.2.1_git20220924-r4)
+#10 3.187 (7/85) Installing libatomic (12.2.1_git20220924-r4)
+#10 3.193 (8/85) Installing gmp (6.2.1-r2)
+#10 3.222 (9/85) Installing isl25 (0.25-r1)
+#10 3.312 (10/85) Installing mpfr4 (4.1.0-r0)
+#10 3.572 (11/85) Installing mpc1 (1.2.1-r1)
+#10 3.588 (12/85) Installing gcc (12.2.1_git20220924-r4)
+#10 8.370 (13/85) Installing libstdc++-dev (12.2.1_git20220924-r4)
+#10 9.894 (14/85) Installing musl-dev (1.2.3-r6)
+#10 ...
+
+#12 [tanner linux/arm64 3/4] RUN apk --no-cache -U upgrade &&     apk --no-cache -U add 		build-base 		git 		libcap 		libffi-dev 		openssl-dev 		linux-headers 		py3-aiohttp 		py3-geoip2 		py3-jinja2 		py3-jwt 		py3-mako 		py3-mysqlclient 		py3-packaging 		py3-pip 		py3-redis 		py3-pycodestyle 		py3-setuptools 		py3-tornado 		py3-websocket-client 		py3-wheel 		py3-yaml 		py3-yarl 		python3 		python3-dev && 	git clone https://github.com/mushorg/tanner /opt/tanner &&     cd /opt/tanner/ &&     git checkout 245d628f4023e5462c7035e760a6b5eed0a33fbe &&     cp /root/dist/config.yaml /opt/tanner/tanner/data &&     cp /root/dist/requirements.txt . &&     pip3 install --no-cache-dir -r requirements.txt &&     python3 setup.py install &&     rm -rf .coveragerc            .git            .gitignore            .travis.yml            Tanner.egg-info            build            dist            docker            docs            requirements.txt            setup.py &&     cd / &&     addgroup -g 2000 tanner &&     adduser -S -s /bin/ash -u 2000 -D -g 2000 tanner &&     mkdir /var/log/tanner &&     chown -R tanner:tanner /opt/tanner /var/log/tanner &&     apk del --purge             build-base             git             libcap             libffi-dev             openssl-dev             linux-headers             python3-dev &&     rm -rf /root/*            /tmp/*            /var/tmp/*            /var/cache/apk/*            /opt/tanner/.git
+#12 0.412 fetch https://dl-cdn.alpinelinux.org/alpine/v3.17/main/aarch64/APKINDEX.tar.gz
+#12 3.187 fetch https://dl-cdn.alpinelinux.org/alpine/v3.17/community/aarch64/APKINDEX.tar.gz
+#12 6.046 (1/4) Upgrading musl (1.2.3-r5 -> 1.2.3-r6)
+#12 6.306 (2/4) Upgrading libcrypto3 (3.0.15-r0 -> 3.0.15-r1)
+#12 6.997 (3/4) Upgrading libssl3 (3.0.15-r0 -> 3.0.15-r1)
+#12 7.116 (4/4) Upgrading musl-utils (1.2.3-r5 -> 1.2.3-r6)
+#12 7.172 Executing busybox-1.35.0-r31.trigger
+#12 7.394 OK: 7 MiB in 15 packages
+#12 7.929 fetch https://dl-cdn.alpinelinux.org/alpine/v3.17/main/aarch64/APKINDEX.tar.gz
+#12 ...
+
+#10 [tanner linux/amd64 3/4] RUN apk --no-cache -U upgrade &&     apk --no-cache -U add 		build-base 		git 		libcap 		libffi-dev 		openssl-dev 		linux-headers 		py3-aiohttp 		py3-geoip2 		py3-jinja2 		py3-jwt 		py3-mako 		py3-mysqlclient 		py3-packaging 		py3-pip 		py3-redis 		py3-pycodestyle 		py3-setuptools 		py3-tornado 		py3-websocket-client 		py3-wheel 		py3-yaml 		py3-yarl 		python3 		python3-dev && 	git clone https://github.com/mushorg/tanner /opt/tanner &&     cd /opt/tanner/ &&     git checkout 245d628f4023e5462c7035e760a6b5eed0a33fbe &&     cp /root/dist/config.yaml /opt/tanner/tanner/data &&     cp /root/dist/requirements.txt . &&     pip3 install --no-cache-dir -r requirements.txt &&     python3 setup.py install &&     rm -rf .coveragerc            .git            .gitignore            .travis.yml            Tanner.egg-info            build            dist            docker            docs            requirements.txt            setup.py &&     cd / &&     addgroup -g 2000 tanner &&     adduser -S -s /bin/ash -u 2000 -D -g 2000 tanner &&     mkdir /var/log/tanner &&     chown -R tanner:tanner /opt/tanner /var/log/tanner &&     apk del --purge             build-base             git             libcap             libffi-dev             openssl-dev             linux-headers             python3-dev &&     rm -rf /root/*            /tmp/*            /var/tmp/*            /var/cache/apk/*            /opt/tanner/.git
+#10 10.26 (15/85) Installing libc-dev (0.7.2-r3)
+#10 10.27 (16/85) Installing g++ (12.2.1_git20220924-r4)
+#10 11.93 (17/85) Installing make (4.3-r1)
+#10 11.95 (18/85) Installing fortify-headers (1.1-r1)
+#10 11.96 (19/85) Installing patch (2.7.6-r9)
+#10 11.98 (20/85) Installing build-base (0.5-r3)
+#10 11.99 (21/85) Installing ca-certificates (20240226-r0)
+#10 12.04 (22/85) Installing brotli-libs (1.0.9-r9)
+#10 12.08 (23/85) Installing nghttp2-libs (1.51.0-r2)
+#10 12.10 (24/85) Installing libcurl (8.9.0-r0)
+#10 12.14 (25/85) Installing libexpat (2.6.4-r0)
+#10 12.15 (26/85) Installing pcre2 (10.42-r0)
+#10 12.19 (27/85) Installing git (2.39.5-r0)
+#10 12.52 (28/85) Installing libcap2 (2.66-r1)
+#10 12.53 (29/85) Installing libcap-utils (2.66-r1)
+#10 12.57 (30/85) Installing libcap (2.66-r1)
+#10 12.60 (31/85) Installing linux-headers (5.19.5-r0)
+#10 12.93 (32/85) Installing libffi (3.4.4-r0)
+#10 12.94 (33/85) Installing pkgconf (1.9.4-r0)
+#10 12.95 (34/85) Installing libffi-dev (3.4.4-r0)
+#10 12.98 (35/85) Installing openssl-dev (3.0.15-r1)
+#10 13.05 (36/85) Installing libbz2 (1.0.8-r4)
+#10 13.06 (37/85) Installing gdbm (1.23-r0)
+#10 13.07 (38/85) Installing xz-libs (5.2.9-r0)
+#10 13.09 (39/85) Installing mpdecimal (2.5.1-r1)
+#10 13.10 (40/85) Installing ncurses-terminfo-base (6.3_p20221119-r1)
+#10 13.12 (41/85) Installing ncurses-libs (6.3_p20221119-r1)
+#10 13.15 (42/85) Installing readline (8.2.0-r0)
+#10 13.18 (43/85) Installing sqlite-libs (3.40.1-r1)
+#10 13.26 (44/85) Installing python3 (3.10.15-r0)
+#10 15.57 (45/85) Installing py3-frozenlist (1.3.3-r0)
+#10 15.63 (46/85) Installing py3-aiosignal (1.3.1-r0)
+#10 15.67 (47/85) Installing py3-typing-extensions (4.4.0-r0)
+#10 15.75 (48/85) Installing py3-async-timeout (4.0.2-r0)
+#10 15.79 (49/85) Installing py3-attrs (22.1.0-r0)
+#10 15.85 (50/85) Installing py3-brotli (1.0.9-r9)
+#10 15.93 (51/85) Installing py3-charset-normalizer (3.0.1-r0)
+#10 15.96 (52/85) Installing py3-idna (3.4-r2)
+#10 16.00 (53/85) Installing py3-idna-ssl (1.1.0-r6)
+#10 16.04 (54/85) Installing py3-multidict (6.0.2-r1)
+#10 16.10 (55/85) Installing py3-yarl (1.8.1-r1)
+#10 16.16 (56/85) Installing py3-aiohttp (3.8.3-r0)
+#10 16.28 (57/85) Installing py3-certifi (2022.12.7-r0)
+#10 16.30 (58/85) Installing py3-urllib3 (1.26.18-r0)
+#10 16.36 (59/85) Installing py3-requests (2.28.1-r1)
+#10 16.40 (60/85) Installing libmaxminddb-libs (1.7.1-r0)
+#10 16.42 (61/85) Installing py3-maxminddb (2.2.0-r1)
+#10 16.46 (62/85) Installing py3-geoip2 (4.6.0-r0)
+#10 16.51 (63/85) Installing py3-markupsafe (2.1.1-r1)
+#10 16.55 (64/85) Installing py3-jinja2 (3.1.4-r0)
+#10 16.62 (65/85) Installing py3-jwt (2.6.0-r0)
+#10 16.67 (66/85) Installing py3-mako (1.2.3-r0)
+#10 16.75 (67/85) Installing mariadb-connector-c (3.3.3-r0)
+#10 16.78 (68/85) Installing py3-mysqlclient (2.1.1-r0)
+#10 16.82 (69/85) Installing py3-parsing (3.0.9-r0)
+#10 16.86 (70/85) Installing py3-packaging (21.3-r2)
+#10 16.90 (71/85) Installing py3-six (1.16.0-r3)
+#10 16.91 (72/85) Installing py3-retrying (1.3.3-r3)
+#10 16.92 (73/85) Installing py3-setuptools (70.3.0-r0)
+#10 17.27 (74/85) Installing py3-pip (22.3.1-r1)
+#10 18.01 (75/85) Installing py3-pycodestyle (2.9.0-r0)
+#10 18.07 (76/85) Installing py3-wrapt (1.14.1-r0)
+#10 18.13 (77/85) Installing py3-deprecated (1.2.13-r1)
+#10 18.18 (78/85) Installing py3-hiredis (1.1.0-r2)
+#10 18.23 (79/85) Installing py3-redis (4.1.0-r0)
+#10 18.30 (80/85) Installing py3-tornado (6.2-r0)
+#10 18.53 (81/85) Installing py3-websocket-client (1.4.2-r0)
+#10 18.56 (82/85) Installing py3-wheel (0.38.4-r0)
+#10 18.61 (83/85) Installing yaml (0.2.5-r0)
+#10 18.63 (84/85) Installing py3-yaml (6.0-r0)
+#10 18.70 (85/85) Installing python3-dev (3.10.15-r0)
+#10 ...
+
+#12 [tanner linux/arm64 3/4] RUN apk --no-cache -U upgrade &&     apk --no-cache -U add 		build-base 		git 		libcap 		libffi-dev 		openssl-dev 		linux-headers 		py3-aiohttp 		py3-geoip2 		py3-jinja2 		py3-jwt 		py3-mako 		py3-mysqlclient 		py3-packaging 		py3-pip 		py3-redis 		py3-pycodestyle 		py3-setuptools 		py3-tornado 		py3-websocket-client 		py3-wheel 		py3-yaml 		py3-yarl 		python3 		python3-dev && 	git clone https://github.com/mushorg/tanner /opt/tanner &&     cd /opt/tanner/ &&     git checkout 245d628f4023e5462c7035e760a6b5eed0a33fbe &&     cp /root/dist/config.yaml /opt/tanner/tanner/data &&     cp /root/dist/requirements.txt . &&     pip3 install --no-cache-dir -r requirements.txt &&     python3 setup.py install &&     rm -rf .coveragerc            .git            .gitignore            .travis.yml            Tanner.egg-info            build            dist            docker            docs            requirements.txt            setup.py &&     cd / &&     addgroup -g 2000 tanner &&     adduser -S -s /bin/ash -u 2000 -D -g 2000 tanner &&     mkdir /var/log/tanner &&     chown -R tanner:tanner /opt/tanner /var/log/tanner &&     apk del --purge             build-base             git             libcap             libffi-dev             openssl-dev             linux-headers             python3-dev &&     rm -rf /root/*            /tmp/*            /var/tmp/*            /var/cache/apk/*            /opt/tanner/.git
+#12 10.14 fetch https://dl-cdn.alpinelinux.org/alpine/v3.17/community/aarch64/APKINDEX.tar.gz
+#12 12.48 (1/85) Installing libgcc (12.2.1_git20220924-r4)
+#12 12.54 (2/85) Installing libstdc++ (12.2.1_git20220924-r4)
+#12 12.78 (3/85) Installing binutils (2.39-r2)
+#12 13.71 (4/85) Installing libmagic (5.43-r0)
+#12 13.96 (5/85) Installing file (5.43-r0)
+#12 13.99 (6/85) Installing libgomp (12.2.1_git20220924-r4)
+#12 14.07 (7/85) Installing libatomic (12.2.1_git20220924-r4)
+#12 14.09 (8/85) Installing gmp (6.2.1-r2)
+#12 14.18 (9/85) Installing isl25 (0.25-r1)
+#12 14.51 (10/85) Installing mpfr4 (4.1.0-r0)
+#12 14.61 (11/85) Installing mpc1 (1.2.1-r1)
+#12 14.66 (12/85) Installing gcc (12.2.1_git20220924-r4)
+#12 ...
+
+#10 [tanner linux/amd64 3/4] RUN apk --no-cache -U upgrade &&     apk --no-cache -U add 		build-base 		git 		libcap 		libffi-dev 		openssl-dev 		linux-headers 		py3-aiohttp 		py3-geoip2 		py3-jinja2 		py3-jwt 		py3-mako 		py3-mysqlclient 		py3-packaging 		py3-pip 		py3-redis 		py3-pycodestyle 		py3-setuptools 		py3-tornado 		py3-websocket-client 		py3-wheel 		py3-yaml 		py3-yarl 		python3 		python3-dev && 	git clone https://github.com/mushorg/tanner /opt/tanner &&     cd /opt/tanner/ &&     git checkout 245d628f4023e5462c7035e760a6b5eed0a33fbe &&     cp /root/dist/config.yaml /opt/tanner/tanner/data &&     cp /root/dist/requirements.txt . &&     pip3 install --no-cache-dir -r requirements.txt &&     python3 setup.py install &&     rm -rf .coveragerc            .git            .gitignore            .travis.yml            Tanner.egg-info            build            dist            docker            docs            requirements.txt            setup.py &&     cd / &&     addgroup -g 2000 tanner &&     adduser -S -s /bin/ash -u 2000 -D -g 2000 tanner &&     mkdir /var/log/tanner &&     chown -R tanner:tanner /opt/tanner /var/log/tanner &&     apk del --purge             build-base             git             libcap             libffi-dev             openssl-dev             linux-headers             python3-dev &&     rm -rf /root/*            /tmp/*            /var/tmp/*            /var/cache/apk/*            /opt/tanner/.git
+#10 23.73 Executing busybox-1.35.0-r31.trigger
+#10 23.74 Executing ca-certificates-20240226-r0.trigger
+#10 23.91 OK: 400 MiB in 100 packages
+#10 24.04 Cloning into '/opt/tanner'...
+#10 30.86 Note: switching to '245d628f4023e5462c7035e760a6b5eed0a33fbe'.
+#10 30.86 
+#10 30.86 You are in 'detached HEAD' state. You can look around, make experimental
+#10 30.86 changes and commit them, and you can discard any commits you make in this
+#10 30.86 state without impacting any branches by switching back to a branch.
+#10 30.86 
+#10 30.86 If you want to create a new branch to retain commits you create, you may
+#10 30.86 do so (now or later) by using -c with the switch command. Example:
+#10 30.86 
+#10 30.86   git switch -c <new-branch-name>
+#10 30.86 
+#10 30.86 Or undo this operation with:
+#10 30.86 
+#10 30.86   git switch -
+#10 30.86 
+#10 30.86 Turn off this advice by setting config variable advice.detachedHead to false
+#10 30.86 
+#10 30.86 HEAD is now at 245d628 test fixes 4
+#10 ...
+
+#12 [tanner linux/arm64 3/4] RUN apk --no-cache -U upgrade &&     apk --no-cache -U add 		build-base 		git 		libcap 		libffi-dev 		openssl-dev 		linux-headers 		py3-aiohttp 		py3-geoip2 		py3-jinja2 		py3-jwt 		py3-mako 		py3-mysqlclient 		py3-packaging 		py3-pip 		py3-redis 		py3-pycodestyle 		py3-setuptools 		py3-tornado 		py3-websocket-client 		py3-wheel 		py3-yaml 		py3-yarl 		python3 		python3-dev && 	git clone https://github.com/mushorg/tanner /opt/tanner &&     cd /opt/tanner/ &&     git checkout 245d628f4023e5462c7035e760a6b5eed0a33fbe &&     cp /root/dist/config.yaml /opt/tanner/tanner/data &&     cp /root/dist/requirements.txt . &&     pip3 install --no-cache-dir -r requirements.txt &&     python3 setup.py install &&     rm -rf .coveragerc            .git            .gitignore            .travis.yml            Tanner.egg-info            build            dist            docker            docs            requirements.txt            setup.py &&     cd / &&     addgroup -g 2000 tanner &&     adduser -S -s /bin/ash -u 2000 -D -g 2000 tanner &&     mkdir /var/log/tanner &&     chown -R tanner:tanner /opt/tanner /var/log/tanner &&     apk del --purge             build-base             git             libcap             libffi-dev             openssl-dev             linux-headers             python3-dev &&     rm -rf /root/*            /tmp/*            /var/tmp/*            /var/cache/apk/*            /opt/tanner/.git
+#12 24.85 (13/85) Installing libstdc++-dev (12.2.1_git20220924-r4)
+#12 29.49 (14/85) Installing musl-dev (1.2.3-r6)
+#12 30.10 (15/85) Installing libc-dev (0.7.2-r3)
+#12 30.11 (16/85) Installing g++ (12.2.1_git20220924-r4)
+#12 33.06 (17/85) Installing make (4.3-r1)
+#12 33.10 (18/85) Installing fortify-headers (1.1-r1)
+#12 33.11 (19/85) Installing patch (2.7.6-r9)
+#12 33.14 (20/85) Installing build-base (0.5-r3)
+#12 33.15 (21/85) Installing ca-certificates (20240226-r0)
+#12 33.25 (22/85) Installing brotli-libs (1.0.9-r9)
+#12 33.33 (23/85) Installing nghttp2-libs (1.51.0-r2)
+#12 33.35 (24/85) Installing libcurl (8.9.0-r0)
+#12 33.43 (25/85) Installing libexpat (2.6.4-r0)
+#12 33.47 (26/85) Installing pcre2 (10.42-r0)
+#12 33.53 (27/85) Installing git (2.39.5-r0)
+#12 ...
+
+#10 [tanner linux/amd64 3/4] RUN apk --no-cache -U upgrade &&     apk --no-cache -U add 		build-base 		git 		libcap 		libffi-dev 		openssl-dev 		linux-headers 		py3-aiohttp 		py3-geoip2 		py3-jinja2 		py3-jwt 		py3-mako 		py3-mysqlclient 		py3-packaging 		py3-pip 		py3-redis 		py3-pycodestyle 		py3-setuptools 		py3-tornado 		py3-websocket-client 		py3-wheel 		py3-yaml 		py3-yarl 		python3 		python3-dev && 	git clone https://github.com/mushorg/tanner /opt/tanner &&     cd /opt/tanner/ &&     git checkout 245d628f4023e5462c7035e760a6b5eed0a33fbe &&     cp /root/dist/config.yaml /opt/tanner/tanner/data &&     cp /root/dist/requirements.txt . &&     pip3 install --no-cache-dir -r requirements.txt &&     python3 setup.py install &&     rm -rf .coveragerc            .git            .gitignore            .travis.yml            Tanner.egg-info            build            dist            docker            docs            requirements.txt            setup.py &&     cd / &&     addgroup -g 2000 tanner &&     adduser -S -s /bin/ash -u 2000 -D -g 2000 tanner &&     mkdir /var/log/tanner &&     chown -R tanner:tanner /opt/tanner /var/log/tanner &&     apk del --purge             build-base             git             libcap             libffi-dev             openssl-dev             linux-headers             python3-dev &&     rm -rf /root/*            /tmp/*            /var/tmp/*            /var/cache/apk/*            /opt/tanner/.git
+#10 34.19 Collecting aiomysql
+#10 34.30   Downloading aiomysql-0.2.0-py3-none-any.whl (44 kB)
+#10 34.32      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 44.2/44.2 kB 3.0 MB/s eta 0:00:00
+#10 34.47 Collecting aiohttp_jinja2==1.1.0
+#10 34.60   Downloading aiohttp_jinja2-1.1.0-py3-none-any.whl (10 kB)
+#10 34.71 Collecting docker<2.6
+#10 34.84   Downloading docker-2.5.1-py2.py3-none-any.whl (111 kB)
+#10 34.85      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 111.2/111.2 kB 12.2 MB/s eta 0:00:00
+#10 34.90 Collecting mimesis<3.0.0
+#10 35.29   Downloading mimesis-2.1.0-py3-none-any.whl (2.4 MB)
+#10 35.76      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.4/2.4 MB 5.2 MB/s eta 0:00:00
+#10 35.80 Collecting aioredis
+#10 35.81   Downloading aioredis-2.0.1-py3-none-any.whl (71 kB)
+#10 35.82      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 71.2/71.2 kB 9.5 MB/s eta 0:00:00
+#10 37.07 Collecting pymongo
+#10 37.08   Downloading pymongo-4.11.1.tar.gz (2.1 MB)
+#10 37.40      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.1/2.1 MB 6.7 MB/s eta 0:00:00
+#10 38.81   Installing build dependencies: started
+#10 ...
+
+#12 [tanner linux/arm64 3/4] RUN apk --no-cache -U upgrade &&     apk --no-cache -U add 		build-base 		git 		libcap 		libffi-dev 		openssl-dev 		linux-headers 		py3-aiohttp 		py3-geoip2 		py3-jinja2 		py3-jwt 		py3-mako 		py3-mysqlclient 		py3-packaging 		py3-pip 		py3-redis 		py3-pycodestyle 		py3-setuptools 		py3-tornado 		py3-websocket-client 		py3-wheel 		py3-yaml 		py3-yarl 		python3 		python3-dev && 	git clone https://github.com/mushorg/tanner /opt/tanner &&     cd /opt/tanner/ &&     git checkout 245d628f4023e5462c7035e760a6b5eed0a33fbe &&     cp /root/dist/config.yaml /opt/tanner/tanner/data &&     cp /root/dist/requirements.txt . &&     pip3 install --no-cache-dir -r requirements.txt &&     python3 setup.py install &&     rm -rf .coveragerc            .git            .gitignore            .travis.yml            Tanner.egg-info            build            dist            docker            docs            requirements.txt            setup.py &&     cd / &&     addgroup -g 2000 tanner &&     adduser -S -s /bin/ash -u 2000 -D -g 2000 tanner &&     mkdir /var/log/tanner &&     chown -R tanner:tanner /opt/tanner /var/log/tanner &&     apk del --purge             build-base             git             libcap             libffi-dev             openssl-dev             linux-headers             python3-dev &&     rm -rf /root/*            /tmp/*            /var/tmp/*            /var/cache/apk/*            /opt/tanner/.git
+#12 34.20 (28/85) Installing libcap2 (2.66-r1)
+#12 34.25 (29/85) Installing libcap-utils (2.66-r1)
+#12 34.29 (30/85) Installing libcap (2.66-r1)
+#12 34.34 (31/85) Installing linux-headers (5.19.5-r0)
+#12 34.94 (32/85) Installing libffi (3.4.4-r0)
+#12 34.96 (33/85) Installing pkgconf (1.9.4-r0)
+#12 34.98 (34/85) Installing libffi-dev (3.4.4-r0)
+#12 35.01 (35/85) Installing openssl-dev (3.0.15-r1)
+#12 35.15 (36/85) Installing libbz2 (1.0.8-r4)
+#12 35.19 (37/85) Installing gdbm (1.23-r0)
+#12 35.22 (38/85) Installing xz-libs (5.2.9-r0)
+#12 35.30 (39/85) Installing mpdecimal (2.5.1-r1)
+#12 35.33 (40/85) Installing ncurses-terminfo-base (6.3_p20221119-r1)
+#12 35.38 (41/85) Installing ncurses-libs (6.3_p20221119-r1)
+#12 35.53 (42/85) Installing readline (8.2.0-r0)
+#12 35.61 (43/85) Installing sqlite-libs (3.40.1-r1)
+#12 35.81 (44/85) Installing python3 (3.10.15-r0)
+#12 40.06 (45/85) Installing py3-frozenlist (1.3.3-r0)
+#12 40.10 (46/85) Installing py3-aiosignal (1.3.1-r0)
+#12 40.14 (47/85) Installing py3-typing-extensions (4.4.0-r0)
+#12 40.20 (48/85) Installing py3-async-timeout (4.0.2-r0)
+#12 40.24 (49/85) Installing py3-attrs (22.1.0-r0)
+#12 40.31 (50/85) Installing py3-brotli (1.0.9-r9)
+#12 40.43 (51/85) Installing py3-charset-normalizer (3.0.1-r0)
+#12 40.52 (52/85) Installing py3-idna (3.4-r2)
+#12 40.60 (53/85) Installing py3-idna-ssl (1.1.0-r6)
+#12 40.64 (54/85) Installing py3-multidict (6.0.2-r1)
+#12 40.73 (55/85) Installing py3-yarl (1.8.1-r1)
+#12 40.80 (56/85) Installing py3-aiohttp (3.8.3-r0)
+#12 40.98 (57/85) Installing py3-certifi (2022.12.7-r0)
+#12 41.02 (58/85) Installing py3-urllib3 (1.26.18-r0)
+#12 41.13 (59/85) Installing py3-requests (2.28.1-r1)
+#12 41.22 (60/85) Installing libmaxminddb-libs (1.7.1-r0)
+#12 41.26 (61/85) Installing py3-maxminddb (2.2.0-r1)
+#12 41.32 (62/85) Installing py3-geoip2 (4.6.0-r0)
+#12 41.38 (63/85) Installing py3-markupsafe (2.1.1-r1)
+#12 41.42 (64/85) Installing py3-jinja2 (3.1.4-r0)
+#12 41.57 (65/85) Installing py3-jwt (2.6.0-r0)
+#12 41.63 (66/85) Installing py3-mako (1.2.3-r0)
+#12 41.72 (67/85) Installing mariadb-connector-c (3.3.3-r0)
+#12 41.82 (68/85) Installing py3-mysqlclient (2.1.1-r0)
+#12 41.88 (69/85) Installing py3-parsing (3.0.9-r0)
+#12 41.96 (70/85) Installing py3-packaging (21.3-r2)
+#12 41.98 (71/85) Installing py3-six (1.16.0-r3)
+#12 42.03 (72/85) Installing py3-retrying (1.3.3-r3)
+#12 42.07 (73/85) Installing py3-setuptools (70.3.0-r0)
+#12 42.67 (74/85) Installing py3-pip (22.3.1-r1)
+#12 43.81 (75/85) Installing py3-pycodestyle (2.9.0-r0)
+#12 43.86 (76/85) Installing py3-wrapt (1.14.1-r0)
+#12 43.94 (77/85) Installing py3-deprecated (1.2.13-r1)
+#12 43.98 (78/85) Installing py3-hiredis (1.1.0-r2)
+#12 44.03 (79/85) Installing py3-redis (4.1.0-r0)
+#12 44.13 (80/85) Installing py3-tornado (6.2-r0)
+#12 44.52 (81/85) Installing py3-websocket-client (1.4.2-r0)
+#12 44.59 (82/85) Installing py3-wheel (0.38.4-r0)
+#12 44.65 (83/85) Installing yaml (0.2.5-r0)
+#12 ...
+
+#10 [tanner linux/amd64 3/4] RUN apk --no-cache -U upgrade &&     apk --no-cache -U add 		build-base 		git 		libcap 		libffi-dev 		openssl-dev 		linux-headers 		py3-aiohttp 		py3-geoip2 		py3-jinja2 		py3-jwt 		py3-mako 		py3-mysqlclient 		py3-packaging 		py3-pip 		py3-redis 		py3-pycodestyle 		py3-setuptools 		py3-tornado 		py3-websocket-client 		py3-wheel 		py3-yaml 		py3-yarl 		python3 		python3-dev && 	git clone https://github.com/mushorg/tanner /opt/tanner &&     cd /opt/tanner/ &&     git checkout 245d628f4023e5462c7035e760a6b5eed0a33fbe &&     cp /root/dist/config.yaml /opt/tanner/tanner/data &&     cp /root/dist/requirements.txt . &&     pip3 install --no-cache-dir -r requirements.txt &&     python3 setup.py install &&     rm -rf .coveragerc            .git            .gitignore            .travis.yml            Tanner.egg-info            build            dist            docker            docs            requirements.txt            setup.py &&     cd / &&     addgroup -g 2000 tanner &&     adduser -S -s /bin/ash -u 2000 -D -g 2000 tanner &&     mkdir /var/log/tanner &&     chown -R tanner:tanner /opt/tanner /var/log/tanner &&     apk del --purge             build-base             git             libcap             libffi-dev             openssl-dev             linux-headers             python3-dev &&     rm -rf /root/*            /tmp/*            /var/tmp/*            /var/cache/apk/*            /opt/tanner/.git
+#10 44.69   Installing build dependencies: finished with status 'done'
+#10 44.69   Getting requirements to build wheel: started
+#10 44.90   Getting requirements to build wheel: finished with status 'done'
+#10 44.92   Preparing metadata (pyproject.toml): started
+#10 ...
+
+#12 [tanner linux/arm64 3/4] RUN apk --no-cache -U upgrade &&     apk --no-cache -U add 		build-base 		git 		libcap 		libffi-dev 		openssl-dev 		linux-headers 		py3-aiohttp 		py3-geoip2 		py3-jinja2 		py3-jwt 		py3-mako 		py3-mysqlclient 		py3-packaging 		py3-pip 		py3-redis 		py3-pycodestyle 		py3-setuptools 		py3-tornado 		py3-websocket-client 		py3-wheel 		py3-yaml 		py3-yarl 		python3 		python3-dev && 	git clone https://github.com/mushorg/tanner /opt/tanner &&     cd /opt/tanner/ &&     git checkout 245d628f4023e5462c7035e760a6b5eed0a33fbe &&     cp /root/dist/config.yaml /opt/tanner/tanner/data &&     cp /root/dist/requirements.txt . &&     pip3 install --no-cache-dir -r requirements.txt &&     python3 setup.py install &&     rm -rf .coveragerc            .git            .gitignore            .travis.yml            Tanner.egg-info            build            dist            docker            docs            requirements.txt            setup.py &&     cd / &&     addgroup -g 2000 tanner &&     adduser -S -s /bin/ash -u 2000 -D -g 2000 tanner &&     mkdir /var/log/tanner &&     chown -R tanner:tanner /opt/tanner /var/log/tanner &&     apk del --purge             build-base             git             libcap             libffi-dev             openssl-dev             linux-headers             python3-dev &&     rm -rf /root/*            /tmp/*            /var/tmp/*            /var/cache/apk/*            /opt/tanner/.git
+#12 44.71 (84/85) Installing py3-yaml (6.0-r0)
+#12 44.80 (85/85) Installing python3-dev (3.10.15-r0)
+#12 50.12 Executing busybox-1.35.0-r31.trigger
+#12 50.21 Executing ca-certificates-20240226-r0.trigger
+#12 51.34 OK: 406 MiB in 100 packages
+#12 51.66 Cloning into '/opt/tanner'...
+#12 ...
+
+#10 [tanner linux/amd64 3/4] RUN apk --no-cache -U upgrade &&     apk --no-cache -U add 		build-base 		git 		libcap 		libffi-dev 		openssl-dev 		linux-headers 		py3-aiohttp 		py3-geoip2 		py3-jinja2 		py3-jwt 		py3-mako 		py3-mysqlclient 		py3-packaging 		py3-pip 		py3-redis 		py3-pycodestyle 		py3-setuptools 		py3-tornado 		py3-websocket-client 		py3-wheel 		py3-yaml 		py3-yarl 		python3 		python3-dev && 	git clone https://github.com/mushorg/tanner /opt/tanner &&     cd /opt/tanner/ &&     git checkout 245d628f4023e5462c7035e760a6b5eed0a33fbe &&     cp /root/dist/config.yaml /opt/tanner/tanner/data &&     cp /root/dist/requirements.txt . &&     pip3 install --no-cache-dir -r requirements.txt &&     python3 setup.py install &&     rm -rf .coveragerc            .git            .gitignore            .travis.yml            Tanner.egg-info            build            dist            docker            docs            requirements.txt            setup.py &&     cd / &&     addgroup -g 2000 tanner &&     adduser -S -s /bin/ash -u 2000 -D -g 2000 tanner &&     mkdir /var/log/tanner &&     chown -R tanner:tanner /opt/tanner /var/log/tanner &&     apk del --purge             build-base             git             libcap             libffi-dev             openssl-dev             linux-headers             python3-dev &&     rm -rf /root/*            /tmp/*            /var/tmp/*            /var/cache/apk/*            /opt/tanner/.git
+#10 55.36   Preparing metadata (pyproject.toml): finished with status 'done'
+#10 55.49 Collecting pylibinjection
+#10 55.61   Downloading pylibinjection-0.2.4.tar.gz (68 kB)
+#10 55.63      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 68.7/68.7 kB 4.5 MB/s eta 0:00:00
+#10 55.66   Preparing metadata (setup.py): started
+#10 56.16   Preparing metadata (setup.py): finished with status 'done'
+#10 56.21 Collecting aiodocker
+#10 56.33   Downloading aiodocker-0.24.0-py3-none-any.whl (34 kB)
+#10 56.35 Requirement already satisfied: jinja2>=2.7 in /usr/lib/python3.10/site-packages (from aiohttp_jinja2==1.1.0->-r requirements.txt (line 2)) (3.1.4)
+#10 56.35 Requirement already satisfied: aiohttp>=3.2.0 in /usr/lib/python3.10/site-packages (from aiohttp_jinja2==1.1.0->-r requirements.txt (line 2)) (3.8.3)
+#10 56.40 Collecting PyMySQL>=1.0
+#10 56.41   Downloading PyMySQL-1.1.1-py3-none-any.whl (44 kB)
+#10 56.42      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 45.0/45.0 kB 64.3 MB/s eta 0:00:00
+#10 56.45 Requirement already satisfied: requests!=2.11.0,!=2.12.2,!=2.18.0,>=2.5.2 in /usr/lib/python3.10/site-packages (from docker<2.6->-r requirements.txt (line 3)) (2.28.1)
+#10 56.47 Collecting docker-pycreds>=0.2.1
+#10 56.48   Downloading docker_pycreds-0.4.0-py2.py3-none-any.whl (9.0 kB)
+#10 56.49 Requirement already satisfied: websocket-client>=0.32.0 in /usr/lib/python3.10/site-packages (from docker<2.6->-r requirements.txt (line 3)) (1.4.2)
+#10 56.49 Requirement already satisfied: six>=1.4.0 in /usr/lib/python3.10/site-packages (from docker<2.6->-r requirements.txt (line 3)) (1.16.0)
+#10 56.51 Requirement already satisfied: typing-extensions in /usr/lib/python3.10/site-packages (from aioredis->-r requirements.txt (line 5)) (4.4.0)
+#10 56.51 Requirement already satisfied: async-timeout in /usr/lib/python3.10/site-packages (from aioredis->-r requirements.txt (line 5)) (4.0.2)
+#10 56.59 Collecting dnspython<3.0.0,>=1.16.0
+#10 56.60   Downloading dnspython-2.7.0-py3-none-any.whl (313 kB)
+#10 56.68      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 313.6/313.6 kB 5.0 MB/s eta 0:00:00
+#10 58.06 Collecting cython
+#10 58.20   Downloading Cython-3.0.12-cp310-cp310-musllinux_1_2_x86_64.whl (3.7 MB)
+#10 58.96      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 3.7/3.7 MB 4.9 MB/s eta 0:00:00
+#10 59.06 Requirement already satisfied: attrs>=17.3.0 in /usr/lib/python3.10/site-packages (from aiohttp>=3.2.0->aiohttp_jinja2==1.1.0->-r requirements.txt (line 2)) (22.1.0)
+#10 59.06 Requirement already satisfied: charset-normalizer<4.0,>=2.0 in /usr/lib/python3.10/site-packages (from aiohttp>=3.2.0->aiohttp_jinja2==1.1.0->-r requirements.txt (line 2)) (3.0.1)
+#10 59.06 Requirement already satisfied: multidict<7.0,>=4.5 in /usr/lib/python3.10/site-packages (from aiohttp>=3.2.0->aiohttp_jinja2==1.1.0->-r requirements.txt (line 2)) (6.0.2)
+#10 59.07 Requirement already satisfied: yarl<2.0,>=1.0 in /usr/lib/python3.10/site-packages (from aiohttp>=3.2.0->aiohttp_jinja2==1.1.0->-r requirements.txt (line 2)) (1.8.1)
+#10 59.07 Requirement already satisfied: frozenlist>=1.1.1 in /usr/lib/python3.10/site-packages (from aiohttp>=3.2.0->aiohttp_jinja2==1.1.0->-r requirements.txt (line 2)) (1.3.3)
+#10 59.07 Requirement already satisfied: aiosignal>=1.1.2 in /usr/lib/python3.10/site-packages (from aiohttp>=3.2.0->aiohttp_jinja2==1.1.0->-r requirements.txt (line 2)) (1.3.1)
+#10 59.14 Requirement already satisfied: MarkupSafe>=2.0 in /usr/lib/python3.10/site-packages (from jinja2>=2.7->aiohttp_jinja2==1.1.0->-r requirements.txt (line 2)) (2.1.1)
+#10 59.18 Requirement already satisfied: idna<4,>=2.5 in /usr/lib/python3.10/site-packages (from requests!=2.11.0,!=2.12.2,!=2.18.0,>=2.5.2->docker<2.6->-r requirements.txt (line 3)) (3.4)
+#10 59.19 Requirement already satisfied: urllib3<1.27,>=1.21.1 in /usr/lib/python3.10/site-packages (from requests!=2.11.0,!=2.12.2,!=2.18.0,>=2.5.2->docker<2.6->-r requirements.txt (line 3)) (1.26.18)
+#10 59.19 Requirement already satisfied: certifi>=2017.4.17 in /usr/lib/python3.10/site-packages (from requests!=2.11.0,!=2.12.2,!=2.18.0,>=2.5.2->docker<2.6->-r requirements.txt (line 3)) (2022.12.7)
+#10 59.31 Building wheels for collected packages: pymongo, pylibinjection
+#10 59.32   Building wheel for pymongo (pyproject.toml): started
+#10 59.43   Building wheel for pymongo (pyproject.toml): finished with status 'done'
+#10 59.43   Created wheel for pymongo: filename=pymongo-4.11.1-cp310-cp310-linux_x86_64.whl size=922810 sha256=52000b46a11065ceabebd4fe1ebbaee20a20085c6968183cb3cc191249b9be50
+#10 59.44   Stored in directory: /tmp/pip-ephem-wheel-cache-b05b_sze/wheels/0e/81/b2/3b08c7ed61ff9e50c7412035e63ef1d0569b4078692ee29f95
+#10 59.45   Building wheel for pylibinjection (setup.py): started
+#10 64.16   Building wheel for pylibinjection (setup.py): finished with status 'done'
+#10 64.17   Created wheel for pylibinjection: filename=pylibinjection-0.2.4-cp310-cp310-linux_x86_64.whl size=147142 sha256=3a5d255e0cb50e7e8774e1490809fdba4fd44a31dfc7a3c54841ae114f65741a
+#10 64.17   Stored in directory: /tmp/pip-ephem-wheel-cache-b05b_sze/wheels/55/7d/b9/17a53a8ab80e16d4e629f557a98badabbdce6700d5b7829196
+#10 64.17 Successfully built pymongo pylibinjection
+#10 64.51 Installing collected packages: mimesis, PyMySQL, docker-pycreds, dnspython, cython, aioredis, pymongo, pylibinjection, docker, aiomysql, aiohttp_jinja2, aiodocker
+#10 ...
+
+#12 [tanner linux/arm64 3/4] RUN apk --no-cache -U upgrade &&     apk --no-cache -U add 		build-base 		git 		libcap 		libffi-dev 		openssl-dev 		linux-headers 		py3-aiohttp 		py3-geoip2 		py3-jinja2 		py3-jwt 		py3-mako 		py3-mysqlclient 		py3-packaging 		py3-pip 		py3-redis 		py3-pycodestyle 		py3-setuptools 		py3-tornado 		py3-websocket-client 		py3-wheel 		py3-yaml 		py3-yarl 		python3 		python3-dev && 	git clone https://github.com/mushorg/tanner /opt/tanner &&     cd /opt/tanner/ &&     git checkout 245d628f4023e5462c7035e760a6b5eed0a33fbe &&     cp /root/dist/config.yaml /opt/tanner/tanner/data &&     cp /root/dist/requirements.txt . &&     pip3 install --no-cache-dir -r requirements.txt &&     python3 setup.py install &&     rm -rf .coveragerc            .git            .gitignore            .travis.yml            Tanner.egg-info            build            dist            docker            docs            requirements.txt            setup.py &&     cd / &&     addgroup -g 2000 tanner &&     adduser -S -s /bin/ash -u 2000 -D -g 2000 tanner &&     mkdir /var/log/tanner &&     chown -R tanner:tanner /opt/tanner /var/log/tanner &&     apk del --purge             build-base             git             libcap             libffi-dev             openssl-dev             linux-headers             python3-dev &&     rm -rf /root/*            /tmp/*            /var/tmp/*            /var/cache/apk/*            /opt/tanner/.git
+#12 65.22 Updating files:  33% (39/117)Updating files:  34% (40/117)Updating files:  35% (41/117)Updating files:  36% (43/117)Updating files:  37% (44/117)Updating files:  38% (45/117)Updating files:  39% (46/117)Updating files:  40% (47/117)Updating files:  41% (48/117)Updating files:  42% (50/117)Updating files:  43% (51/117)Updating files:  44% (52/117)Updating files:  45% (53/117)Updating files:  46% (54/117)Updating files:  47% (55/117)Updating files:  48% (57/117)Updating files:  49% (58/117)Updating files:  50% (59/117)Updating files:  51% (60/117)Updating files:  52% (61/117)Updating files:  53% (63/117)Updating files:  54% (64/117)Updating files:  55% (65/117)Updating files:  56% (66/117)Updating files:  57% (67/117)Updating files:  58% (68/117)Updating files:  59% (70/117)Updating files:  60% (71/117)Updating files:  61% (72/117)Updating files:  62% (73/117)Updating files:  63% (74/117)Updating files:  64% (75/117)Updating files:  65% (77/117)Updating files:  66% (78/117)Updating files:  67% (79/117)Updating files:  68% (80/117)Updating files:  69% (81/117)Updating files:  70% (82/117)Updating files:  71% (84/117)Updating files:  72% (85/117)Updating files:  73% (86/117)Updating files:  74% (87/117)Updating files:  75% (88/117)Updating files:  76% (89/117)Updating files:  77% (91/117)Updating files:  78% (92/117)Updating files:  79% (93/117)Updating files:  80% (94/117)Updating files:  81% (95/117)Updating files:  82% (96/117)Updating files:  83% (98/117)Updating files:  84% (99/117)Updating files:  85% (100/117)Updating files:  86% (101/117)Updating files:  87% (102/117)Updating files:  88% (103/117)Updating files:  89% (105/117)Updating files:  90% (106/117)Updating files:  91% (107/117)Updating files:  92% (108/117)Updating files:  93% (109/117)Updating files:  94% (110/117)Updating files:  95% (112/117)Updating files:  96% (113/117)Updating files:  97% (114/117)Updating files:  98% (115/117)Updating files:  99% (116/117)Updating files: 100% (117/117)Updating files: 100% (117/117), done.
+#12 67.18 Note: switching to '245d628f4023e5462c7035e760a6b5eed0a33fbe'.
+#12 67.18 
+#12 67.18 You are in 'detached HEAD' state. You can look around, make experimental
+#12 67.18 changes and commit them, and you can discard any commits you make in this
+#12 67.18 state without impacting any branches by switching back to a branch.
+#12 67.18 
+#12 67.18 If you want to create a new branch to retain commits you create, you may
+#12 67.18 do so (now or later) by using -c with the switch command. Example:
+#12 67.18 
+#12 67.18   git switch -c <new-branch-name>
+#12 67.18 
+#12 67.18 Or undo this operation with:
+#12 67.18 
+#12 67.18   git switch -
+#12 67.18 
+#12 67.18 Turn off this advice by setting config variable advice.detachedHead to false
+#12 67.18 
+#12 67.18 HEAD is now at 245d628 test fixes 4
+#12 ...
+
+#10 [tanner linux/amd64 3/4] RUN apk --no-cache -U upgrade &&     apk --no-cache -U add 		build-base 		git 		libcap 		libffi-dev 		openssl-dev 		linux-headers 		py3-aiohttp 		py3-geoip2 		py3-jinja2 		py3-jwt 		py3-mako 		py3-mysqlclient 		py3-packaging 		py3-pip 		py3-redis 		py3-pycodestyle 		py3-setuptools 		py3-tornado 		py3-websocket-client 		py3-wheel 		py3-yaml 		py3-yarl 		python3 		python3-dev && 	git clone https://github.com/mushorg/tanner /opt/tanner &&     cd /opt/tanner/ &&     git checkout 245d628f4023e5462c7035e760a6b5eed0a33fbe &&     cp /root/dist/config.yaml /opt/tanner/tanner/data &&     cp /root/dist/requirements.txt . &&     pip3 install --no-cache-dir -r requirements.txt &&     python3 setup.py install &&     rm -rf .coveragerc            .git            .gitignore            .travis.yml            Tanner.egg-info            build            dist            docker            docs            requirements.txt            setup.py &&     cd / &&     addgroup -g 2000 tanner &&     adduser -S -s /bin/ash -u 2000 -D -g 2000 tanner &&     mkdir /var/log/tanner &&     chown -R tanner:tanner /opt/tanner /var/log/tanner &&     apk del --purge             build-base             git             libcap             libffi-dev             openssl-dev             linux-headers             python3-dev &&     rm -rf /root/*            /tmp/*            /var/tmp/*            /var/cache/apk/*            /opt/tanner/.git
+#10 69.99 WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv
+#10 69.99 Successfully installed PyMySQL-1.1.1 aiodocker-0.24.0 aiohttp_jinja2-1.1.0 aiomysql-0.2.0 aioredis-2.0.1 cython-3.0.12 dnspython-2.7.0 docker-2.5.1 docker-pycreds-0.4.0 mimesis-2.1.0 pylibinjection-0.2.4 pymongo-4.11.1
+#10 71.28 running install
+#10 71.28 /usr/lib/python3.10/site-packages/setuptools/_distutils/cmd.py:66: SetuptoolsDeprecationWarning: setup.py install is deprecated.
+#10 71.28 !!
+#10 71.28 
+#10 71.28         ********************************************************************************
+#10 71.28         Please avoid running ``setup.py`` directly.
+#10 71.28         Instead, use pypa/build, pypa/installer or other
+#10 71.28         standards-based tools.
+#10 71.28 
+#10 71.28         See https://blog.ganssle.io/articles/2021/10/setup-py-deprecated.html for details.
+#10 71.28         ********************************************************************************
+#10 71.28 
+#10 71.28 !!
+#10 71.28   self.initialize_options()
+#10 71.48 /usr/lib/python3.10/site-packages/setuptools/_distutils/cmd.py:66: EasyInstallDeprecationWarning: easy_install command is deprecated.
+#10 71.48 !!
+#10 71.48 
+#10 71.48         ********************************************************************************
+#10 71.48         Please avoid running ``setup.py`` and ``easy_install``.
+#10 71.48         Instead, use pypa/build, pypa/installer or other
+#10 71.48         standards-based tools.
+#10 71.48 
+#10 71.48         See https://github.com/pypa/setuptools/issues/917 for details.
+#10 71.48         ********************************************************************************
+#10 71.48 
+#10 71.48 !!
+#10 71.48   self.initialize_options()
+#10 71.61 running bdist_egg
+#10 71.63 running egg_info
+#10 71.63 creating Tanner.egg-info
+#10 71.64 writing Tanner.egg-info/PKG-INFO
+#10 71.64 writing dependency_links to Tanner.egg-info/dependency_links.txt
+#10 71.65 writing top-level names to Tanner.egg-info/top_level.txt
+#10 71.65 writing manifest file 'Tanner.egg-info/SOURCES.txt'
+#10 71.67 reading manifest file 'Tanner.egg-info/SOURCES.txt'
+#10 71.67 adding license file 'LICENSE'
+#10 71.68 writing manifest file 'Tanner.egg-info/SOURCES.txt'
+#10 71.68 installing library code to build/bdist.linux-x86_64/egg
+#10 71.68 running install_lib
+#10 71.68 running build_py
+#10 71.68 creating build
+#10 71.68 creating build/lib
+#10 71.68 creating build/lib/bin
+#10 71.68 copying bin/__init__.py -> build/lib/bin
+#10 71.68 creating build/lib/tanner
+#10 71.68 copying tanner/dorks_manager.py -> build/lib/tanner
+#10 71.69 copying tanner/config.py -> build/lib/tanner
+#10 71.69 copying tanner/server.py -> build/lib/tanner
+#10 71.69 copying tanner/__init__.py -> build/lib/tanner
+#10 71.69 copying tanner/redis_client.py -> build/lib/tanner
+#10 71.69 creating build/lib/tanner/reporting
+#10 71.69 copying tanner/reporting/log_mongodb.py -> build/lib/tanner/reporting
+#10 71.69 copying tanner/reporting/log_local.py -> build/lib/tanner/reporting
+#10 71.69 copying tanner/reporting/__init__.py -> build/lib/tanner/reporting
+#10 71.69 copying tanner/reporting/hpfeeds.py -> build/lib/tanner/reporting
+#10 71.70 copying tanner/reporting/log_hpfeeds.py -> build/lib/tanner/reporting
+#10 71.70 creating build/lib/tanner/tests
+#10 71.70 copying tanner/tests/test_rfi_emulation.py -> build/lib/tanner/tests
+#10 71.70 copying tanner/tests/test_sqlite_db_helper.py -> build/lib/tanner/tests
+#10 71.70 copying tanner/tests/test_web_server.py -> build/lib/tanner/tests
+#10 71.70 copying tanner/tests/test_session_analyzer.py -> build/lib/tanner/tests
+#10 71.70 copying tanner/tests/test_xss_emulator.py -> build/lib/tanner/tests
+#10 71.70 copying tanner/tests/test_php_object_injection.py -> build/lib/tanner/tests
+#10 71.70 copying tanner/tests/test_config.py -> build/lib/tanner/tests
+#10 71.71 copying tanner/tests/test_api.py -> build/lib/tanner/tests
+#10 71.71 copying tanner/tests/test_xxe_injection.py -> build/lib/tanner/tests
+#10 71.71 copying tanner/tests/test_api_server.py -> build/lib/tanner/tests
+#10 71.71 copying tanner/tests/test_base.py -> build/lib/tanner/tests
+#10 71.71 copying tanner/tests/test_sqlite.py -> build/lib/tanner/tests
+#10 71.72 copying tanner/tests/test_aiodocker_helper.py -> build/lib/tanner/tests
+#10 71.72 copying tanner/tests/test_mysqli.py -> build/lib/tanner/tests
+#10 71.72 copying tanner/tests/test_php_code_injection.py -> build/lib/tanner/tests
+#10 71.72 copying tanner/tests/test_lfi_emulator.py -> build/lib/tanner/tests
+#10 71.72 copying tanner/tests/test_template_injection.py -> build/lib/tanner/tests
+#10 71.72 copying tanner/tests/test_server.py -> build/lib/tanner/tests
+#10 71.72 copying tanner/tests/test_cmd_exec_emulation.py -> build/lib/tanner/tests
+#10 71.72 copying tanner/tests/__init__.py -> build/lib/tanner/tests
+#10 71.72 copying tanner/tests/test_mysql_db_helper.py -> build/lib/tanner/tests
+#10 71.72 copying tanner/tests/test_sqli.py -> build/lib/tanner/tests
+#10 71.73 copying tanner/tests/test_session_manager.py -> build/lib/tanner/tests
+#10 71.73 copying tanner/tests/test_crlf.py -> build/lib/tanner/tests
+#10 71.73 copying tanner/tests/test_dorks_manager.py -> build/lib/tanner/tests
+#10 71.73 creating build/lib/tanner/api
+#10 71.73 copying tanner/api/api.py -> build/lib/tanner/api
+#10 71.73 copying tanner/api/server.py -> build/lib/tanner/api
+#10 71.73 copying tanner/api/__init__.py -> build/lib/tanner/api
+#10 71.73 creating build/lib/tanner/web
+#10 71.74 copying tanner/web/server.py -> build/lib/tanner/web
+#10 71.74 copying tanner/web/__init__.py -> build/lib/tanner/web
+#10 71.74 creating build/lib/tanner/sessions
+#10 71.74 copying tanner/sessions/session_manager.py -> build/lib/tanner/sessions
+#10 71.74 copying tanner/sessions/session_analyzer.py -> build/lib/tanner/sessions
+#10 71.74 copying tanner/sessions/__init__.py -> build/lib/tanner/sessions
+#10 71.74 copying tanner/sessions/session.py -> build/lib/tanner/sessions
+#10 71.74 creating build/lib/tanner/utils
+#10 71.74 copying tanner/utils/php_sandbox_helper.py -> build/lib/tanner/utils
+#10 71.74 copying tanner/utils/api_key_generator.py -> build/lib/tanner/utils
+#10 71.75 copying tanner/utils/base_db_helper.py -> build/lib/tanner/utils
+#10 71.75 copying tanner/utils/sqlite_db_helper.py -> build/lib/tanner/utils
+#10 71.75 copying tanner/utils/aiodocker_helper.py -> build/lib/tanner/utils
+#10 71.75 copying tanner/utils/__init__.py -> build/lib/tanner/utils
+#10 71.75 copying tanner/utils/mysql_db_helper.py -> build/lib/tanner/utils
+#10 71.75 copying tanner/utils/asyncmock.py -> build/lib/tanner/utils
+#10 71.75 copying tanner/utils/patterns.py -> build/lib/tanner/utils
+#10 71.75 copying tanner/utils/logger.py -> build/lib/tanner/utils
+#10 71.76 creating build/lib/tanner/emulators
+#10 71.76 copying tanner/emulators/base.py -> build/lib/tanner/emulators
+#10 71.76 copying tanner/emulators/mysqli.py -> build/lib/tanner/emulators
+#10 71.76 copying tanner/emulators/template_injection.py -> build/lib/tanner/emulators
+#10 71.76 copying tanner/emulators/sqli.py -> build/lib/tanner/emulators
+#10 71.76 copying tanner/emulators/php_object_injection.py -> build/lib/tanner/emulators
+#10 71.76 copying tanner/emulators/sqlite.py -> build/lib/tanner/emulators
+#10 71.76 copying tanner/emulators/cmd_exec.py -> build/lib/tanner/emulators
+#10 71.76 copying tanner/emulators/xss.py -> build/lib/tanner/emulators
+#10 71.77 copying tanner/emulators/__init__.py -> build/lib/tanner/emulators
+#10 71.77 copying tanner/emulators/crlf.py -> build/lib/tanner/emulators
+#10 71.77 copying tanner/emulators/xxe_injection.py -> build/lib/tanner/emulators
+#10 71.77 copying tanner/emulators/lfi.py -> build/lib/tanner/emulators
+#10 71.77 copying tanner/emulators/rfi.py -> build/lib/tanner/emulators
+#10 71.77 copying tanner/emulators/php_code_injection.py -> build/lib/tanner/emulators
+#10 71.78 creating build/bdist.linux-x86_64
+#10 71.78 creating build/bdist.linux-x86_64/egg
+#10 71.78 creating build/bdist.linux-x86_64/egg/bin
+#10 71.78 copying build/lib/bin/__init__.py -> build/bdist.linux-x86_64/egg/bin
+#10 71.78 creating build/bdist.linux-x86_64/egg/tanner
+#10 71.78 creating build/bdist.linux-x86_64/egg/tanner/reporting
+#10 71.79 copying build/lib/tanner/reporting/log_mongodb.py -> build/bdist.linux-x86_64/egg/tanner/reporting
+#10 71.79 copying build/lib/tanner/reporting/log_local.py -> build/bdist.linux-x86_64/egg/tanner/reporting
+#10 71.79 copying build/lib/tanner/reporting/__init__.py -> build/bdist.linux-x86_64/egg/tanner/reporting
+#10 71.79 copying build/lib/tanner/reporting/hpfeeds.py -> build/bdist.linux-x86_64/egg/tanner/reporting
+#10 71.79 copying build/lib/tanner/reporting/log_hpfeeds.py -> build/bdist.linux-x86_64/egg/tanner/reporting
+#10 71.79 creating build/bdist.linux-x86_64/egg/tanner/tests
+#10 71.79 copying build/lib/tanner/tests/test_rfi_emulation.py -> build/bdist.linux-x86_64/egg/tanner/tests
+#10 71.79 copying build/lib/tanner/tests/test_sqlite_db_helper.py -> build/bdist.linux-x86_64/egg/tanner/tests
+#10 71.79 copying build/lib/tanner/tests/test_web_server.py -> build/bdist.linux-x86_64/egg/tanner/tests
+#10 71.79 copying build/lib/tanner/tests/test_session_analyzer.py -> build/bdist.linux-x86_64/egg/tanner/tests
+#10 71.79 copying build/lib/tanner/tests/test_xss_emulator.py -> build/bdist.linux-x86_64/egg/tanner/tests
+#10 71.79 copying build/lib/tanner/tests/test_php_object_injection.py -> build/bdist.linux-x86_64/egg/tanner/tests
+#10 71.80 copying build/lib/tanner/tests/test_config.py -> build/bdist.linux-x86_64/egg/tanner/tests
+#10 71.80 copying build/lib/tanner/tests/test_api.py -> build/bdist.linux-x86_64/egg/tanner/tests
+#10 71.80 copying build/lib/tanner/tests/test_xxe_injection.py -> build/bdist.linux-x86_64/egg/tanner/tests
+#10 71.80 copying build/lib/tanner/tests/test_api_server.py -> build/bdist.linux-x86_64/egg/tanner/tests
+#10 71.80 copying build/lib/tanner/tests/test_base.py -> build/bdist.linux-x86_64/egg/tanner/tests
+#10 71.80 copying build/lib/tanner/tests/test_sqlite.py -> build/bdist.linux-x86_64/egg/tanner/tests
+#10 71.80 copying build/lib/tanner/tests/test_aiodocker_helper.py -> build/bdist.linux-x86_64/egg/tanner/tests
+#10 71.80 copying build/lib/tanner/tests/test_mysqli.py -> build/bdist.linux-x86_64/egg/tanner/tests
+#10 71.80 copying build/lib/tanner/tests/test_php_code_injection.py -> build/bdist.linux-x86_64/egg/tanner/tests
+#10 71.80 copying build/lib/tanner/tests/test_lfi_emulator.py -> build/bdist.linux-x86_64/egg/tanner/tests
+#10 71.80 copying build/lib/tanner/tests/test_template_injection.py -> build/bdist.linux-x86_64/egg/tanner/tests
+#10 71.81 copying build/lib/tanner/tests/test_server.py -> build/bdist.linux-x86_64/egg/tanner/tests
+#10 71.81 copying build/lib/tanner/tests/test_cmd_exec_emulation.py -> build/bdist.linux-x86_64/egg/tanner/tests
+#10 71.81 copying build/lib/tanner/tests/__init__.py -> build/bdist.linux-x86_64/egg/tanner/tests
+#10 71.81 copying build/lib/tanner/tests/test_mysql_db_helper.py -> build/bdist.linux-x86_64/egg/tanner/tests
+#10 71.81 copying build/lib/tanner/tests/test_sqli.py -> build/bdist.linux-x86_64/egg/tanner/tests
+#10 71.81 copying build/lib/tanner/tests/test_session_manager.py -> build/bdist.linux-x86_64/egg/tanner/tests
+#10 71.81 copying build/lib/tanner/tests/test_crlf.py -> build/bdist.linux-x86_64/egg/tanner/tests
+#10 71.81 copying build/lib/tanner/tests/test_dorks_manager.py -> build/bdist.linux-x86_64/egg/tanner/tests
+#10 71.82 copying build/lib/tanner/dorks_manager.py -> build/bdist.linux-x86_64/egg/tanner
+#10 71.82 creating build/bdist.linux-x86_64/egg/tanner/api
+#10 71.82 copying build/lib/tanner/api/api.py -> build/bdist.linux-x86_64/egg/tanner/api
+#10 71.82 copying build/lib/tanner/api/server.py -> build/bdist.linux-x86_64/egg/tanner/api
+#10 71.82 copying build/lib/tanner/api/__init__.py -> build/bdist.linux-x86_64/egg/tanner/api
+#10 71.82 copying build/lib/tanner/config.py -> build/bdist.linux-x86_64/egg/tanner
+#10 71.82 creating build/bdist.linux-x86_64/egg/tanner/web
+#10 71.82 copying build/lib/tanner/web/server.py -> build/bdist.linux-x86_64/egg/tanner/web
+#10 71.82 copying build/lib/tanner/web/__init__.py -> build/bdist.linux-x86_64/egg/tanner/web
+#10 71.82 creating build/bdist.linux-x86_64/egg/tanner/sessions
+#10 71.83 copying build/lib/tanner/sessions/session_manager.py -> build/bdist.linux-x86_64/egg/tanner/sessions
+#10 71.83 copying build/lib/tanner/sessions/session_analyzer.py -> build/bdist.linux-x86_64/egg/tanner/sessions
+#10 71.83 copying build/lib/tanner/sessions/__init__.py -> build/bdist.linux-x86_64/egg/tanner/sessions
+#10 71.83 copying build/lib/tanner/sessions/session.py -> build/bdist.linux-x86_64/egg/tanner/sessions
+#10 71.83 copying build/lib/tanner/server.py -> build/bdist.linux-x86_64/egg/tanner
+#10 71.83 creating build/bdist.linux-x86_64/egg/tanner/utils
+#10 71.83 copying build/lib/tanner/utils/php_sandbox_helper.py -> build/bdist.linux-x86_64/egg/tanner/utils
+#10 71.83 copying build/lib/tanner/utils/api_key_generator.py -> build/bdist.linux-x86_64/egg/tanner/utils
+#10 71.83 copying build/lib/tanner/utils/base_db_helper.py -> build/bdist.linux-x86_64/egg/tanner/utils
+#10 71.83 copying build/lib/tanner/utils/sqlite_db_helper.py -> build/bdist.linux-x86_64/egg/tanner/utils
+#10 71.84 copying build/lib/tanner/utils/aiodocker_helper.py -> build/bdist.linux-x86_64/egg/tanner/utils
+#10 71.84 copying build/lib/tanner/utils/__init__.py -> build/bdist.linux-x86_64/egg/tanner/utils
+#10 71.84 copying build/lib/tanner/utils/mysql_db_helper.py -> build/bdist.linux-x86_64/egg/tanner/utils
+#10 71.84 copying build/lib/tanner/utils/asyncmock.py -> build/bdist.linux-x86_64/egg/tanner/utils
+#10 71.84 copying build/lib/tanner/utils/patterns.py -> build/bdist.linux-x86_64/egg/tanner/utils
+#10 71.84 copying build/lib/tanner/utils/logger.py -> build/bdist.linux-x86_64/egg/tanner/utils
+#10 71.84 copying build/lib/tanner/__init__.py -> build/bdist.linux-x86_64/egg/tanner
+#10 71.84 copying build/lib/tanner/redis_client.py -> build/bdist.linux-x86_64/egg/tanner
+#10 71.84 creating build/bdist.linux-x86_64/egg/tanner/emulators
+#10 71.84 copying build/lib/tanner/emulators/base.py -> build/bdist.linux-x86_64/egg/tanner/emulators
+#10 71.84 copying build/lib/tanner/emulators/mysqli.py -> build/bdist.linux-x86_64/egg/tanner/emulators
+#10 71.84 copying build/lib/tanner/emulators/template_injection.py -> build/bdist.linux-x86_64/egg/tanner/emulators
+#10 71.84 copying build/lib/tanner/emulators/sqli.py -> build/bdist.linux-x86_64/egg/tanner/emulators
+#10 71.84 copying build/lib/tanner/emulators/php_object_injection.py -> build/bdist.linux-x86_64/egg/tanner/emulators
+#10 71.84 copying build/lib/tanner/emulators/sqlite.py -> build/bdist.linux-x86_64/egg/tanner/emulators
+#10 71.84 copying build/lib/tanner/emulators/cmd_exec.py -> build/bdist.linux-x86_64/egg/tanner/emulators
+#10 71.84 copying build/lib/tanner/emulators/xss.py -> build/bdist.linux-x86_64/egg/tanner/emulators
+#10 71.84 copying build/lib/tanner/emulators/__init__.py -> build/bdist.linux-x86_64/egg/tanner/emulators
+#10 71.84 copying build/lib/tanner/emulators/crlf.py -> build/bdist.linux-x86_64/egg/tanner/emulators
+#10 71.84 copying build/lib/tanner/emulators/xxe_injection.py -> build/bdist.linux-x86_64/egg/tanner/emulators
+#10 71.84 copying build/lib/tanner/emulators/lfi.py -> build/bdist.linux-x86_64/egg/tanner/emulators
+#10 71.84 copying build/lib/tanner/emulators/rfi.py -> build/bdist.linux-x86_64/egg/tanner/emulators
+#10 71.84 copying build/lib/tanner/emulators/php_code_injection.py -> build/bdist.linux-x86_64/egg/tanner/emulators
+#10 71.84 byte-compiling build/bdist.linux-x86_64/egg/bin/__init__.py to __init__.cpython-310.pyc
+#10 71.85 byte-compiling build/bdist.linux-x86_64/egg/tanner/reporting/log_mongodb.py to log_mongodb.cpython-310.pyc
+#10 71.85 byte-compiling build/bdist.linux-x86_64/egg/tanner/reporting/log_local.py to log_local.cpython-310.pyc
+#10 71.85 byte-compiling build/bdist.linux-x86_64/egg/tanner/reporting/__init__.py to __init__.cpython-310.pyc
+#10 71.85 byte-compiling build/bdist.linux-x86_64/egg/tanner/reporting/hpfeeds.py to hpfeeds.cpython-310.pyc
+#10 71.85 byte-compiling build/bdist.linux-x86_64/egg/tanner/reporting/log_hpfeeds.py to log_hpfeeds.cpython-310.pyc
+#10 71.86 byte-compiling build/bdist.linux-x86_64/egg/tanner/tests/test_rfi_emulation.py to test_rfi_emulation.cpython-310.pyc
+#10 71.86 byte-compiling build/bdist.linux-x86_64/egg/tanner/tests/test_sqlite_db_helper.py to test_sqlite_db_helper.cpython-310.pyc
+#10 71.86 byte-compiling build/bdist.linux-x86_64/egg/tanner/tests/test_web_server.py to test_web_server.cpython-310.pyc
+#10 71.87 byte-compiling build/bdist.linux-x86_64/egg/tanner/tests/test_session_analyzer.py to test_session_analyzer.cpython-310.pyc
+#10 71.87 byte-compiling build/bdist.linux-x86_64/egg/tanner/tests/test_xss_emulator.py to test_xss_emulator.cpython-310.pyc
+#10 71.88 byte-compiling build/bdist.linux-x86_64/egg/tanner/tests/test_php_object_injection.py to test_php_object_injection.cpython-310.pyc
+#10 71.88 byte-compiling build/bdist.linux-x86_64/egg/tanner/tests/test_config.py to test_config.cpython-310.pyc
+#10 71.88 byte-compiling build/bdist.linux-x86_64/egg/tanner/tests/test_api.py to test_api.cpython-310.pyc
+#10 71.89 byte-compiling build/bdist.linux-x86_64/egg/tanner/tests/test_xxe_injection.py to test_xxe_injection.cpython-310.pyc
+#10 71.90 byte-compiling build/bdist.linux-x86_64/egg/tanner/tests/test_api_server.py to test_api_server.cpython-310.pyc
+#10 71.90 byte-compiling build/bdist.linux-x86_64/egg/tanner/tests/test_base.py to test_base.cpython-310.pyc
+#10 71.91 byte-compiling build/bdist.linux-x86_64/egg/tanner/tests/test_sqlite.py to test_sqlite.cpython-310.pyc
+#10 71.91 byte-compiling build/bdist.linux-x86_64/egg/tanner/tests/test_aiodocker_helper.py to test_aiodocker_helper.cpython-310.pyc
+#10 71.92 byte-compiling build/bdist.linux-x86_64/egg/tanner/tests/test_mysqli.py to test_mysqli.cpython-310.pyc
+#10 71.92 byte-compiling build/bdist.linux-x86_64/egg/tanner/tests/test_php_code_injection.py to test_php_code_injection.cpython-310.pyc
+#10 71.93 byte-compiling build/bdist.linux-x86_64/egg/tanner/tests/test_lfi_emulator.py to test_lfi_emulator.cpython-310.pyc
+#10 71.93 byte-compiling build/bdist.linux-x86_64/egg/tanner/tests/test_template_injection.py to test_template_injection.cpython-310.pyc
+#10 71.93 byte-compiling build/bdist.linux-x86_64/egg/tanner/tests/test_server.py to test_server.cpython-310.pyc
+#10 71.94 byte-compiling build/bdist.linux-x86_64/egg/tanner/tests/test_cmd_exec_emulation.py to test_cmd_exec_emulation.cpython-310.pyc
+#10 71.94 byte-compiling build/bdist.linux-x86_64/egg/tanner/tests/__init__.py to __init__.cpython-310.pyc
+#10 71.95 byte-compiling build/bdist.linux-x86_64/egg/tanner/tests/test_mysql_db_helper.py to test_mysql_db_helper.cpython-310.pyc
+#10 71.96 byte-compiling build/bdist.linux-x86_64/egg/tanner/tests/test_sqli.py to test_sqli.cpython-310.pyc
+#10 71.96 byte-compiling build/bdist.linux-x86_64/egg/tanner/tests/test_session_manager.py to test_session_manager.cpython-310.pyc
+#10 71.97 byte-compiling build/bdist.linux-x86_64/egg/tanner/tests/test_crlf.py to test_crlf.cpython-310.pyc
+#10 71.97 byte-compiling build/bdist.linux-x86_64/egg/tanner/tests/test_dorks_manager.py to test_dorks_manager.cpython-310.pyc
+#10 71.98 byte-compiling build/bdist.linux-x86_64/egg/tanner/dorks_manager.py to dorks_manager.cpython-310.pyc
+#10 71.98 byte-compiling build/bdist.linux-x86_64/egg/tanner/api/api.py to api.cpython-310.pyc
+#10 71.99 byte-compiling build/bdist.linux-x86_64/egg/tanner/api/server.py to server.cpython-310.pyc
+#10 71.99 byte-compiling build/bdist.linux-x86_64/egg/tanner/api/__init__.py to __init__.cpython-310.pyc
+#10 71.99 byte-compiling build/bdist.linux-x86_64/egg/tanner/config.py to config.cpython-310.pyc
+#10 71.99 byte-compiling build/bdist.linux-x86_64/egg/tanner/web/server.py to server.cpython-310.pyc
+#10 72.00 byte-compiling build/bdist.linux-x86_64/egg/tanner/web/__init__.py to __init__.cpython-310.pyc
+#10 72.00 byte-compiling build/bdist.linux-x86_64/egg/tanner/sessions/session_manager.py to session_manager.cpython-310.pyc
+#10 72.00 byte-compiling build/bdist.linux-x86_64/egg/tanner/sessions/session_analyzer.py to session_analyzer.cpython-310.pyc
+#10 72.01 byte-compiling build/bdist.linux-x86_64/egg/tanner/sessions/__init__.py to __init__.cpython-310.pyc
+#10 72.01 byte-compiling build/bdist.linux-x86_64/egg/tanner/sessions/session.py to session.cpython-310.pyc
+#10 72.02 byte-compiling build/bdist.linux-x86_64/egg/tanner/server.py to server.cpython-310.pyc
+#10 72.02 byte-compiling build/bdist.linux-x86_64/egg/tanner/utils/php_sandbox_helper.py to php_sandbox_helper.cpython-310.pyc
+#10 72.02 byte-compiling build/bdist.linux-x86_64/egg/tanner/utils/api_key_generator.py to api_key_generator.cpython-310.pyc
+#10 72.02 byte-compiling build/bdist.linux-x86_64/egg/tanner/utils/base_db_helper.py to base_db_helper.cpython-310.pyc
+#10 72.02 byte-compiling build/bdist.linux-x86_64/egg/tanner/utils/sqlite_db_helper.py to sqlite_db_helper.cpython-310.pyc
+#10 72.03 byte-compiling build/bdist.linux-x86_64/egg/tanner/utils/aiodocker_helper.py to aiodocker_helper.cpython-310.pyc
+#10 72.03 byte-compiling build/bdist.linux-x86_64/egg/tanner/utils/__init__.py to __init__.cpython-310.pyc
+#10 72.03 byte-compiling build/bdist.linux-x86_64/egg/tanner/utils/mysql_db_helper.py to mysql_db_helper.cpython-310.pyc
+#10 72.04 byte-compiling build/bdist.linux-x86_64/egg/tanner/utils/asyncmock.py to asyncmock.cpython-310.pyc
+#10 72.04 byte-compiling build/bdist.linux-x86_64/egg/tanner/utils/patterns.py to patterns.cpython-310.pyc
+#10 72.04 byte-compiling build/bdist.linux-x86_64/egg/tanner/utils/logger.py to logger.cpython-310.pyc
+#10 72.04 byte-compiling build/bdist.linux-x86_64/egg/tanner/__init__.py to __init__.cpython-310.pyc
+#10 72.05 byte-compiling build/bdist.linux-x86_64/egg/tanner/redis_client.py to redis_client.cpython-310.pyc
+#10 72.05 byte-compiling build/bdist.linux-x86_64/egg/tanner/emulators/base.py to base.cpython-310.pyc
+#10 72.05 byte-compiling build/bdist.linux-x86_64/egg/tanner/emulators/mysqli.py to mysqli.cpython-310.pyc
+#10 72.06 byte-compiling build/bdist.linux-x86_64/egg/tanner/emulators/template_injection.py to template_injection.cpython-310.pyc
+#10 72.06 byte-compiling build/bdist.linux-x86_64/egg/tanner/emulators/sqli.py to sqli.cpython-310.pyc
+#10 72.06 byte-compiling build/bdist.linux-x86_64/egg/tanner/emulators/php_object_injection.py to php_object_injection.cpython-310.pyc
+#10 72.07 byte-compiling build/bdist.linux-x86_64/egg/tanner/emulators/sqlite.py to sqlite.cpython-310.pyc
+#10 72.07 byte-compiling build/bdist.linux-x86_64/egg/tanner/emulators/cmd_exec.py to cmd_exec.cpython-310.pyc
+#10 72.07 byte-compiling build/bdist.linux-x86_64/egg/tanner/emulators/xss.py to xss.cpython-310.pyc
+#10 72.07 byte-compiling build/bdist.linux-x86_64/egg/tanner/emulators/__init__.py to __init__.cpython-310.pyc
+#10 72.08 byte-compiling build/bdist.linux-x86_64/egg/tanner/emulators/crlf.py to crlf.cpython-310.pyc
+#10 72.08 byte-compiling build/bdist.linux-x86_64/egg/tanner/emulators/xxe_injection.py to xxe_injection.cpython-310.pyc
+#10 72.08 byte-compiling build/bdist.linux-x86_64/egg/tanner/emulators/lfi.py to lfi.cpython-310.pyc
+#10 72.08 byte-compiling build/bdist.linux-x86_64/egg/tanner/emulators/rfi.py to rfi.cpython-310.pyc
+#10 72.09 byte-compiling build/bdist.linux-x86_64/egg/tanner/emulators/php_code_injection.py to php_code_injection.cpython-310.pyc
+#10 72.10 installing package data to build/bdist.linux-x86_64/egg
+#10 72.10 running install_data
+#10 72.11 creating /opt/tanner/db
+#10 72.11 copying tanner/data/db_config.json -> /opt/tanner/db/
+#10 72.11 copying tanner/data/GeoLite2-City.mmdb -> /opt/tanner/db/
+#10 72.26 creating /opt/tanner/data
+#10 72.26 copying tanner/data/dorks.pickle -> /opt/tanner/data/
+#10 72.26 copying tanner/data/crawler_user_agents.txt -> /opt/tanner/data/
+#10 72.26 copying tanner/files/engines/mako.py -> /opt/tanner/data/
+#10 72.26 copying tanner/files/engines/tornado.py -> /opt/tanner/data/
+#10 72.27 copying tanner/data/config.yaml -> /opt/tanner/data/
+#10 72.27 creating build/bdist.linux-x86_64/egg/EGG-INFO
+#10 72.27 installing scripts to build/bdist.linux-x86_64/egg/EGG-INFO/scripts
+#10 72.27 running install_scripts
+#10 72.27 running build_scripts
+#10 72.27 creating build/scripts-3.10
+#10 72.27 copying and adjusting bin/tanner -> build/scripts-3.10
+#10 72.27 copying and adjusting bin/tannerweb -> build/scripts-3.10
+#10 72.27 copying and adjusting bin/tannerapi -> build/scripts-3.10
+#10 72.27 changing mode of build/scripts-3.10/tanner from 644 to 755
+#10 72.27 changing mode of build/scripts-3.10/tannerweb from 644 to 755
+#10 72.27 changing mode of build/scripts-3.10/tannerapi from 644 to 755
+#10 72.27 creating build/bdist.linux-x86_64/egg/EGG-INFO/scripts
+#10 72.27 copying build/scripts-3.10/tannerapi -> build/bdist.linux-x86_64/egg/EGG-INFO/scripts
+#10 72.27 copying build/scripts-3.10/tanner -> build/bdist.linux-x86_64/egg/EGG-INFO/scripts
+#10 72.27 copying build/scripts-3.10/tannerweb -> build/bdist.linux-x86_64/egg/EGG-INFO/scripts
+#10 72.27 changing mode of build/bdist.linux-x86_64/egg/EGG-INFO/scripts/tannerapi to 755
+#10 72.27 changing mode of build/bdist.linux-x86_64/egg/EGG-INFO/scripts/tanner to 755
+#10 72.27 changing mode of build/bdist.linux-x86_64/egg/EGG-INFO/scripts/tannerweb to 755
+#10 72.27 copying Tanner.egg-info/PKG-INFO -> build/bdist.linux-x86_64/egg/EGG-INFO
+#10 72.28 copying Tanner.egg-info/SOURCES.txt -> build/bdist.linux-x86_64/egg/EGG-INFO
+#10 72.28 copying Tanner.egg-info/dependency_links.txt -> build/bdist.linux-x86_64/egg/EGG-INFO
+#10 72.28 copying Tanner.egg-info/top_level.txt -> build/bdist.linux-x86_64/egg/EGG-INFO
+#10 72.28 zip_safe flag not set; analyzing archive contents...
+#10 72.31 creating dist
+#10 72.31 creating 'dist/Tanner-0.6.0-py3.10.egg' and adding 'build/bdist.linux-x86_64/egg' to it
+#10 72.45 removing 'build/bdist.linux-x86_64/egg' (and everything under it)
+#10 72.46 Processing Tanner-0.6.0-py3.10.egg
+#10 72.47 Copying Tanner-0.6.0-py3.10.egg to /usr/lib/python3.10/site-packages
+#10 72.48 Adding Tanner 0.6.0 to easy-install.pth file
+#10 72.48 Installing tanner script to /usr/bin
+#10 72.49 Installing tannerapi script to /usr/bin
+#10 72.49 Installing tannerweb script to /usr/bin
+#10 72.49 
+#10 72.49 Installed /usr/lib/python3.10/site-packages/Tanner-0.6.0-py3.10.egg
+#10 72.49 Processing dependencies for Tanner==0.6.0
+#10 72.50 Finished processing dependencies for Tanner==0.6.0
+#10 72.66 WARNING: opening from cache https://dl-cdn.alpinelinux.org/alpine/v3.17/main: No such file or directory
+#10 72.66 WARNING: opening from cache https://dl-cdn.alpinelinux.org/alpine/v3.17/community: No such file or directory
+#10 72.66 (1/32) Purging build-base (0.5-r3)
+#10 72.66 (2/32) Purging file (5.43-r0)
+#10 72.66 (3/32) Purging g++ (12.2.1_git20220924-r4)
+#10 72.67 (4/32) Purging libstdc++-dev (12.2.1_git20220924-r4)
+#10 72.71 (5/32) Purging gcc (12.2.1_git20220924-r4)
+#10 72.78 (6/32) Purging binutils (2.39-r2)
+#10 72.79 (7/32) Purging libatomic (12.2.1_git20220924-r4)
+#10 72.79 (8/32) Purging libgomp (12.2.1_git20220924-r4)
+#10 72.80 (9/32) Purging make (4.3-r1)
+#10 72.80 (10/32) Purging libc-dev (0.7.2-r3)
+#10 72.80 (11/32) Purging musl-dev (1.2.3-r6)
+#10 72.81 (12/32) Purging fortify-headers (1.1-r1)
+#10 72.81 (13/32) Purging patch (2.7.6-r9)
+#10 72.81 (14/32) Purging git (2.39.5-r0)
+#10 72.82 (15/32) Purging libcap (2.66-r1)
+#10 72.82 (16/32) Purging libcap-utils (2.66-r1)
+#10 72.82 (17/32) Purging libffi-dev (3.4.4-r0)
+#10 72.82 (18/32) Purging linux-headers (5.19.5-r0)
+#10 72.86 (19/32) Purging openssl-dev (3.0.15-r1)
+#10 72.87 (20/32) Purging python3-dev (3.10.15-r0)
+#10 72.89 (21/32) Purging libmagic (5.43-r0)
+#10 72.89 (22/32) Purging isl25 (0.25-r1)
+#10 72.89 (23/32) Purging mpc1 (1.2.1-r1)
+#10 72.89 (24/32) Purging mpfr4 (4.1.0-r0)
+#10 72.90 (25/32) Purging gmp (6.2.1-r2)
+#10 72.90 (26/32) Purging libcurl (8.9.0-r0)
+#10 72.90 (27/32) Purging ca-certificates (20240226-r0)
+#10 72.90 Executing ca-certificates-20240226-r0.post-deinstall
+#10 72.92 (28/32) Purging brotli-libs (1.0.9-r9)
+#10 72.93 (29/32) Purging nghttp2-libs (1.51.0-r2)
+#10 72.93 (30/32) Purging pcre2 (10.42-r0)
+#10 72.93 (31/32) Purging libcap2 (2.66-r1)
+#10 72.93 (32/32) Purging pkgconf (1.9.4-r0)
+#10 72.93 Executing busybox-1.35.0-r31.trigger
+#10 72.94 OK: 99 MiB in 68 packages
+#10 DONE 73.4s
+
+#12 [tanner linux/arm64 3/4] RUN apk --no-cache -U upgrade &&     apk --no-cache -U add 		build-base 		git 		libcap 		libffi-dev 		openssl-dev 		linux-headers 		py3-aiohttp 		py3-geoip2 		py3-jinja2 		py3-jwt 		py3-mako 		py3-mysqlclient 		py3-packaging 		py3-pip 		py3-redis 		py3-pycodestyle 		py3-setuptools 		py3-tornado 		py3-websocket-client 		py3-wheel 		py3-yaml 		py3-yarl 		python3 		python3-dev && 	git clone https://github.com/mushorg/tanner /opt/tanner &&     cd /opt/tanner/ &&     git checkout 245d628f4023e5462c7035e760a6b5eed0a33fbe &&     cp /root/dist/config.yaml /opt/tanner/tanner/data &&     cp /root/dist/requirements.txt . &&     pip3 install --no-cache-dir -r requirements.txt &&     python3 setup.py install &&     rm -rf .coveragerc            .git            .gitignore            .travis.yml            Tanner.egg-info            build            dist            docker            docs            requirements.txt            setup.py &&     cd / &&     addgroup -g 2000 tanner &&     adduser -S -s /bin/ash -u 2000 -D -g 2000 tanner &&     mkdir /var/log/tanner &&     chown -R tanner:tanner /opt/tanner /var/log/tanner &&     apk del --purge             build-base             git             libcap             libffi-dev             openssl-dev             linux-headers             python3-dev &&     rm -rf /root/*            /tmp/*            /var/tmp/*            /var/cache/apk/*            /opt/tanner/.git
+#12 ...
+
+#13 [tanner linux/amd64 4/4] WORKDIR /opt/tanner
+#13 DONE 0.2s
+
+#12 [tanner linux/arm64 3/4] RUN apk --no-cache -U upgrade &&     apk --no-cache -U add 		build-base 		git 		libcap 		libffi-dev 		openssl-dev 		linux-headers 		py3-aiohttp 		py3-geoip2 		py3-jinja2 		py3-jwt 		py3-mako 		py3-mysqlclient 		py3-packaging 		py3-pip 		py3-redis 		py3-pycodestyle 		py3-setuptools 		py3-tornado 		py3-websocket-client 		py3-wheel 		py3-yaml 		py3-yarl 		python3 		python3-dev && 	git clone https://github.com/mushorg/tanner /opt/tanner &&     cd /opt/tanner/ &&     git checkout 245d628f4023e5462c7035e760a6b5eed0a33fbe &&     cp /root/dist/config.yaml /opt/tanner/tanner/data &&     cp /root/dist/requirements.txt . &&     pip3 install --no-cache-dir -r requirements.txt &&     python3 setup.py install &&     rm -rf .coveragerc            .git            .gitignore            .travis.yml            Tanner.egg-info            build            dist            docker            docs            requirements.txt            setup.py &&     cd / &&     addgroup -g 2000 tanner &&     adduser -S -s /bin/ash -u 2000 -D -g 2000 tanner &&     mkdir /var/log/tanner &&     chown -R tanner:tanner /opt/tanner /var/log/tanner &&     apk del --purge             build-base             git             libcap             libffi-dev             openssl-dev             linux-headers             python3-dev &&     rm -rf /root/*            /tmp/*            /var/tmp/*            /var/cache/apk/*            /opt/tanner/.git
+#12 90.87 Collecting aiomysql
+#12 91.77   Downloading aiomysql-0.2.0-py3-none-any.whl (44 kB)
+#12 92.08      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 44.2/44.2 kB 894.1 kB/s eta 0:00:00
+#12 92.68 Collecting aiohttp_jinja2==1.1.0
+#12 92.76   Downloading aiohttp_jinja2-1.1.0-py3-none-any.whl (10 kB)
+#12 93.54 Collecting docker<2.6
+#12 93.61   Downloading docker-2.5.1-py2.py3-none-any.whl (111 kB)
+#12 93.70      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 111.2/111.2 kB 2.6 MB/s eta 0:00:00
+#12 94.30 Collecting mimesis<3.0.0
+#12 94.37   Downloading mimesis-2.1.0-py3-none-any.whl (2.4 MB)
+#12 95.26      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.4/2.4 MB 2.9 MB/s eta 0:00:00
+#12 95.79 Collecting aioredis
+#12 95.84   Downloading aioredis-2.0.1-py3-none-any.whl (71 kB)
+#12 95.90      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 71.2/71.2 kB 4.4 MB/s eta 0:00:00
+#12 104.7 Collecting pymongo
+#12 104.8   Downloading pymongo-4.11.1.tar.gz (2.1 MB)
+#12 105.2      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.1/2.1 MB 5.3 MB/s eta 0:00:00
+#12 112.9   Installing build dependencies: started
+#12 165.1   Installing build dependencies: finished with status 'done'
+#12 165.1   Getting requirements to build wheel: started
+#12 167.9   Getting requirements to build wheel: finished with status 'done'
+#12 167.9   Preparing metadata (pyproject.toml): started
+#12 255.0   Preparing metadata (pyproject.toml): still running...
+#12 285.0   Preparing metadata (pyproject.toml): finished with status 'done'
+#12 285.2 Collecting pylibinjection
+#12 285.3   Downloading pylibinjection-0.2.4.tar.gz (68 kB)
+#12 285.3      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 68.7/68.7 kB 3.7 MB/s eta 0:00:00
+#12 285.5   Preparing metadata (setup.py): started
+#12 289.9   Preparing metadata (setup.py): finished with status 'done'
+#12 290.4 Collecting aiodocker
+#12 290.4   Downloading aiodocker-0.24.0-py3-none-any.whl (34 kB)
+#12 290.5 Requirement already satisfied: jinja2>=2.7 in /usr/lib/python3.10/site-packages (from aiohttp_jinja2==1.1.0->-r requirements.txt (line 2)) (3.1.4)
+#12 290.6 Requirement already satisfied: aiohttp>=3.2.0 in /usr/lib/python3.10/site-packages (from aiohttp_jinja2==1.1.0->-r requirements.txt (line 2)) (3.8.3)
+#12 291.0 Collecting PyMySQL>=1.0
+#12 291.1   Downloading PyMySQL-1.1.1-py3-none-any.whl (44 kB)
+#12 291.1      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 45.0/45.0 kB 6.6 MB/s eta 0:00:00
+#12 291.4 Requirement already satisfied: requests!=2.11.0,!=2.12.2,!=2.18.0,>=2.5.2 in /usr/lib/python3.10/site-packages (from docker<2.6->-r requirements.txt (line 3)) (2.28.1)
+#12 291.4 Requirement already satisfied: six>=1.4.0 in /usr/lib/python3.10/site-packages (from docker<2.6->-r requirements.txt (line 3)) (1.16.0)
+#12 291.4 Requirement already satisfied: websocket-client>=0.32.0 in /usr/lib/python3.10/site-packages (from docker<2.6->-r requirements.txt (line 3)) (1.4.2)
+#12 291.5 Collecting docker-pycreds>=0.2.1
+#12 291.6   Downloading docker_pycreds-0.4.0-py2.py3-none-any.whl (9.0 kB)
+#12 291.8 Requirement already satisfied: typing-extensions in /usr/lib/python3.10/site-packages (from aioredis->-r requirements.txt (line 5)) (4.4.0)
+#12 291.8 Requirement already satisfied: async-timeout in /usr/lib/python3.10/site-packages (from aioredis->-r requirements.txt (line 5)) (4.0.2)
+#12 292.9 Collecting dnspython<3.0.0,>=1.16.0
+#12 292.9   Downloading dnspython-2.7.0-py3-none-any.whl (313 kB)
+#12 293.0      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 313.6/313.6 kB 3.7 MB/s eta 0:00:00
+#12 301.8 Collecting cython
+#12 301.9   Downloading Cython-3.0.12-cp310-cp310-musllinux_1_2_aarch64.whl (3.5 MB)
+#12 302.6      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 3.5/3.5 MB 5.4 MB/s eta 0:00:00
+#12 303.6 Requirement already satisfied: attrs>=17.3.0 in /usr/lib/python3.10/site-packages (from aiohttp>=3.2.0->aiohttp_jinja2==1.1.0->-r requirements.txt (line 2)) (22.1.0)
+#12 303.6 Requirement already satisfied: charset-normalizer<4.0,>=2.0 in /usr/lib/python3.10/site-packages (from aiohttp>=3.2.0->aiohttp_jinja2==1.1.0->-r requirements.txt (line 2)) (3.0.1)
+#12 303.6 Requirement already satisfied: multidict<7.0,>=4.5 in /usr/lib/python3.10/site-packages (from aiohttp>=3.2.0->aiohttp_jinja2==1.1.0->-r requirements.txt (line 2)) (6.0.2)
+#12 303.7 Requirement already satisfied: yarl<2.0,>=1.0 in /usr/lib/python3.10/site-packages (from aiohttp>=3.2.0->aiohttp_jinja2==1.1.0->-r requirements.txt (line 2)) (1.8.1)
+#12 303.7 Requirement already satisfied: frozenlist>=1.1.1 in /usr/lib/python3.10/site-packages (from aiohttp>=3.2.0->aiohttp_jinja2==1.1.0->-r requirements.txt (line 2)) (1.3.3)
+#12 303.7 Requirement already satisfied: aiosignal>=1.1.2 in /usr/lib/python3.10/site-packages (from aiohttp>=3.2.0->aiohttp_jinja2==1.1.0->-r requirements.txt (line 2)) (1.3.1)
+#12 304.6 Requirement already satisfied: MarkupSafe>=2.0 in /usr/lib/python3.10/site-packages (from jinja2>=2.7->aiohttp_jinja2==1.1.0->-r requirements.txt (line 2)) (2.1.1)
+#12 304.9 Requirement already satisfied: idna<4,>=2.5 in /usr/lib/python3.10/site-packages (from requests!=2.11.0,!=2.12.2,!=2.18.0,>=2.5.2->docker<2.6->-r requirements.txt (line 3)) (3.4)
+#12 304.9 Requirement already satisfied: urllib3<1.27,>=1.21.1 in /usr/lib/python3.10/site-packages (from requests!=2.11.0,!=2.12.2,!=2.18.0,>=2.5.2->docker<2.6->-r requirements.txt (line 3)) (1.26.18)
+#12 304.9 Requirement already satisfied: certifi>=2017.4.17 in /usr/lib/python3.10/site-packages (from requests!=2.11.0,!=2.12.2,!=2.18.0,>=2.5.2->docker<2.6->-r requirements.txt (line 3)) (2022.12.7)
+#12 306.5 Building wheels for collected packages: pymongo, pylibinjection
+#12 306.5   Building wheel for pymongo (pyproject.toml): started
+#12 307.8   Building wheel for pymongo (pyproject.toml): finished with status 'done'
+#12 307.9   Created wheel for pymongo: filename=pymongo-4.11.1-cp310-cp310-linux_aarch64.whl size=917269 sha256=ff92ff654f713da1eeed326e6f339620192fc76b838724763e2ceffde2bef9bf
+#12 307.9   Stored in directory: /tmp/pip-ephem-wheel-cache-vx54063b/wheels/0e/81/b2/3b08c7ed61ff9e50c7412035e63ef1d0569b4078692ee29f95
+#12 308.0   Building wheel for pylibinjection (setup.py): started
+#12 350.6   Building wheel for pylibinjection (setup.py): finished with status 'done'
+#12 350.7   Created wheel for pylibinjection: filename=pylibinjection-0.2.4-cp310-cp310-linux_aarch64.whl size=140280 sha256=5de84eff90d9295d7a6a1ce56390dd1e5f62f17ea6de8241fd357023408af774
+#12 350.7   Stored in directory: /tmp/pip-ephem-wheel-cache-vx54063b/wheels/55/7d/b9/17a53a8ab80e16d4e629f557a98badabbdce6700d5b7829196
+#12 350.7 Successfully built pymongo pylibinjection
+#12 353.8 Installing collected packages: mimesis, PyMySQL, docker-pycreds, dnspython, cython, aioredis, pymongo, pylibinjection, docker, aiomysql, aiohttp_jinja2, aiodocker
+#12 387.8 Successfully installed PyMySQL-1.1.1 aiodocker-0.24.0 aiohttp_jinja2-1.1.0 aiomysql-0.2.0 aioredis-2.0.1 cython-3.0.12 dnspython-2.7.0 docker-2.5.1 docker-pycreds-0.4.0 mimesis-2.1.0 pylibinjection-0.2.4 pymongo-4.11.1
+#12 387.8 WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv
+#12 395.1 running install
+#12 395.1 /usr/lib/python3.10/site-packages/setuptools/_distutils/cmd.py:66: SetuptoolsDeprecationWarning: setup.py install is deprecated.
+#12 395.1 !!
+#12 395.1 
+#12 395.1         ********************************************************************************
+#12 395.1         Please avoid running ``setup.py`` directly.
+#12 395.1         Instead, use pypa/build, pypa/installer or other
+#12 395.1         standards-based tools.
+#12 395.1 
+#12 395.1         See https://blog.ganssle.io/articles/2021/10/setup-py-deprecated.html for details.
+#12 395.1         ********************************************************************************
+#12 395.1 
+#12 395.1 !!
+#12 395.1   self.initialize_options()
+#12 396.2 /usr/lib/python3.10/site-packages/setuptools/_distutils/cmd.py:66: EasyInstallDeprecationWarning: easy_install command is deprecated.
+#12 396.2 !!
+#12 396.2 
+#12 396.2         ********************************************************************************
+#12 396.2         Please avoid running ``setup.py`` and ``easy_install``.
+#12 396.2         Instead, use pypa/build, pypa/installer or other
+#12 396.2         standards-based tools.
+#12 396.2 
+#12 396.2         See https://github.com/pypa/setuptools/issues/917 for details.
+#12 396.2         ********************************************************************************
+#12 396.2 
+#12 396.2 !!
+#12 396.2   self.initialize_options()
+#12 397.2 running bdist_egg
+#12 397.5 running egg_info
+#12 397.5 creating Tanner.egg-info
+#12 397.5 writing Tanner.egg-info/PKG-INFO
+#12 397.5 writing dependency_links to Tanner.egg-info/dependency_links.txt
+#12 397.5 writing top-level names to Tanner.egg-info/top_level.txt
+#12 397.5 writing manifest file 'Tanner.egg-info/SOURCES.txt'
+#12 397.8 reading manifest file 'Tanner.egg-info/SOURCES.txt'
+#12 397.8 adding license file 'LICENSE'
+#12 397.8 writing manifest file 'Tanner.egg-info/SOURCES.txt'
+#12 397.8 installing library code to build/bdist.linux-aarch64/egg
+#12 397.8 running install_lib
+#12 397.8 running build_py
+#12 397.8 creating build
+#12 397.8 creating build/lib
+#12 397.8 creating build/lib/bin
+#12 397.8 copying bin/__init__.py -> build/lib/bin
+#12 397.9 creating build/lib/tanner
+#12 397.9 copying tanner/dorks_manager.py -> build/lib/tanner
+#12 397.9 copying tanner/config.py -> build/lib/tanner
+#12 397.9 copying tanner/server.py -> build/lib/tanner
+#12 397.9 copying tanner/__init__.py -> build/lib/tanner
+#12 397.9 copying tanner/redis_client.py -> build/lib/tanner
+#12 397.9 creating build/lib/tanner/reporting
+#12 397.9 copying tanner/reporting/log_mongodb.py -> build/lib/tanner/reporting
+#12 397.9 copying tanner/reporting/log_local.py -> build/lib/tanner/reporting
+#12 397.9 copying tanner/reporting/__init__.py -> build/lib/tanner/reporting
+#12 397.9 copying tanner/reporting/hpfeeds.py -> build/lib/tanner/reporting
+#12 397.9 copying tanner/reporting/log_hpfeeds.py -> build/lib/tanner/reporting
+#12 397.9 creating build/lib/tanner/tests
+#12 397.9 copying tanner/tests/test_rfi_emulation.py -> build/lib/tanner/tests
+#12 397.9 copying tanner/tests/test_sqlite_db_helper.py -> build/lib/tanner/tests
+#12 397.9 copying tanner/tests/test_web_server.py -> build/lib/tanner/tests
+#12 397.9 copying tanner/tests/test_session_analyzer.py -> build/lib/tanner/tests
+#12 397.9 copying tanner/tests/test_xss_emulator.py -> build/lib/tanner/tests
+#12 397.9 copying tanner/tests/test_php_object_injection.py -> build/lib/tanner/tests
+#12 397.9 copying tanner/tests/test_config.py -> build/lib/tanner/tests
+#12 397.9 copying tanner/tests/test_api.py -> build/lib/tanner/tests
+#12 397.9 copying tanner/tests/test_xxe_injection.py -> build/lib/tanner/tests
+#12 397.9 copying tanner/tests/test_api_server.py -> build/lib/tanner/tests
+#12 397.9 copying tanner/tests/test_base.py -> build/lib/tanner/tests
+#12 397.9 copying tanner/tests/test_sqlite.py -> build/lib/tanner/tests
+#12 397.9 copying tanner/tests/test_aiodocker_helper.py -> build/lib/tanner/tests
+#12 397.9 copying tanner/tests/test_mysqli.py -> build/lib/tanner/tests
+#12 397.9 copying tanner/tests/test_php_code_injection.py -> build/lib/tanner/tests
+#12 397.9 copying tanner/tests/test_lfi_emulator.py -> build/lib/tanner/tests
+#12 397.9 copying tanner/tests/test_template_injection.py -> build/lib/tanner/tests
+#12 397.9 copying tanner/tests/test_server.py -> build/lib/tanner/tests
+#12 397.9 copying tanner/tests/test_cmd_exec_emulation.py -> build/lib/tanner/tests
+#12 397.9 copying tanner/tests/__init__.py -> build/lib/tanner/tests
+#12 398.0 copying tanner/tests/test_mysql_db_helper.py -> build/lib/tanner/tests
+#12 398.0 copying tanner/tests/test_sqli.py -> build/lib/tanner/tests
+#12 398.0 copying tanner/tests/test_session_manager.py -> build/lib/tanner/tests
+#12 398.0 copying tanner/tests/test_crlf.py -> build/lib/tanner/tests
+#12 398.0 copying tanner/tests/test_dorks_manager.py -> build/lib/tanner/tests
+#12 398.0 creating build/lib/tanner/api
+#12 398.0 copying tanner/api/api.py -> build/lib/tanner/api
+#12 398.0 copying tanner/api/server.py -> build/lib/tanner/api
+#12 398.0 copying tanner/api/__init__.py -> build/lib/tanner/api
+#12 398.0 creating build/lib/tanner/web
+#12 398.0 copying tanner/web/server.py -> build/lib/tanner/web
+#12 398.0 copying tanner/web/__init__.py -> build/lib/tanner/web
+#12 398.0 creating build/lib/tanner/sessions
+#12 398.0 copying tanner/sessions/session_manager.py -> build/lib/tanner/sessions
+#12 398.0 copying tanner/sessions/session_analyzer.py -> build/lib/tanner/sessions
+#12 398.0 copying tanner/sessions/__init__.py -> build/lib/tanner/sessions
+#12 398.0 copying tanner/sessions/session.py -> build/lib/tanner/sessions
+#12 398.0 creating build/lib/tanner/utils
+#12 398.0 copying tanner/utils/php_sandbox_helper.py -> build/lib/tanner/utils
+#12 398.0 copying tanner/utils/api_key_generator.py -> build/lib/tanner/utils
+#12 398.0 copying tanner/utils/base_db_helper.py -> build/lib/tanner/utils
+#12 398.0 copying tanner/utils/sqlite_db_helper.py -> build/lib/tanner/utils
+#12 398.0 copying tanner/utils/aiodocker_helper.py -> build/lib/tanner/utils
+#12 398.0 copying tanner/utils/__init__.py -> build/lib/tanner/utils
+#12 398.0 copying tanner/utils/mysql_db_helper.py -> build/lib/tanner/utils
+#12 398.0 copying tanner/utils/asyncmock.py -> build/lib/tanner/utils
+#12 398.0 copying tanner/utils/patterns.py -> build/lib/tanner/utils
+#12 398.0 copying tanner/utils/logger.py -> build/lib/tanner/utils
+#12 398.0 creating build/lib/tanner/emulators
+#12 398.0 copying tanner/emulators/base.py -> build/lib/tanner/emulators
+#12 398.1 copying tanner/emulators/mysqli.py -> build/lib/tanner/emulators
+#12 398.1 copying tanner/emulators/template_injection.py -> build/lib/tanner/emulators
+#12 398.1 copying tanner/emulators/sqli.py -> build/lib/tanner/emulators
+#12 398.1 copying tanner/emulators/php_object_injection.py -> build/lib/tanner/emulators
+#12 398.1 copying tanner/emulators/sqlite.py -> build/lib/tanner/emulators
+#12 398.1 copying tanner/emulators/cmd_exec.py -> build/lib/tanner/emulators
+#12 398.1 copying tanner/emulators/xss.py -> build/lib/tanner/emulators
+#12 398.1 copying tanner/emulators/__init__.py -> build/lib/tanner/emulators
+#12 398.1 copying tanner/emulators/crlf.py -> build/lib/tanner/emulators
+#12 398.1 copying tanner/emulators/xxe_injection.py -> build/lib/tanner/emulators
+#12 398.1 copying tanner/emulators/lfi.py -> build/lib/tanner/emulators
+#12 398.1 copying tanner/emulators/rfi.py -> build/lib/tanner/emulators
+#12 398.1 copying tanner/emulators/php_code_injection.py -> build/lib/tanner/emulators
+#12 398.1 creating build/bdist.linux-aarch64
+#12 398.1 creating build/bdist.linux-aarch64/egg
+#12 398.1 creating build/bdist.linux-aarch64/egg/bin
+#12 398.1 copying build/lib/bin/__init__.py -> build/bdist.linux-aarch64/egg/bin
+#12 398.1 creating build/bdist.linux-aarch64/egg/tanner
+#12 398.1 creating build/bdist.linux-aarch64/egg/tanner/reporting
+#12 398.1 copying build/lib/tanner/reporting/log_mongodb.py -> build/bdist.linux-aarch64/egg/tanner/reporting
+#12 398.1 copying build/lib/tanner/reporting/log_local.py -> build/bdist.linux-aarch64/egg/tanner/reporting
+#12 398.2 copying build/lib/tanner/reporting/__init__.py -> build/bdist.linux-aarch64/egg/tanner/reporting
+#12 398.2 copying build/lib/tanner/reporting/hpfeeds.py -> build/bdist.linux-aarch64/egg/tanner/reporting
+#12 398.2 copying build/lib/tanner/reporting/log_hpfeeds.py -> build/bdist.linux-aarch64/egg/tanner/reporting
+#12 398.2 creating build/bdist.linux-aarch64/egg/tanner/tests
+#12 398.2 copying build/lib/tanner/tests/test_rfi_emulation.py -> build/bdist.linux-aarch64/egg/tanner/tests
+#12 398.2 copying build/lib/tanner/tests/test_sqlite_db_helper.py -> build/bdist.linux-aarch64/egg/tanner/tests
+#12 398.2 copying build/lib/tanner/tests/test_web_server.py -> build/bdist.linux-aarch64/egg/tanner/tests
+#12 398.2 copying build/lib/tanner/tests/test_session_analyzer.py -> build/bdist.linux-aarch64/egg/tanner/tests
+#12 398.2 copying build/lib/tanner/tests/test_xss_emulator.py -> build/bdist.linux-aarch64/egg/tanner/tests
+#12 398.2 copying build/lib/tanner/tests/test_php_object_injection.py -> build/bdist.linux-aarch64/egg/tanner/tests
+#12 398.2 copying build/lib/tanner/tests/test_config.py -> build/bdist.linux-aarch64/egg/tanner/tests
+#12 398.2 copying build/lib/tanner/tests/test_api.py -> build/bdist.linux-aarch64/egg/tanner/tests
+#12 398.2 copying build/lib/tanner/tests/test_xxe_injection.py -> build/bdist.linux-aarch64/egg/tanner/tests
+#12 398.2 copying build/lib/tanner/tests/test_api_server.py -> build/bdist.linux-aarch64/egg/tanner/tests
+#12 398.2 copying build/lib/tanner/tests/test_base.py -> build/bdist.linux-aarch64/egg/tanner/tests
+#12 398.2 copying build/lib/tanner/tests/test_sqlite.py -> build/bdist.linux-aarch64/egg/tanner/tests
+#12 398.2 copying build/lib/tanner/tests/test_aiodocker_helper.py -> build/bdist.linux-aarch64/egg/tanner/tests
+#12 398.2 copying build/lib/tanner/tests/test_mysqli.py -> build/bdist.linux-aarch64/egg/tanner/tests
+#12 398.2 copying build/lib/tanner/tests/test_php_code_injection.py -> build/bdist.linux-aarch64/egg/tanner/tests
+#12 398.2 copying build/lib/tanner/tests/test_lfi_emulator.py -> build/bdist.linux-aarch64/egg/tanner/tests
+#12 398.2 copying build/lib/tanner/tests/test_template_injection.py -> build/bdist.linux-aarch64/egg/tanner/tests
+#12 398.2 copying build/lib/tanner/tests/test_server.py -> build/bdist.linux-aarch64/egg/tanner/tests
+#12 398.2 copying build/lib/tanner/tests/test_cmd_exec_emulation.py -> build/bdist.linux-aarch64/egg/tanner/tests
+#12 398.2 copying build/lib/tanner/tests/__init__.py -> build/bdist.linux-aarch64/egg/tanner/tests
+#12 398.2 copying build/lib/tanner/tests/test_mysql_db_helper.py -> build/bdist.linux-aarch64/egg/tanner/tests
+#12 398.2 copying build/lib/tanner/tests/test_sqli.py -> build/bdist.linux-aarch64/egg/tanner/tests
+#12 398.2 copying build/lib/tanner/tests/test_session_manager.py -> build/bdist.linux-aarch64/egg/tanner/tests
+#12 398.2 copying build/lib/tanner/tests/test_crlf.py -> build/bdist.linux-aarch64/egg/tanner/tests
+#12 398.2 copying build/lib/tanner/tests/test_dorks_manager.py -> build/bdist.linux-aarch64/egg/tanner/tests
+#12 398.2 copying build/lib/tanner/dorks_manager.py -> build/bdist.linux-aarch64/egg/tanner
+#12 398.2 creating build/bdist.linux-aarch64/egg/tanner/api
+#12 398.2 copying build/lib/tanner/api/api.py -> build/bdist.linux-aarch64/egg/tanner/api
+#12 398.2 copying build/lib/tanner/api/server.py -> build/bdist.linux-aarch64/egg/tanner/api
+#12 398.2 copying build/lib/tanner/api/__init__.py -> build/bdist.linux-aarch64/egg/tanner/api
+#12 398.2 copying build/lib/tanner/config.py -> build/bdist.linux-aarch64/egg/tanner
+#12 398.2 creating build/bdist.linux-aarch64/egg/tanner/web
+#12 398.2 copying build/lib/tanner/web/server.py -> build/bdist.linux-aarch64/egg/tanner/web
+#12 398.2 copying build/lib/tanner/web/__init__.py -> build/bdist.linux-aarch64/egg/tanner/web
+#12 398.2 creating build/bdist.linux-aarch64/egg/tanner/sessions
+#12 398.2 copying build/lib/tanner/sessions/session_manager.py -> build/bdist.linux-aarch64/egg/tanner/sessions
+#12 398.2 copying build/lib/tanner/sessions/session_analyzer.py -> build/bdist.linux-aarch64/egg/tanner/sessions
+#12 398.2 copying build/lib/tanner/sessions/__init__.py -> build/bdist.linux-aarch64/egg/tanner/sessions
+#12 398.2 copying build/lib/tanner/sessions/session.py -> build/bdist.linux-aarch64/egg/tanner/sessions
+#12 398.2 copying build/lib/tanner/server.py -> build/bdist.linux-aarch64/egg/tanner
+#12 398.2 creating build/bdist.linux-aarch64/egg/tanner/utils
+#12 398.2 copying build/lib/tanner/utils/php_sandbox_helper.py -> build/bdist.linux-aarch64/egg/tanner/utils
+#12 398.2 copying build/lib/tanner/utils/api_key_generator.py -> build/bdist.linux-aarch64/egg/tanner/utils
+#12 398.2 copying build/lib/tanner/utils/base_db_helper.py -> build/bdist.linux-aarch64/egg/tanner/utils
+#12 398.3 copying build/lib/tanner/utils/sqlite_db_helper.py -> build/bdist.linux-aarch64/egg/tanner/utils
+#12 398.3 copying build/lib/tanner/utils/aiodocker_helper.py -> build/bdist.linux-aarch64/egg/tanner/utils
+#12 398.3 copying build/lib/tanner/utils/__init__.py -> build/bdist.linux-aarch64/egg/tanner/utils
+#12 398.3 copying build/lib/tanner/utils/mysql_db_helper.py -> build/bdist.linux-aarch64/egg/tanner/utils
+#12 398.3 copying build/lib/tanner/utils/asyncmock.py -> build/bdist.linux-aarch64/egg/tanner/utils
+#12 398.3 copying build/lib/tanner/utils/patterns.py -> build/bdist.linux-aarch64/egg/tanner/utils
+#12 398.3 copying build/lib/tanner/utils/logger.py -> build/bdist.linux-aarch64/egg/tanner/utils
+#12 398.3 copying build/lib/tanner/__init__.py -> build/bdist.linux-aarch64/egg/tanner
+#12 398.3 copying build/lib/tanner/redis_client.py -> build/bdist.linux-aarch64/egg/tanner
+#12 398.3 creating build/bdist.linux-aarch64/egg/tanner/emulators
+#12 398.3 copying build/lib/tanner/emulators/base.py -> build/bdist.linux-aarch64/egg/tanner/emulators
+#12 398.3 copying build/lib/tanner/emulators/mysqli.py -> build/bdist.linux-aarch64/egg/tanner/emulators
+#12 398.3 copying build/lib/tanner/emulators/template_injection.py -> build/bdist.linux-aarch64/egg/tanner/emulators
+#12 398.3 copying build/lib/tanner/emulators/sqli.py -> build/bdist.linux-aarch64/egg/tanner/emulators
+#12 398.3 copying build/lib/tanner/emulators/php_object_injection.py -> build/bdist.linux-aarch64/egg/tanner/emulators
+#12 398.3 copying build/lib/tanner/emulators/sqlite.py -> build/bdist.linux-aarch64/egg/tanner/emulators
+#12 398.3 copying build/lib/tanner/emulators/cmd_exec.py -> build/bdist.linux-aarch64/egg/tanner/emulators
+#12 398.3 copying build/lib/tanner/emulators/xss.py -> build/bdist.linux-aarch64/egg/tanner/emulators
+#12 398.3 copying build/lib/tanner/emulators/__init__.py -> build/bdist.linux-aarch64/egg/tanner/emulators
+#12 398.3 copying build/lib/tanner/emulators/crlf.py -> build/bdist.linux-aarch64/egg/tanner/emulators
+#12 398.3 copying build/lib/tanner/emulators/xxe_injection.py -> build/bdist.linux-aarch64/egg/tanner/emulators
+#12 398.3 copying build/lib/tanner/emulators/lfi.py -> build/bdist.linux-aarch64/egg/tanner/emulators
+#12 398.3 copying build/lib/tanner/emulators/rfi.py -> build/bdist.linux-aarch64/egg/tanner/emulators
+#12 398.3 copying build/lib/tanner/emulators/php_code_injection.py -> build/bdist.linux-aarch64/egg/tanner/emulators
+#12 398.3 byte-compiling build/bdist.linux-aarch64/egg/bin/__init__.py to __init__.cpython-310.pyc
+#12 398.3 byte-compiling build/bdist.linux-aarch64/egg/tanner/reporting/log_mongodb.py to log_mongodb.cpython-310.pyc
+#12 398.3 byte-compiling build/bdist.linux-aarch64/egg/tanner/reporting/log_local.py to log_local.cpython-310.pyc
+#12 398.4 byte-compiling build/bdist.linux-aarch64/egg/tanner/reporting/__init__.py to __init__.cpython-310.pyc
+#12 398.4 byte-compiling build/bdist.linux-aarch64/egg/tanner/reporting/hpfeeds.py to hpfeeds.cpython-310.pyc
+#12 398.4 byte-compiling build/bdist.linux-aarch64/egg/tanner/reporting/log_hpfeeds.py to log_hpfeeds.cpython-310.pyc
+#12 398.4 byte-compiling build/bdist.linux-aarch64/egg/tanner/tests/test_rfi_emulation.py to test_rfi_emulation.cpython-310.pyc
+#12 398.5 byte-compiling build/bdist.linux-aarch64/egg/tanner/tests/test_sqlite_db_helper.py to test_sqlite_db_helper.cpython-310.pyc
+#12 398.5 byte-compiling build/bdist.linux-aarch64/egg/tanner/tests/test_web_server.py to test_web_server.cpython-310.pyc
+#12 398.5 byte-compiling build/bdist.linux-aarch64/egg/tanner/tests/test_session_analyzer.py to test_session_analyzer.cpython-310.pyc
+#12 398.6 byte-compiling build/bdist.linux-aarch64/egg/tanner/tests/test_xss_emulator.py to test_xss_emulator.cpython-310.pyc
+#12 398.6 byte-compiling build/bdist.linux-aarch64/egg/tanner/tests/test_php_object_injection.py to test_php_object_injection.cpython-310.pyc
+#12 398.6 byte-compiling build/bdist.linux-aarch64/egg/tanner/tests/test_config.py to test_config.cpython-310.pyc
+#12 398.6 byte-compiling build/bdist.linux-aarch64/egg/tanner/tests/test_api.py to test_api.cpython-310.pyc
+#12 398.7 byte-compiling build/bdist.linux-aarch64/egg/tanner/tests/test_xxe_injection.py to test_xxe_injection.cpython-310.pyc
+#12 398.7 byte-compiling build/bdist.linux-aarch64/egg/tanner/tests/test_api_server.py to test_api_server.cpython-310.pyc
+#12 398.7 byte-compiling build/bdist.linux-aarch64/egg/tanner/tests/test_base.py to test_base.cpython-310.pyc
+#12 398.8 byte-compiling build/bdist.linux-aarch64/egg/tanner/tests/test_sqlite.py to test_sqlite.cpython-310.pyc
+#12 398.8 byte-compiling build/bdist.linux-aarch64/egg/tanner/tests/test_aiodocker_helper.py to test_aiodocker_helper.cpython-310.pyc
+#12 398.8 byte-compiling build/bdist.linux-aarch64/egg/tanner/tests/test_mysqli.py to test_mysqli.cpython-310.pyc
+#12 398.9 byte-compiling build/bdist.linux-aarch64/egg/tanner/tests/test_php_code_injection.py to test_php_code_injection.cpython-310.pyc
+#12 398.9 byte-compiling build/bdist.linux-aarch64/egg/tanner/tests/test_lfi_emulator.py to test_lfi_emulator.cpython-310.pyc
+#12 398.9 byte-compiling build/bdist.linux-aarch64/egg/tanner/tests/test_template_injection.py to test_template_injection.cpython-310.pyc
+#12 398.9 byte-compiling build/bdist.linux-aarch64/egg/tanner/tests/test_server.py to test_server.cpython-310.pyc
+#12 398.9 byte-compiling build/bdist.linux-aarch64/egg/tanner/tests/test_cmd_exec_emulation.py to test_cmd_exec_emulation.cpython-310.pyc
+#12 398.9 byte-compiling build/bdist.linux-aarch64/egg/tanner/tests/__init__.py to __init__.cpython-310.pyc
+#12 398.9 byte-compiling build/bdist.linux-aarch64/egg/tanner/tests/test_mysql_db_helper.py to test_mysql_db_helper.cpython-310.pyc
+#12 399.0 byte-compiling build/bdist.linux-aarch64/egg/tanner/tests/test_sqli.py to test_sqli.cpython-310.pyc
+#12 399.0 byte-compiling build/bdist.linux-aarch64/egg/tanner/tests/test_session_manager.py to test_session_manager.cpython-310.pyc
+#12 399.0 byte-compiling build/bdist.linux-aarch64/egg/tanner/tests/test_crlf.py to test_crlf.cpython-310.pyc
+#12 399.0 byte-compiling build/bdist.linux-aarch64/egg/tanner/tests/test_dorks_manager.py to test_dorks_manager.cpython-310.pyc
+#12 399.1 byte-compiling build/bdist.linux-aarch64/egg/tanner/dorks_manager.py to dorks_manager.cpython-310.pyc
+#12 399.1 byte-compiling build/bdist.linux-aarch64/egg/tanner/api/api.py to api.cpython-310.pyc
+#12 399.1 byte-compiling build/bdist.linux-aarch64/egg/tanner/api/server.py to server.cpython-310.pyc
+#12 399.1 byte-compiling build/bdist.linux-aarch64/egg/tanner/api/__init__.py to __init__.cpython-310.pyc
+#12 399.2 byte-compiling build/bdist.linux-aarch64/egg/tanner/config.py to config.cpython-310.pyc
+#12 399.2 byte-compiling build/bdist.linux-aarch64/egg/tanner/web/server.py to server.cpython-310.pyc
+#12 399.2 byte-compiling build/bdist.linux-aarch64/egg/tanner/web/__init__.py to __init__.cpython-310.pyc
+#12 399.2 byte-compiling build/bdist.linux-aarch64/egg/tanner/sessions/session_manager.py to session_manager.cpython-310.pyc
+#12 399.2 byte-compiling build/bdist.linux-aarch64/egg/tanner/sessions/session_analyzer.py to session_analyzer.cpython-310.pyc
+#12 399.3 byte-compiling build/bdist.linux-aarch64/egg/tanner/sessions/__init__.py to __init__.cpython-310.pyc
+#12 399.3 byte-compiling build/bdist.linux-aarch64/egg/tanner/sessions/session.py to session.cpython-310.pyc
+#12 399.3 byte-compiling build/bdist.linux-aarch64/egg/tanner/server.py to server.cpython-310.pyc
+#12 399.3 byte-compiling build/bdist.linux-aarch64/egg/tanner/utils/php_sandbox_helper.py to php_sandbox_helper.cpython-310.pyc
+#12 399.4 byte-compiling build/bdist.linux-aarch64/egg/tanner/utils/api_key_generator.py to api_key_generator.cpython-310.pyc
+#12 399.4 byte-compiling build/bdist.linux-aarch64/egg/tanner/utils/base_db_helper.py to base_db_helper.cpython-310.pyc
+#12 399.4 byte-compiling build/bdist.linux-aarch64/egg/tanner/utils/sqlite_db_helper.py to sqlite_db_helper.cpython-310.pyc
+#12 399.4 byte-compiling build/bdist.linux-aarch64/egg/tanner/utils/aiodocker_helper.py to aiodocker_helper.cpython-310.pyc
+#12 399.4 byte-compiling build/bdist.linux-aarch64/egg/tanner/utils/__init__.py to __init__.cpython-310.pyc
+#12 399.4 byte-compiling build/bdist.linux-aarch64/egg/tanner/utils/mysql_db_helper.py to mysql_db_helper.cpython-310.pyc
+#12 399.4 byte-compiling build/bdist.linux-aarch64/egg/tanner/utils/asyncmock.py to asyncmock.cpython-310.pyc
+#12 399.4 byte-compiling build/bdist.linux-aarch64/egg/tanner/utils/patterns.py to patterns.cpython-310.pyc
+#12 399.4 byte-compiling build/bdist.linux-aarch64/egg/tanner/utils/logger.py to logger.cpython-310.pyc
+#12 399.5 byte-compiling build/bdist.linux-aarch64/egg/tanner/__init__.py to __init__.cpython-310.pyc
+#12 399.5 byte-compiling build/bdist.linux-aarch64/egg/tanner/redis_client.py to redis_client.cpython-310.pyc
+#12 399.5 byte-compiling build/bdist.linux-aarch64/egg/tanner/emulators/base.py to base.cpython-310.pyc
+#12 399.5 byte-compiling build/bdist.linux-aarch64/egg/tanner/emulators/mysqli.py to mysqli.cpython-310.pyc
+#12 399.5 byte-compiling build/bdist.linux-aarch64/egg/tanner/emulators/template_injection.py to template_injection.cpython-310.pyc
+#12 399.5 byte-compiling build/bdist.linux-aarch64/egg/tanner/emulators/sqli.py to sqli.cpython-310.pyc
+#12 399.5 byte-compiling build/bdist.linux-aarch64/egg/tanner/emulators/php_object_injection.py to php_object_injection.cpython-310.pyc
+#12 399.6 byte-compiling build/bdist.linux-aarch64/egg/tanner/emulators/sqlite.py to sqlite.cpython-310.pyc
+#12 399.6 byte-compiling build/bdist.linux-aarch64/egg/tanner/emulators/cmd_exec.py to cmd_exec.cpython-310.pyc
+#12 399.6 byte-compiling build/bdist.linux-aarch64/egg/tanner/emulators/xss.py to xss.cpython-310.pyc
+#12 399.6 byte-compiling build/bdist.linux-aarch64/egg/tanner/emulators/__init__.py to __init__.cpython-310.pyc
+#12 399.6 byte-compiling build/bdist.linux-aarch64/egg/tanner/emulators/crlf.py to crlf.cpython-310.pyc
+#12 399.6 byte-compiling build/bdist.linux-aarch64/egg/tanner/emulators/xxe_injection.py to xxe_injection.cpython-310.pyc
+#12 399.6 byte-compiling build/bdist.linux-aarch64/egg/tanner/emulators/lfi.py to lfi.cpython-310.pyc
+#12 399.6 byte-compiling build/bdist.linux-aarch64/egg/tanner/emulators/rfi.py to rfi.cpython-310.pyc
+#12 399.7 byte-compiling build/bdist.linux-aarch64/egg/tanner/emulators/php_code_injection.py to php_code_injection.cpython-310.pyc
+#12 399.7 installing package data to build/bdist.linux-aarch64/egg
+#12 399.8 running install_data
+#12 399.8 creating /opt/tanner/db
+#12 399.8 copying tanner/data/db_config.json -> /opt/tanner/db/
+#12 399.8 copying tanner/data/GeoLite2-City.mmdb -> /opt/tanner/db/
+#12 400.1 creating /opt/tanner/data
+#12 400.1 copying tanner/data/dorks.pickle -> /opt/tanner/data/
+#12 400.1 copying tanner/data/crawler_user_agents.txt -> /opt/tanner/data/
+#12 400.1 copying tanner/files/engines/mako.py -> /opt/tanner/data/
+#12 400.1 copying tanner/files/engines/tornado.py -> /opt/tanner/data/
+#12 400.1 copying tanner/data/config.yaml -> /opt/tanner/data/
+#12 400.1 creating build/bdist.linux-aarch64/egg/EGG-INFO
+#12 400.1 installing scripts to build/bdist.linux-aarch64/egg/EGG-INFO/scripts
+#12 400.1 running install_scripts
+#12 400.1 running build_scripts
+#12 400.1 creating build/scripts-3.10
+#12 400.1 copying and adjusting bin/tanner -> build/scripts-3.10
+#12 400.1 copying and adjusting bin/tannerweb -> build/scripts-3.10
+#12 400.1 copying and adjusting bin/tannerapi -> build/scripts-3.10
+#12 400.1 changing mode of build/scripts-3.10/tanner from 644 to 755
+#12 400.1 changing mode of build/scripts-3.10/tannerweb from 644 to 755
+#12 400.1 changing mode of build/scripts-3.10/tannerapi from 644 to 755
+#12 400.1 creating build/bdist.linux-aarch64/egg/EGG-INFO/scripts
+#12 400.1 copying build/scripts-3.10/tannerapi -> build/bdist.linux-aarch64/egg/EGG-INFO/scripts
+#12 400.1 copying build/scripts-3.10/tanner -> build/bdist.linux-aarch64/egg/EGG-INFO/scripts
+#12 400.1 copying build/scripts-3.10/tannerweb -> build/bdist.linux-aarch64/egg/EGG-INFO/scripts
+#12 400.1 changing mode of build/bdist.linux-aarch64/egg/EGG-INFO/scripts/tannerapi to 755
+#12 400.1 changing mode of build/bdist.linux-aarch64/egg/EGG-INFO/scripts/tanner to 755
+#12 400.1 changing mode of build/bdist.linux-aarch64/egg/EGG-INFO/scripts/tannerweb to 755
+#12 400.1 copying Tanner.egg-info/PKG-INFO -> build/bdist.linux-aarch64/egg/EGG-INFO
+#12 400.1 copying Tanner.egg-info/SOURCES.txt -> build/bdist.linux-aarch64/egg/EGG-INFO
+#12 400.1 copying Tanner.egg-info/dependency_links.txt -> build/bdist.linux-aarch64/egg/EGG-INFO
+#12 400.1 copying Tanner.egg-info/top_level.txt -> build/bdist.linux-aarch64/egg/EGG-INFO
+#12 400.1 zip_safe flag not set; analyzing archive contents...
+#12 400.5 creating dist
+#12 400.5 creating 'dist/Tanner-0.6.0-py3.10.egg' and adding 'build/bdist.linux-aarch64/egg' to it
+#12 401.1 removing 'build/bdist.linux-aarch64/egg' (and everything under it)
+#12 401.2 Processing Tanner-0.6.0-py3.10.egg
+#12 401.2 Copying Tanner-0.6.0-py3.10.egg to /usr/lib/python3.10/site-packages
+#12 401.3 Adding Tanner 0.6.0 to easy-install.pth file
+#12 401.3 Installing tanner script to /usr/bin
+#12 401.4 Installing tannerapi script to /usr/bin
+#12 401.4 Installing tannerweb script to /usr/bin
+#12 401.4 
+#12 401.4 Installed /usr/lib/python3.10/site-packages/Tanner-0.6.0-py3.10.egg
+#12 401.4 Processing dependencies for Tanner==0.6.0
+#12 401.4 Finished processing dependencies for Tanner==0.6.0
+#12 402.1 WARNING: opening from cache https://dl-cdn.alpinelinux.org/alpine/v3.17/main: No such file or directory
+#12 402.1 WARNING: opening from cache https://dl-cdn.alpinelinux.org/alpine/v3.17/community: No such file or directory
+#12 402.1 (1/32) Purging build-base (0.5-r3)
+#12 402.1 (2/32) Purging file (5.43-r0)
+#12 402.1 (3/32) Purging g++ (12.2.1_git20220924-r4)
+#12 402.1 (4/32) Purging libstdc++-dev (12.2.1_git20220924-r4)
+#12 402.2 (5/32) Purging gcc (12.2.1_git20220924-r4)
+#12 402.3 (6/32) Purging binutils (2.39-r2)
+#12 402.3 (7/32) Purging libatomic (12.2.1_git20220924-r4)
+#12 402.3 (8/32) Purging libgomp (12.2.1_git20220924-r4)
+#12 402.3 (9/32) Purging make (4.3-r1)
+#12 402.3 (10/32) Purging libc-dev (0.7.2-r3)
+#12 402.3 (11/32) Purging musl-dev (1.2.3-r6)
+#12 402.3 (12/32) Purging fortify-headers (1.1-r1)
+#12 402.3 (13/32) Purging patch (2.7.6-r9)
+#12 402.3 (14/32) Purging git (2.39.5-r0)
+#12 402.3 (15/32) Purging libcap (2.66-r1)
+#12 402.3 (16/32) Purging libcap-utils (2.66-r1)
+#12 402.3 (17/32) Purging libffi-dev (3.4.4-r0)
+#12 402.3 (18/32) Purging linux-headers (5.19.5-r0)
+#12 402.4 (19/32) Purging openssl-dev (3.0.15-r1)
+#12 402.4 (20/32) Purging python3-dev (3.10.15-r0)
+#12 402.4 (21/32) Purging libmagic (5.43-r0)
+#12 402.4 (22/32) Purging isl25 (0.25-r1)
+#12 402.4 (23/32) Purging mpc1 (1.2.1-r1)
+#12 402.4 (24/32) Purging mpfr4 (4.1.0-r0)
+#12 402.4 (25/32) Purging gmp (6.2.1-r2)
+#12 402.4 (26/32) Purging libcurl (8.9.0-r0)
+#12 402.4 (27/32) Purging ca-certificates (20240226-r0)
+#12 402.4 Executing ca-certificates-20240226-r0.post-deinstall
+#12 402.5 (28/32) Purging brotli-libs (1.0.9-r9)
+#12 402.5 (29/32) Purging nghttp2-libs (1.51.0-r2)
+#12 402.5 (30/32) Purging pcre2 (10.42-r0)
+#12 402.5 (31/32) Purging libcap2 (2.66-r1)
+#12 402.5 (32/32) Purging pkgconf (1.9.4-r0)
+#12 402.5 Executing busybox-1.35.0-r31.trigger
+#12 402.7 OK: 103 MiB in 68 packages
+#12 DONE 402.9s
+
+#14 [tanner linux/arm64 4/4] WORKDIR /opt/tanner
+#14 DONE 0.1s
+
+#15 [tanner] exporting to image
+#15 exporting layers
+#15 exporting layers 20.7s done
+#15 exporting manifest sha256:a46eacf6896fd663839cf61f386c935c68e8eac7c65369f83f1c0074cb03f40a 0.0s done
+#15 exporting config sha256:7465ff81ce03432245d43dc8f77b9e7c70c43a98694e5b0c223682f72030420d 0.0s done
+#15 exporting attestation manifest sha256:4deea4a5fc7cda5d19222869965e23f93b95379f4ddc6498a3ef5d02873fe117 0.0s done
+#15 exporting manifest sha256:8aceb91f0c7aaeacaa69e64caa7c873a6930d907ddf3fe2f25a95cde2e3fea0e done
+#15 exporting config sha256:36274d098571e6967cff4e9a1cd0922305c46226c7abfe12e9533c502bd76049 0.0s done
+#15 exporting attestation manifest sha256:62118ddf8c18ce504a172aa6566ac5770dd230ad3444186a55331939d47e0277 0.0s done
+#15 exporting manifest list sha256:21efd87f4f0bd3e313382c86a5918c86e05750f8828a15ca25a6fbc3866679c9 done
+#15 pushing layers
+#15 ...
+
+#16 [tanner auth] f0rc3ps/tanner:pull,push token for registry-1.docker.io
+#16 DONE 0.0s
+
+#15 [tanner] exporting to image
+#15 pushing layers 45.1s done
+#15 pushing manifest for docker.io/f0rc3ps/tanner:24.04.1@sha256:21efd87f4f0bd3e313382c86a5918c86e05750f8828a15ca25a6fbc3866679c9
+#15 pushing manifest for docker.io/f0rc3ps/tanner:24.04.1@sha256:21efd87f4f0bd3e313382c86a5918c86e05750f8828a15ca25a6fbc3866679c9 3.2s done
+#15 ...
+
+#17 [tanner auth] asc3t1c/tanner:pull,push token for ghcr.io
+#17 DONE 0.0s
+
+#15 [tanner] exporting to image
+#15 pushing layers 42.2s done
+#15 pushing manifest for ghcr.io/asc3t1c/tanner:24.04.1@sha256:21efd87f4f0bd3e313382c86a5918c86e05750f8828a15ca25a6fbc3866679c9
+#15 pushing manifest for ghcr.io/asc3t1c/tanner:24.04.1@sha256:21efd87f4f0bd3e313382c86a5918c86e05750f8828a15ca25a6fbc3866679c9 2.5s done
+#15 DONE 113.7s
+
+#18 [tanner] resolving provenance for metadata file
+#18 DONE 0.0s

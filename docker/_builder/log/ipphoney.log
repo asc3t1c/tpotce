@@ -1,0 +1,254 @@
+Compose now can delegate build to bake for better performances
+Just set COMPOSE_BAKE=true
+#0 building with "mybuilder" instance using docker-container driver
+
+#1 [ipphoney internal] load build definition from Dockerfile
+#1 transferring dockerfile: 1.38kB 0.0s done
+#1 DONE 0.0s
+
+#2 [ipphoney auth] library/alpine:pull token for registry-1.docker.io
+#2 DONE 0.0s
+
+#3 [ipphoney linux/amd64 internal] load metadata for docker.io/library/alpine:3.20
+#3 ...
+
+#4 [ipphoney linux/arm64 internal] load metadata for docker.io/library/alpine:3.20
+#4 DONE 0.8s
+
+#3 [ipphoney linux/amd64 internal] load metadata for docker.io/library/alpine:3.20
+#3 DONE 0.9s
+
+#5 [ipphoney internal] load .dockerignore
+#5 transferring context: 2B 0.0s done
+#5 DONE 0.0s
+
+#6 [ipphoney linux/amd64 builder 1/7] FROM docker.io/library/alpine:3.20@sha256:de4fe7064d8f98419ea6b49190df1abbf43450c1702eeb864fe9ced453c1cc5f
+#6 resolve docker.io/library/alpine:3.20@sha256:de4fe7064d8f98419ea6b49190df1abbf43450c1702eeb864fe9ced453c1cc5f 0.0s done
+#6 DONE 0.0s
+
+#7 [ipphoney linux/arm64 builder 1/7] FROM docker.io/library/alpine:3.20@sha256:de4fe7064d8f98419ea6b49190df1abbf43450c1702eeb864fe9ced453c1cc5f
+#7 resolve docker.io/library/alpine:3.20@sha256:de4fe7064d8f98419ea6b49190df1abbf43450c1702eeb864fe9ced453c1cc5f 0.0s done
+#7 DONE 0.0s
+
+#8 [ipphoney internal] load build context
+#8 transferring context: 7.82kB 0.0s done
+#8 DONE 0.0s
+
+#9 [ipphoney linux/arm64 builder 3/7] RUN apk --no-cache -U upgrade && 	apk --no-cache -U add 		build-base 		ca-certificates 		git 		libcap 		libffi-dev 		openssl 		openssl-dev 		postgresql-dev 		py3-cryptography 		py3-elasticsearch 		py3-geoip2 		py3-maxminddb 		py3-mysqlclient 		py3-requests 		py3-packaging 		py3-pip 		py3-psycopg2 		py3-redis 		py3-requests 		py3-service_identity 		py3-setuptools 		py3-twisted 		py3-tz 		py3-wheel 		python3 		python3-dev &&     mkdir -p /opt &&     cd /opt/ &&     git clone https://gitlab.com/bontchev/ipphoney.git/ &&     cd ipphoney &&     git checkout 9da0a9e7f9d839e4522f56b3bb2b790d87d65457 &&     cp /root/dist/requirements.txt .
+#9 CACHED
+
+#10 [ipphoney linux/arm64 builder 2/7] COPY dist/ /root/dist/
+#10 CACHED
+
+#11 [ipphoney linux/arm64 builder 4/7] WORKDIR /opt/ipphoney
+#11 CACHED
+
+#12 [ipphoney linux/arm64 builder 5/7] RUN pip3 install --break-system-packages pyinstaller
+#12 CACHED
+
+#13 [ipphoney linux/amd64 builder 5/7] RUN pip3 install --break-system-packages pyinstaller
+#13 CACHED
+
+#14 [ipphoney linux/amd64 builder 7/7] RUN pyinstaller ipphoney.py 		--hidden-import output_plugins 		--hidden-import output_plugins.jsonlog
+#14 CACHED
+
+#15 [ipphoney linux/amd64 stage-1 3/6] COPY --from=builder /opt/ipphoney/dist/ /opt/
+#15 CACHED
+
+#16 [ipphoney linux/amd64 builder 4/7] WORKDIR /opt/ipphoney
+#16 CACHED
+
+#17 [ipphoney linux/amd64 stage-1 4/6] COPY --from=builder /opt/ipphoney/responses/ /opt/ipphoney/responses/
+#17 CACHED
+
+#18 [ipphoney linux/amd64 stage-1 5/6] COPY dist/honeypot.cfg /opt/ipphoney/etc/
+#18 CACHED
+
+#19 [ipphoney linux/amd64 stage-1 2/6] RUN apk --no-cache -U upgrade
+#19 CACHED
+
+#20 [ipphoney linux/amd64 builder 3/7] RUN apk --no-cache -U upgrade && 	apk --no-cache -U add 		build-base 		ca-certificates 		git 		libcap 		libffi-dev 		openssl 		openssl-dev 		postgresql-dev 		py3-cryptography 		py3-elasticsearch 		py3-geoip2 		py3-maxminddb 		py3-mysqlclient 		py3-requests 		py3-packaging 		py3-pip 		py3-psycopg2 		py3-redis 		py3-requests 		py3-service_identity 		py3-setuptools 		py3-twisted 		py3-tz 		py3-wheel 		python3 		python3-dev &&     mkdir -p /opt &&     cd /opt/ &&     git clone https://gitlab.com/bontchev/ipphoney.git/ &&     cd ipphoney &&     git checkout 9da0a9e7f9d839e4522f56b3bb2b790d87d65457 &&     cp /root/dist/requirements.txt .
+#20 CACHED
+
+#21 [ipphoney linux/amd64 builder 2/7] COPY dist/ /root/dist/
+#21 CACHED
+
+#22 [ipphoney linux/amd64 builder 6/7] RUN pip3 install --break-system-packages -r requirements.txt
+#22 CACHED
+
+#23 [ipphoney linux/amd64 stage-1 6/6] WORKDIR /opt/ipphoney/
+#23 CACHED
+
+#24 [ipphoney linux/arm64 builder 6/7] RUN pip3 install --break-system-packages -r requirements.txt
+#24 12.24 Collecting configparser>=3.5.0 (from -r requirements.txt (line 1))
+#24 12.89   Downloading configparser-7.1.0-py3-none-any.whl.metadata (5.4 kB)
+#24 13.28 Collecting couchdb (from -r requirements.txt (line 2))
+#24 13.34   Downloading CouchDB-1.2-py2.py3-none-any.whl.metadata (930 bytes)
+#24 13.62 Collecting hpfeeds>=3.0.0 (from -r requirements.txt (line 3))
+#24 13.66   Downloading hpfeeds-3.1.0-py2.py3-none-any.whl.metadata (1.1 kB)
+#24 23.57 Collecting pymongo (from -r requirements.txt (line 4))
+#24 23.62   Downloading pymongo-4.11.1.tar.gz (2.1 MB)
+#24 24.21      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.1/2.1 MB 4.2 MB/s eta 0:00:00
+#24 30.85   Installing build dependencies: started
+#24 86.46   Installing build dependencies: finished with status 'done'
+#24 86.47   Getting requirements to build wheel: started
+#24 89.13   Getting requirements to build wheel: finished with status 'done'
+#24 89.16   Preparing metadata (pyproject.toml): started
+#24 183.9   Preparing metadata (pyproject.toml): still running...
+#24 209.1   Preparing metadata (pyproject.toml): finished with status 'done'
+#24 209.6 Collecting dnspython<3.0.0,>=1.16.0 (from pymongo->-r requirements.txt (line 4))
+#24 209.6   Downloading dnspython-2.7.0-py3-none-any.whl.metadata (5.8 kB)
+#24 209.7 Downloading configparser-7.1.0-py3-none-any.whl (17 kB)
+#24 209.8 Downloading CouchDB-1.2-py2.py3-none-any.whl (67 kB)
+#24 209.8    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 68.0/68.0 kB 4.6 MB/s eta 0:00:00
+#24 209.8 Downloading hpfeeds-3.1.0-py2.py3-none-any.whl (65 kB)
+#24 209.9    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 65.8/65.8 kB 3.4 MB/s eta 0:00:00
+#24 209.9 Downloading dnspython-2.7.0-py3-none-any.whl (313 kB)
+#24 210.0    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 313.6/313.6 kB 8.2 MB/s eta 0:00:00
+#24 210.0 Building wheels for collected packages: pymongo
+#24 210.0   Building wheel for pymongo (pyproject.toml): started
+#24 210.5   Building wheel for pymongo (pyproject.toml): finished with status 'done'
+#24 210.6   Created wheel for pymongo: filename=pymongo-4.11.1-cp312-cp312-linux_aarch64.whl size=947779 sha256=9dbdb020f99b86a9785763fd1c19727405e4397f30a0824ad1be95505258e0c4
+#24 210.6   Stored in directory: /root/.cache/pip/wheels/31/d5/a1/dcfda44b7d73eeb19d06434a45056c04493eba13cf0fef3da4
+#24 210.6 Successfully built pymongo
+#24 220.2 Installing collected packages: hpfeeds, couchdb, dnspython, configparser, pymongo
+#24 243.5 Successfully installed configparser-7.1.0 couchdb-1.2 dnspython-2.7.0 hpfeeds-3.1.0 pymongo-4.11.1
+#24 243.5 WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv
+#24 DONE 246.3s
+
+#25 [ipphoney linux/arm64 builder 7/7] RUN pyinstaller ipphoney.py 		--hidden-import output_plugins 		--hidden-import output_plugins.jsonlog
+#25 5.620 2342 INFO: PyInstaller: 6.12.0, contrib hooks: 2025.1
+#25 5.631 2356 INFO: Python: 3.12.9
+#25 5.686 2411 INFO: Platform: Linux-6.11.0-18-generic-aarch64-with
+#25 5.686 2413 INFO: Python environment: /usr
+#25 5.697 2424 INFO: wrote /opt/ipphoney/ipphoney.spec
+#25 5.751 2477 INFO: Module search paths (PYTHONPATH):
+#25 5.751 ['/usr/lib/python312.zip',
+#25 5.751  '/usr/lib/python3.12',
+#25 5.751  '/usr/lib/python3.12/lib-dynload',
+#25 5.751  '/usr/lib/python3.12/site-packages',
+#25 5.751  '/opt/ipphoney']
+#25 10.39 7116 INFO: checking Analysis
+#25 10.39 7118 INFO: Building Analysis because Analysis-00.toc is non existent
+#25 10.40 7122 INFO: Running Analysis Analysis-00.toc
+#25 10.40 7123 INFO: Target bytecode optimization level: 0
+#25 10.40 7127 INFO: Initializing module dependency graph...
+#25 10.42 7146 INFO: Initializing module graph hook caches...
+#25 10.63 7357 INFO: Analyzing modules for base_library.zip ...
+#25 38.16 34886 INFO: Processing standard module hook 'hook-encodings.py' from '/usr/lib/python3.12/site-packages/PyInstaller/hooks'
+#25 85.65 82375 INFO: Processing standard module hook 'hook-pickle.py' from '/usr/lib/python3.12/site-packages/PyInstaller/hooks'
+#25 128.1 124851 INFO: Processing standard module hook 'hook-heapq.py' from '/usr/lib/python3.12/site-packages/PyInstaller/hooks'
+#25 143.6 140374 INFO: Caching module dependency graph...
+#25 145.2 141902 INFO: Looking for Python shared library...
+#25 145.3 142044 INFO: Using Python shared library: /usr/lib/libpython3.12.so.1.0
+#25 145.3 142045 INFO: Analyzing /opt/ipphoney/ipphoney.py
+#25 149.5 146239 INFO: Processing standard module hook 'hook-platform.py' from '/usr/lib/python3.12/site-packages/PyInstaller/hooks'
+#25 151.2 147969 INFO: Processing pre-safe-import-module hook 'hook-urllib3.packages.six.moves.py' from '/usr/lib/python3.12/site-packages/PyInstaller/hooks/pre_safe_import_module'
+#25 181.5 178246 INFO: Processing standard module hook 'hook-charset_normalizer.py' from '/usr/lib/python3.12/site-packages/_pyinstaller_hooks_contrib/stdhooks'
+#25 185.5 182197 INFO: Processing standard module hook 'hook-cryptography.py' from '/usr/lib/python3.12/site-packages/_pyinstaller_hooks_contrib/stdhooks'
+#25 203.5 200195 INFO: hook-cryptography: cryptography uses dynamically-linked OpenSSL: '/lib/libssl.so.3'
+#25 216.2 212946 INFO: Processing standard module hook 'hook-certifi.py' from '/usr/lib/python3.12/site-packages/_pyinstaller_hooks_contrib/stdhooks'
+#25 220.4 217158 INFO: Processing pre-safe-import-module hook 'hook-typing_extensions.py' from '/usr/lib/python3.12/site-packages/PyInstaller/hooks/pre_safe_import_module'
+#25 220.5 217175 INFO: SetuptoolsInfo: initializing cached setuptools info...
+#25 229.5 226259 INFO: Processing pre-safe-import-module hook 'hook-distutils.py' from '/usr/lib/python3.12/site-packages/PyInstaller/hooks/pre_safe_import_module'
+#25 229.8 226487 INFO: Processing standard module hook 'hook-setuptools.py' from '/usr/lib/python3.12/site-packages/PyInstaller/hooks'
+#25 231.5 228194 INFO: Processing standard module hook 'hook-sysconfig.py' from '/usr/lib/python3.12/site-packages/PyInstaller/hooks'
+#25 241.2 237937 INFO: Processing pre-safe-import-module hook 'hook-importlib_metadata.py' from '/usr/lib/python3.12/site-packages/PyInstaller/hooks/pre_safe_import_module'
+#25 247.3 244044 INFO: Processing pre-safe-import-module hook 'hook-packaging.py' from '/usr/lib/python3.12/site-packages/PyInstaller/hooks/pre_safe_import_module'
+#25 247.5 244184 INFO: Processing standard module hook 'hook-packaging.py' from '/usr/lib/python3.12/site-packages/PyInstaller/hooks'
+#25 266.0 262754 INFO: Processing standard module hook 'hook-pkg_resources.py' from '/usr/lib/python3.12/site-packages/PyInstaller/hooks'
+#25 282.6 279307 INFO: Processing standard module hook 'hook-xml.py' from '/usr/lib/python3.12/site-packages/PyInstaller/hooks'
+#25 285.8 282517 INFO: Processing standard module hook 'hook-zope.interface.py' from '/usr/lib/python3.12/site-packages/PyInstaller/hooks'
+#25 288.8 285484 INFO: Processing standard module hook 'hook-difflib.py' from '/usr/lib/python3.12/site-packages/PyInstaller/hooks'
+#25 308.5 305254 INFO: Processing standard module hook 'hook-pytz.py' from '/usr/lib/python3.12/site-packages/PyInstaller/hooks'
+#25 323.7 320444 INFO: Processing standard module hook 'hook-multiprocessing.util.py' from '/usr/lib/python3.12/site-packages/PyInstaller/hooks'
+#25 410.3 406997 INFO: Analyzing hidden import 'output_plugins'
+#25 410.3 407010 INFO: Analyzing hidden import 'output_plugins.jsonlog'
+#25 410.4 407137 INFO: Processing module hooks (post-graph stage)...
+#25 410.5 407217 WARNING: Hidden import "charset_normalizer.md__mypyc" not found!
+#25 419.7 416434 INFO: Processing standard module hook 'hook-setuptools._vendor.importlib_metadata.py' from '/usr/lib/python3.12/site-packages/PyInstaller/hooks'
+#25 422.7 419409 INFO: Processing standard module hook 'hook-setuptools._vendor.jaraco.text.py' from '/usr/lib/python3.12/site-packages/PyInstaller/hooks'
+#25 441.9 438671 INFO: Processing pre-safe-import-module hook 'hook-platformdirs.py' from '/usr/lib/python3.12/site-packages/PyInstaller/hooks/pre_safe_import_module'
+#25 443.1 439871 INFO: Performing binary vs. data reclassification (613 entries)
+#25 444.3 441015 INFO: Looking for ctypes DLLs
+#25 445.2 441907 INFO: Analyzing run-time hooks ...
+#25 445.3 441989 INFO: Including run-time hook 'pyi_rth_inspect.py' from '/usr/lib/python3.12/site-packages/PyInstaller/hooks/rthooks'
+#25 445.3 442066 INFO: Including run-time hook 'pyi_rth_setuptools.py' from '/usr/lib/python3.12/site-packages/PyInstaller/hooks/rthooks'
+#25 445.4 442105 INFO: Including run-time hook 'pyi_rth_pkgutil.py' from '/usr/lib/python3.12/site-packages/PyInstaller/hooks/rthooks'
+#25 445.4 442165 INFO: Including run-time hook 'pyi_rth_multiprocessing.py' from '/usr/lib/python3.12/site-packages/PyInstaller/hooks/rthooks'
+#25 445.5 442235 INFO: Including run-time hook 'pyi_rth_pkgres.py' from '/usr/lib/python3.12/site-packages/PyInstaller/hooks/rthooks'
+#25 445.6 442353 INFO: Including run-time hook 'pyi_rth_cryptography_openssl.py' from '/usr/lib/python3.12/site-packages/_pyinstaller_hooks_contrib/rthooks'
+#25 446.6 443286 INFO: Creating base_library.zip...
+#25 447.8 444516 INFO: Looking for dynamic libraries
+#25 456.6 453291 INFO: Warnings written to /opt/ipphoney/build/ipphoney/warn-ipphoney.txt
+#25 457.9 454665 INFO: Graph cross-reference written to /opt/ipphoney/build/ipphoney/xref-ipphoney.html
+#25 458.7 455464 INFO: checking PYZ
+#25 458.7 455466 INFO: Building PYZ because PYZ-00.toc is non existent
+#25 458.7 455467 INFO: Building PYZ (ZlibArchive) /opt/ipphoney/build/ipphoney/PYZ-00.pyz
+#25 474.0 470680 INFO: Building PYZ (ZlibArchive) /opt/ipphoney/build/ipphoney/PYZ-00.pyz completed successfully.
+#25 474.4 471126 INFO: checking PKG
+#25 474.4 471127 INFO: Building PKG because PKG-00.toc is non existent
+#25 474.4 471129 INFO: Building PKG (CArchive) ipphoney.pkg
+#25 474.6 471367 INFO: Building PKG (CArchive) ipphoney.pkg completed successfully.
+#25 474.7 471391 INFO: Bootloader /usr/lib/python3.12/site-packages/PyInstaller/bootloader/Linux-64bit-arm-musl/run
+#25 474.7 471392 INFO: checking EXE
+#25 474.7 471394 INFO: Building EXE because EXE-00.toc is non existent
+#25 474.7 471395 INFO: Building EXE from EXE-00.toc
+#25 474.7 471402 INFO: Copying bootloader EXE to /opt/ipphoney/build/ipphoney/ipphoney
+#25 474.7 471411 INFO: Appending PKG archive to custom ELF section in EXE
+#25 474.9 471588 INFO: Building EXE from EXE-00.toc completed successfully.
+#25 475.1 471807 INFO: checking COLLECT
+#25 475.1 471808 INFO: Building COLLECT because COLLECT-00.toc is non existent
+#25 475.1 471809 INFO: Building COLLECT COLLECT-00.toc
+#25 476.2 472967 INFO: Building COLLECT COLLECT-00.toc completed successfully.
+#25 476.6 473289 INFO: Build complete! The results are available in: /opt/ipphoney/dist
+#25 DONE 477.6s
+
+#26 [ipphoney linux/arm64 stage-1 2/6] RUN apk --no-cache -U upgrade
+#26 CACHED
+
+#27 [ipphoney linux/arm64 stage-1 3/6] COPY --from=builder /opt/ipphoney/dist/ /opt/
+#27 DONE 0.4s
+
+#28 [ipphoney linux/arm64 stage-1 4/6] COPY --from=builder /opt/ipphoney/responses/ /opt/ipphoney/responses/
+#28 DONE 0.1s
+
+#29 [ipphoney linux/arm64 stage-1 5/6] COPY dist/honeypot.cfg /opt/ipphoney/etc/
+#29 DONE 0.0s
+
+#30 [ipphoney linux/arm64 stage-1 6/6] WORKDIR /opt/ipphoney/
+#30 DONE 0.0s
+
+#31 [ipphoney] exporting to image
+#31 exporting layers
+#31 exporting layers 3.5s done
+#31 exporting manifest sha256:eacb12f696586f488c9f7fd4489f7c0423c096ee730b82de52e3e7bb35118f3b 0.0s done
+#31 exporting config sha256:de60e1e27586e85294480661ec0356385b5beb65e8227dfb1238dad9c2910809 0.0s done
+#31 exporting attestation manifest sha256:be7c24e27cb983cd4f11f431cfed88b34d7aa897965b9488e8c609c297f27463 0.0s done
+#31 exporting manifest sha256:3e4c18fbec09065dfffd2a0afc9a3cb71052e17b01db78d6952a9d44b9586b7c 0.0s done
+#31 exporting config sha256:dc9a9f4d5483b9f476a50abd66e40771b94130916aa1874c9d952b6eb3e9c888 0.0s done
+#31 exporting attestation manifest sha256:7d371657e1dbf25da77c8cc1439ed453ade4a1854b4417014a162c03fc529b9b 0.0s done
+#31 exporting manifest list sha256:162d1d8a1086e666be2003161162e8c87a25e6161f076ff31888de3998cd25af 0.0s done
+#31 pushing layers
+#31 ...
+
+#32 [ipphoney auth] f0rc3ps/ipphoney:pull,push token for registry-1.docker.io
+#32 DONE 0.0s
+
+#31 [ipphoney] exporting to image
+#31 pushing layers 38.0s done
+#31 pushing manifest for docker.io/f0rc3ps/ipphoney:24.04.1@sha256:162d1d8a1086e666be2003161162e8c87a25e6161f076ff31888de3998cd25af
+#31 pushing manifest for docker.io/f0rc3ps/ipphoney:24.04.1@sha256:162d1d8a1086e666be2003161162e8c87a25e6161f076ff31888de3998cd25af 3.8s done
+#31 ...
+
+#33 [ipphoney auth] asc3t1c/ipphoney:pull,push token for ghcr.io
+#33 DONE 0.0s
+
+#31 [ipphoney] exporting to image
+#31 pushing layers 35.7s done
+#31 pushing manifest for ghcr.io/asc3t1c/ipphoney:24.04.1@sha256:162d1d8a1086e666be2003161162e8c87a25e6161f076ff31888de3998cd25af
+#31 pushing manifest for ghcr.io/asc3t1c/ipphoney:24.04.1@sha256:162d1d8a1086e666be2003161162e8c87a25e6161f076ff31888de3998cd25af 2.8s done
+#31 DONE 83.9s
+
+#34 [ipphoney] resolving provenance for metadata file
+#34 DONE 0.0s

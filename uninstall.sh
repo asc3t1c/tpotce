@@ -65,7 +65,7 @@ fi
 # Check type of sudo access
 sudo -n true > /dev/null 2>&1
 if [ $? -eq 1 ];
-  then   
+  then
     myANSIBLE_BECOME_OPTION="--ask-become-pass"
     echo "### ‘sudo‘ not acquired, setting ansible become option to ${myANSIBLE_BECOME_OPTION}."
     echo "### Ansible will ask for the ‘BECOME password‘ which is typically the password you ’sudo’ with."
@@ -94,8 +94,6 @@ if [ ! $? -eq 0 ];
     echo "### Now removing ${HOME}/tpotce."
     sudo rm -rf ${HOME}/tpotce
     rm -rf ${HOME}/tpot.yml
-    cd 
-    rm -rf ${HOME}/*
     echo
 fi
 

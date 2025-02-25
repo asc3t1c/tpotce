@@ -1,0 +1,472 @@
+Compose now can delegate build to bake for better performances
+Just set COMPOSE_BAKE=true
+#0 building with "mybuilder" instance using docker-container driver
+
+#1 [honeypots internal] load build definition from Dockerfile
+#1 transferring dockerfile: 1.79kB 0.0s done
+#1 DONE 0.0s
+
+#2 [honeypots auth] library/alpine:pull token for registry-1.docker.io
+#2 DONE 0.0s
+
+#3 [honeypots linux/amd64 internal] load metadata for docker.io/library/alpine:3.20
+#3 DONE 4.2s
+
+#4 [honeypots linux/arm64 internal] load metadata for docker.io/library/alpine:3.20
+#4 DONE 4.2s
+
+#5 [honeypots internal] load .dockerignore
+#5 transferring context: 2B 0.0s done
+#5 DONE 0.0s
+
+#6 [honeypots linux/arm64 1/4] FROM docker.io/library/alpine:3.20@sha256:de4fe7064d8f98419ea6b49190df1abbf43450c1702eeb864fe9ced453c1cc5f
+#6 resolve docker.io/library/alpine:3.20@sha256:de4fe7064d8f98419ea6b49190df1abbf43450c1702eeb864fe9ced453c1cc5f 0.0s done
+#6 DONE 0.0s
+
+#7 [honeypots linux/amd64 1/4] FROM docker.io/library/alpine:3.20@sha256:de4fe7064d8f98419ea6b49190df1abbf43450c1702eeb864fe9ced453c1cc5f
+#7 resolve docker.io/library/alpine:3.20@sha256:de4fe7064d8f98419ea6b49190df1abbf43450c1702eeb864fe9ced453c1cc5f 0.0s done
+#7 DONE 0.0s
+
+#8 [honeypots internal] load build context
+#8 transferring context: 8.11kB 0.0s done
+#8 DONE 0.0s
+
+#9 [honeypots linux/amd64 2/4] COPY dist/ /root/dist/
+#9 CACHED
+
+#10 [honeypots linux/amd64 3/4] RUN apk --no-cache -U upgrade && 	apk --no-cache -U add 		build-base 		freetds 		freetds-dev 		gcc 		git 		hiredis 		jpeg-dev 		libcap 		libffi-dev 		libpq 		musl-dev 		openssl 		openssl-dev 		postgresql-dev 		py3-chardet 		py3-click 		py3-cryptography 		py3-dnspython 		py3-flask 		py3-future 		py3-hiredis 		py3-itsdangerous 		py3-jinja2 		py3-ldap3 		py3-markupsafe 		py3-openssl 		py3-packaging 		py3-pip 		py3-psycopg2 		py3-pycryptodomex 		py3-werkzeug 		py3-wheel 		python3 		python3-dev 		zlib-dev &&     mkdir -p /opt              /var/log/honeypots &&     cd /opt/ &&     git clone https://github.com/qeeqbox/honeypots &&     cd honeypots && 	git checkout 238c6732d28b36ab88f2008361bafc8aef054755 &&     pip3 install --break-system-packages --no-cache-dir . &&     setcap cap_net_bind_service=+ep $(readlink -f $(type -P python3)) &&     addgroup -g 2000 honeypots &&     adduser -S -H -s /bin/ash -u 2000 -D -g 2000 honeypots &&     chown honeypots:honeypots -R /opt/honeypots &&     chown honeypots:honeypots -R /var/log/honeypots &&     mv /root/dist/config.json /opt/honeypots/ &&     apk del --purge build-base 		freetds-dev 		git 		jpeg-dev 		libffi-dev 		openssl-dev 		postgresql-dev 		py3-pip 		python3-dev 		zlib-dev && 	rm -rf /root/* 			/var/cache/apk/* 			/opt/honeypots/.git
+#10 CACHED
+
+#11 [honeypots linux/arm64 2/4] COPY dist/ /root/dist/
+#11 CACHED
+
+#12 [honeypots linux/amd64 4/4] WORKDIR /opt/honeypots/
+#12 CACHED
+
+#13 [honeypots linux/arm64 3/4] RUN apk --no-cache -U upgrade && 	apk --no-cache -U add 		build-base 		freetds 		freetds-dev 		gcc 		git 		hiredis 		jpeg-dev 		libcap 		libffi-dev 		libpq 		musl-dev 		openssl 		openssl-dev 		postgresql-dev 		py3-chardet 		py3-click 		py3-cryptography 		py3-dnspython 		py3-flask 		py3-future 		py3-hiredis 		py3-itsdangerous 		py3-jinja2 		py3-ldap3 		py3-markupsafe 		py3-openssl 		py3-packaging 		py3-pip 		py3-psycopg2 		py3-pycryptodomex 		py3-werkzeug 		py3-wheel 		python3 		python3-dev 		zlib-dev &&     mkdir -p /opt              /var/log/honeypots &&     cd /opt/ &&     git clone https://github.com/qeeqbox/honeypots &&     cd honeypots && 	git checkout 238c6732d28b36ab88f2008361bafc8aef054755 &&     pip3 install --break-system-packages --no-cache-dir . &&     setcap cap_net_bind_service=+ep $(readlink -f $(type -P python3)) &&     addgroup -g 2000 honeypots &&     adduser -S -H -s /bin/ash -u 2000 -D -g 2000 honeypots &&     chown honeypots:honeypots -R /opt/honeypots &&     chown honeypots:honeypots -R /var/log/honeypots &&     mv /root/dist/config.json /opt/honeypots/ &&     apk del --purge build-base 		freetds-dev 		git 		jpeg-dev 		libffi-dev 		openssl-dev 		postgresql-dev 		py3-pip 		python3-dev 		zlib-dev && 	rm -rf /root/* 			/var/cache/apk/* 			/opt/honeypots/.git
+#13 0.602 fetch https://dl-cdn.alpinelinux.org/alpine/v3.20/main/aarch64/APKINDEX.tar.gz
+#13 2.276 fetch https://dl-cdn.alpinelinux.org/alpine/v3.20/community/aarch64/APKINDEX.tar.gz
+#13 6.032 OK: 9 MiB in 14 packages
+#13 6.618 fetch https://dl-cdn.alpinelinux.org/alpine/v3.20/main/aarch64/APKINDEX.tar.gz
+#13 8.047 fetch https://dl-cdn.alpinelinux.org/alpine/v3.20/community/aarch64/APKINDEX.tar.gz
+#13 11.58 (1/134) Installing libgcc (13.2.1_git20240309-r0)
+#13 11.85 (2/134) Installing jansson (2.14-r4)
+#13 12.14 (3/134) Installing libstdc++ (13.2.1_git20240309-r0)
+#13 13.65 (4/134) Installing zstd-libs (1.5.6-r0)
+#13 14.57 (5/134) Installing binutils (2.42-r0)
+#13 17.73 (6/134) Installing libmagic (5.45-r1)
+#13 18.54 (7/134) Installing file (5.45-r1)
+#13 18.91 (8/134) Installing libgomp (13.2.1_git20240309-r0)
+#13 19.40 (9/134) Installing libatomic (13.2.1_git20240309-r0)
+#13 19.79 (10/134) Installing gmp (6.3.0-r1)
+#13 20.37 (11/134) Installing isl26 (0.26-r1)
+#13 21.05 (12/134) Installing mpfr4 (4.2.1-r0)
+#13 21.46 (13/134) Installing mpc1 (1.3.1-r1)
+#13 21.76 (14/134) Installing gcc (13.2.1_git20240309-r0)
+#13 37.66 (15/134) Installing libstdc++-dev (13.2.1_git20240309-r0)
+#13 39.49 (16/134) Installing musl-dev (1.2.5-r1)
+#13 40.64 (17/134) Installing g++ (13.2.1_git20240309-r0)
+#13 44.45 (18/134) Installing make (4.4.1-r2)
+#13 44.49 (19/134) Installing fortify-headers (1.1-r3)
+#13 44.50 (20/134) Installing patch (2.7.6-r10)
+#13 44.53 (21/134) Installing build-base (0.5-r3)
+#13 44.54 (22/134) Installing ncurses-terminfo-base (6.4_p20240420-r2)
+#13 44.58 (23/134) Installing libncursesw (6.4_p20240420-r2)
+#13 44.62 (24/134) Installing readline (8.2.10-r0)
+#13 44.67 (25/134) Installing unixodbc (2.3.12-r0)
+#13 44.75 (26/134) Installing freetds (1.4.14-r0)
+#13 45.05 (27/134) Installing freetds-dev (1.4.14-r0)
+#13 45.07 (28/134) Installing ca-certificates (20241121-r1)
+#13 45.28 (29/134) Installing brotli-libs (1.1.0-r2)
+#13 45.39 (30/134) Installing c-ares (1.33.1-r0)
+#13 45.43 (31/134) Installing libunistring (1.2-r0)
+#13 45.59 (32/134) Installing libidn2 (2.3.7-r0)
+#13 45.62 (33/134) Installing nghttp2-libs (1.62.1-r0)
+#13 45.64 (34/134) Installing libpsl (0.21.5-r1)
+#13 45.66 (35/134) Installing libcurl (8.12.1-r0)
+#13 45.74 (36/134) Installing libexpat (2.6.4-r0)
+#13 45.77 (37/134) Installing pcre2 (10.43-r0)
+#13 45.85 (38/134) Installing git (2.45.3-r0)
+#13 46.71 (39/134) Installing git-init-template (2.45.3-r0)
+#13 46.73 (40/134) Installing hiredis (1.2.0-r0)
+#13 46.75 (41/134) Installing libjpeg-turbo (3.0.3-r0)
+#13 46.81 (42/134) Installing libturbojpeg (3.0.3-r0)
+#13 46.90 (43/134) Installing pkgconf (2.2.0-r0)
+#13 46.93 (44/134) Installing libjpeg-turbo-dev (3.0.3-r0)
+#13 46.96 (45/134) Installing jpeg-dev (9e-r1)
+#13 47.00 (46/134) Installing libcap2 (2.70-r0)
+#13 47.02 (47/134) Installing libcap-getcap (2.70-r0)
+#13 47.02 (48/134) Installing libcap-setcap (2.70-r0)
+#13 47.03 (49/134) Installing libcap-utils (2.70-r0)
+#13 47.05 (50/134) Installing libcap (2.70-r0)
+#13 47.05 (51/134) Installing linux-headers (6.6-r0)
+#13 47.80 (52/134) Installing libffi (3.4.6-r0)
+#13 47.81 (53/134) Installing libffi-dev (3.4.6-r0)
+#13 47.84 (54/134) Installing libpq (16.8-r0)
+#13 47.88 (55/134) Installing openssl (3.3.3-r0)
+#13 47.96 (56/134) Installing openssl-dev (3.3.3-r0)
+#13 48.12 (57/134) Installing libpq-dev (16.8-r0)
+#13 48.27 (58/134) Installing libecpg (16.8-r0)
+#13 48.32 (59/134) Installing libecpg-dev (16.8-r0)
+#13 48.44 (60/134) Installing clang16-headers (16.0.6-r5)
+#13 48.93 (61/134) Installing xz-libs (5.6.2-r0)
+#13 49.00 (62/134) Installing libxml2 (2.12.7-r0)
+#13 49.17 (63/134) Installing llvm16-libs (16.0.6-r8)
+#13 66.71 (64/134) Installing clang16-libs (16.0.6-r5)
+#13 74.64 (65/134) Installing llvm16-linker-tools (16.0.6-r8)
+#13 74.99 (66/134) Installing clang16 (16.0.6-r5)
+#13 75.40 (67/134) Installing icu-data-en (74.2-r0)
+#13 76.12 Executing icu-data-en-74.2-r0.post-install
+#13 76.28 *
+#13 76.28 * If you need ICU with non-English locales and legacy charset support, install
+#13 76.28 * package icu-data-full.
+#13 76.28 *
+#13 76.29 (68/134) Installing icu-libs (74.2-r0)
+#13 77.33 (69/134) Installing icu (74.2-r0)
+#13 77.79 (70/134) Installing icu-dev (74.2-r0)
+#13 78.58 (71/134) Installing llvm16 (16.0.6-r8)
+#13 90.65 (72/134) Installing lz4-libs (1.9.4-r5)
+#13 90.95 (73/134) Installing lz4-dev (1.9.4-r5)
+#13 91.25 (74/134) Installing zstd (1.5.6-r0)
+#13 91.62 (75/134) Installing zstd-dev (1.5.6-r0)
+#13 91.96 (76/134) Installing postgresql16-dev (16.8-r0)
+#13 93.05 (77/134) Installing libbz2 (1.0.8-r6)
+#13 93.30 (78/134) Installing gdbm (1.23-r1)
+#13 93.51 (79/134) Installing mpdecimal (4.0.0-r0)
+#13 93.75 (80/134) Installing libpanelw (6.4_p20240420-r2)
+#13 93.97 (81/134) Installing sqlite-libs (3.45.3-r1)
+#13 94.40 (82/134) Installing python3 (3.12.9-r0)
+#13 96.96 (83/134) Installing python3-pycache-pyc0 (3.12.9-r0)
+#13 98.49 (84/134) Installing pyc (3.12.9-r0)
+#13 98.73 (85/134) Installing py3-chardet-pyc (5.2.0-r1)
+#13 99.04 (86/134) Installing python3-pyc (3.12.9-r0)
+#13 99.28 (87/134) Installing py3-chardet (5.2.0-r1)
+#13 99.62 (88/134) Installing py3-click (8.1.7-r2)
+#13 99.91 (89/134) Installing py3-click-pyc (8.1.7-r2)
+#13 100.2 (90/134) Installing py3-cparser (2.22-r1)
+#13 100.5 (91/134) Installing py3-cparser-pyc (2.22-r1)
+#13 100.8 (92/134) Installing py3-cffi (1.16.0-r1)
+#13 101.2 (93/134) Installing py3-cffi-pyc (1.16.0-r1)
+#13 101.5 (94/134) Installing py3-cryptography (42.0.7-r0)
+#13 102.0 (95/134) Installing py3-cryptography-pyc (42.0.7-r0)
+#13 102.3 (96/134) Installing py3-dnspython (2.6.1-r1)
+#13 102.7 (97/134) Installing py3-dnspython-pyc (2.6.1-r1)
+#13 103.1 (98/134) Installing py3-blinker (1.7.0-r1)
+#13 103.4 (99/134) Installing py3-blinker-pyc (1.7.0-r1)
+#13 103.6 (100/134) Installing py3-itsdangerous (2.1.2-r4)
+#13 103.9 (101/134) Installing py3-itsdangerous-pyc (2.1.2-r4)
+#13 104.2 (102/134) Installing py3-markupsafe (2.1.5-r1)
+#13 104.5 (103/134) Installing py3-markupsafe-pyc (2.1.5-r1)
+#13 104.8 (104/134) Installing py3-jinja2 (3.1.5-r0)
+#13 105.1 (105/134) Installing py3-jinja2-pyc (3.1.5-r0)
+#13 105.4 (106/134) Installing py3-werkzeug (3.0.6-r0)
+#13 105.8 (107/134) Installing py3-werkzeug-pyc (3.0.6-r0)
+#13 106.2 (108/134) Installing py3-flask (3.0.3-r0)
+#13 106.5 (109/134) Installing py3-flask-pyc (3.0.3-r0)
+#13 106.8 (110/134) Installing py3-future (1.0.0-r1)
+#13 107.4 (111/134) Installing py3-future-pyc (1.0.0-r1)
+#13 107.9 (112/134) Installing py3-hiredis (2.3.2-r1)
+#13 108.3 (113/134) Installing py3-hiredis-pyc (2.3.2-r1)
+#13 108.6 (114/134) Installing py3-asn1 (0.6.0-r1)
+#13 109.0 (115/134) Installing py3-asn1-pyc (0.6.0-r1)
+#13 109.4 (116/134) Installing py3-ldap3 (2.9.1-r3)
+#13 110.0 (117/134) Installing py3-ldap3-pyc (2.9.1-r3)
+#13 110.5 (118/134) Installing py3-openssl (24.1.0-r1)
+#13 110.8 (119/134) Installing py3-openssl-pyc (24.1.0-r1)
+#13 111.2 (120/134) Installing py3-parsing (3.1.2-r1)
+#13 111.5 (121/134) Installing py3-parsing-pyc (3.1.2-r1)
+#13 112.1 (122/134) Installing py3-packaging (24.0-r1)
+#13 112.4 (123/134) Installing py3-packaging-pyc (24.0-r1)
+#13 112.7 (124/134) Installing py3-setuptools (70.3.0-r0)
+#13 113.2 (125/134) Installing py3-setuptools-pyc (70.3.0-r0)
+#13 114.0 (126/134) Installing py3-pip (24.0-r2)
+#13 115.0 (127/134) Installing py3-pip-pyc (24.0-r2)
+#13 116.1 (128/134) Installing py3-psycopg2 (2.9.9-r1)
+#13 116.4 (129/134) Installing py3-psycopg2-pyc (2.9.9-r1)
+#13 116.7 (130/134) Installing py3-pycryptodomex (3.20.0-r1)
+#13 117.7 (131/134) Installing py3-wheel (0.42.0-r1)
+#13 118.0 (132/134) Installing py3-wheel-pyc (0.42.0-r1)
+#13 118.2 (133/134) Installing python3-dev (3.12.9-r0)
+#13 129.9 (134/134) Installing zlib-dev (1.3.1-r1)
+#13 130.2 Executing busybox-1.36.1-r29.trigger
+#13 130.4 Executing ca-certificates-20241121-r1.trigger
+#13 131.6 OK: 828 MiB in 148 packages
+#13 132.2 Cloning into 'honeypots'...
+#13 140.3 Note: switching to '238c6732d28b36ab88f2008361bafc8aef054755'.
+#13 140.3 
+#13 140.3 You are in 'detached HEAD' state. You can look around, make experimental
+#13 140.3 changes and commit them, and you can discard any commits you make in this
+#13 140.3 state without impacting any branches by switching back to a branch.
+#13 140.3 
+#13 140.3 If you want to create a new branch to retain commits you create, you may
+#13 140.3 do so (now or later) by using -c with the switch command. Example:
+#13 140.3 
+#13 140.3   git switch -c <new-branch-name>
+#13 140.3 
+#13 140.3 Or undo this operation with:
+#13 140.3 
+#13 140.3   git switch -
+#13 140.3 
+#13 140.3 Turn off this advice by setting config variable advice.detachedHead to false
+#13 140.3 
+#13 140.3 HEAD is now at 238c673 Merge pull request #80 from t3chn0m4g3/main
+#13 168.3 Processing /opt/honeypots
+#13 168.4   Installing build dependencies: started
+#13 221.6   Installing build dependencies: finished with status 'done'
+#13 221.6   Getting requirements to build wheel: started
+#13 228.3   Getting requirements to build wheel: finished with status 'done'
+#13 228.3   Preparing metadata (pyproject.toml): started
+#13 235.8   Preparing metadata (pyproject.toml): finished with status 'done'
+#13 238.9 Collecting twisted==24.10.0 (from honeypots==0.66)
+#13 240.7   Downloading twisted-24.10.0-py3-none-any.whl.metadata (20 kB)
+#13 244.2 Collecting psutil==5.9.0 (from honeypots==0.66)
+#13 244.7   Downloading psutil-5.9.0.tar.gz (478 kB)
+#13 246.6      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 478.3/478.3 kB 278.3 kB/s eta 0:00:00
+#13 247.7   Preparing metadata (setup.py): started
+#13 254.7   Preparing metadata (setup.py): finished with status 'done'
+#13 257.7 Collecting pycryptodome==3.19.1 (from honeypots==0.66)
+#13 257.9   Downloading pycryptodome-3.19.1-cp35-abi3-musllinux_1_1_aarch64.whl.metadata (3.4 kB)
+#13 259.4 Collecting requests==2.32.0 (from honeypots==0.66)
+#13 259.7   Downloading requests-2.32.0-py3-none-any.whl.metadata (4.6 kB)
+#13 260.1 Collecting impacket==0.9.24 (from honeypots==0.66)
+#13 260.9   Downloading impacket-0.9.24.tar.gz (7.1 MB)
+#13 268.9      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 7.1/7.1 MB 893.9 kB/s eta 0:00:00
+#13 276.7   Preparing metadata (setup.py): started
+#13 282.0   Preparing metadata (setup.py): finished with status 'done'
+#13 283.1 Collecting paramiko==3.5.0 (from honeypots==0.66)
+#13 283.2   Downloading paramiko-3.5.0-py3-none-any.whl.metadata (4.4 kB)
+#13 283.7 Collecting scapy (from honeypots==0.66)
+#13 283.9   Downloading scapy-2.6.1-py3-none-any.whl.metadata (5.6 kB)
+#13 284.2 Collecting service-identity==21.1.0 (from honeypots==0.66)
+#13 284.5   Downloading service_identity-21.1.0-py2.py3-none-any.whl.metadata (5.7 kB)
+#13 285.0 Collecting netifaces==0.11.0 (from honeypots==0.66)
+#13 285.2   Downloading netifaces-0.11.0.tar.gz (30 kB)
+#13 285.3   Preparing metadata (setup.py): started
+#13 290.1   Preparing metadata (setup.py): finished with status 'done'
+#13 290.7 Requirement already satisfied: pyasn1>=0.2.3 in /usr/lib/python3.12/site-packages (from impacket==0.9.24->honeypots==0.66) (0.6.0)
+#13 290.7 Requirement already satisfied: pycryptodomex in /usr/lib/python3.12/site-packages (from impacket==0.9.24->honeypots==0.66) (3.20.0)
+#13 290.8 Requirement already satisfied: pyOpenSSL>=0.16.2 in /usr/lib/python3.12/site-packages (from impacket==0.9.24->honeypots==0.66) (24.1.0)
+#13 291.5 Collecting six (from impacket==0.9.24->honeypots==0.66)
+#13 291.6   Downloading six-1.17.0-py2.py3-none-any.whl.metadata (1.7 kB)
+#13 291.7 Requirement already satisfied: ldap3!=2.5.0,!=2.5.2,!=2.6,>=2.5 in /usr/lib/python3.12/site-packages (from impacket==0.9.24->honeypots==0.66) (2.9)
+#13 292.0 Collecting ldapdomaindump>=0.9.0 (from impacket==0.9.24->honeypots==0.66)
+#13 292.2   Downloading ldapdomaindump-0.9.4-py3-none-any.whl.metadata (359 bytes)
+#13 292.3 Requirement already satisfied: flask>=1.0 in /usr/lib/python3.12/site-packages (from impacket==0.9.24->honeypots==0.66) (3.0.3)
+#13 292.3 Requirement already satisfied: future in /usr/lib/python3.12/site-packages (from impacket==0.9.24->honeypots==0.66) (1.0.0)
+#13 292.3 Requirement already satisfied: chardet in /usr/lib/python3.12/site-packages (from impacket==0.9.24->honeypots==0.66) (5.2.0)
+#13 294.4 Collecting bcrypt>=3.2 (from paramiko==3.5.0->honeypots==0.66)
+#13 294.6   Downloading bcrypt-4.2.1-cp39-abi3-musllinux_1_2_aarch64.whl.metadata (9.8 kB)
+#13 294.7 Requirement already satisfied: cryptography>=3.3 in /usr/lib/python3.12/site-packages (from paramiko==3.5.0->honeypots==0.66) (42.0.7)
+#13 295.4 Collecting pynacl>=1.5 (from paramiko==3.5.0->honeypots==0.66)
+#13 295.5   Downloading PyNaCl-1.5.0-cp36-abi3-musllinux_1_1_aarch64.whl.metadata (8.6 kB)
+#13 299.1 Collecting charset-normalizer<4,>=2 (from requests==2.32.0->honeypots==0.66)
+#13 299.2   Downloading charset_normalizer-3.4.1-cp312-cp312-musllinux_1_2_aarch64.whl.metadata (35 kB)
+#13 299.5 Collecting idna<4,>=2.5 (from requests==2.32.0->honeypots==0.66)
+#13 299.6   Downloading idna-3.10-py3-none-any.whl.metadata (10 kB)
+#13 300.6 Collecting urllib3<3,>=1.21.1 (from requests==2.32.0->honeypots==0.66)
+#13 300.7   Downloading urllib3-2.3.0-py3-none-any.whl.metadata (6.5 kB)
+#13 301.1 Collecting certifi>=2017.4.17 (from requests==2.32.0->honeypots==0.66)
+#13 301.1   Downloading certifi-2025.1.31-py3-none-any.whl.metadata (2.5 kB)
+#13 301.4 Collecting PySocks!=1.5.7,>=1.5.6 (from requests[socks]==2.32.0->honeypots==0.66)
+#13 301.5   Downloading PySocks-1.7.1-py3-none-any.whl.metadata (13 kB)
+#13 302.0 Collecting attrs>=19.1.0 (from service-identity==21.1.0->honeypots==0.66)
+#13 302.1   Downloading attrs-25.1.0-py3-none-any.whl.metadata (10 kB)
+#13 302.6 Collecting pyasn1-modules (from service-identity==21.1.0->honeypots==0.66)
+#13 302.6   Downloading pyasn1_modules-0.4.1-py3-none-any.whl.metadata (3.5 kB)
+#13 307.6 Collecting automat>=24.8.0 (from twisted==24.10.0->honeypots==0.66)
+#13 307.6   Downloading Automat-24.8.1-py3-none-any.whl.metadata (8.4 kB)
+#13 307.8 Collecting constantly>=15.1 (from twisted==24.10.0->honeypots==0.66)
+#13 307.8   Downloading constantly-23.10.4-py3-none-any.whl.metadata (1.8 kB)
+#13 308.0 Collecting hyperlink>=17.1.1 (from twisted==24.10.0->honeypots==0.66)
+#13 308.1   Downloading hyperlink-21.0.0-py2.py3-none-any.whl.metadata (1.5 kB)
+#13 308.2 Collecting incremental>=24.7.0 (from twisted==24.10.0->honeypots==0.66)
+#13 308.3   Downloading incremental-24.7.2-py3-none-any.whl.metadata (8.1 kB)
+#13 308.8 Collecting typing-extensions>=4.2.0 (from twisted==24.10.0->honeypots==0.66)
+#13 308.8   Downloading typing_extensions-4.12.2-py3-none-any.whl.metadata (3.0 kB)
+#13 313.5 Collecting zope-interface>=5 (from twisted==24.10.0->honeypots==0.66)
+#13 313.5   Downloading zope.interface-7.2.tar.gz (252 kB)
+#13 313.7      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 253.0/253.0 kB 3.7 MB/s eta 0:00:00
+#13 314.3   Installing build dependencies: started
+#13 358.2   Installing build dependencies: finished with status 'done'
+#13 358.2   Getting requirements to build wheel: started
+#13 363.7   Getting requirements to build wheel: finished with status 'done'
+#13 363.7   Preparing metadata (pyproject.toml): started
+#13 369.1   Preparing metadata (pyproject.toml): finished with status 'done'
+#13 371.5 Requirement already satisfied: cffi>=1.12 in /usr/lib/python3.12/site-packages (from cryptography>=3.3->paramiko==3.5.0->honeypots==0.66) (1.16.0)
+#13 371.7 Requirement already satisfied: Werkzeug>=3.0.0 in /usr/lib/python3.12/site-packages (from flask>=1.0->impacket==0.9.24->honeypots==0.66) (3.0.6)
+#13 371.7 Requirement already satisfied: Jinja2>=3.1.2 in /usr/lib/python3.12/site-packages (from flask>=1.0->impacket==0.9.24->honeypots==0.66) (3.1.5)
+#13 371.8 Requirement already satisfied: itsdangerous>=2.1.2 in /usr/lib/python3.12/site-packages (from flask>=1.0->impacket==0.9.24->honeypots==0.66) (2.1.2)
+#13 371.8 Requirement already satisfied: click>=8.1.3 in /usr/lib/python3.12/site-packages (from flask>=1.0->impacket==0.9.24->honeypots==0.66) (8.1.7)
+#13 371.8 Requirement already satisfied: blinker>=1.6.2 in /usr/lib/python3.12/site-packages (from flask>=1.0->impacket==0.9.24->honeypots==0.66) (1.7.0)
+#13 372.3 Requirement already satisfied: setuptools>=61.0 in /usr/lib/python3.12/site-packages (from incremental>=24.7.0->twisted==24.10.0->honeypots==0.66) (70.3.0)
+#13 372.7 Requirement already satisfied: dnspython in /usr/lib/python3.12/site-packages (from ldapdomaindump>=0.9.0->impacket==0.9.24->honeypots==0.66) (2.6.1)
+#13 375.4 Requirement already satisfied: pycparser in /usr/lib/python3.12/site-packages (from cffi>=1.12->cryptography>=3.3->paramiko==3.5.0->honeypots==0.66) (2.22)
+#13 376.0 Requirement already satisfied: MarkupSafe>=2.0 in /usr/lib/python3.12/site-packages (from Jinja2>=3.1.2->flask>=1.0->impacket==0.9.24->honeypots==0.66) (2.1.5)
+#13 378.4 WARNING: The candidate selected for download or install is a yanked version: 'requests' candidate (version 2.32.0 at https://files.pythonhosted.org/packages/24/e8/09e8d662a9675a4e4f5dd7a8e6127b463a091d2703ed931a64aa66d00065/requests-2.32.0-py3-none-any.whl (from https://pypi.org/simple/requests/) (requires-python:>=3.8))
+#13 378.4 Reason for being yanked: Yanked due to conflicts with CVE-2024-35195 mitigation
+#13 378.4 Downloading paramiko-3.5.0-py3-none-any.whl (227 kB)
+#13 378.5    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 227.1/227.1 kB 5.7 MB/s eta 0:00:00
+#13 378.5 Downloading pycryptodome-3.19.1-cp35-abi3-musllinux_1_1_aarch64.whl (2.0 MB)
+#13 378.9    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.0/2.0 MB 5.7 MB/s eta 0:00:00
+#13 379.0 Downloading requests-2.32.0-py3-none-any.whl (63 kB)
+#13 379.0    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 63.7/63.7 kB 8.0 MB/s eta 0:00:00
+#13 379.0 Downloading service_identity-21.1.0-py2.py3-none-any.whl (12 kB)
+#13 379.1 Downloading twisted-24.10.0-py3-none-any.whl (3.2 MB)
+#13 379.8    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 3.2/3.2 MB 4.8 MB/s eta 0:00:00
+#13 379.8 Downloading scapy-2.6.1-py3-none-any.whl (2.4 MB)
+#13 380.3    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.4/2.4 MB 4.9 MB/s eta 0:00:00
+#13 380.4 Downloading attrs-25.1.0-py3-none-any.whl (63 kB)
+#13 380.4    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 63.2/63.2 kB 7.4 MB/s eta 0:00:00
+#13 380.5 Downloading Automat-24.8.1-py3-none-any.whl (42 kB)
+#13 380.5    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 42.6/42.6 kB 8.1 MB/s eta 0:00:00
+#13 380.5 Downloading bcrypt-4.2.1-cp39-abi3-musllinux_1_2_aarch64.whl (320 kB)
+#13 380.6    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 320.6/320.6 kB 5.7 MB/s eta 0:00:00
+#13 380.7 Downloading certifi-2025.1.31-py3-none-any.whl (166 kB)
+#13 380.8    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 166.4/166.4 kB 4.2 MB/s eta 0:00:00
+#13 380.8 Downloading charset_normalizer-3.4.1-cp312-cp312-musllinux_1_2_aarch64.whl (141 kB)
+#13 380.9    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 141.1/141.1 kB 3.9 MB/s eta 0:00:00
+#13 380.9 Downloading constantly-23.10.4-py3-none-any.whl (13 kB)
+#13 381.0 Downloading hyperlink-21.0.0-py2.py3-none-any.whl (74 kB)
+#13 381.0    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 74.6/74.6 kB 8.0 MB/s eta 0:00:00
+#13 381.0 Downloading idna-3.10-py3-none-any.whl (70 kB)
+#13 381.1    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 70.4/70.4 kB 8.1 MB/s eta 0:00:00
+#13 381.1 Downloading incremental-24.7.2-py3-none-any.whl (20 kB)
+#13 381.2 Downloading ldapdomaindump-0.9.4-py3-none-any.whl (18 kB)
+#13 381.2 Downloading PyNaCl-1.5.0-cp36-abi3-musllinux_1_1_aarch64.whl (663 kB)
+#13 381.4    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 663.8/663.8 kB 5.2 MB/s eta 0:00:00
+#13 381.4 Downloading PySocks-1.7.1-py3-none-any.whl (16 kB)
+#13 381.5 Downloading typing_extensions-4.12.2-py3-none-any.whl (37 kB)
+#13 381.5 Downloading urllib3-2.3.0-py3-none-any.whl (128 kB)
+#13 381.6    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 128.4/128.4 kB 7.6 MB/s eta 0:00:00
+#13 381.6 Downloading pyasn1_modules-0.4.1-py3-none-any.whl (181 kB)
+#13 381.7    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 181.5/181.5 kB 5.6 MB/s eta 0:00:00
+#13 381.7 Downloading six-1.17.0-py2.py3-none-any.whl (11 kB)
+#13 383.3 Building wheels for collected packages: honeypots, impacket, netifaces, psutil, zope-interface
+#13 383.3   Building wheel for honeypots (pyproject.toml): started
+#13 389.7   Building wheel for honeypots (pyproject.toml): finished with status 'done'
+#13 389.7   Created wheel for honeypots: filename=honeypots-0.66-py3-none-any.whl size=84437 sha256=43e3dd0d4602b7e5fa9ba3234c4c179c2c81e7eea646c0beb78a466b339a72f0
+#13 389.7   Stored in directory: /tmp/pip-ephem-wheel-cache-04k_9eem/wheels/0c/c9/a1/86c412bd7995085710ff8edb613a8e753902de18ba768a1479
+#13 389.7   Building wheel for impacket (setup.py): started
+#13 399.6   Building wheel for impacket (setup.py): finished with status 'done'
+#13 399.7   Created wheel for impacket: filename=impacket-0.9.24-py3-none-any.whl size=1450136 sha256=73b9457b36eb779f02ed41d67f34c58e9dabc13af76c7f7e32fd073391585c2e
+#13 399.7   Stored in directory: /tmp/pip-ephem-wheel-cache-04k_9eem/wheels/14/a4/0d/f12fb77ceb72a171559249c489cd05bf848a6baae41a2f14e2
+#13 399.8   Building wheel for netifaces (setup.py): started
+#13 459.8   Building wheel for netifaces (setup.py): still running...
+#13 476.7   Building wheel for netifaces (setup.py): finished with status 'done'
+#13 476.7   Created wheel for netifaces: filename=netifaces-0.11.0-cp312-cp312-linux_aarch64.whl size=35794 sha256=60b20d8f3f50d037fa2543436a84ff7c67844cbc22df587cfef28d7f8754f802
+#13 476.7   Stored in directory: /tmp/pip-ephem-wheel-cache-04k_9eem/wheels/63/fa/57/da80d0ffc8f993315c479b7cd4c8fb1c23910c8baccf6b1b27
+#13 476.7   Building wheel for psutil (setup.py): started
+#13 518.4   Building wheel for psutil (setup.py): finished with status 'done'
+#13 518.5   Created wheel for psutil: filename=psutil-5.9.0-cp312-cp312-linux_aarch64.whl size=279341 sha256=0f38774b7191580656149eb6af8ffdf7690834a4bb1b84b6d930ef3df5b21c50
+#13 518.5   Stored in directory: /tmp/pip-ephem-wheel-cache-04k_9eem/wheels/86/bf/4d/f133d3cbffc7c8991cd85fec43d18ff7507b3bc9042bbfd146
+#13 518.6   Building wheel for zope-interface (pyproject.toml): started
+#13 547.2   Building wheel for zope-interface (pyproject.toml): finished with status 'done'
+#13 547.2   Created wheel for zope-interface: filename=zope.interface-7.2-cp312-cp312-linux_aarch64.whl size=260875 sha256=d5c3fb23812a1e3add4f5595db12f142be5a9b09778c7bdd4c82d5074f695ee0
+#13 547.2   Stored in directory: /tmp/pip-ephem-wheel-cache-04k_9eem/wheels/b0/00/b3/edc5f297df7ca70ad221749d179d9c9c781266928c6ae74e94
+#13 547.3 Successfully built honeypots impacket netifaces psutil zope-interface
+#13 556.8 Installing collected packages: netifaces, zope-interface, urllib3, typing-extensions, six, scapy, PySocks, pycryptodome, pyasn1-modules, psutil, incremental, idna, constantly, charset-normalizer, certifi, bcrypt, automat, attrs, requests, pynacl, ldapdomaindump, hyperlink, twisted, service-identity, paramiko, impacket, honeypots
+#13 701.1 Successfully installed PySocks-1.7.1 attrs-25.1.0 automat-24.8.1 bcrypt-4.2.1 certifi-2025.1.31 charset-normalizer-3.4.1 constantly-23.10.4 honeypots-0.66 hyperlink-21.0.0 idna-3.10 impacket-0.9.24 incremental-24.7.2 ldapdomaindump-0.9.4 netifaces-0.11.0 paramiko-3.5.0 psutil-5.9.0 pyasn1-modules-0.4.1 pycryptodome-3.19.1 pynacl-1.5.0 requests-2.32.0 scapy-2.6.1 service-identity-21.1.0 six-1.17.0 twisted-24.10.0 typing-extensions-4.12.2 urllib3-2.3.0 zope-interface-7.2
+#13 701.1 WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv
+#13 706.6 WARNING: opening from cache https://dl-cdn.alpinelinux.org/alpine/v3.20/main: No such file or directory
+#13 706.7 WARNING: opening from cache https://dl-cdn.alpinelinux.org/alpine/v3.20/community: No such file or directory
+#13 706.7 (1/53) Purging build-base (0.5-r3)
+#13 706.7 (2/53) Purging file (5.45-r1)
+#13 706.7 (3/53) Purging g++ (13.2.1_git20240309-r0)
+#13 706.7 (4/53) Purging make (4.4.1-r2)
+#13 706.7 (5/53) Purging patch (2.7.6-r10)
+#13 706.7 (6/53) Purging freetds-dev (1.4.14-r0)
+#13 706.7 (7/53) Purging git-init-template (2.45.3-r0)
+#13 706.7 (8/53) Purging git (2.45.3-r0)
+#13 706.7 (9/53) Purging jpeg-dev (9e-r1)
+#13 706.7 (10/53) Purging libjpeg-turbo-dev (3.0.3-r0)
+#13 706.7 (11/53) Purging libjpeg-turbo (3.0.3-r0)
+#13 706.7 (12/53) Purging libturbojpeg (3.0.3-r0)
+#13 706.7 (13/53) Purging libcurl (8.12.1-r0)
+#13 706.7 (14/53) Purging ca-certificates (20241121-r1)
+#13 706.7 Executing ca-certificates-20241121-r1.post-deinstall
+#13 706.8 (15/53) Purging libffi-dev (3.4.6-r0)
+#13 706.8 (16/53) Purging linux-headers (6.6-r0)
+#13 706.9 (17/53) Purging libmagic (5.45-r1)
+#13 706.9 (18/53) Purging libpsl (0.21.5-r1)
+#13 706.9 (19/53) Purging nghttp2-libs (1.62.1-r0)
+#13 706.9 (20/53) Purging pcre2 (10.43-r0)
+#13 706.9 (21/53) Purging postgresql16-dev (16.8-r0)
+#13 706.9 (22/53) Purging libecpg-dev (16.8-r0)
+#13 706.9 (23/53) Purging libecpg (16.8-r0)
+#13 706.9 (24/53) Purging clang16 (16.0.6-r5)
+#13 706.9 (25/53) Purging fortify-headers (1.1-r3)
+#13 706.9 (26/53) Purging libstdc++-dev (13.2.1_git20240309-r0)
+#13 707.0 (27/53) Purging clang16-headers (16.0.6-r5)
+#13 707.0 (28/53) Purging icu-dev (74.2-r0)
+#13 707.0 (29/53) Purging llvm16 (16.0.6-r8)
+#13 707.1 (30/53) Purging llvm16-linker-tools (16.0.6-r8)
+#13 707.1 (31/53) Purging lz4-dev (1.9.4-r5)
+#13 707.1 (32/53) Purging lz4-libs (1.9.4-r5)
+#13 707.1 (33/53) Purging zstd-dev (1.5.6-r0)
+#13 707.1 (34/53) Purging zstd (1.5.6-r0)
+#13 707.1 (35/53) Purging py3-pip-pyc (24.0-r2)
+#13 707.1 (36/53) Purging py3-pip (24.0-r2)
+#13 707.1 (37/53) Purging py3-setuptools-pyc (70.3.0-r0)
+#13 707.2 (38/53) Purging py3-setuptools (70.3.0-r0)
+#13 707.2 (39/53) Purging python3-dev (3.12.9-r0)
+#13 707.2 (40/53) Purging zlib-dev (1.3.1-r1)
+#13 707.2 (41/53) Purging brotli-libs (1.1.0-r2)
+#13 707.2 (42/53) Purging c-ares (1.33.1-r0)
+#13 707.2 (43/53) Purging clang16-libs (16.0.6-r5)
+#13 707.2 (44/53) Purging icu (74.2-r0)
+#13 707.2 (45/53) Purging icu-libs (74.2-r0)
+#13 707.2 (46/53) Purging icu-data-en (74.2-r0)
+#13 707.2 (47/53) Purging libidn2 (2.3.7-r0)
+#13 707.2 (48/53) Purging libpq-dev (16.8-r0)
+#13 707.2 (49/53) Purging libunistring (1.2-r0)
+#13 707.2 (50/53) Purging llvm16-libs (16.0.6-r8)
+#13 707.3 (51/53) Purging libxml2 (2.12.7-r0)
+#13 707.3 (52/53) Purging openssl-dev (3.3.3-r0)
+#13 707.3 (53/53) Purging pkgconf (2.2.0-r0)
+#13 707.3 Executing busybox-1.36.1-r29.trigger
+#13 707.4 OK: 238 MiB in 95 packages
+#13 DONE 707.6s
+
+#14 [honeypots linux/arm64 4/4] WORKDIR /opt/honeypots/
+#14 DONE 0.2s
+
+#15 [honeypots] exporting to image
+#15 exporting layers
+#15 exporting layers 35.3s done
+#15 exporting manifest sha256:6abe74fbe8f868901e8601dafd7912be4600a4262570c6b05c39cd6b36b4ecdd 0.0s done
+#15 exporting config sha256:da0ee0dc8bf6ee315bbc2e55d2c79cc03cfd5cb9623d30091836035a05227092 done
+#15 exporting attestation manifest sha256:322cf58b4030fe585a80e35198c7ef88cdd2a95ebfaef146180509bb904b0197 0.0s done
+#15 exporting manifest sha256:ecb1618c2059ae198d85909458b032d1f3dfe8d86f53bf8807328eb92b6cb3d7 0.0s done
+#15 exporting config sha256:3acae49fd79e4b4f8bf651c37c2c30bd822980be7c6a3c47aa1e8443957ed2cf done
+#15 exporting attestation manifest sha256:5dd0d6d7de709227ac71db08e2eace1a05e4c9b0e3d2e7e291e8c49d0bfc0b28 0.0s done
+#15 exporting manifest list sha256:233aa007807626f3346ebec892179410f2fbe085347b097cc68392fe7ee5aae5
+#15 exporting manifest list sha256:233aa007807626f3346ebec892179410f2fbe085347b097cc68392fe7ee5aae5 0.0s done
+#15 pushing layers
+#15 ...
+
+#16 [honeypots auth] f0rc3ps/honeypots:pull,push token for registry-1.docker.io
+#16 DONE 0.0s
+
+#15 [honeypots] exporting to image
+#15 pushing layers 54.2s done
+#15 pushing manifest for docker.io/f0rc3ps/honeypots:24.04.1@sha256:233aa007807626f3346ebec892179410f2fbe085347b097cc68392fe7ee5aae5
+#15 pushing manifest for docker.io/f0rc3ps/honeypots:24.04.1@sha256:233aa007807626f3346ebec892179410f2fbe085347b097cc68392fe7ee5aae5 3.0s done
+#15 ...
+
+#17 [honeypots auth] asc3t1c/honeypots:pull,push token for ghcr.io
+#17 DONE 0.0s
+
+#15 [honeypots] exporting to image
+#15 pushing layers 49.5s done
+#15 pushing manifest for ghcr.io/asc3t1c/honeypots:24.04.1@sha256:233aa007807626f3346ebec892179410f2fbe085347b097cc68392fe7ee5aae5
+#15 ...
+
+#18 [honeypots auth] asc3t1c/honeypots:pull,push token for ghcr.io
+#18 DONE 0.0s
+
+#15 [honeypots] exporting to image
+#15 pushing manifest for ghcr.io/asc3t1c/honeypots:24.04.1@sha256:233aa007807626f3346ebec892179410f2fbe085347b097cc68392fe7ee5aae5 6.3s done
+#15 DONE 148.5s
+
+#19 [honeypots] resolving provenance for metadata file
+#19 DONE 0.0s

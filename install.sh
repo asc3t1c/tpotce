@@ -180,8 +180,8 @@ echo "### (M)obile - T-Pot Mobile installation."
 echo "###            Includes everything to run T-Pot Mobile (available separately)."
 echo "### (T)arpit - T-Pot Tarpit installation."
 echo "###            Feed data endlessly to attackers, bots and scanners."
+echo "###            Also runs a Denial of Service Honeypot (ddospot)."
 echo
-
 while true; do
   read -p "### Install Type? (h/s/l/i/m/t) " myTPOT_TYPE
   case "${myTPOT_TYPE}" in
@@ -305,22 +305,15 @@ if [ "${myTPOT_TYPE}" == "HIVE" ];
 	sed -i "s|^WEB_USER=.*|WEB_USER=${myWEB_USER_ENC_B64}|" ${myTPOT_CONF_FILE}
 fi
 
-# Pull docker images 
+# Pull docker images
 echo "### Now pulling images ..."
 sudo docker compose -f /home/${myUSER}/tpotce/docker-compose.yml pull
-
-# INSTALLING OF EXTERNAL SOFTWARE
-echo "### Installing of external - integrating of software ..."
-echo 
-cd /home/${myUSER}/tpotce/docker/peppermint/
-bash peppermint.sh
-echo "### ----------------------------------------------------"
+echo
 
 # Show running services
 echo "### Please review for possible honeypot port conflicts."
 echo "### While SSH is taken care of, other services such as"
 echo "### SMTP, HTTP, etc. might prevent T-Pot from starting."
-echo "### WARNING: DON'T FORGET TO SETUP A STRONG PASSWORDS FOR YOUR EXTERNAL SOFTWARE!."
 echo
 sudo grc netstat -tulpen
 echo

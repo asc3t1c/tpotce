@@ -1,0 +1,1249 @@
+Compose now can delegate build to bake for better performances
+Just set COMPOSE_BAKE=true
+#0 building with "mybuilder" instance using docker-container driver
+
+#1 [logstash internal] load build definition from Dockerfile
+#1 transferring dockerfile: 2.40kB 0.0s done
+#1 DONE 0.0s
+
+#2 [logstash auth] library/ubuntu:pull token for registry-1.docker.io
+#2 DONE 0.0s
+
+#3 [logstash linux/amd64 internal] load metadata for docker.io/library/ubuntu:24.04
+#3 ...
+
+#4 [logstash linux/arm64 internal] load metadata for docker.io/library/ubuntu:24.04
+#4 DONE 3.8s
+
+#5 [logstash linux/amd64 1/3] FROM docker.io/library/ubuntu:24.04@sha256:72297848456d5d37d1262630108ab308d3e9ec7ed1c3286a32fe09856619a782
+#5 resolve docker.io/library/ubuntu:24.04@sha256:72297848456d5d37d1262630108ab308d3e9ec7ed1c3286a32fe09856619a782 0.0s done
+#5 DONE 0.0s
+
+#6 [logstash linux/arm64 1/3] FROM docker.io/library/ubuntu:24.04@sha256:72297848456d5d37d1262630108ab308d3e9ec7ed1c3286a32fe09856619a782
+#6 resolve docker.io/library/ubuntu:24.04@sha256:72297848456d5d37d1262630108ab308d3e9ec7ed1c3286a32fe09856619a782 0.0s done
+#6 CACHED
+
+#3 [logstash linux/amd64 internal] load metadata for docker.io/library/ubuntu:24.04
+#3 DONE 3.8s
+
+#7 [logstash internal] load .dockerignore
+#7 transferring context: 2B 0.0s done
+#7 DONE 0.0s
+
+#8 [logstash internal] load build context
+#8 transferring context: 40.70kB 0.0s done
+#8 DONE 0.0s
+
+#9 [logstash linux/arm64 2/3] COPY dist/ /root/dist/
+#9 CACHED
+
+#10 [logstash linux/amd64 2/3] COPY dist/ /root/dist/
+#10 CACHED
+
+#11 [logstash linux/amd64 3/3] RUN apt-get update -y &&     apt-get upgrade -y &&     apt-get install -y     		 adduser              aria2              bash              bzip2              curl &&     ARCH=$(arch) &&     if [ "$ARCH" = "x86_64" ]; then LS_ARCH="amd64"; export _JAVA_OPTIONS=""; fi &&     if [ "$ARCH" = "aarch64" ]; then LS_ARCH="arm64"; export _JAVA_OPTIONS="-XX:UseSVE=0"; fi &&     echo "$ARCH" &&     mkdir -p /etc/listbot &&     cd /etc/listbot &&     aria2c -s16 -x 16 https://listbot.sicherheitstacho.eu/cve.yaml.bz2 &&     aria2c -s16 -x 16 https://listbot.sicherheitstacho.eu/iprep.yaml.bz2 &&     bunzip2 *.bz2 &&     cd /root/dist/ &&     aria2c -s 16 -x 16 https://artifacts.elastic.co/downloads/logstash/logstash-8.16.1-$LS_ARCH.deb &&     dpkg -i logstash-8.16.1-$LS_ARCH.deb &&     cd /root/dist/ &&     cp entrypoint.sh /usr/bin/ &&     chmod u+x /usr/bin/entrypoint.sh &&     mkdir -p /usr/share/logstash/config &&     cp logstash.conf /etc/logstash/ &&     cp http_input.conf /etc/logstash/ &&     cp http_output.conf /etc/logstash/ &&     cp pipelines.yml /usr/share/logstash/config/pipelines.yml &&     cp pipelines_sensor.yml /usr/share/logstash/config/pipelines_sensor.yml &&     cp tpot-template.json /etc/logstash/ &&     cd /usr/share/logstash &&     bin/logstash-plugin update logstash-filter-translate &&     rm /etc/logstash/pipelines.yml &&     rm /etc/logstash/logstash.yml &&     groupmod -g 2000 logstash &&     usermod -u 2000 logstash &&     chown -R logstash:logstash /etc/listbot                                /var/log/logstash/ 			       /var/lib/logstash 			       /usr/share/logstash/data 			       /usr/share/logstash/config/pipelines* &&     chmod 755 /usr/bin/entrypoint.sh &&     apt-get autoremove -y --purge &&     apt-get clean &&         rm -rf /var/lib/apt/lists/*             /tmp/* /var/tmp/*             /root/.cache             /root/*
+#11 0.553 Get:1 http://archive.ubuntu.com/ubuntu noble InRelease [256 kB]
+#11 0.563 Get:2 http://security.ubuntu.com/ubuntu noble-security InRelease [126 kB]
+#11 0.770 Get:3 http://archive.ubuntu.com/ubuntu noble-updates InRelease [126 kB]
+#11 0.821 Get:4 http://archive.ubuntu.com/ubuntu noble-backports InRelease [126 kB]
+#11 1.027 Get:5 http://security.ubuntu.com/ubuntu noble-security/restricted amd64 Packages [789 kB]
+#11 1.244 Get:6 http://security.ubuntu.com/ubuntu noble-security/multiverse amd64 Packages [24.2 kB]
+#11 1.244 Get:7 http://security.ubuntu.com/ubuntu noble-security/main amd64 Packages [780 kB]
+#11 1.307 Get:8 http://archive.ubuntu.com/ubuntu noble/multiverse amd64 Packages [331 kB]
+#11 1.321 Get:9 http://security.ubuntu.com/ubuntu noble-security/universe amd64 Packages [1047 kB]
+#11 1.449 Get:10 http://archive.ubuntu.com/ubuntu noble/main amd64 Packages [1808 kB]
+#11 1.689 Get:11 http://archive.ubuntu.com/ubuntu noble/universe amd64 Packages [19.3 MB]
+#11 3.399 Get:12 http://archive.ubuntu.com/ubuntu noble/restricted amd64 Packages [117 kB]
+#11 3.399 Get:13 http://archive.ubuntu.com/ubuntu noble-updates/multiverse amd64 Packages [28.8 kB]
+#11 3.399 Get:14 http://archive.ubuntu.com/ubuntu noble-updates/restricted amd64 Packages [835 kB]
+#11 3.481 Get:15 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 Packages [1106 kB]
+#11 3.540 Get:16 http://archive.ubuntu.com/ubuntu noble-updates/universe amd64 Packages [1325 kB]
+#11 3.656 Get:17 http://archive.ubuntu.com/ubuntu noble-backports/universe amd64 Packages [16.0 kB]
+#11 5.242 Fetched 28.2 MB in 5s (5876 kB/s)
+#11 5.242 Reading package lists...
+#11 7.615 Reading package lists...
+#11 9.831 Building dependency tree...
+#11 ...
+
+#12 [logstash linux/arm64 3/3] RUN apt-get update -y &&     apt-get upgrade -y &&     apt-get install -y     		 adduser              aria2              bash              bzip2              curl &&     ARCH=$(arch) &&     if [ "$ARCH" = "x86_64" ]; then LS_ARCH="amd64"; export _JAVA_OPTIONS=""; fi &&     if [ "$ARCH" = "aarch64" ]; then LS_ARCH="arm64"; export _JAVA_OPTIONS="-XX:UseSVE=0"; fi &&     echo "$ARCH" &&     mkdir -p /etc/listbot &&     cd /etc/listbot &&     aria2c -s16 -x 16 https://listbot.sicherheitstacho.eu/cve.yaml.bz2 &&     aria2c -s16 -x 16 https://listbot.sicherheitstacho.eu/iprep.yaml.bz2 &&     bunzip2 *.bz2 &&     cd /root/dist/ &&     aria2c -s 16 -x 16 https://artifacts.elastic.co/downloads/logstash/logstash-8.16.1-$LS_ARCH.deb &&     dpkg -i logstash-8.16.1-$LS_ARCH.deb &&     cd /root/dist/ &&     cp entrypoint.sh /usr/bin/ &&     chmod u+x /usr/bin/entrypoint.sh &&     mkdir -p /usr/share/logstash/config &&     cp logstash.conf /etc/logstash/ &&     cp http_input.conf /etc/logstash/ &&     cp http_output.conf /etc/logstash/ &&     cp pipelines.yml /usr/share/logstash/config/pipelines.yml &&     cp pipelines_sensor.yml /usr/share/logstash/config/pipelines_sensor.yml &&     cp tpot-template.json /etc/logstash/ &&     cd /usr/share/logstash &&     bin/logstash-plugin update logstash-filter-translate &&     rm /etc/logstash/pipelines.yml &&     rm /etc/logstash/logstash.yml &&     groupmod -g 2000 logstash &&     usermod -u 2000 logstash &&     chown -R logstash:logstash /etc/listbot                                /var/log/logstash/ 			       /var/lib/logstash 			       /usr/share/logstash/data 			       /usr/share/logstash/config/pipelines* &&     chmod 755 /usr/bin/entrypoint.sh &&     apt-get autoremove -y --purge &&     apt-get clean &&         rm -rf /var/lib/apt/lists/*             /tmp/* /var/tmp/*             /root/.cache             /root/*
+#12 1.970 Get:1 http://ports.ubuntu.com/ubuntu-ports noble InRelease [256 kB]
+#12 2.488 Get:2 http://ports.ubuntu.com/ubuntu-ports noble-updates InRelease [126 kB]
+#12 2.503 Get:3 http://ports.ubuntu.com/ubuntu-ports noble-backports InRelease [126 kB]
+#12 2.600 Get:4 http://ports.ubuntu.com/ubuntu-ports noble-security InRelease [126 kB]
+#12 7.537 Get:5 http://ports.ubuntu.com/ubuntu-ports noble/main arm64 Packages [1776 kB]
+#12 8.564 Get:6 http://ports.ubuntu.com/ubuntu-ports noble/restricted arm64 Packages [113 kB]
+#12 8.670 Get:7 http://ports.ubuntu.com/ubuntu-ports noble/multiverse arm64 Packages [274 kB]
+#12 8.835 Get:8 http://ports.ubuntu.com/ubuntu-ports noble/universe arm64 Packages [19.0 MB]
+#12 ...
+
+#11 [logstash linux/amd64 3/3] RUN apt-get update -y &&     apt-get upgrade -y &&     apt-get install -y     		 adduser              aria2              bash              bzip2              curl &&     ARCH=$(arch) &&     if [ "$ARCH" = "x86_64" ]; then LS_ARCH="amd64"; export _JAVA_OPTIONS=""; fi &&     if [ "$ARCH" = "aarch64" ]; then LS_ARCH="arm64"; export _JAVA_OPTIONS="-XX:UseSVE=0"; fi &&     echo "$ARCH" &&     mkdir -p /etc/listbot &&     cd /etc/listbot &&     aria2c -s16 -x 16 https://listbot.sicherheitstacho.eu/cve.yaml.bz2 &&     aria2c -s16 -x 16 https://listbot.sicherheitstacho.eu/iprep.yaml.bz2 &&     bunzip2 *.bz2 &&     cd /root/dist/ &&     aria2c -s 16 -x 16 https://artifacts.elastic.co/downloads/logstash/logstash-8.16.1-$LS_ARCH.deb &&     dpkg -i logstash-8.16.1-$LS_ARCH.deb &&     cd /root/dist/ &&     cp entrypoint.sh /usr/bin/ &&     chmod u+x /usr/bin/entrypoint.sh &&     mkdir -p /usr/share/logstash/config &&     cp logstash.conf /etc/logstash/ &&     cp http_input.conf /etc/logstash/ &&     cp http_output.conf /etc/logstash/ &&     cp pipelines.yml /usr/share/logstash/config/pipelines.yml &&     cp pipelines_sensor.yml /usr/share/logstash/config/pipelines_sensor.yml &&     cp tpot-template.json /etc/logstash/ &&     cd /usr/share/logstash &&     bin/logstash-plugin update logstash-filter-translate &&     rm /etc/logstash/pipelines.yml &&     rm /etc/logstash/logstash.yml &&     groupmod -g 2000 logstash &&     usermod -u 2000 logstash &&     chown -R logstash:logstash /etc/listbot                                /var/log/logstash/ 			       /var/lib/logstash 			       /usr/share/logstash/data 			       /usr/share/logstash/config/pipelines* &&     chmod 755 /usr/bin/entrypoint.sh &&     apt-get autoremove -y --purge &&     apt-get clean &&         rm -rf /var/lib/apt/lists/*             /tmp/* /var/tmp/*             /root/.cache             /root/*
+#11 9.831 Building dependency tree...
+#11 10.23 Reading state information...
+#11 10.36 Calculating upgrade...
+#11 11.06 The following packages will be upgraded:
+#11 11.06   base-files libattr1 libc-bin libc6 libcap2 libgmp10 libgnutls30t64
+#11 11.06   libgpg-error0 libidn2-0 libmd0 libpcre2-8-0 libselinux1 libssl3t64
+#11 11.06   libsystemd0 libtasn1-6 libudev1 libunistring5 perl-base
+#11 11.37 18 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.
+#11 11.37 Need to get 10.7 MB of archives.
+#11 11.37 After this operation, 2048 B of additional disk space will be used.
+#11 11.37 Get:1 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libc6 amd64 2.39-0ubuntu8.4 [3264 kB]
+#11 12.59 Get:2 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 base-files amd64 13ubuntu10.2 [73.2 kB]
+#11 12.60 Get:3 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 perl-base amd64 5.38.2-3.2build2.1 [1823 kB]
+#11 13.11 Get:4 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libc-bin amd64 2.39-0ubuntu8.4 [682 kB]
+#11 13.12 Get:5 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libattr1 amd64 1:2.5.2-1build1.1 [11.4 kB]
+#11 13.13 Get:6 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libcap2 amd64 1:2.66-5ubuntu2.2 [30.0 kB]
+#11 13.13 Get:7 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libgmp10 amd64 2:6.3.0+dfsg-2ubuntu6.1 [253 kB]
+#11 13.14 Get:8 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libgpg-error0 amd64 1.47-3build2.1 [70.1 kB]
+#11 13.14 Get:9 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libmd0 amd64 1.1.0-2build1.1 [27.0 kB]
+#11 13.14 Get:10 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libpcre2-8-0 amd64 10.42-4ubuntu2.1 [227 kB]
+#11 13.17 Get:11 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libselinux1 amd64 3.5-2ubuntu2.1 [79.7 kB]
+#11 13.18 Get:12 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libssl3t64 amd64 3.0.13-0ubuntu3.5 [1940 kB]
+#11 13.49 Get:13 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libsystemd0 amd64 255.4-1ubuntu8.5 [433 kB]
+#11 13.51 Get:14 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libudev1 amd64 255.4-1ubuntu8.5 [175 kB]
+#11 13.54 Get:15 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libunistring5 amd64 1.1-2build1.1 [536 kB]
+#11 13.55 Get:16 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libidn2-0 amd64 2.3.7-2build1.1 [66.2 kB]
+#11 13.55 Get:17 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libtasn1-6 amd64 4.19.0-3ubuntu0.24.04.1 [44.3 kB]
+#11 13.56 Get:18 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libgnutls30t64 amd64 3.8.3-1.1ubuntu3.3 [995 kB]
+#11 14.44 debconf: delaying package configuration, since apt-utils is not installed
+#11 14.55 Fetched 10.7 MB in 3s (3871 kB/s)
+#11 14.66 (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 4383 files and directories currently installed.)
+#11 14.73 Preparing to unpack .../libc6_2.39-0ubuntu8.4_amd64.deb ...
+#11 15.04 Unpacking libc6:amd64 (2.39-0ubuntu8.4) over (2.39-0ubuntu8.3) ...
+#11 16.33 Setting up libc6:amd64 (2.39-0ubuntu8.4) ...
+#11 17.62 (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 4382 files and directories currently installed.)
+#11 17.64 Preparing to unpack .../base-files_13ubuntu10.2_amd64.deb ...
+#11 17.76 Unpacking base-files (13ubuntu10.2) over (13ubuntu10.1) ...
+#11 18.07 Setting up base-files (13ubuntu10.2) ...
+#11 18.09 Installing new version of config file /etc/issue ...
+#11 18.10 Installing new version of config file /etc/issue.net ...
+#11 18.11 Installing new version of config file /etc/lsb-release ...
+#11 18.60 (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 4382 files and directories currently installed.)
+#11 18.63 Preparing to unpack .../perl-base_5.38.2-3.2build2.1_amd64.deb ...
+#11 18.70 Unpacking perl-base (5.38.2-3.2build2.1) over (5.38.2-3.2build2) ...
+#11 21.01 Setting up perl-base (5.38.2-3.2build2.1) ...
+#11 21.10 (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 4382 files and directories currently installed.)
+#11 21.12 Preparing to unpack .../libc-bin_2.39-0ubuntu8.4_amd64.deb ...
+#11 21.14 Unpacking libc-bin (2.39-0ubuntu8.4) over (2.39-0ubuntu8.3) ...
+#11 21.39 Setting up libc-bin (2.39-0ubuntu8.4) ...
+#11 21.58 (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 4381 files and directories currently installed.)
+#11 21.60 Preparing to unpack .../libattr1_1%3a2.5.2-1build1.1_amd64.deb ...
+#11 21.62 Unpacking libattr1:amd64 (1:2.5.2-1build1.1) over (1:2.5.2-1build1) ...
+#11 21.71 Setting up libattr1:amd64 (1:2.5.2-1build1.1) ...
+#11 21.79 (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 4381 files and directories currently installed.)
+#11 21.81 Preparing to unpack .../libcap2_1%3a2.66-5ubuntu2.2_amd64.deb ...
+#11 21.82 Unpacking libcap2:amd64 (1:2.66-5ubuntu2.2) over (1:2.66-5ubuntu2) ...
+#11 21.91 Setting up libcap2:amd64 (1:2.66-5ubuntu2.2) ...
+#11 21.98 (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 4381 files and directories currently installed.)
+#11 22.00 Preparing to unpack .../libgmp10_2%3a6.3.0+dfsg-2ubuntu6.1_amd64.deb ...
+#11 22.01 Unpacking libgmp10:amd64 (2:6.3.0+dfsg-2ubuntu6.1) over (2:6.3.0+dfsg-2ubuntu6) ...
+#11 22.10 Setting up libgmp10:amd64 (2:6.3.0+dfsg-2ubuntu6.1) ...
+#11 22.18 (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 4381 files and directories currently installed.)
+#11 22.20 Preparing to unpack .../libgpg-error0_1.47-3build2.1_amd64.deb ...
+#11 22.21 Unpacking libgpg-error0:amd64 (1.47-3build2.1) over (1.47-3build2) ...
+#11 22.30 Setting up libgpg-error0:amd64 (1.47-3build2.1) ...
+#11 22.38 (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 4381 files and directories currently installed.)
+#11 22.39 Preparing to unpack .../libmd0_1.1.0-2build1.1_amd64.deb ...
+#11 22.41 Unpacking libmd0:amd64 (1.1.0-2build1.1) over (1.1.0-2build1) ...
+#11 22.52 Setting up libmd0:amd64 (1.1.0-2build1.1) ...
+#11 22.60 (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 4381 files and directories currently installed.)
+#11 22.62 Preparing to unpack .../libpcre2-8-0_10.42-4ubuntu2.1_amd64.deb ...
+#11 22.63 Unpacking libpcre2-8-0:amd64 (10.42-4ubuntu2.1) over (10.42-4ubuntu2) ...
+#11 22.73 Setting up libpcre2-8-0:amd64 (10.42-4ubuntu2.1) ...
+#11 22.81 (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 4381 files and directories currently installed.)
+#11 22.83 Preparing to unpack .../libselinux1_3.5-2ubuntu2.1_amd64.deb ...
+#11 22.84 Unpacking libselinux1:amd64 (3.5-2ubuntu2.1) over (3.5-2ubuntu2) ...
+#11 22.93 Setting up libselinux1:amd64 (3.5-2ubuntu2.1) ...
+#11 23.03 (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 4381 files and directories currently installed.)
+#11 23.06 Preparing to unpack .../libssl3t64_3.0.13-0ubuntu3.5_amd64.deb ...
+#11 23.08 Unpacking libssl3t64:amd64 (3.0.13-0ubuntu3.5) over (3.0.13-0ubuntu3.4) ...
+#11 23.37 Setting up libssl3t64:amd64 (3.0.13-0ubuntu3.5) ...
+#11 23.43 (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 4381 files and directories currently installed.)
+#11 23.45 Preparing to unpack .../libsystemd0_255.4-1ubuntu8.5_amd64.deb ...
+#11 23.47 Unpacking libsystemd0:amd64 (255.4-1ubuntu8.5) over (255.4-1ubuntu8.4) ...
+#11 23.60 Setting up libsystemd0:amd64 (255.4-1ubuntu8.5) ...
+#11 23.68 (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 4381 files and directories currently installed.)
+#11 23.71 Preparing to unpack .../libudev1_255.4-1ubuntu8.5_amd64.deb ...
+#11 23.72 Unpacking libudev1:amd64 (255.4-1ubuntu8.5) over (255.4-1ubuntu8.4) ...
+#11 23.82 Setting up libudev1:amd64 (255.4-1ubuntu8.5) ...
+#11 ...
+
+#12 [logstash linux/arm64 3/3] RUN apt-get update -y &&     apt-get upgrade -y &&     apt-get install -y     		 adduser              aria2              bash              bzip2              curl &&     ARCH=$(arch) &&     if [ "$ARCH" = "x86_64" ]; then LS_ARCH="amd64"; export _JAVA_OPTIONS=""; fi &&     if [ "$ARCH" = "aarch64" ]; then LS_ARCH="arm64"; export _JAVA_OPTIONS="-XX:UseSVE=0"; fi &&     echo "$ARCH" &&     mkdir -p /etc/listbot &&     cd /etc/listbot &&     aria2c -s16 -x 16 https://listbot.sicherheitstacho.eu/cve.yaml.bz2 &&     aria2c -s16 -x 16 https://listbot.sicherheitstacho.eu/iprep.yaml.bz2 &&     bunzip2 *.bz2 &&     cd /root/dist/ &&     aria2c -s 16 -x 16 https://artifacts.elastic.co/downloads/logstash/logstash-8.16.1-$LS_ARCH.deb &&     dpkg -i logstash-8.16.1-$LS_ARCH.deb &&     cd /root/dist/ &&     cp entrypoint.sh /usr/bin/ &&     chmod u+x /usr/bin/entrypoint.sh &&     mkdir -p /usr/share/logstash/config &&     cp logstash.conf /etc/logstash/ &&     cp http_input.conf /etc/logstash/ &&     cp http_output.conf /etc/logstash/ &&     cp pipelines.yml /usr/share/logstash/config/pipelines.yml &&     cp pipelines_sensor.yml /usr/share/logstash/config/pipelines_sensor.yml &&     cp tpot-template.json /etc/logstash/ &&     cd /usr/share/logstash &&     bin/logstash-plugin update logstash-filter-translate &&     rm /etc/logstash/pipelines.yml &&     rm /etc/logstash/logstash.yml &&     groupmod -g 2000 logstash &&     usermod -u 2000 logstash &&     chown -R logstash:logstash /etc/listbot                                /var/log/logstash/ 			       /var/lib/logstash 			       /usr/share/logstash/data 			       /usr/share/logstash/config/pipelines* &&     chmod 755 /usr/bin/entrypoint.sh &&     apt-get autoremove -y --purge &&     apt-get clean &&         rm -rf /var/lib/apt/lists/*             /tmp/* /var/tmp/*             /root/.cache             /root/*
+#12 13.81 Get:9 http://ports.ubuntu.com/ubuntu-ports noble-updates/main arm64 Packages [1079 kB]
+#12 14.23 Get:10 http://ports.ubuntu.com/ubuntu-ports noble-updates/universe arm64 Packages [1290 kB]
+#12 14.59 Get:11 http://ports.ubuntu.com/ubuntu-ports noble-updates/multiverse arm64 Packages [22.9 kB]
+#12 14.65 Get:12 http://ports.ubuntu.com/ubuntu-ports noble-updates/restricted arm64 Packages [908 kB]
+#12 18.03 Get:13 http://ports.ubuntu.com/ubuntu-ports noble-backports/universe arm64 Packages [16.1 kB]
+#12 23.55 Get:14 http://ports.ubuntu.com/ubuntu-ports noble-security/restricted arm64 Packages [840 kB]
+#12 ...
+
+#11 [logstash linux/amd64 3/3] RUN apt-get update -y &&     apt-get upgrade -y &&     apt-get install -y     		 adduser              aria2              bash              bzip2              curl &&     ARCH=$(arch) &&     if [ "$ARCH" = "x86_64" ]; then LS_ARCH="amd64"; export _JAVA_OPTIONS=""; fi &&     if [ "$ARCH" = "aarch64" ]; then LS_ARCH="arm64"; export _JAVA_OPTIONS="-XX:UseSVE=0"; fi &&     echo "$ARCH" &&     mkdir -p /etc/listbot &&     cd /etc/listbot &&     aria2c -s16 -x 16 https://listbot.sicherheitstacho.eu/cve.yaml.bz2 &&     aria2c -s16 -x 16 https://listbot.sicherheitstacho.eu/iprep.yaml.bz2 &&     bunzip2 *.bz2 &&     cd /root/dist/ &&     aria2c -s 16 -x 16 https://artifacts.elastic.co/downloads/logstash/logstash-8.16.1-$LS_ARCH.deb &&     dpkg -i logstash-8.16.1-$LS_ARCH.deb &&     cd /root/dist/ &&     cp entrypoint.sh /usr/bin/ &&     chmod u+x /usr/bin/entrypoint.sh &&     mkdir -p /usr/share/logstash/config &&     cp logstash.conf /etc/logstash/ &&     cp http_input.conf /etc/logstash/ &&     cp http_output.conf /etc/logstash/ &&     cp pipelines.yml /usr/share/logstash/config/pipelines.yml &&     cp pipelines_sensor.yml /usr/share/logstash/config/pipelines_sensor.yml &&     cp tpot-template.json /etc/logstash/ &&     cd /usr/share/logstash &&     bin/logstash-plugin update logstash-filter-translate &&     rm /etc/logstash/pipelines.yml &&     rm /etc/logstash/logstash.yml &&     groupmod -g 2000 logstash &&     usermod -u 2000 logstash &&     chown -R logstash:logstash /etc/listbot                                /var/log/logstash/ 			       /var/lib/logstash 			       /usr/share/logstash/data 			       /usr/share/logstash/config/pipelines* &&     chmod 755 /usr/bin/entrypoint.sh &&     apt-get autoremove -y --purge &&     apt-get clean &&         rm -rf /var/lib/apt/lists/*             /tmp/* /var/tmp/*             /root/.cache             /root/*
+#11 23.89 (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 4381 files and directories currently installed.)
+#11 23.90 Preparing to unpack .../libunistring5_1.1-2build1.1_amd64.deb ...
+#11 23.92 Unpacking libunistring5:amd64 (1.1-2build1.1) over (1.1-2build1) ...
+#11 24.05 Setting up libunistring5:amd64 (1.1-2build1.1) ...
+#11 24.12 (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 4381 files and directories currently installed.)
+#11 24.14 Preparing to unpack .../libidn2-0_2.3.7-2build1.1_amd64.deb ...
+#11 24.15 Unpacking libidn2-0:amd64 (2.3.7-2build1.1) over (2.3.7-2build1) ...
+#11 24.23 Setting up libidn2-0:amd64 (2.3.7-2build1.1) ...
+#11 24.30 (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 4381 files and directories currently installed.)
+#11 24.31 Preparing to unpack .../libtasn1-6_4.19.0-3ubuntu0.24.04.1_amd64.deb ...
+#11 24.32 Unpacking libtasn1-6:amd64 (4.19.0-3ubuntu0.24.04.1) over (4.19.0-3build1) ...
+#11 24.39 Setting up libtasn1-6:amd64 (4.19.0-3ubuntu0.24.04.1) ...
+#11 24.46 (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 4381 files and directories currently installed.)
+#11 24.47 Preparing to unpack .../libgnutls30t64_3.8.3-1.1ubuntu3.3_amd64.deb ...
+#11 24.48 Unpacking libgnutls30t64:amd64 (3.8.3-1.1ubuntu3.3) over (3.8.3-1.1ubuntu3.2) ...
+#11 24.60 Setting up libgnutls30t64:amd64 (3.8.3-1.1ubuntu3.3) ...
+#11 24.64 Processing triggers for libc-bin (2.39-0ubuntu8.4) ...
+#11 24.74 Reading package lists...
+#11 27.15 Building dependency tree...
+#11 27.61 Reading state information...
+#11 28.27 bash is already the newest version (5.2.21-2ubuntu4).
+#11 28.27 The following additional packages will be installed:
+#11 28.27   ca-certificates krb5-locales libaria2-0 libbrotli1 libcares2 libcurl4t64
+#11 28.27   libgssapi-krb5-2 libicu74 libk5crypto3 libkeyutils1 libkrb5-3
+#11 28.27   libkrb5support0 libldap-common libldap2 libnghttp2-14 libpsl5t64 librtmp1
+#11 28.27   libsasl2-2 libsasl2-modules libsasl2-modules-db libsqlite3-0 libssh-4
+#11 28.28   libssh2-1t64 libxml2 openssl publicsuffix
+#11 28.28 Suggested packages:
+#11 28.28   liblocale-gettext-perl perl cron quota ecryptfs-utils bzip2-doc krb5-doc
+#11 28.28   krb5-user libsasl2-modules-gssapi-mit | libsasl2-modules-gssapi-heimdal
+#11 28.28   libsasl2-modules-ldap libsasl2-modules-otp libsasl2-modules-sql
+#11 28.45 The following NEW packages will be installed:
+#11 28.46   adduser aria2 bzip2 ca-certificates curl krb5-locales libaria2-0 libbrotli1
+#11 28.46   libcares2 libcurl4t64 libgssapi-krb5-2 libicu74 libk5crypto3 libkeyutils1
+#11 28.46   libkrb5-3 libkrb5support0 libldap-common libldap2 libnghttp2-14 libpsl5t64
+#11 28.46   librtmp1 libsasl2-2 libsasl2-modules libsasl2-modules-db libsqlite3-0
+#11 28.46   libssh-4 libssh2-1t64 libxml2 openssl publicsuffix
+#11 28.63 0 upgraded, 30 newly installed, 0 to remove and 0 not upgraded.
+#11 28.63 Need to get 17.7 MB of archives.
+#11 28.63 After this operation, 56.6 MB of additional disk space will be used.
+#11 28.63 Get:1 http://archive.ubuntu.com/ubuntu noble/main amd64 adduser all 3.137ubuntu1 [101 kB]
+#11 28.79 Get:2 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 openssl amd64 3.0.13-0ubuntu3.5 [1002 kB]
+#11 29.02 Get:3 http://archive.ubuntu.com/ubuntu noble/main amd64 ca-certificates all 20240203 [159 kB]
+#11 29.20 Get:4 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 krb5-locales all 1.20.1-6ubuntu2.4 [14.3 kB]
+#11 29.24 Get:5 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libkrb5support0 amd64 1.20.1-6ubuntu2.4 [33.9 kB]
+#11 29.29 Get:6 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libk5crypto3 amd64 1.20.1-6ubuntu2.4 [81.9 kB]
+#11 29.34 Get:7 http://archive.ubuntu.com/ubuntu noble/main amd64 libkeyutils1 amd64 1.6.3-3build1 [9490 B]
+#11 29.38 Get:8 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libkrb5-3 amd64 1.20.1-6ubuntu2.4 [347 kB]
+#11 29.49 Get:9 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libgssapi-krb5-2 amd64 1.20.1-6ubuntu2.4 [143 kB]
+#11 29.53 Get:10 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libicu74 amd64 74.2-1ubuntu3.1 [10.9 MB]
+#11 30.53 Get:11 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libsqlite3-0 amd64 3.45.1-1ubuntu2.1 [701 kB]
+#11 30.63 Get:12 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libxml2 amd64 2.9.14+dfsg-1.3ubuntu3.1 [762 kB]
+#11 30.74 Get:13 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libnghttp2-14 amd64 1.59.0-1ubuntu0.2 [74.3 kB]
+#11 30.78 Get:14 http://archive.ubuntu.com/ubuntu noble/main amd64 libpsl5t64 amd64 0.21.2-1.1build1 [57.1 kB]
+#11 30.83 Get:15 http://archive.ubuntu.com/ubuntu noble/main amd64 publicsuffix all 20231001.0357-0.1 [129 kB]
+#11 30.88 Get:16 http://archive.ubuntu.com/ubuntu noble/main amd64 libcares2 amd64 1.27.0-1.0ubuntu1 [73.7 kB]
+#11 30.92 Get:17 http://archive.ubuntu.com/ubuntu noble/main amd64 libssh2-1t64 amd64 1.11.0-4.1build2 [120 kB]
+#11 30.98 Get:18 http://archive.ubuntu.com/ubuntu noble/universe amd64 libaria2-0 amd64 1.37.0+debian-1build3 [1105 kB]
+#11 31.13 Get:19 http://archive.ubuntu.com/ubuntu noble/universe amd64 aria2 amd64 1.37.0+debian-1build3 [387 kB]
+#11 31.20 Get:20 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 bzip2 amd64 1.0.8-5.1build0.1 [34.5 kB]
+#11 31.24 Get:21 http://archive.ubuntu.com/ubuntu noble/main amd64 libbrotli1 amd64 1.1.0-2build2 [331 kB]
+#11 31.31 Get:22 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libsasl2-modules-db amd64 2.1.28+dfsg1-5ubuntu3.1 [20.4 kB]
+#11 31.35 Get:23 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libsasl2-2 amd64 2.1.28+dfsg1-5ubuntu3.1 [53.2 kB]
+#11 31.40 Get:24 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libldap2 amd64 2.6.7+dfsg-1~exp1ubuntu8.2 [196 kB]
+#11 31.45 Get:25 http://archive.ubuntu.com/ubuntu noble/main amd64 librtmp1 amd64 2.4+20151223.gitfa8646d.1-2build7 [56.3 kB]
+#11 31.49 Get:26 http://archive.ubuntu.com/ubuntu noble/main amd64 libssh-4 amd64 0.10.6-2build2 [188 kB]
+#11 31.55 Get:27 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libcurl4t64 amd64 8.5.0-2ubuntu10.6 [341 kB]
+#11 31.62 Get:28 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 curl amd64 8.5.0-2ubuntu10.6 [226 kB]
+#11 31.76 Get:29 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libldap-common all 2.6.7+dfsg-1~exp1ubuntu8.2 [31.7 kB]
+#11 31.80 Get:30 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libsasl2-modules amd64 2.1.28+dfsg1-5ubuntu3.1 [69.9 kB]
+#11 32.10 debconf: delaying package configuration, since apt-utils is not installed
+#11 32.19 Fetched 17.7 MB in 3s (5349 kB/s)
+#11 32.24 Selecting previously unselected package adduser.
+#11 32.24 (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 4381 files and directories currently installed.)
+#11 32.25 Preparing to unpack .../adduser_3.137ubuntu1_all.deb ...
+#11 32.26 Unpacking adduser (3.137ubuntu1) ...
+#11 32.34 Setting up adduser (3.137ubuntu1) ...
+#11 32.42 Selecting previously unselected package openssl.
+#11 32.42 (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 4429 files and directories currently installed.)
+#11 32.44 Preparing to unpack .../00-openssl_3.0.13-0ubuntu3.5_amd64.deb ...
+#11 32.44 Unpacking openssl (3.0.13-0ubuntu3.5) ...
+#11 32.57 Selecting previously unselected package ca-certificates.
+#11 32.57 Preparing to unpack .../01-ca-certificates_20240203_all.deb ...
+#11 32.57 Unpacking ca-certificates (20240203) ...
+#11 32.70 Selecting previously unselected package krb5-locales.
+#11 32.70 Preparing to unpack .../02-krb5-locales_1.20.1-6ubuntu2.4_all.deb ...
+#11 32.71 Unpacking krb5-locales (1.20.1-6ubuntu2.4) ...
+#11 32.77 Selecting previously unselected package libkrb5support0:amd64.
+#11 32.77 Preparing to unpack .../03-libkrb5support0_1.20.1-6ubuntu2.4_amd64.deb ...
+#11 32.78 Unpacking libkrb5support0:amd64 (1.20.1-6ubuntu2.4) ...
+#11 32.84 Selecting previously unselected package libk5crypto3:amd64.
+#11 32.84 Preparing to unpack .../04-libk5crypto3_1.20.1-6ubuntu2.4_amd64.deb ...
+#11 32.84 Unpacking libk5crypto3:amd64 (1.20.1-6ubuntu2.4) ...
+#11 32.94 Selecting previously unselected package libkeyutils1:amd64.
+#11 32.94 Preparing to unpack .../05-libkeyutils1_1.6.3-3build1_amd64.deb ...
+#11 32.95 Unpacking libkeyutils1:amd64 (1.6.3-3build1) ...
+#11 33.01 Selecting previously unselected package libkrb5-3:amd64.
+#11 33.01 Preparing to unpack .../06-libkrb5-3_1.20.1-6ubuntu2.4_amd64.deb ...
+#11 33.02 Unpacking libkrb5-3:amd64 (1.20.1-6ubuntu2.4) ...
+#11 33.11 Selecting previously unselected package libgssapi-krb5-2:amd64.
+#11 33.11 Preparing to unpack .../07-libgssapi-krb5-2_1.20.1-6ubuntu2.4_amd64.deb ...
+#11 33.12 Unpacking libgssapi-krb5-2:amd64 (1.20.1-6ubuntu2.4) ...
+#11 33.20 Selecting previously unselected package libicu74:amd64.
+#11 33.20 Preparing to unpack .../08-libicu74_74.2-1ubuntu3.1_amd64.deb ...
+#11 33.21 Unpacking libicu74:amd64 (74.2-1ubuntu3.1) ...
+#11 33.74 Selecting previously unselected package libsqlite3-0:amd64.
+#11 33.74 Preparing to unpack .../09-libsqlite3-0_3.45.1-1ubuntu2.1_amd64.deb ...
+#11 33.75 Unpacking libsqlite3-0:amd64 (3.45.1-1ubuntu2.1) ...
+#11 33.82 Selecting previously unselected package libxml2:amd64.
+#11 33.82 Preparing to unpack .../10-libxml2_2.9.14+dfsg-1.3ubuntu3.1_amd64.deb ...
+#11 33.82 Unpacking libxml2:amd64 (2.9.14+dfsg-1.3ubuntu3.1) ...
+#11 33.92 Selecting previously unselected package libnghttp2-14:amd64.
+#11 33.92 Preparing to unpack .../11-libnghttp2-14_1.59.0-1ubuntu0.2_amd64.deb ...
+#11 33.92 Unpacking libnghttp2-14:amd64 (1.59.0-1ubuntu0.2) ...
+#11 33.98 Selecting previously unselected package libpsl5t64:amd64.
+#11 33.98 Preparing to unpack .../12-libpsl5t64_0.21.2-1.1build1_amd64.deb ...
+#11 33.99 Unpacking libpsl5t64:amd64 (0.21.2-1.1build1) ...
+#11 34.05 Selecting previously unselected package publicsuffix.
+#11 34.05 Preparing to unpack .../13-publicsuffix_20231001.0357-0.1_all.deb ...
+#11 34.06 Unpacking publicsuffix (20231001.0357-0.1) ...
+#11 34.14 Selecting previously unselected package libcares2:amd64.
+#11 34.14 Preparing to unpack .../14-libcares2_1.27.0-1.0ubuntu1_amd64.deb ...
+#11 34.15 Unpacking libcares2:amd64 (1.27.0-1.0ubuntu1) ...
+#11 34.21 Selecting previously unselected package libssh2-1t64:amd64.
+#11 34.21 Preparing to unpack .../15-libssh2-1t64_1.11.0-4.1build2_amd64.deb ...
+#11 ...
+
+#12 [logstash linux/arm64 3/3] RUN apt-get update -y &&     apt-get upgrade -y &&     apt-get install -y     		 adduser              aria2              bash              bzip2              curl &&     ARCH=$(arch) &&     if [ "$ARCH" = "x86_64" ]; then LS_ARCH="amd64"; export _JAVA_OPTIONS=""; fi &&     if [ "$ARCH" = "aarch64" ]; then LS_ARCH="arm64"; export _JAVA_OPTIONS="-XX:UseSVE=0"; fi &&     echo "$ARCH" &&     mkdir -p /etc/listbot &&     cd /etc/listbot &&     aria2c -s16 -x 16 https://listbot.sicherheitstacho.eu/cve.yaml.bz2 &&     aria2c -s16 -x 16 https://listbot.sicherheitstacho.eu/iprep.yaml.bz2 &&     bunzip2 *.bz2 &&     cd /root/dist/ &&     aria2c -s 16 -x 16 https://artifacts.elastic.co/downloads/logstash/logstash-8.16.1-$LS_ARCH.deb &&     dpkg -i logstash-8.16.1-$LS_ARCH.deb &&     cd /root/dist/ &&     cp entrypoint.sh /usr/bin/ &&     chmod u+x /usr/bin/entrypoint.sh &&     mkdir -p /usr/share/logstash/config &&     cp logstash.conf /etc/logstash/ &&     cp http_input.conf /etc/logstash/ &&     cp http_output.conf /etc/logstash/ &&     cp pipelines.yml /usr/share/logstash/config/pipelines.yml &&     cp pipelines_sensor.yml /usr/share/logstash/config/pipelines_sensor.yml &&     cp tpot-template.json /etc/logstash/ &&     cd /usr/share/logstash &&     bin/logstash-plugin update logstash-filter-translate &&     rm /etc/logstash/pipelines.yml &&     rm /etc/logstash/logstash.yml &&     groupmod -g 2000 logstash &&     usermod -u 2000 logstash &&     chown -R logstash:logstash /etc/listbot                                /var/log/logstash/ 			       /var/lib/logstash 			       /usr/share/logstash/data 			       /usr/share/logstash/config/pipelines* &&     chmod 755 /usr/bin/entrypoint.sh &&     apt-get autoremove -y --purge &&     apt-get clean &&         rm -rf /var/lib/apt/lists/*             /tmp/* /var/tmp/*             /root/.cache             /root/*
+#12 24.05 Get:15 http://ports.ubuntu.com/ubuntu-ports noble-security/universe arm64 Packages [1016 kB]
+#12 24.36 Get:16 http://ports.ubuntu.com/ubuntu-ports noble-security/multiverse arm64 Packages [21.0 kB]
+#12 24.43 Get:17 http://ports.ubuntu.com/ubuntu-ports noble-security/main arm64 Packages [757 kB]
+#12 ...
+
+#11 [logstash linux/amd64 3/3] RUN apt-get update -y &&     apt-get upgrade -y &&     apt-get install -y     		 adduser              aria2              bash              bzip2              curl &&     ARCH=$(arch) &&     if [ "$ARCH" = "x86_64" ]; then LS_ARCH="amd64"; export _JAVA_OPTIONS=""; fi &&     if [ "$ARCH" = "aarch64" ]; then LS_ARCH="arm64"; export _JAVA_OPTIONS="-XX:UseSVE=0"; fi &&     echo "$ARCH" &&     mkdir -p /etc/listbot &&     cd /etc/listbot &&     aria2c -s16 -x 16 https://listbot.sicherheitstacho.eu/cve.yaml.bz2 &&     aria2c -s16 -x 16 https://listbot.sicherheitstacho.eu/iprep.yaml.bz2 &&     bunzip2 *.bz2 &&     cd /root/dist/ &&     aria2c -s 16 -x 16 https://artifacts.elastic.co/downloads/logstash/logstash-8.16.1-$LS_ARCH.deb &&     dpkg -i logstash-8.16.1-$LS_ARCH.deb &&     cd /root/dist/ &&     cp entrypoint.sh /usr/bin/ &&     chmod u+x /usr/bin/entrypoint.sh &&     mkdir -p /usr/share/logstash/config &&     cp logstash.conf /etc/logstash/ &&     cp http_input.conf /etc/logstash/ &&     cp http_output.conf /etc/logstash/ &&     cp pipelines.yml /usr/share/logstash/config/pipelines.yml &&     cp pipelines_sensor.yml /usr/share/logstash/config/pipelines_sensor.yml &&     cp tpot-template.json /etc/logstash/ &&     cd /usr/share/logstash &&     bin/logstash-plugin update logstash-filter-translate &&     rm /etc/logstash/pipelines.yml &&     rm /etc/logstash/logstash.yml &&     groupmod -g 2000 logstash &&     usermod -u 2000 logstash &&     chown -R logstash:logstash /etc/listbot                                /var/log/logstash/ 			       /var/lib/logstash 			       /usr/share/logstash/data 			       /usr/share/logstash/config/pipelines* &&     chmod 755 /usr/bin/entrypoint.sh &&     apt-get autoremove -y --purge &&     apt-get clean &&         rm -rf /var/lib/apt/lists/*             /tmp/* /var/tmp/*             /root/.cache             /root/*
+#11 34.21 Unpacking libssh2-1t64:amd64 (1.11.0-4.1build2) ...
+#11 34.27 Selecting previously unselected package libaria2-0:amd64.
+#11 34.27 Preparing to unpack .../16-libaria2-0_1.37.0+debian-1build3_amd64.deb ...
+#11 34.28 Unpacking libaria2-0:amd64 (1.37.0+debian-1build3) ...
+#11 34.37 Selecting previously unselected package aria2.
+#11 34.37 Preparing to unpack .../17-aria2_1.37.0+debian-1build3_amd64.deb ...
+#11 34.37 Unpacking aria2 (1.37.0+debian-1build3) ...
+#11 34.47 Selecting previously unselected package bzip2.
+#11 34.47 Preparing to unpack .../18-bzip2_1.0.8-5.1build0.1_amd64.deb ...
+#11 34.47 Unpacking bzip2 (1.0.8-5.1build0.1) ...
+#11 34.54 Selecting previously unselected package libbrotli1:amd64.
+#11 34.54 Preparing to unpack .../19-libbrotli1_1.1.0-2build2_amd64.deb ...
+#11 34.54 Unpacking libbrotli1:amd64 (1.1.0-2build2) ...
+#11 34.62 Selecting previously unselected package libsasl2-modules-db:amd64.
+#11 34.62 Preparing to unpack .../20-libsasl2-modules-db_2.1.28+dfsg1-5ubuntu3.1_amd64.deb ...
+#11 34.63 Unpacking libsasl2-modules-db:amd64 (2.1.28+dfsg1-5ubuntu3.1) ...
+#11 34.77 Selecting previously unselected package libsasl2-2:amd64.
+#11 34.77 Preparing to unpack .../21-libsasl2-2_2.1.28+dfsg1-5ubuntu3.1_amd64.deb ...
+#11 34.78 Unpacking libsasl2-2:amd64 (2.1.28+dfsg1-5ubuntu3.1) ...
+#11 34.83 Selecting previously unselected package libldap2:amd64.
+#11 34.83 Preparing to unpack .../22-libldap2_2.6.7+dfsg-1~exp1ubuntu8.2_amd64.deb ...
+#11 34.84 Unpacking libldap2:amd64 (2.6.7+dfsg-1~exp1ubuntu8.2) ...
+#11 34.90 Selecting previously unselected package librtmp1:amd64.
+#11 34.90 Preparing to unpack .../23-librtmp1_2.4+20151223.gitfa8646d.1-2build7_amd64.deb ...
+#11 34.91 Unpacking librtmp1:amd64 (2.4+20151223.gitfa8646d.1-2build7) ...
+#11 34.97 Selecting previously unselected package libssh-4:amd64.
+#11 34.97 Preparing to unpack .../24-libssh-4_0.10.6-2build2_amd64.deb ...
+#11 34.98 Unpacking libssh-4:amd64 (0.10.6-2build2) ...
+#11 35.06 Selecting previously unselected package libcurl4t64:amd64.
+#11 35.06 Preparing to unpack .../25-libcurl4t64_8.5.0-2ubuntu10.6_amd64.deb ...
+#11 35.07 Unpacking libcurl4t64:amd64 (8.5.0-2ubuntu10.6) ...
+#11 35.13 Selecting previously unselected package curl.
+#11 35.13 Preparing to unpack .../26-curl_8.5.0-2ubuntu10.6_amd64.deb ...
+#11 35.13 Unpacking curl (8.5.0-2ubuntu10.6) ...
+#11 35.18 Selecting previously unselected package libldap-common.
+#11 35.18 Preparing to unpack .../27-libldap-common_2.6.7+dfsg-1~exp1ubuntu8.2_all.deb ...
+#11 35.19 Unpacking libldap-common (2.6.7+dfsg-1~exp1ubuntu8.2) ...
+#11 35.25 Selecting previously unselected package libsasl2-modules:amd64.
+#11 35.25 Preparing to unpack .../28-libsasl2-modules_2.1.28+dfsg1-5ubuntu3.1_amd64.deb ...
+#11 35.27 Unpacking libsasl2-modules:amd64 (2.1.28+dfsg1-5ubuntu3.1) ...
+#11 35.36 Setting up libkeyutils1:amd64 (1.6.3-3build1) ...
+#11 35.37 Setting up libbrotli1:amd64 (1.1.0-2build2) ...
+#11 35.38 Setting up libsqlite3-0:amd64 (3.45.1-1ubuntu2.1) ...
+#11 35.38 Setting up libsasl2-modules:amd64 (2.1.28+dfsg1-5ubuntu3.1) ...
+#11 35.41 Setting up libpsl5t64:amd64 (0.21.2-1.1build1) ...
+#11 35.42 Setting up libnghttp2-14:amd64 (1.59.0-1ubuntu0.2) ...
+#11 35.43 Setting up krb5-locales (1.20.1-6ubuntu2.4) ...
+#11 35.44 Setting up bzip2 (1.0.8-5.1build0.1) ...
+#11 35.45 Setting up libldap-common (2.6.7+dfsg-1~exp1ubuntu8.2) ...
+#11 35.46 Setting up libkrb5support0:amd64 (1.20.1-6ubuntu2.4) ...
+#11 35.48 Setting up libsasl2-modules-db:amd64 (2.1.28+dfsg1-5ubuntu3.1) ...
+#11 35.49 Setting up librtmp1:amd64 (2.4+20151223.gitfa8646d.1-2build7) ...
+#11 35.50 Setting up libcares2:amd64 (1.27.0-1.0ubuntu1) ...
+#11 35.51 Setting up libk5crypto3:amd64 (1.20.1-6ubuntu2.4) ...
+#11 35.53 Setting up libsasl2-2:amd64 (2.1.28+dfsg1-5ubuntu3.1) ...
+#11 35.54 Setting up libicu74:amd64 (74.2-1ubuntu3.1) ...
+#11 35.55 Setting up libkrb5-3:amd64 (1.20.1-6ubuntu2.4) ...
+#11 35.56 Setting up libssh2-1t64:amd64 (1.11.0-4.1build2) ...
+#11 35.57 Setting up openssl (3.0.13-0ubuntu3.5) ...
+#11 35.59 Setting up publicsuffix (20231001.0357-0.1) ...
+#11 35.60 Setting up libxml2:amd64 (2.9.14+dfsg-1.3ubuntu3.1) ...
+#11 35.61 Setting up libldap2:amd64 (2.6.7+dfsg-1~exp1ubuntu8.2) ...
+#11 35.62 Setting up libaria2-0:amd64 (1.37.0+debian-1build3) ...
+#11 35.63 Setting up aria2 (1.37.0+debian-1build3) ...
+#11 35.64 Setting up ca-certificates (20240203) ...
+#11 38.09 Updating certificates in /etc/ssl/certs...
+#11 ...
+
+#12 [logstash linux/arm64 3/3] RUN apt-get update -y &&     apt-get upgrade -y &&     apt-get install -y     		 adduser              aria2              bash              bzip2              curl &&     ARCH=$(arch) &&     if [ "$ARCH" = "x86_64" ]; then LS_ARCH="amd64"; export _JAVA_OPTIONS=""; fi &&     if [ "$ARCH" = "aarch64" ]; then LS_ARCH="arm64"; export _JAVA_OPTIONS="-XX:UseSVE=0"; fi &&     echo "$ARCH" &&     mkdir -p /etc/listbot &&     cd /etc/listbot &&     aria2c -s16 -x 16 https://listbot.sicherheitstacho.eu/cve.yaml.bz2 &&     aria2c -s16 -x 16 https://listbot.sicherheitstacho.eu/iprep.yaml.bz2 &&     bunzip2 *.bz2 &&     cd /root/dist/ &&     aria2c -s 16 -x 16 https://artifacts.elastic.co/downloads/logstash/logstash-8.16.1-$LS_ARCH.deb &&     dpkg -i logstash-8.16.1-$LS_ARCH.deb &&     cd /root/dist/ &&     cp entrypoint.sh /usr/bin/ &&     chmod u+x /usr/bin/entrypoint.sh &&     mkdir -p /usr/share/logstash/config &&     cp logstash.conf /etc/logstash/ &&     cp http_input.conf /etc/logstash/ &&     cp http_output.conf /etc/logstash/ &&     cp pipelines.yml /usr/share/logstash/config/pipelines.yml &&     cp pipelines_sensor.yml /usr/share/logstash/config/pipelines_sensor.yml &&     cp tpot-template.json /etc/logstash/ &&     cd /usr/share/logstash &&     bin/logstash-plugin update logstash-filter-translate &&     rm /etc/logstash/pipelines.yml &&     rm /etc/logstash/logstash.yml &&     groupmod -g 2000 logstash &&     usermod -u 2000 logstash &&     chown -R logstash:logstash /etc/listbot                                /var/log/logstash/ 			       /var/lib/logstash 			       /usr/share/logstash/data 			       /usr/share/logstash/config/pipelines* &&     chmod 755 /usr/bin/entrypoint.sh &&     apt-get autoremove -y --purge &&     apt-get clean &&         rm -rf /var/lib/apt/lists/*             /tmp/* /var/tmp/*             /root/.cache             /root/*
+#12 40.34 Fetched 27.8 MB in 39s (718 kB/s)
+#12 40.34 Reading package lists...
+#12 ...
+
+#11 [logstash linux/amd64 3/3] RUN apt-get update -y &&     apt-get upgrade -y &&     apt-get install -y     		 adduser              aria2              bash              bzip2              curl &&     ARCH=$(arch) &&     if [ "$ARCH" = "x86_64" ]; then LS_ARCH="amd64"; export _JAVA_OPTIONS=""; fi &&     if [ "$ARCH" = "aarch64" ]; then LS_ARCH="arm64"; export _JAVA_OPTIONS="-XX:UseSVE=0"; fi &&     echo "$ARCH" &&     mkdir -p /etc/listbot &&     cd /etc/listbot &&     aria2c -s16 -x 16 https://listbot.sicherheitstacho.eu/cve.yaml.bz2 &&     aria2c -s16 -x 16 https://listbot.sicherheitstacho.eu/iprep.yaml.bz2 &&     bunzip2 *.bz2 &&     cd /root/dist/ &&     aria2c -s 16 -x 16 https://artifacts.elastic.co/downloads/logstash/logstash-8.16.1-$LS_ARCH.deb &&     dpkg -i logstash-8.16.1-$LS_ARCH.deb &&     cd /root/dist/ &&     cp entrypoint.sh /usr/bin/ &&     chmod u+x /usr/bin/entrypoint.sh &&     mkdir -p /usr/share/logstash/config &&     cp logstash.conf /etc/logstash/ &&     cp http_input.conf /etc/logstash/ &&     cp http_output.conf /etc/logstash/ &&     cp pipelines.yml /usr/share/logstash/config/pipelines.yml &&     cp pipelines_sensor.yml /usr/share/logstash/config/pipelines_sensor.yml &&     cp tpot-template.json /etc/logstash/ &&     cd /usr/share/logstash &&     bin/logstash-plugin update logstash-filter-translate &&     rm /etc/logstash/pipelines.yml &&     rm /etc/logstash/logstash.yml &&     groupmod -g 2000 logstash &&     usermod -u 2000 logstash &&     chown -R logstash:logstash /etc/listbot                                /var/log/logstash/ 			       /var/lib/logstash 			       /usr/share/logstash/data 			       /usr/share/logstash/config/pipelines* &&     chmod 755 /usr/bin/entrypoint.sh &&     apt-get autoremove -y --purge &&     apt-get clean &&         rm -rf /var/lib/apt/lists/*             /tmp/* /var/tmp/*             /root/.cache             /root/*
+#11 42.03 146 added, 0 removed; done.
+#11 42.08 Setting up libgssapi-krb5-2:amd64 (1.20.1-6ubuntu2.4) ...
+#11 42.09 Setting up libssh-4:amd64 (0.10.6-2build2) ...
+#11 42.10 Setting up libcurl4t64:amd64 (8.5.0-2ubuntu10.6) ...
+#11 42.12 Setting up curl (8.5.0-2ubuntu10.6) ...
+#11 42.13 Processing triggers for libc-bin (2.39-0ubuntu8.4) ...
+#11 42.17 Processing triggers for ca-certificates (20240203) ...
+#11 42.19 Updating certificates in /etc/ssl/certs...
+#11 45.31 0 added, 0 removed; done.
+#11 45.31 Running hooks in /etc/ca-certificates/update.d...
+#11 45.33 done.
+#11 45.42 x86_64
+#11 45.44 
+#11 45.44 02/25 11:27:38 [[1;32mNOTICE[0m] Downloading 1 item(s)
+#11 45.65 
+#11 45.65 02/25 11:27:38 [[1;32mNOTICE[0m] Download complete: /etc/listbot/cve.yaml.bz2
+#11 45.65 
+#11 45.65 Download Results:
+#11 45.65 gid   |stat|avg speed  |path/URI
+#11 45.65 ======+====+===========+=======================================================
+#11 45.65 c410b8|OK  |   833KiB/s|/etc/listbot/cve.yaml.bz2
+#11 45.65 
+#11 45.65 Status Legend:
+#11 45.65 (OK):download completed.
+#11 45.67 
+#11 45.67 02/25 11:27:38 [[1;32mNOTICE[0m] Downloading 1 item(s)
+#11 46.09 
+#11 46.09 02/25 11:27:38 [[1;32mNOTICE[0m] Download complete: /etc/listbot/iprep.yaml.bz2
+#11 46.09 
+#11 46.09 Download Results:
+#11 46.09 gid   |stat|avg speed  |path/URI
+#11 46.09 ======+====+===========+=======================================================
+#11 46.09 7785d5|OK  |   6.1MiB/s|/etc/listbot/iprep.yaml.bz2
+#11 46.09 
+#11 46.09 Status Legend:
+#11 46.09 (OK):download completed.
+#11 47.26 
+#11 47.26 02/25 11:27:40 [[1;32mNOTICE[0m] Downloading 1 item(s)
+#11 102.7 [#092c2d 272KiB/410MiB(0%) CN:16 DL:654KiB ETA:10m42s]
+#11 102.7 [#092c2d 6.6MiB/410MiB(1%) CN:16 DL:4.5MiB ETA:1m27s]
+#11 102.7 [#092c2d 15MiB/410MiB(3%) CN:16 DL:6.2MiB ETA:1m3s]
+#11 102.7 [#092c2d 21MiB/410MiB(5%) CN:16 DL:6.3MiB ETA:1m]
+#11 102.7 [#092c2d 30MiB/410MiB(7%) CN:16 DL:6.8MiB ETA:55s]
+#11 102.7 [#092c2d 39MiB/410MiB(9%) CN:16 DL:7.3MiB ETA:50s]
+#11 102.7 [#092c2d 48MiB/410MiB(11%) CN:16 DL:7.5MiB ETA:48s]
+#11 102.7 [#092c2d 55MiB/410MiB(13%) CN:16 DL:7.5MiB ETA:46s]
+#11 102.7 [#092c2d 62MiB/410MiB(15%) CN:16 DL:7.5MiB ETA:46s]
+#11 102.7 [#092c2d 71MiB/410MiB(17%) CN:16 DL:7.6MiB ETA:44s]
+#11 102.7 [#092c2d 81MiB/410MiB(19%) CN:16 DL:8.3MiB ETA:39s]
+#11 102.7 [#092c2d 91MiB/410MiB(22%) CN:16 DL:8.5MiB ETA:37s]
+#11 102.7 [#092c2d 99MiB/410MiB(24%) CN:16 DL:8.6MiB ETA:36s]
+#11 102.7 [#092c2d 108MiB/410MiB(26%) CN:16 DL:8.8MiB ETA:34s]
+#11 102.7 [#092c2d 115MiB/410MiB(28%) CN:16 DL:8.4MiB ETA:34s]
+#11 102.7 [#092c2d 125MiB/410MiB(30%) CN:16 DL:8.6MiB ETA:33s]
+#11 102.7 [#092c2d 132MiB/410MiB(32%) CN:16 DL:8.5MiB ETA:32s]
+#11 102.7 [#092c2d 138MiB/410MiB(33%) CN:16 DL:8.4MiB ETA:32s]
+#11 102.7 [#092c2d 145MiB/410MiB(35%) CN:16 DL:8.4MiB ETA:31s]
+#11 102.7 [#092c2d 155MiB/410MiB(37%) CN:16 DL:8.3MiB ETA:30s]
+#11 102.7 [#092c2d 164MiB/410MiB(39%) CN:16 DL:8.2MiB ETA:29s]
+#11 102.7 [#092c2d 170MiB/410MiB(41%) CN:16 DL:8.0MiB ETA:29s]
+#11 102.7 [#092c2d 179MiB/410MiB(43%) CN:16 DL:7.9MiB ETA:29s]
+#11 102.7 [#092c2d 187MiB/410MiB(45%) CN:16 DL:8.0MiB ETA:27s]
+#11 102.7 [#092c2d 194MiB/410MiB(47%) CN:16 DL:7.8MiB ETA:27s]
+#11 102.7 [#092c2d 201MiB/410MiB(49%) CN:16 DL:7.6MiB ETA:27s]
+#11 102.7 [#092c2d 208MiB/410MiB(50%) CN:16 DL:7.7MiB ETA:26s]
+#11 102.7 [#092c2d 213MiB/410MiB(52%) CN:16 DL:7.6MiB ETA:25s]
+#11 102.7 [#092c2d 220MiB/410MiB(53%) CN:16 DL:7.3MiB ETA:25s]
+#11 102.7 [#092c2d 227MiB/410MiB(55%) CN:16 DL:7.0MiB ETA:25s]
+#11 102.7 [#092c2d 233MiB/410MiB(56%) CN:16 DL:7.0MiB ETA:25s]
+#11 102.7 [#092c2d 242MiB/410MiB(59%) CN:16 DL:7.0MiB ETA:23s]
+#11 102.7 [#092c2d 252MiB/410MiB(61%) CN:16 DL:7.2MiB ETA:21s]
+#11 102.7 [#092c2d 262MiB/410MiB(63%) CN:16 DL:7.5MiB ETA:19s]
+#11 102.7 [#092c2d 269MiB/410MiB(65%) CN:16 DL:7.5MiB ETA:18s]
+#11 102.7 [#092c2d 278MiB/410MiB(67%) CN:16 DL:7.9MiB ETA:16s]
+#11 102.7 [#092c2d 285MiB/410MiB(69%) CN:16 DL:7.9MiB ETA:15s]
+#11 102.7 [#092c2d 292MiB/410MiB(71%) CN:16 DL:8.0MiB ETA:14s]
+#11 102.7 [#092c2d 301MiB/410MiB(73%) CN:16 DL:8.2MiB ETA:13s]
+#11 102.7 [#092c2d 309MiB/410MiB(75%) CN:16 DL:8.5MiB ETA:11s]
+#11 102.7 [#092c2d 319MiB/410MiB(77%) CN:16 DL:8.7MiB ETA:10s]
+#11 102.7 [#092c2d 330MiB/410MiB(80%) CN:16 DL:8.7MiB ETA:9s]
+#11 102.7 [#092c2d 338MiB/410MiB(82%) CN:14 DL:8.6MiB ETA:8s]
+#11 102.7 [#092c2d 344MiB/410MiB(83%) CN:14 DL:8.4MiB ETA:7s]
+#11 102.7 [#092c2d 350MiB/410MiB(85%) CN:14 DL:8.0MiB ETA:7s]
+#11 102.7 [#092c2d 357MiB/410MiB(86%) CN:14 DL:7.9MiB ETA:6s]
+#11 102.7 [#092c2d 363MiB/410MiB(88%) CN:12 DL:7.9MiB ETA:6s]
+#11 102.7 [#092c2d 370MiB/410MiB(90%) CN:11 DL:7.7MiB ETA:5s]
+#11 102.7 [#092c2d 376MiB/410MiB(91%) CN:10 DL:7.6MiB ETA:4s]
+#11 102.7 [#092c2d 384MiB/410MiB(93%) CN:10 DL:7.4MiB ETA:3s]
+#11 102.7 [#092c2d 391MiB/410MiB(95%) CN:8 DL:7.2MiB ETA:2s]
+#11 102.7 [#092c2d 399MiB/410MiB(97%) CN:6 DL:7.0MiB ETA:1s]
+#11 102.7 [#092c2d 404MiB/410MiB(98%) CN:5 DL:6.6MiB]
+#11 102.7 [#092c2d 406MiB/410MiB(99%) CN:4 DL:6.2MiB]
+#11 102.7 [#092c2d 410MiB/410MiB(99%) CN:2 DL:5.9MiB]
+#11 102.7 
+#11 102.7 02/25 11:28:35 [[1;32mNOTICE[0m] Download complete: /root/dist/logstash-8.16.1-amd64.deb
+#11 102.7 
+#11 102.7 Download Results:
+#11 102.7 gid   |stat|avg speed  |path/URI
+#11 102.7 ======+====+===========+=======================================================
+#11 102.7 092c2d|OK  |   7.5MiB/s|/root/dist/logstash-8.16.1-amd64.deb
+#11 102.7 
+#11 102.7 Status Legend:
+#11 102.7 (OK):download completed.
+#11 102.8 Selecting previously unselected package logstash.
+#11 102.8 (Reading database ... 5219 files and directories currently installed.)
+#11 102.8 Preparing to unpack logstash-8.16.1-amd64.deb ...
+#11 102.9 Unpacking logstash (1:8.16.1-1) ...
+#11 119.9 Setting up logstash (1:8.16.1-1) ...
+#11 120.3 Using bundled JDK: /usr/share/logstash/jdk
+#11 120.4 Picked up _JAVA_OPTIONS: 
+#11 120.8 Picked up _JAVA_OPTIONS: 
+#11 142.1 Updating logstash-filter-translate
+#11 ...
+
+#12 [logstash linux/arm64 3/3] RUN apt-get update -y &&     apt-get upgrade -y &&     apt-get install -y     		 adduser              aria2              bash              bzip2              curl &&     ARCH=$(arch) &&     if [ "$ARCH" = "x86_64" ]; then LS_ARCH="amd64"; export _JAVA_OPTIONS=""; fi &&     if [ "$ARCH" = "aarch64" ]; then LS_ARCH="arm64"; export _JAVA_OPTIONS="-XX:UseSVE=0"; fi &&     echo "$ARCH" &&     mkdir -p /etc/listbot &&     cd /etc/listbot &&     aria2c -s16 -x 16 https://listbot.sicherheitstacho.eu/cve.yaml.bz2 &&     aria2c -s16 -x 16 https://listbot.sicherheitstacho.eu/iprep.yaml.bz2 &&     bunzip2 *.bz2 &&     cd /root/dist/ &&     aria2c -s 16 -x 16 https://artifacts.elastic.co/downloads/logstash/logstash-8.16.1-$LS_ARCH.deb &&     dpkg -i logstash-8.16.1-$LS_ARCH.deb &&     cd /root/dist/ &&     cp entrypoint.sh /usr/bin/ &&     chmod u+x /usr/bin/entrypoint.sh &&     mkdir -p /usr/share/logstash/config &&     cp logstash.conf /etc/logstash/ &&     cp http_input.conf /etc/logstash/ &&     cp http_output.conf /etc/logstash/ &&     cp pipelines.yml /usr/share/logstash/config/pipelines.yml &&     cp pipelines_sensor.yml /usr/share/logstash/config/pipelines_sensor.yml &&     cp tpot-template.json /etc/logstash/ &&     cd /usr/share/logstash &&     bin/logstash-plugin update logstash-filter-translate &&     rm /etc/logstash/pipelines.yml &&     rm /etc/logstash/logstash.yml &&     groupmod -g 2000 logstash &&     usermod -u 2000 logstash &&     chown -R logstash:logstash /etc/listbot                                /var/log/logstash/ 			       /var/lib/logstash 			       /usr/share/logstash/data 			       /usr/share/logstash/config/pipelines* &&     chmod 755 /usr/bin/entrypoint.sh &&     apt-get autoremove -y --purge &&     apt-get clean &&         rm -rf /var/lib/apt/lists/*             /tmp/* /var/tmp/*             /root/.cache             /root/*
+#12 40.34 Reading package lists...
+#12 209.8 Reading package lists...
+#12 ...
+
+#11 [logstash linux/amd64 3/3] RUN apt-get update -y &&     apt-get upgrade -y &&     apt-get install -y     		 adduser              aria2              bash              bzip2              curl &&     ARCH=$(arch) &&     if [ "$ARCH" = "x86_64" ]; then LS_ARCH="amd64"; export _JAVA_OPTIONS=""; fi &&     if [ "$ARCH" = "aarch64" ]; then LS_ARCH="arm64"; export _JAVA_OPTIONS="-XX:UseSVE=0"; fi &&     echo "$ARCH" &&     mkdir -p /etc/listbot &&     cd /etc/listbot &&     aria2c -s16 -x 16 https://listbot.sicherheitstacho.eu/cve.yaml.bz2 &&     aria2c -s16 -x 16 https://listbot.sicherheitstacho.eu/iprep.yaml.bz2 &&     bunzip2 *.bz2 &&     cd /root/dist/ &&     aria2c -s 16 -x 16 https://artifacts.elastic.co/downloads/logstash/logstash-8.16.1-$LS_ARCH.deb &&     dpkg -i logstash-8.16.1-$LS_ARCH.deb &&     cd /root/dist/ &&     cp entrypoint.sh /usr/bin/ &&     chmod u+x /usr/bin/entrypoint.sh &&     mkdir -p /usr/share/logstash/config &&     cp logstash.conf /etc/logstash/ &&     cp http_input.conf /etc/logstash/ &&     cp http_output.conf /etc/logstash/ &&     cp pipelines.yml /usr/share/logstash/config/pipelines.yml &&     cp pipelines_sensor.yml /usr/share/logstash/config/pipelines_sensor.yml &&     cp tpot-template.json /etc/logstash/ &&     cd /usr/share/logstash &&     bin/logstash-plugin update logstash-filter-translate &&     rm /etc/logstash/pipelines.yml &&     rm /etc/logstash/logstash.yml &&     groupmod -g 2000 logstash &&     usermod -u 2000 logstash &&     chown -R logstash:logstash /etc/listbot                                /var/log/logstash/ 			       /var/lib/logstash 			       /usr/share/logstash/data 			       /usr/share/logstash/config/pipelines* &&     chmod 755 /usr/bin/entrypoint.sh &&     apt-get autoremove -y --purge &&     apt-get clean &&         rm -rf /var/lib/apt/lists/*             /tmp/* /var/tmp/*             /root/.cache             /root/*
+#11 225.7 Bundler attempted to update logstash-mixin-ecs_compatibility_support but its version stayed the same
+#11 225.7 Bundler attempted to update logstash-mixin-validator_support but its version stayed the same
+#11 225.7 Bundler attempted to update logstash-mixin-deprecation_logger_support but its version stayed the same
+#11 225.7 Bundler attempted to update logstash-mixin-scheduler but its version stayed the same
+#11 225.7 Bundler attempted to update logstash-filter-translate but its version stayed the same
+#11 228.8 No plugin updated
+#11 229.1 Reading package lists...
+#11 231.3 Building dependency tree...
+#11 231.7 Reading state information...
+#11 232.4 0 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.
+#11 DONE 232.7s
+
+#12 [logstash linux/arm64 3/3] RUN apt-get update -y &&     apt-get upgrade -y &&     apt-get install -y     		 adduser              aria2              bash              bzip2              curl &&     ARCH=$(arch) &&     if [ "$ARCH" = "x86_64" ]; then LS_ARCH="amd64"; export _JAVA_OPTIONS=""; fi &&     if [ "$ARCH" = "aarch64" ]; then LS_ARCH="arm64"; export _JAVA_OPTIONS="-XX:UseSVE=0"; fi &&     echo "$ARCH" &&     mkdir -p /etc/listbot &&     cd /etc/listbot &&     aria2c -s16 -x 16 https://listbot.sicherheitstacho.eu/cve.yaml.bz2 &&     aria2c -s16 -x 16 https://listbot.sicherheitstacho.eu/iprep.yaml.bz2 &&     bunzip2 *.bz2 &&     cd /root/dist/ &&     aria2c -s 16 -x 16 https://artifacts.elastic.co/downloads/logstash/logstash-8.16.1-$LS_ARCH.deb &&     dpkg -i logstash-8.16.1-$LS_ARCH.deb &&     cd /root/dist/ &&     cp entrypoint.sh /usr/bin/ &&     chmod u+x /usr/bin/entrypoint.sh &&     mkdir -p /usr/share/logstash/config &&     cp logstash.conf /etc/logstash/ &&     cp http_input.conf /etc/logstash/ &&     cp http_output.conf /etc/logstash/ &&     cp pipelines.yml /usr/share/logstash/config/pipelines.yml &&     cp pipelines_sensor.yml /usr/share/logstash/config/pipelines_sensor.yml &&     cp tpot-template.json /etc/logstash/ &&     cd /usr/share/logstash &&     bin/logstash-plugin update logstash-filter-translate &&     rm /etc/logstash/pipelines.yml &&     rm /etc/logstash/logstash.yml &&     groupmod -g 2000 logstash &&     usermod -u 2000 logstash &&     chown -R logstash:logstash /etc/listbot                                /var/log/logstash/ 			       /var/lib/logstash 			       /usr/share/logstash/data 			       /usr/share/logstash/config/pipelines* &&     chmod 755 /usr/bin/entrypoint.sh &&     apt-get autoremove -y --purge &&     apt-get clean &&         rm -rf /var/lib/apt/lists/*             /tmp/* /var/tmp/*             /root/.cache             /root/*
+#12 209.8 Reading package lists...
+#12 381.2 Building dependency tree...
+#12 422.8 Reading state information...
+#12 427.7 Calculating upgrade...
+#12 470.1 The following packages will be upgraded:
+#12 470.1   base-files libattr1 libc-bin libc6 libcap2 libgmp10 libgnutls30t64
+#12 470.1   libgpg-error0 libidn2-0 libmd0 libpcre2-8-0 libselinux1 libssl3t64
+#12 470.1   libsystemd0 libtasn1-6 libudev1 libunistring5 perl-base
+#12 471.6 18 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.
+#12 471.6 Need to get 9868 kB of archives.
+#12 471.6 After this operation, 63.5 kB disk space will be freed.
+#12 471.6 Get:1 http://ports.ubuntu.com/ubuntu-ports noble-updates/main arm64 libc6 arm64 2.39-0ubuntu8.4 [2775 kB]
+#12 472.4 Get:2 http://ports.ubuntu.com/ubuntu-ports noble-updates/main arm64 base-files arm64 13ubuntu10.2 [73.3 kB]
+#12 472.4 Get:3 http://ports.ubuntu.com/ubuntu-ports noble-updates/main arm64 perl-base arm64 5.38.2-3.2build2.1 [1778 kB]
+#12 472.8 Get:4 http://ports.ubuntu.com/ubuntu-ports noble-updates/main arm64 libc-bin arm64 2.39-0ubuntu8.4 [591 kB]
+#12 473.0 Get:5 http://ports.ubuntu.com/ubuntu-ports noble-updates/main arm64 libattr1 arm64 1:2.5.2-1build1.1 [11.0 kB]
+#12 473.0 Get:6 http://ports.ubuntu.com/ubuntu-ports noble-updates/main arm64 libcap2 arm64 1:2.66-5ubuntu2.2 [30.5 kB]
+#12 473.0 Get:7 http://ports.ubuntu.com/ubuntu-ports noble-updates/main arm64 libgmp10 arm64 2:6.3.0+dfsg-2ubuntu6.1 [243 kB]
+#12 473.1 Get:8 http://ports.ubuntu.com/ubuntu-ports noble-updates/main arm64 libgpg-error0 arm64 1.47-3build2.1 [70.0 kB]
+#12 473.1 Get:9 http://ports.ubuntu.com/ubuntu-ports noble-updates/main arm64 libmd0 arm64 1.1.0-2build1.1 [24.6 kB]
+#12 473.2 Get:10 http://ports.ubuntu.com/ubuntu-ports noble-updates/main arm64 libpcre2-8-0 arm64 10.42-4ubuntu2.1 [212 kB]
+#12 473.2 Get:11 http://ports.ubuntu.com/ubuntu-ports noble-updates/main arm64 libselinux1 arm64 3.5-2ubuntu2.1 [79.9 kB]
+#12 473.3 Get:12 http://ports.ubuntu.com/ubuntu-ports noble-updates/main arm64 libssl3t64 arm64 3.0.13-0ubuntu3.5 [1797 kB]
+#12 473.9 Get:13 http://ports.ubuntu.com/ubuntu-ports noble-updates/main arm64 libsystemd0 arm64 255.4-1ubuntu8.5 [425 kB]
+#12 474.0 Get:14 http://ports.ubuntu.com/ubuntu-ports noble-updates/main arm64 libudev1 arm64 255.4-1ubuntu8.5 [173 kB]
+#12 474.1 Get:15 http://ports.ubuntu.com/ubuntu-ports noble-updates/main arm64 libunistring5 arm64 1.1-2build1.1 [530 kB]
+#12 474.2 Get:16 http://ports.ubuntu.com/ubuntu-ports noble-updates/main arm64 libidn2-0 arm64 2.3.7-2build1.1 [67.2 kB]
+#12 474.2 Get:17 http://ports.ubuntu.com/ubuntu-ports noble-updates/main arm64 libtasn1-6 arm64 4.19.0-3ubuntu0.24.04.1 [43.6 kB]
+#12 474.2 Get:18 http://ports.ubuntu.com/ubuntu-ports noble-updates/main arm64 libgnutls30t64 arm64 3.8.3-1.1ubuntu3.3 [945 kB]
+#12 490.9 debconf: delaying package configuration, since apt-utils is not installed
+#12 493.0 Fetched 9868 kB in 4s (2806 kB/s)
+#12 493.6 (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 4378 files and directories currently installed.)
+#12 493.8 Preparing to unpack .../libc6_2.39-0ubuntu8.4_arm64.deb ...
+#12 507.7 Unpacking libc6:arm64 (2.39-0ubuntu8.4) over (2.39-0ubuntu8.3) ...
+#12 512.2 Setting up libc6:arm64 (2.39-0ubuntu8.4) ...
+#12 526.8 (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 4377 files and directories currently installed.)
+#12 527.0 Preparing to unpack .../base-files_13ubuntu10.2_arm64.deb ...
+#12 529.8 Unpacking base-files (13ubuntu10.2) over (13ubuntu10.1) ...
+#12 531.3 Setting up base-files (13ubuntu10.2) ...
+#12 531.4 Installing new version of config file /etc/issue ...
+#12 531.4 Installing new version of config file /etc/issue.net ...
+#12 531.4 Installing new version of config file /etc/lsb-release ...
+#12 552.6 (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 4377 files and directories currently installed.)
+#12 552.8 Preparing to unpack .../perl-base_5.38.2-3.2build2.1_arm64.deb ...
+#12 554.2 Unpacking perl-base (5.38.2-3.2build2.1) over (5.38.2-3.2build2) ...
+#12 559.4 Setting up perl-base (5.38.2-3.2build2.1) ...
+#12 561.0 (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 4377 files and directories currently installed.)
+#12 561.2 Preparing to unpack .../libc-bin_2.39-0ubuntu8.4_arm64.deb ...
+#12 561.3 Unpacking libc-bin (2.39-0ubuntu8.4) over (2.39-0ubuntu8.3) ...
+#12 562.4 Setting up libc-bin (2.39-0ubuntu8.4) ...
+#12 563.6 (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 4376 files and directories currently installed.)
+#12 563.8 Preparing to unpack .../libattr1_1%3a2.5.2-1build1.1_arm64.deb ...
+#12 563.8 Unpacking libattr1:arm64 (1:2.5.2-1build1.1) over (1:2.5.2-1build1) ...
+#12 564.5 Setting up libattr1:arm64 (1:2.5.2-1build1.1) ...
+#12 565.2 (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 4376 files and directories currently installed.)
+#12 565.4 Preparing to unpack .../libcap2_1%3a2.66-5ubuntu2.2_arm64.deb ...
+#12 565.5 Unpacking libcap2:arm64 (1:2.66-5ubuntu2.2) over (1:2.66-5ubuntu2) ...
+#12 566.1 Setting up libcap2:arm64 (1:2.66-5ubuntu2.2) ...
+#12 566.8 (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 4376 files and directories currently installed.)
+#12 567.0 Preparing to unpack .../libgmp10_2%3a6.3.0+dfsg-2ubuntu6.1_arm64.deb ...
+#12 567.0 Unpacking libgmp10:arm64 (2:6.3.0+dfsg-2ubuntu6.1) over (2:6.3.0+dfsg-2ubuntu6) ...
+#12 567.7 Setting up libgmp10:arm64 (2:6.3.0+dfsg-2ubuntu6.1) ...
+#12 568.4 (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 4376 files and directories currently installed.)
+#12 568.6 Preparing to unpack .../libgpg-error0_1.47-3build2.1_arm64.deb ...
+#12 568.6 Unpacking libgpg-error0:arm64 (1.47-3build2.1) over (1.47-3build2) ...
+#12 569.3 Setting up libgpg-error0:arm64 (1.47-3build2.1) ...
+#12 569.9 (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 4376 files and directories currently installed.)
+#12 570.1 Preparing to unpack .../libmd0_1.1.0-2build1.1_arm64.deb ...
+#12 570.2 Unpacking libmd0:arm64 (1.1.0-2build1.1) over (1.1.0-2build1) ...
+#12 570.8 Setting up libmd0:arm64 (1.1.0-2build1.1) ...
+#12 571.4 (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 4376 files and directories currently installed.)
+#12 571.6 Preparing to unpack .../libpcre2-8-0_10.42-4ubuntu2.1_arm64.deb ...
+#12 571.6 Unpacking libpcre2-8-0:arm64 (10.42-4ubuntu2.1) over (10.42-4ubuntu2) ...
+#12 572.3 Setting up libpcre2-8-0:arm64 (10.42-4ubuntu2.1) ...
+#12 573.0 (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 4376 files and directories currently installed.)
+#12 573.2 Preparing to unpack .../libselinux1_3.5-2ubuntu2.1_arm64.deb ...
+#12 573.3 Unpacking libselinux1:arm64 (3.5-2ubuntu2.1) over (3.5-2ubuntu2) ...
+#12 574.0 Setting up libselinux1:arm64 (3.5-2ubuntu2.1) ...
+#12 574.8 (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 4376 files and directories currently installed.)
+#12 575.0 Preparing to unpack .../libssl3t64_3.0.13-0ubuntu3.5_arm64.deb ...
+#12 575.0 Unpacking libssl3t64:arm64 (3.0.13-0ubuntu3.5) over (3.0.13-0ubuntu3.4) ...
+#12 576.1 Setting up libssl3t64:arm64 (3.0.13-0ubuntu3.5) ...
+#12 576.8 (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 4376 files and directories currently installed.)
+#12 577.0 Preparing to unpack .../libsystemd0_255.4-1ubuntu8.5_arm64.deb ...
+#12 577.1 Unpacking libsystemd0:arm64 (255.4-1ubuntu8.5) over (255.4-1ubuntu8.4) ...
+#12 577.8 Setting up libsystemd0:arm64 (255.4-1ubuntu8.5) ...
+#12 578.4 (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 4376 files and directories currently installed.)
+#12 578.6 Preparing to unpack .../libudev1_255.4-1ubuntu8.5_arm64.deb ...
+#12 578.6 Unpacking libudev1:arm64 (255.4-1ubuntu8.5) over (255.4-1ubuntu8.4) ...
+#12 579.3 Setting up libudev1:arm64 (255.4-1ubuntu8.5) ...
+#12 580.0 (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 4376 files and directories currently installed.)
+#12 580.2 Preparing to unpack .../libunistring5_1.1-2build1.1_arm64.deb ...
+#12 580.2 Unpacking libunistring5:arm64 (1.1-2build1.1) over (1.1-2build1) ...
+#12 581.1 Setting up libunistring5:arm64 (1.1-2build1.1) ...
+#12 581.8 (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 4376 files and directories currently installed.)
+#12 582.0 Preparing to unpack .../libidn2-0_2.3.7-2build1.1_arm64.deb ...
+#12 582.0 Unpacking libidn2-0:arm64 (2.3.7-2build1.1) over (2.3.7-2build1) ...
+#12 582.7 Setting up libidn2-0:arm64 (2.3.7-2build1.1) ...
+#12 583.3 (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 4376 files and directories currently installed.)
+#12 583.5 Preparing to unpack .../libtasn1-6_4.19.0-3ubuntu0.24.04.1_arm64.deb ...
+#12 583.6 Unpacking libtasn1-6:arm64 (4.19.0-3ubuntu0.24.04.1) over (4.19.0-3build1) ...
+#12 584.2 Setting up libtasn1-6:arm64 (4.19.0-3ubuntu0.24.04.1) ...
+#12 584.9 (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 4376 files and directories currently installed.)
+#12 585.0 Preparing to unpack .../libgnutls30t64_3.8.3-1.1ubuntu3.3_arm64.deb ...
+#12 585.1 Unpacking libgnutls30t64:arm64 (3.8.3-1.1ubuntu3.3) over (3.8.3-1.1ubuntu3.2) ...
+#12 586.0 Setting up libgnutls30t64:arm64 (3.8.3-1.1ubuntu3.3) ...
+#12 586.4 Processing triggers for libc-bin (2.39-0ubuntu8.4) ...
+#12 587.8 Reading package lists...
+#12 764.2 Building dependency tree...
+#12 808.0 Reading state information...
+#12 832.1 bash is already the newest version (5.2.21-2ubuntu4).
+#12 832.1 The following additional packages will be installed:
+#12 832.1   ca-certificates krb5-locales libaria2-0 libbrotli1 libcares2 libcurl4t64
+#12 832.1   libgssapi-krb5-2 libicu74 libk5crypto3 libkeyutils1 libkrb5-3
+#12 832.1   libkrb5support0 libldap-common libldap2 libnghttp2-14 libpsl5t64 librtmp1
+#12 832.1   libsasl2-2 libsasl2-modules libsasl2-modules-db libsqlite3-0 libssh-4
+#12 832.1   libssh2-1t64 libxml2 openssl publicsuffix
+#12 832.1 Suggested packages:
+#12 832.1   liblocale-gettext-perl perl cron quota ecryptfs-utils bzip2-doc krb5-doc
+#12 832.1   krb5-user libsasl2-modules-gssapi-mit | libsasl2-modules-gssapi-heimdal
+#12 832.1   libsasl2-modules-ldap libsasl2-modules-otp libsasl2-modules-sql
+#12 836.7 The following NEW packages will be installed:
+#12 836.7   adduser aria2 bzip2 ca-certificates curl krb5-locales libaria2-0 libbrotli1
+#12 836.7   libcares2 libcurl4t64 libgssapi-krb5-2 libicu74 libk5crypto3 libkeyutils1
+#12 836.7   libkrb5-3 libkrb5support0 libldap-common libldap2 libnghttp2-14 libpsl5t64
+#12 836.7   librtmp1 libsasl2-2 libsasl2-modules libsasl2-modules-db libsqlite3-0
+#12 836.7   libssh-4 libssh2-1t64 libxml2 openssl publicsuffix
+#12 838.0 0 upgraded, 30 newly installed, 0 to remove and 0 not upgraded.
+#12 838.0 Need to get 17.5 MB of archives.
+#12 838.0 After this operation, 58.0 MB of additional disk space will be used.
+#12 838.0 Get:1 http://ports.ubuntu.com/ubuntu-ports noble/main arm64 adduser all 3.137ubuntu1 [101 kB]
+#12 838.2 Get:2 http://ports.ubuntu.com/ubuntu-ports noble-updates/main arm64 openssl arm64 3.0.13-0ubuntu3.5 [984 kB]
+#12 838.4 Get:3 http://ports.ubuntu.com/ubuntu-ports noble/main arm64 ca-certificates all 20240203 [159 kB]
+#12 838.5 Get:4 http://ports.ubuntu.com/ubuntu-ports noble-updates/main arm64 krb5-locales all 1.20.1-6ubuntu2.4 [14.3 kB]
+#12 838.5 Get:5 http://ports.ubuntu.com/ubuntu-ports noble-updates/main arm64 libkrb5support0 arm64 1.20.1-6ubuntu2.4 [34.3 kB]
+#12 838.5 Get:6 http://ports.ubuntu.com/ubuntu-ports noble-updates/main arm64 libk5crypto3 arm64 1.20.1-6ubuntu2.4 [85.8 kB]
+#12 838.6 Get:7 http://ports.ubuntu.com/ubuntu-ports noble/main arm64 libkeyutils1 arm64 1.6.3-3build1 [9654 B]
+#12 838.6 Get:8 http://ports.ubuntu.com/ubuntu-ports noble-updates/main arm64 libkrb5-3 arm64 1.20.1-6ubuntu2.4 [349 kB]
+#12 838.8 Get:9 http://ports.ubuntu.com/ubuntu-ports noble-updates/main arm64 libgssapi-krb5-2 arm64 1.20.1-6ubuntu2.4 [142 kB]
+#12 838.8 Get:10 http://ports.ubuntu.com/ubuntu-ports noble-updates/main arm64 libicu74 arm64 74.2-1ubuntu3.1 [10.8 MB]
+#12 841.0 Get:11 http://ports.ubuntu.com/ubuntu-ports noble-updates/main arm64 libsqlite3-0 arm64 3.45.1-1ubuntu2.1 [703 kB]
+#12 841.3 Get:12 http://ports.ubuntu.com/ubuntu-ports noble-updates/main arm64 libxml2 arm64 2.9.14+dfsg-1.3ubuntu3.1 [735 kB]
+#12 841.6 Get:13 http://ports.ubuntu.com/ubuntu-ports noble-updates/main arm64 libnghttp2-14 arm64 1.59.0-1ubuntu0.2 [74.5 kB]
+#12 841.6 Get:14 http://ports.ubuntu.com/ubuntu-ports noble/main arm64 libpsl5t64 arm64 0.21.2-1.1build1 [57.4 kB]
+#12 841.7 Get:15 http://ports.ubuntu.com/ubuntu-ports noble/main arm64 publicsuffix all 20231001.0357-0.1 [129 kB]
+#12 841.7 Get:16 http://ports.ubuntu.com/ubuntu-ports noble/main arm64 libcares2 arm64 1.27.0-1.0ubuntu1 [74.1 kB]
+#12 841.7 Get:17 http://ports.ubuntu.com/ubuntu-ports noble/main arm64 libssh2-1t64 arm64 1.11.0-4.1build2 [118 kB]
+#12 841.8 Get:18 http://ports.ubuntu.com/ubuntu-ports noble/universe arm64 libaria2-0 arm64 1.37.0+debian-1build3 [1035 kB]
+#12 842.0 Get:19 http://ports.ubuntu.com/ubuntu-ports noble/universe arm64 aria2 arm64 1.37.0+debian-1build3 [387 kB]
+#12 842.1 Get:20 http://ports.ubuntu.com/ubuntu-ports noble-updates/main arm64 bzip2 arm64 1.0.8-5.1build0.1 [34.0 kB]
+#12 842.1 Get:21 http://ports.ubuntu.com/ubuntu-ports noble/main arm64 libbrotli1 arm64 1.1.0-2build2 [339 kB]
+#12 842.2 Get:22 http://ports.ubuntu.com/ubuntu-ports noble-updates/main arm64 libsasl2-modules-db arm64 2.1.28+dfsg1-5ubuntu3.1 [21.6 kB]
+#12 842.3 Get:23 http://ports.ubuntu.com/ubuntu-ports noble-updates/main arm64 libsasl2-2 arm64 2.1.28+dfsg1-5ubuntu3.1 [54.7 kB]
+#12 842.5 Get:24 http://ports.ubuntu.com/ubuntu-ports noble-updates/main arm64 libldap2 arm64 2.6.7+dfsg-1~exp1ubuntu8.2 [194 kB]
+#12 842.6 Get:25 http://ports.ubuntu.com/ubuntu-ports noble/main arm64 librtmp1 arm64 2.4+20151223.gitfa8646d.1-2build7 [57.8 kB]
+#12 842.6 Get:26 http://ports.ubuntu.com/ubuntu-ports noble/main arm64 libssh-4 arm64 0.10.6-2build2 [189 kB]
+#12 842.6 Get:27 http://ports.ubuntu.com/ubuntu-ports noble-updates/main arm64 libcurl4t64 arm64 8.5.0-2ubuntu10.6 [333 kB]
+#12 842.7 Get:28 http://ports.ubuntu.com/ubuntu-ports noble-updates/main arm64 curl arm64 8.5.0-2ubuntu10.6 [222 kB]
+#12 842.8 Get:29 http://ports.ubuntu.com/ubuntu-ports noble-updates/main arm64 libldap-common all 2.6.7+dfsg-1~exp1ubuntu8.2 [31.7 kB]
+#12 842.8 Get:30 http://ports.ubuntu.com/ubuntu-ports noble-updates/main arm64 libsasl2-modules arm64 2.1.28+dfsg1-5ubuntu3.1 [69.6 kB]
+#12 857.1 debconf: delaying package configuration, since apt-utils is not installed
+#12 859.8 Fetched 17.5 MB in 5s (3241 kB/s)
+#12 860.4 Selecting previously unselected package adduser.
+#12 860.4 (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 4376 files and directories currently installed.)
+#12 860.5 Preparing to unpack .../adduser_3.137ubuntu1_all.deb ...
+#12 860.7 Unpacking adduser (3.137ubuntu1) ...
+#12 861.5 Setting up adduser (3.137ubuntu1) ...
+#12 862.2 Selecting previously unselected package openssl.
+#12 862.2 (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 4424 files and directories currently installed.)
+#12 862.4 Preparing to unpack .../00-openssl_3.0.13-0ubuntu3.5_arm64.deb ...
+#12 862.4 Unpacking openssl (3.0.13-0ubuntu3.5) ...
+#12 863.3 Selecting previously unselected package ca-certificates.
+#12 863.3 Preparing to unpack .../01-ca-certificates_20240203_all.deb ...
+#12 863.3 Unpacking ca-certificates (20240203) ...
+#12 864.2 Selecting previously unselected package krb5-locales.
+#12 864.2 Preparing to unpack .../02-krb5-locales_1.20.1-6ubuntu2.4_all.deb ...
+#12 864.2 Unpacking krb5-locales (1.20.1-6ubuntu2.4) ...
+#12 865.0 Selecting previously unselected package libkrb5support0:arm64.
+#12 865.1 Preparing to unpack .../03-libkrb5support0_1.20.1-6ubuntu2.4_arm64.deb ...
+#12 865.1 Unpacking libkrb5support0:arm64 (1.20.1-6ubuntu2.4) ...
+#12 865.9 Selecting previously unselected package libk5crypto3:arm64.
+#12 865.9 Preparing to unpack .../04-libk5crypto3_1.20.1-6ubuntu2.4_arm64.deb ...
+#12 865.9 Unpacking libk5crypto3:arm64 (1.20.1-6ubuntu2.4) ...
+#12 866.9 Selecting previously unselected package libkeyutils1:arm64.
+#12 866.9 Preparing to unpack .../05-libkeyutils1_1.6.3-3build1_arm64.deb ...
+#12 866.9 Unpacking libkeyutils1:arm64 (1.6.3-3build1) ...
+#12 867.8 Selecting previously unselected package libkrb5-3:arm64.
+#12 867.8 Preparing to unpack .../06-libkrb5-3_1.20.1-6ubuntu2.4_arm64.deb ...
+#12 867.8 Unpacking libkrb5-3:arm64 (1.20.1-6ubuntu2.4) ...
+#12 868.8 Selecting previously unselected package libgssapi-krb5-2:arm64.
+#12 868.9 Preparing to unpack .../07-libgssapi-krb5-2_1.20.1-6ubuntu2.4_arm64.deb ...
+#12 868.9 Unpacking libgssapi-krb5-2:arm64 (1.20.1-6ubuntu2.4) ...
+#12 869.8 Selecting previously unselected package libicu74:arm64.
+#12 869.9 Preparing to unpack .../08-libicu74_74.2-1ubuntu3.1_arm64.deb ...
+#12 869.9 Unpacking libicu74:arm64 (74.2-1ubuntu3.1) ...
+#12 874.5 Selecting previously unselected package libsqlite3-0:arm64.
+#12 874.5 Preparing to unpack .../09-libsqlite3-0_3.45.1-1ubuntu2.1_arm64.deb ...
+#12 874.5 Unpacking libsqlite3-0:arm64 (3.45.1-1ubuntu2.1) ...
+#12 875.3 Selecting previously unselected package libxml2:arm64.
+#12 875.3 Preparing to unpack .../10-libxml2_2.9.14+dfsg-1.3ubuntu3.1_arm64.deb ...
+#12 875.3 Unpacking libxml2:arm64 (2.9.14+dfsg-1.3ubuntu3.1) ...
+#12 876.1 Selecting previously unselected package libnghttp2-14:arm64.
+#12 876.1 Preparing to unpack .../11-libnghttp2-14_1.59.0-1ubuntu0.2_arm64.deb ...
+#12 876.1 Unpacking libnghttp2-14:arm64 (1.59.0-1ubuntu0.2) ...
+#12 876.8 Selecting previously unselected package libpsl5t64:arm64.
+#12 876.8 Preparing to unpack .../12-libpsl5t64_0.21.2-1.1build1_arm64.deb ...
+#12 876.8 Unpacking libpsl5t64:arm64 (0.21.2-1.1build1) ...
+#12 877.4 Selecting previously unselected package publicsuffix.
+#12 877.4 Preparing to unpack .../13-publicsuffix_20231001.0357-0.1_all.deb ...
+#12 877.4 Unpacking publicsuffix (20231001.0357-0.1) ...
+#12 878.0 Selecting previously unselected package libcares2:arm64.
+#12 878.1 Preparing to unpack .../14-libcares2_1.27.0-1.0ubuntu1_arm64.deb ...
+#12 878.1 Unpacking libcares2:arm64 (1.27.0-1.0ubuntu1) ...
+#12 878.7 Selecting previously unselected package libssh2-1t64:arm64.
+#12 878.7 Preparing to unpack .../15-libssh2-1t64_1.11.0-4.1build2_arm64.deb ...
+#12 878.7 Unpacking libssh2-1t64:arm64 (1.11.0-4.1build2) ...
+#12 879.2 Selecting previously unselected package libaria2-0:arm64.
+#12 879.2 Preparing to unpack .../16-libaria2-0_1.37.0+debian-1build3_arm64.deb ...
+#12 879.3 Unpacking libaria2-0:arm64 (1.37.0+debian-1build3) ...
+#12 880.2 Selecting previously unselected package aria2.
+#12 880.2 Preparing to unpack .../17-aria2_1.37.0+debian-1build3_arm64.deb ...
+#12 880.2 Unpacking aria2 (1.37.0+debian-1build3) ...
+#12 880.9 Selecting previously unselected package bzip2.
+#12 881.0 Preparing to unpack .../18-bzip2_1.0.8-5.1build0.1_arm64.deb ...
+#12 881.0 Unpacking bzip2 (1.0.8-5.1build0.1) ...
+#12 881.6 Selecting previously unselected package libbrotli1:arm64.
+#12 881.6 Preparing to unpack .../19-libbrotli1_1.1.0-2build2_arm64.deb ...
+#12 881.7 Unpacking libbrotli1:arm64 (1.1.0-2build2) ...
+#12 882.3 Selecting previously unselected package libsasl2-modules-db:arm64.
+#12 882.3 Preparing to unpack .../20-libsasl2-modules-db_2.1.28+dfsg1-5ubuntu3.1_arm64.deb ...
+#12 882.3 Unpacking libsasl2-modules-db:arm64 (2.1.28+dfsg1-5ubuntu3.1) ...
+#12 882.8 Selecting previously unselected package libsasl2-2:arm64.
+#12 882.9 Preparing to unpack .../21-libsasl2-2_2.1.28+dfsg1-5ubuntu3.1_arm64.deb ...
+#12 882.9 Unpacking libsasl2-2:arm64 (2.1.28+dfsg1-5ubuntu3.1) ...
+#12 883.5 Selecting previously unselected package libldap2:arm64.
+#12 883.5 Preparing to unpack .../22-libldap2_2.6.7+dfsg-1~exp1ubuntu8.2_arm64.deb ...
+#12 883.5 Unpacking libldap2:arm64 (2.6.7+dfsg-1~exp1ubuntu8.2) ...
+#12 884.2 Selecting previously unselected package librtmp1:arm64.
+#12 884.2 Preparing to unpack .../23-librtmp1_2.4+20151223.gitfa8646d.1-2build7_arm64.deb ...
+#12 884.2 Unpacking librtmp1:arm64 (2.4+20151223.gitfa8646d.1-2build7) ...
+#12 884.7 Selecting previously unselected package libssh-4:arm64.
+#12 884.8 Preparing to unpack .../24-libssh-4_0.10.6-2build2_arm64.deb ...
+#12 884.8 Unpacking libssh-4:arm64 (0.10.6-2build2) ...
+#12 885.4 Selecting previously unselected package libcurl4t64:arm64.
+#12 885.4 Preparing to unpack .../25-libcurl4t64_8.5.0-2ubuntu10.6_arm64.deb ...
+#12 885.4 Unpacking libcurl4t64:arm64 (8.5.0-2ubuntu10.6) ...
+#12 886.0 Selecting previously unselected package curl.
+#12 886.1 Preparing to unpack .../26-curl_8.5.0-2ubuntu10.6_arm64.deb ...
+#12 886.1 Unpacking curl (8.5.0-2ubuntu10.6) ...
+#12 886.8 Selecting previously unselected package libldap-common.
+#12 886.8 Preparing to unpack .../27-libldap-common_2.6.7+dfsg-1~exp1ubuntu8.2_all.deb ...
+#12 886.8 Unpacking libldap-common (2.6.7+dfsg-1~exp1ubuntu8.2) ...
+#12 887.4 Selecting previously unselected package libsasl2-modules:arm64.
+#12 887.4 Preparing to unpack .../28-libsasl2-modules_2.1.28+dfsg1-5ubuntu3.1_arm64.deb ...
+#12 888.2 Unpacking libsasl2-modules:arm64 (2.1.28+dfsg1-5ubuntu3.1) ...
+#12 888.8 Setting up libkeyutils1:arm64 (1.6.3-3build1) ...
+#12 888.9 Setting up libbrotli1:arm64 (1.1.0-2build2) ...
+#12 888.9 Setting up libsqlite3-0:arm64 (3.45.1-1ubuntu2.1) ...
+#12 888.9 Setting up libsasl2-modules:arm64 (2.1.28+dfsg1-5ubuntu3.1) ...
+#12 889.6 Setting up libpsl5t64:arm64 (0.21.2-1.1build1) ...
+#12 889.6 Setting up libnghttp2-14:arm64 (1.59.0-1ubuntu0.2) ...
+#12 889.6 Setting up krb5-locales (1.20.1-6ubuntu2.4) ...
+#12 889.6 Setting up bzip2 (1.0.8-5.1build0.1) ...
+#12 889.7 Setting up libldap-common (2.6.7+dfsg-1~exp1ubuntu8.2) ...
+#12 889.7 Setting up libkrb5support0:arm64 (1.20.1-6ubuntu2.4) ...
+#12 889.7 Setting up libsasl2-modules-db:arm64 (2.1.28+dfsg1-5ubuntu3.1) ...
+#12 889.7 Setting up librtmp1:arm64 (2.4+20151223.gitfa8646d.1-2build7) ...
+#12 889.8 Setting up libcares2:arm64 (1.27.0-1.0ubuntu1) ...
+#12 889.8 Setting up libk5crypto3:arm64 (1.20.1-6ubuntu2.4) ...
+#12 889.8 Setting up libsasl2-2:arm64 (2.1.28+dfsg1-5ubuntu3.1) ...
+#12 889.8 Setting up libicu74:arm64 (74.2-1ubuntu3.1) ...
+#12 889.9 Setting up libkrb5-3:arm64 (1.20.1-6ubuntu2.4) ...
+#12 889.9 Setting up libssh2-1t64:arm64 (1.11.0-4.1build2) ...
+#12 889.9 Setting up openssl (3.0.13-0ubuntu3.5) ...
+#12 890.0 Setting up publicsuffix (20231001.0357-0.1) ...
+#12 890.0 Setting up libxml2:arm64 (2.9.14+dfsg-1.3ubuntu3.1) ...
+#12 890.1 Setting up libldap2:arm64 (2.6.7+dfsg-1~exp1ubuntu8.2) ...
+#12 890.1 Setting up libaria2-0:arm64 (1.37.0+debian-1build3) ...
+#12 890.1 Setting up aria2 (1.37.0+debian-1build3) ...
+#12 890.1 Setting up ca-certificates (20240203) ...
+#12 930.6 Updating certificates in /etc/ssl/certs...
+#12 999.5 146 added, 0 removed; done.
+#12 1000.5 Setting up libgssapi-krb5-2:arm64 (1.20.1-6ubuntu2.4) ...
+#12 1000.6 Setting up libssh-4:arm64 (0.10.6-2build2) ...
+#12 1000.6 Setting up libcurl4t64:arm64 (8.5.0-2ubuntu10.6) ...
+#12 1000.6 Setting up curl (8.5.0-2ubuntu10.6) ...
+#12 1000.6 Processing triggers for libc-bin (2.39-0ubuntu8.4) ...
+#12 1000.9 Processing triggers for ca-certificates (20240203) ...
+#12 1001.3 Updating certificates in /etc/ssl/certs...
+#12 1040.3 0 added, 0 removed; done.
+#12 1040.3 Running hooks in /etc/ca-certificates/update.d...
+#12 1040.4 done.
+#12 1041.0 aarch64
+#12 1041.4 
+#12 1041.4 02/25 11:44:14 [[1;32mNOTICE[0m] Downloading 1 item(s)
+#12 1043.5 
+#12 1043.5 02/25 11:44:16 [[1;32mNOTICE[0m] Download complete: /etc/listbot/cve.yaml.bz2
+#12 1043.5 
+#12 1043.5 Download Results:
+#12 1043.5 gid   |stat|avg speed  |path/URI
+#12 1043.5 ======+====+===========+=======================================================
+#12 1043.5 72fa14|OK  |   528KiB/s|/etc/listbot/cve.yaml.bz2
+#12 1043.5 
+#12 1043.5 Status Legend:
+#12 1043.5 (OK):download completed.
+#12 1044.1 
+#12 1044.1 02/25 11:44:16 [[1;32mNOTICE[0m] Downloading 1 item(s)
+#12 1046.5 [#382577 1.0MiB/1.6MiB(65%) CN:1 DL:2.7MiB]
+#12 1046.5 
+#12 1046.5 02/25 11:44:19 [[1;32mNOTICE[0m] Download complete: /etc/listbot/iprep.yaml.bz2
+#12 1046.5 
+#12 1046.5 Download Results:
+#12 1046.5 gid   |stat|avg speed  |path/URI
+#12 1046.5 ======+====+===========+=======================================================
+#12 1046.5 382577|OK  |   2.5MiB/s|/etc/listbot/iprep.yaml.bz2
+#12 1046.5 
+#12 1046.5 Status Legend:
+#12 1046.5 (OK):download completed.
+#12 1050.4 
+#12 1050.4 02/25 11:44:23 [[1;32mNOTICE[0m] Downloading 1 item(s)
+#12 1112.7 [#53b8af 0B/0B CN:1 DL:0B]
+#12 1112.7 [#53b8af 0B/408MiB(0%) CN:16 DL:1.2KiB ETA:91h53m56s]
+#12 1112.7 [#53b8af 672KiB/408MiB(0%) CN:16 DL:130KiB ETA:53m29s]
+#12 1112.7 [#53b8af 1.8MiB/408MiB(0%) CN:16 DL:297KiB ETA:23m20s]
+#12 1112.7 [#53b8af 3.1MiB/408MiB(0%) CN:16 DL:432KiB ETA:16m1s]
+#12 1112.7 [#53b8af 4.4MiB/408MiB(1%) CN:16 DL:530KiB ETA:13m]
+#12 1112.7 [#53b8af 5.7MiB/408MiB(1%) CN:16 DL:612KiB ETA:11m14s]
+#12 1112.7 [#53b8af 6.9MiB/408MiB(1%) CN:16 DL:1.1MiB ETA:5m38s]
+#12 1112.7 [#53b8af 8.2MiB/408MiB(2%) CN:16 DL:1.1MiB ETA:5m34s]
+#12 1112.7 [#53b8af 9.5MiB/408MiB(2%) CN:16 DL:1.2MiB ETA:5m29s]
+#12 1112.7 [#53b8af 10MiB/408MiB(2%) CN:16 DL:1.2MiB ETA:5m27s]
+#12 1112.7 [#53b8af 11MiB/408MiB(2%) CN:16 DL:1.2MiB ETA:5m30s]
+#12 1112.7 [#53b8af 13MiB/408MiB(3%) CN:16 DL:1.2MiB ETA:5m18s]
+#12 1112.7 [#53b8af 14MiB/408MiB(3%) CN:16 DL:1.2MiB ETA:5m23s]
+#12 1112.7 [#53b8af 15MiB/408MiB(3%) CN:16 DL:1.1MiB ETA:5m31s]
+#12 1112.7 [#53b8af 16MiB/408MiB(3%) CN:16 DL:1.1MiB ETA:5m39s]
+#12 1112.7 [#53b8af 17MiB/408MiB(4%) CN:16 DL:1.2MiB ETA:5m23s]
+#12 1112.7 [#53b8af 19MiB/408MiB(4%) CN:16 DL:1.2MiB ETA:5m9s]
+#12 1112.7 [#53b8af 20MiB/408MiB(5%) CN:16 DL:1.2MiB ETA:5m10s]
+#12 1112.7 [#53b8af 21MiB/408MiB(5%) CN:16 DL:1.2MiB ETA:5m13s]
+#12 1112.7 [#53b8af 22MiB/408MiB(5%) CN:16 DL:1.2MiB ETA:5m15s]
+#12 1112.7 [#53b8af 24MiB/408MiB(5%) CN:16 DL:1.2MiB ETA:5m14s]
+#12 1112.7 [#53b8af 25MiB/408MiB(6%) CN:16 DL:1.2MiB ETA:5m14s]
+#12 1112.7 [#53b8af 26MiB/408MiB(6%) CN:16 DL:1.2MiB ETA:5m8s]
+#12 1112.7 [#53b8af 27MiB/408MiB(6%) CN:16 DL:1.2MiB ETA:5m4s]
+#12 1112.7 [#53b8af 28MiB/408MiB(7%) CN:16 DL:1.2MiB ETA:5m]
+#12 1112.7 [#53b8af 29MiB/408MiB(7%) CN:16 DL:1.2MiB ETA:5m15s]
+#12 1112.7 [#53b8af 31MiB/408MiB(7%) CN:16 DL:1.1MiB ETA:5m28s]
+#12 1112.7 [#53b8af 32MiB/408MiB(7%) CN:16 DL:1.1MiB ETA:5m28s]
+#12 1112.7 [#53b8af 33MiB/408MiB(8%) CN:16 DL:1.1MiB ETA:5m30s]
+#12 1112.7 [#53b8af 34MiB/408MiB(8%) CN:16 DL:1.1MiB ETA:5m30s]
+#12 1112.7 [#53b8af 35MiB/408MiB(8%) CN:16 DL:1.1MiB ETA:5m26s]
+#12 1112.7 [#53b8af 36MiB/408MiB(8%) CN:16 DL:1.1MiB ETA:5m23s]
+#12 1112.7 [#53b8af 37MiB/408MiB(9%) CN:16 DL:1.1MiB ETA:5m26s]
+#12 1112.7 [#53b8af 38MiB/408MiB(9%) CN:16 DL:1.1MiB ETA:5m25s]
+#12 1112.7 [#53b8af 40MiB/408MiB(9%) CN:16 DL:1.1MiB ETA:5m23s]
+#12 1112.7 [#53b8af 41MiB/408MiB(10%) CN:16 DL:1.1MiB ETA:5m20s]
+#12 1112.7 [#53b8af 42MiB/408MiB(10%) CN:16 DL:1.1MiB ETA:5m17s]
+#12 1112.7 [#53b8af 43MiB/408MiB(10%) CN:16 DL:1.1MiB ETA:5m9s]
+#12 1112.7 [#53b8af 45MiB/408MiB(11%) CN:16 DL:1.2MiB ETA:4m54s]
+#12 1112.7 [#53b8af 47MiB/408MiB(11%) CN:16 DL:1.2MiB ETA:4m42s]
+#12 1112.7 [#53b8af 48MiB/408MiB(11%) CN:16 DL:1.2MiB ETA:4m39s]
+#12 1112.7 [#53b8af 49MiB/408MiB(12%) CN:16 DL:1.3MiB ETA:4m33s]
+#12 1112.7 [#53b8af 51MiB/408MiB(12%) CN:16 DL:1.3MiB ETA:4m23s]
+#12 1112.7 [#53b8af 52MiB/408MiB(12%) CN:16 DL:1.3MiB ETA:4m16s]
+#12 1112.7 [#53b8af 54MiB/408MiB(13%) CN:16 DL:1.4MiB ETA:4m10s]
+#12 1112.7 [#53b8af 55MiB/408MiB(13%) CN:16 DL:1.4MiB ETA:4m10s]
+#12 1112.7 [#53b8af 56MiB/408MiB(13%) CN:16 DL:1.3MiB ETA:4m13s]
+#12 1112.7 [#53b8af 57MiB/408MiB(14%) CN:16 DL:1.3MiB ETA:4m17s]
+#12 1112.7 [#53b8af 58MiB/408MiB(14%) CN:16 DL:1.3MiB ETA:4m25s]
+#12 1112.7 [#53b8af 59MiB/408MiB(14%) CN:16 DL:1.2MiB ETA:4m36s]
+#12 1112.7 [#53b8af 60MiB/408MiB(14%) CN:16 DL:1.2MiB ETA:4m36s]
+#12 1112.7 [#53b8af 61MiB/408MiB(15%) CN:16 DL:1.2MiB ETA:4m45s]
+#12 1112.7 [#53b8af 63MiB/408MiB(15%) CN:16 DL:1.1MiB ETA:4m54s]
+#12 1112.7 [#53b8af 64MiB/408MiB(15%) CN:16 DL:1.1MiB ETA:5m8s]
+#12 1112.7 [#53b8af 65MiB/408MiB(15%) CN:16 DL:1.0MiB ETA:5m15s]
+#12 1112.7  *** Download Progress Summary as of Tue Feb 25 11:45:25 2025 *** 
+#12 1112.7 ===============================================================================
+#12 1112.7 [#53b8af 66MiB/408MiB(16%) CN:16 DL:1.0MiB ETA:5m15s]
+#12 1112.7 FILE: /root/dist/logstash-8.16.1-arm64.deb
+#12 1112.7 -------------------------------------------------------------------------------
+#12 1112.7 
+#12 1172.6 [#53b8af 66MiB/408MiB(16%) CN:16 DL:1.0MiB ETA:5m15s]
+#12 1172.6 [#53b8af 67MiB/408MiB(16%) CN:16 DL:1.0MiB ETA:5m14s]
+#12 1172.6 [#53b8af 68MiB/408MiB(16%) CN:16 DL:1.0MiB ETA:5m12s]
+#12 1172.6 [#53b8af 69MiB/408MiB(17%) CN:16 DL:1.0MiB ETA:5m11s]
+#12 1172.6 [#53b8af 70MiB/408MiB(17%) CN:16 DL:1.1MiB ETA:5m6s]
+#12 1172.6 [#53b8af 72MiB/408MiB(17%) CN:16 DL:1.1MiB ETA:4m50s]
+#12 1172.6 [#53b8af 73MiB/408MiB(18%) CN:16 DL:1.1MiB ETA:4m39s]
+#12 1172.6 [#53b8af 75MiB/408MiB(18%) CN:16 DL:1.2MiB ETA:4m29s]
+#12 1172.6 [#53b8af 76MiB/408MiB(18%) CN:16 DL:1.2MiB ETA:4m16s]
+#12 1172.6 [#53b8af 78MiB/408MiB(19%) CN:16 DL:1.3MiB ETA:4m10s]
+#12 1172.6 [#53b8af 79MiB/408MiB(19%) CN:16 DL:1.3MiB ETA:4m]
+#12 1172.6 [#53b8af 81MiB/408MiB(19%) CN:16 DL:1.3MiB ETA:3m57s]
+#12 1172.6 [#53b8af 82MiB/408MiB(20%) CN:16 DL:1.4MiB ETA:3m50s]
+#12 1172.6 [#53b8af 83MiB/408MiB(20%) CN:16 DL:1.4MiB ETA:3m44s]
+#12 1172.6 [#53b8af 85MiB/408MiB(20%) CN:16 DL:1.4MiB ETA:3m44s]
+#12 1172.6 [#53b8af 86MiB/408MiB(21%) CN:16 DL:1.4MiB ETA:3m42s]
+#12 1172.6 [#53b8af 88MiB/408MiB(21%) CN:16 DL:1.4MiB ETA:3m43s]
+#12 1172.6 [#53b8af 89MiB/408MiB(21%) CN:16 DL:1.4MiB ETA:3m39s]
+#12 1172.6 [#53b8af 91MiB/408MiB(22%) CN:16 DL:1.4MiB ETA:3m37s]
+#12 1172.6 [#53b8af 92MiB/408MiB(22%) CN:16 DL:1.4MiB ETA:3m35s]
+#12 1172.6 [#53b8af 94MiB/408MiB(23%) CN:16 DL:1.4MiB ETA:3m33s]
+#12 1172.6 [#53b8af 95MiB/408MiB(23%) CN:16 DL:1.4MiB ETA:3m31s]
+#12 1172.6 [#53b8af 96MiB/408MiB(23%) CN:16 DL:1.4MiB ETA:3m32s]
+#12 1172.6 [#53b8af 98MiB/408MiB(24%) CN:16 DL:1.4MiB ETA:3m35s]
+#12 1172.6 [#53b8af 99MiB/408MiB(24%) CN:16 DL:1.4MiB ETA:3m35s]
+#12 1172.6 [#53b8af 101MiB/408MiB(24%) CN:16 DL:1.4MiB ETA:3m34s]
+#12 1172.6 [#53b8af 102MiB/408MiB(25%) CN:16 DL:1.4MiB ETA:3m34s]
+#12 1172.6 [#53b8af 103MiB/408MiB(25%) CN:16 DL:1.4MiB ETA:3m36s]
+#12 1172.6 [#53b8af 105MiB/408MiB(25%) CN:16 DL:1.3MiB ETA:3m38s]
+#12 1172.6 [#53b8af 106MiB/408MiB(26%) CN:16 DL:1.3MiB ETA:3m36s]
+#12 1172.6 [#53b8af 108MiB/408MiB(26%) CN:16 DL:1.3MiB ETA:3m38s]
+#12 1172.6 [#53b8af 109MiB/408MiB(26%) CN:16 DL:1.3MiB ETA:3m38s]
+#12 1172.6 [#53b8af 110MiB/408MiB(27%) CN:16 DL:1.3MiB ETA:3m36s]
+#12 1172.6 [#53b8af 111MiB/408MiB(27%) CN:16 DL:1.3MiB ETA:3m37s]
+#12 1172.6 [#53b8af 113MiB/408MiB(27%) CN:16 DL:1.3MiB ETA:3m40s]
+#12 1172.6 [#53b8af 114MiB/408MiB(27%) CN:16 DL:1.3MiB ETA:3m45s]
+#12 1172.6 [#53b8af 115MiB/408MiB(28%) CN:16 DL:1.3MiB ETA:3m45s]
+#12 1172.6 [#53b8af 117MiB/408MiB(28%) CN:16 DL:1.3MiB ETA:3m43s]
+#12 1172.6 [#53b8af 118MiB/408MiB(28%) CN:16 DL:1.2MiB ETA:3m45s]
+#12 1172.6 [#53b8af 119MiB/408MiB(29%) CN:16 DL:1.3MiB ETA:3m38s]
+#12 1172.6 [#53b8af 121MiB/408MiB(29%) CN:16 DL:1.3MiB ETA:3m35s]
+#12 1172.6 [#53b8af 122MiB/408MiB(30%) CN:16 DL:1.3MiB ETA:3m31s]
+#12 1172.6 [#53b8af 124MiB/408MiB(30%) CN:16 DL:1.3MiB ETA:3m29s]
+#12 1172.6 [#53b8af 125MiB/408MiB(30%) CN:16 DL:1.3MiB ETA:3m28s]
+#12 1172.6 [#53b8af 126MiB/408MiB(31%) CN:16 DL:1.3MiB ETA:3m25s]
+#12 1172.6 [#53b8af 128MiB/408MiB(31%) CN:16 DL:1.3MiB ETA:3m21s]
+#12 1172.6 [#53b8af 129MiB/408MiB(31%) CN:16 DL:1.3MiB ETA:3m23s]
+#12 1172.6 [#53b8af 130MiB/408MiB(31%) CN:16 DL:1.3MiB ETA:3m24s]
+#12 1172.6 [#53b8af 131MiB/408MiB(32%) CN:16 DL:1.3MiB ETA:3m26s]
+#12 1172.6 [#53b8af 133MiB/408MiB(32%) CN:16 DL:1.3MiB ETA:3m24s]
+#12 1172.6 [#53b8af 134MiB/408MiB(32%) CN:16 DL:1.3MiB ETA:3m26s]
+#12 1172.6 [#53b8af 135MiB/408MiB(33%) CN:16 DL:1.3MiB ETA:3m29s]
+#12 1172.6 [#53b8af 137MiB/408MiB(33%) CN:16 DL:1.3MiB ETA:3m28s]
+#12 1172.6 [#53b8af 138MiB/408MiB(33%) CN:16 DL:1.3MiB ETA:3m26s]
+#12 1172.6 [#53b8af 139MiB/408MiB(34%) CN:16 DL:1.3MiB ETA:3m24s]
+#12 1172.6 [#53b8af 141MiB/408MiB(34%) CN:16 DL:1.3MiB ETA:3m24s]
+#12 1172.6 [#53b8af 142MiB/408MiB(34%) CN:16 DL:1.3MiB ETA:3m19s]
+#12 1172.6 [#53b8af 143MiB/408MiB(35%) CN:16 DL:1.3MiB ETA:3m20s]
+#12 1172.6 [#53b8af 145MiB/408MiB(35%) CN:16 DL:1.2MiB ETA:3m23s]
+#12 1172.6 [#53b8af 146MiB/408MiB(35%) CN:16 DL:1.2MiB ETA:3m25s]
+#12 1172.6  *** Download Progress Summary as of Tue Feb 25 11:46:25 2025 *** 
+#12 1172.6 ===============================================================================
+#12 1172.6 [#53b8af 147MiB/408MiB(36%) CN:16 DL:1.2MiB ETA:3m25s]
+#12 1172.6 FILE: /root/dist/logstash-8.16.1-arm64.deb
+#12 1172.6 -------------------------------------------------------------------------------
+#12 1172.6 
+#12 1233.6 [#53b8af 147MiB/408MiB(36%) CN:16 DL:1.2MiB ETA:3m25s]
+#12 1233.6 [#53b8af 148MiB/408MiB(36%) CN:16 DL:1.2MiB ETA:3m25s]
+#12 1233.6 [#53b8af 150MiB/408MiB(36%) CN:16 DL:1.2MiB ETA:3m23s]
+#12 1233.6 [#53b8af 151MiB/408MiB(37%) CN:16 DL:1.2MiB ETA:3m23s]
+#12 1233.6 [#53b8af 152MiB/408MiB(37%) CN:16 DL:1.2MiB ETA:3m28s]
+#12 1233.6 [#53b8af 153MiB/408MiB(37%) CN:16 DL:1.2MiB ETA:3m25s]
+#12 1233.6 [#53b8af 155MiB/408MiB(37%) CN:16 DL:1.2MiB ETA:3m24s]
+#12 1233.6 [#53b8af 156MiB/408MiB(38%) CN:16 DL:1.2MiB ETA:3m18s]
+#12 1233.6 [#53b8af 158MiB/408MiB(38%) CN:16 DL:1.3MiB ETA:3m10s]
+#12 1233.6 [#53b8af 159MiB/408MiB(38%) CN:16 DL:1.3MiB ETA:3m11s]
+#12 1233.6 [#53b8af 160MiB/408MiB(39%) CN:16 DL:1.3MiB ETA:3m9s]
+#12 1233.6 [#53b8af 161MiB/408MiB(39%) CN:16 DL:1.3MiB ETA:3m7s]
+#12 1233.6 [#53b8af 163MiB/408MiB(39%) CN:16 DL:1.3MiB ETA:3m7s]
+#12 1233.6 [#53b8af 164MiB/408MiB(40%) CN:16 DL:1.3MiB ETA:3m6s]
+#12 1233.6 [#53b8af 165MiB/408MiB(40%) CN:16 DL:1.3MiB ETA:3m4s]
+#12 1233.6 [#53b8af 167MiB/408MiB(40%) CN:16 DL:1.3MiB ETA:3m1s]
+#12 1233.6 [#53b8af 168MiB/408MiB(41%) CN:16 DL:1.3MiB ETA:3m1s]
+#12 1233.6 [#53b8af 169MiB/408MiB(41%) CN:16 DL:1.3MiB ETA:3m2s]
+#12 1233.6 [#53b8af 171MiB/408MiB(41%) CN:16 DL:1.3MiB ETA:3m2s]
+#12 1233.6 [#53b8af 172MiB/408MiB(42%) CN:16 DL:1.3MiB ETA:2m58s]
+#12 1233.6 [#53b8af 173MiB/408MiB(42%) CN:16 DL:1.3MiB ETA:2m55s]
+#12 1233.6 [#53b8af 175MiB/408MiB(42%) CN:16 DL:1.3MiB ETA:2m53s]
+#12 1233.6 [#53b8af 176MiB/408MiB(43%) CN:16 DL:1.3MiB ETA:2m53s]
+#12 1233.6 [#53b8af 177MiB/408MiB(43%) CN:16 DL:1.3MiB ETA:2m54s]
+#12 1233.6 [#53b8af 178MiB/408MiB(43%) CN:16 DL:1.3MiB ETA:2m52s]
+#12 1233.6 [#53b8af 180MiB/408MiB(44%) CN:16 DL:1.3MiB ETA:2m52s]
+#12 1233.6 [#53b8af 181MiB/408MiB(44%) CN:16 DL:1.3MiB ETA:2m54s]
+#12 1233.6 [#53b8af 182MiB/408MiB(44%) CN:16 DL:1.3MiB ETA:2m53s]
+#12 1233.6 [#53b8af 184MiB/408MiB(45%) CN:16 DL:1.3MiB ETA:2m52s]
+#12 1233.6 [#53b8af 185MiB/408MiB(45%) CN:16 DL:1.2MiB ETA:2m51s]
+#12 1233.6 [#53b8af 186MiB/408MiB(45%) CN:16 DL:1.3MiB ETA:2m49s]
+#12 1233.6 [#53b8af 188MiB/408MiB(46%) CN:16 DL:1.3MiB ETA:2m48s]
+#12 1233.6 [#53b8af 189MiB/408MiB(46%) CN:16 DL:1.3MiB ETA:2m46s]
+#12 1233.6 [#53b8af 191MiB/408MiB(46%) CN:16 DL:1.3MiB ETA:2m41s]
+#12 1233.6 [#53b8af 192MiB/408MiB(47%) CN:16 DL:1.3MiB ETA:2m41s]
+#12 1233.6 [#53b8af 193MiB/408MiB(47%) CN:16 DL:1.3MiB ETA:2m39s]
+#12 1233.6 [#53b8af 194MiB/408MiB(47%) CN:16 DL:1.3MiB ETA:2m39s]
+#12 1233.6 [#53b8af 196MiB/408MiB(47%) CN:16 DL:1.3MiB ETA:2m39s]
+#12 1233.6 [#53b8af 197MiB/408MiB(48%) CN:16 DL:1.3MiB ETA:2m36s]
+#12 1233.6 [#53b8af 198MiB/408MiB(48%) CN:16 DL:1.3MiB ETA:2m38s]
+#12 1233.6 [#53b8af 200MiB/408MiB(48%) CN:16 DL:1.3MiB ETA:2m39s]
+#12 1233.6 [#53b8af 201MiB/408MiB(49%) CN:16 DL:1.3MiB ETA:2m37s]
+#12 1233.6 [#53b8af 202MiB/408MiB(49%) CN:16 DL:1.3MiB ETA:2m37s]
+#12 1233.6 [#53b8af 204MiB/408MiB(49%) CN:16 DL:1.3MiB ETA:2m37s]
+#12 1233.6 [#53b8af 205MiB/408MiB(50%) CN:16 DL:1.3MiB ETA:2m34s]
+#12 1233.6 [#53b8af 206MiB/408MiB(50%) CN:16 DL:1.3MiB ETA:2m33s]
+#12 1233.6 [#53b8af 208MiB/408MiB(50%) CN:16 DL:1.3MiB ETA:2m32s]
+#12 1233.6 [#53b8af 209MiB/408MiB(51%) CN:16 DL:1.3MiB ETA:2m32s]
+#12 1233.6 [#53b8af 210MiB/408MiB(51%) CN:16 DL:1.3MiB ETA:2m31s]
+#12 1233.6 [#53b8af 212MiB/408MiB(51%) CN:16 DL:1.3MiB ETA:2m27s]
+#12 1233.6 [#53b8af 213MiB/408MiB(52%) CN:16 DL:1.3MiB ETA:2m26s]
+#12 1233.6 [#53b8af 214MiB/408MiB(52%) CN:16 DL:1.3MiB ETA:2m23s]
+#12 1233.6 [#53b8af 216MiB/408MiB(52%) CN:16 DL:1.3MiB ETA:2m19s]
+#12 1233.6 [#53b8af 218MiB/408MiB(53%) CN:16 DL:1.4MiB ETA:2m15s]
+#12 1233.6 [#53b8af 219MiB/408MiB(53%) CN:16 DL:1.4MiB ETA:2m13s]
+#12 1233.6 [#53b8af 221MiB/408MiB(54%) CN:16 DL:1.4MiB ETA:2m9s]
+#12 1233.6 [#53b8af 222MiB/408MiB(54%) CN:16 DL:1.4MiB ETA:2m6s]
+#12 1233.6 [#53b8af 223MiB/408MiB(54%) CN:16 DL:1.4MiB ETA:2m4s]
+#12 1233.6 [#53b8af 225MiB/408MiB(55%) CN:16 DL:1.4MiB ETA:2m7s]
+#12 1233.6 [#53b8af 226MiB/408MiB(55%) CN:16 DL:1.4MiB ETA:2m7s]
+#12 1233.6 [#53b8af 227MiB/408MiB(55%) CN:16 DL:1.3MiB ETA:2m9s]
+#12 1233.6  *** Download Progress Summary as of Tue Feb 25 11:47:26 2025 *** 
+#12 1233.6 ===============================================================================
+#12 1233.6 [#53b8af 228MiB/408MiB(55%) CN:16 DL:1.3MiB ETA:2m12s]
+#12 1233.6 FILE: /root/dist/logstash-8.16.1-arm64.deb
+#12 1233.6 -------------------------------------------------------------------------------
+#12 1233.6 
+#12 1293.6 [#53b8af 228MiB/408MiB(55%) CN:16 DL:1.3MiB ETA:2m12s]
+#12 1293.6 [#53b8af 229MiB/408MiB(56%) CN:16 DL:1.3MiB ETA:2m15s]
+#12 1293.6 [#53b8af 231MiB/408MiB(56%) CN:16 DL:1.2MiB ETA:2m19s]
+#12 1293.6 [#53b8af 232MiB/408MiB(56%) CN:16 DL:1.2MiB ETA:2m23s]
+#12 1293.6 [#53b8af 233MiB/408MiB(57%) CN:16 DL:1.1MiB ETA:2m26s]
+#12 1293.6 [#53b8af 234MiB/408MiB(57%) CN:16 DL:1.1MiB ETA:2m26s]
+#12 1293.6 [#53b8af 235MiB/408MiB(57%) CN:16 DL:1.1MiB ETA:2m27s]
+#12 1293.6 [#53b8af 237MiB/408MiB(57%) CN:16 DL:1.1MiB ETA:2m24s]
+#12 1293.6 [#53b8af 238MiB/408MiB(58%) CN:16 DL:1.1MiB ETA:2m22s]
+#12 1293.6 [#53b8af 239MiB/408MiB(58%) CN:16 DL:1.1MiB ETA:2m22s]
+#12 1293.6 [#53b8af 240MiB/408MiB(58%) CN:16 DL:1.1MiB ETA:2m21s]
+#12 1293.6 [#53b8af 241MiB/408MiB(59%) CN:16 DL:1.1MiB ETA:2m22s]
+#12 1293.6 [#53b8af 242MiB/408MiB(59%) CN:16 DL:1.1MiB ETA:2m21s]
+#12 1293.6 [#53b8af 244MiB/408MiB(59%) CN:16 DL:1.1MiB ETA:2m19s]
+#12 1293.6 [#53b8af 245MiB/408MiB(59%) CN:16 DL:1.1MiB ETA:2m17s]
+#12 1293.6 [#53b8af 246MiB/408MiB(60%) CN:16 DL:1.1MiB ETA:2m16s]
+#12 1293.6 [#53b8af 247MiB/408MiB(60%) CN:16 DL:1.1MiB ETA:2m15s]
+#12 1293.6 [#53b8af 249MiB/408MiB(60%) CN:16 DL:1.1MiB ETA:2m13s]
+#12 1293.6 [#53b8af 250MiB/408MiB(61%) CN:16 DL:1.1MiB ETA:2m12s]
+#12 1293.6 [#53b8af 251MiB/408MiB(61%) CN:16 DL:1.2MiB ETA:2m10s]
+#12 1293.6 [#53b8af 252MiB/408MiB(61%) CN:16 DL:1.2MiB ETA:2m8s]
+#12 1293.6 [#53b8af 253MiB/408MiB(62%) CN:16 DL:1.2MiB ETA:2m7s]
+#12 1293.6 [#53b8af 255MiB/408MiB(62%) CN:16 DL:1.2MiB ETA:2m6s]
+#12 1293.6 [#53b8af 256MiB/408MiB(62%) CN:16 DL:1.2MiB ETA:2m6s]
+#12 1293.6 [#53b8af 257MiB/408MiB(62%) CN:16 DL:1.2MiB ETA:2m4s]
+#12 1293.6 [#53b8af 258MiB/408MiB(63%) CN:16 DL:1.2MiB ETA:2m2s]
+#12 1293.6 [#53b8af 259MiB/408MiB(63%) CN:16 DL:1.2MiB ETA:2m2s]
+#12 1293.6 [#53b8af 261MiB/408MiB(63%) CN:16 DL:1.2MiB ETA:1m59s]
+#12 1293.6 [#53b8af 262MiB/408MiB(64%) CN:16 DL:1.2MiB ETA:1m58s]
+#12 1293.6 [#53b8af 263MiB/408MiB(64%) CN:16 DL:1.2MiB ETA:1m56s]
+#12 1293.6 [#53b8af 265MiB/408MiB(64%) CN:16 DL:1.2MiB ETA:1m54s]
+#12 1293.6 [#53b8af 266MiB/408MiB(65%) CN:16 DL:1.2MiB ETA:1m52s]
+#12 1293.6 [#53b8af 267MiB/408MiB(65%) CN:16 DL:1.2MiB ETA:1m50s]
+#12 1293.6 [#53b8af 268MiB/408MiB(65%) CN:16 DL:1.2MiB ETA:1m48s]
+#12 1293.6 [#53b8af 270MiB/408MiB(66%) CN:16 DL:1.2MiB ETA:1m48s]
+#12 1293.6 [#53b8af 271MiB/408MiB(66%) CN:16 DL:1.2MiB ETA:1m47s]
+#12 1293.6 [#53b8af 272MiB/408MiB(66%) CN:16 DL:1.2MiB ETA:1m47s]
+#12 1293.6 [#53b8af 273MiB/408MiB(66%) CN:16 DL:1.2MiB ETA:1m47s]
+#12 1293.6 [#53b8af 275MiB/408MiB(67%) CN:16 DL:1.2MiB ETA:1m46s]
+#12 1293.6 [#53b8af 276MiB/408MiB(67%) CN:16 DL:1.2MiB ETA:1m45s]
+#12 1293.6 [#53b8af 277MiB/408MiB(67%) CN:16 DL:1.2MiB ETA:1m45s]
+#12 1293.6 [#53b8af 278MiB/408MiB(68%) CN:16 DL:1.2MiB ETA:1m43s]
+#12 1293.6 [#53b8af 280MiB/408MiB(68%) CN:16 DL:1.2MiB ETA:1m42s]
+#12 1293.6 [#53b8af 281MiB/408MiB(68%) CN:16 DL:1.2MiB ETA:1m41s]
+#12 1293.6 [#53b8af 283MiB/408MiB(69%) CN:16 DL:1.2MiB ETA:1m38s]
+#12 1293.6 [#53b8af 284MiB/408MiB(69%) CN:16 DL:1.3MiB ETA:1m34s]
+#12 1293.6 [#53b8af 286MiB/408MiB(70%) CN:16 DL:1.3MiB ETA:1m29s]
+#12 1293.6 [#53b8af 287MiB/408MiB(70%) CN:16 DL:1.3MiB ETA:1m27s]
+#12 1293.6 [#53b8af 289MiB/408MiB(70%) CN:16 DL:1.4MiB ETA:1m23s]
+#12 1293.6 [#53b8af 291MiB/408MiB(71%) CN:16 DL:1.4MiB ETA:1m19s]
+#12 1293.6 [#53b8af 292MiB/408MiB(71%) CN:16 DL:1.5MiB ETA:1m17s]
+#12 1293.6 [#53b8af 294MiB/408MiB(71%) CN:16 DL:1.5MiB ETA:1m14s]
+#12 1293.6 [#53b8af 295MiB/408MiB(72%) CN:16 DL:1.5MiB ETA:1m12s]
+#12 1293.6 [#53b8af 297MiB/408MiB(72%) CN:16 DL:1.5MiB ETA:1m9s]
+#12 1293.6 [#53b8af 299MiB/408MiB(73%) CN:16 DL:1.6MiB ETA:1m8s]
+#12 1293.6 [#53b8af 300MiB/408MiB(73%) CN:16 DL:1.6MiB ETA:1m7s]
+#12 1293.6 [#53b8af 302MiB/408MiB(73%) CN:16 DL:1.6MiB ETA:1m6s]
+#12 1293.6 [#53b8af 303MiB/408MiB(74%) CN:16 DL:1.5MiB ETA:1m6s]
+#12 1293.6 [#53b8af 305MiB/408MiB(74%) CN:16 DL:1.5MiB ETA:1m5s]
+#12 1293.6 [#53b8af 306MiB/408MiB(75%) CN:16 DL:1.5MiB ETA:1m4s]
+#12 1293.6  *** Download Progress Summary as of Tue Feb 25 11:48:26 2025 *** 
+#12 1293.6 ===============================================================================
+#12 1293.6 [#53b8af 308MiB/408MiB(75%) CN:16 DL:1.5MiB ETA:1m3s]
+#12 1293.6 FILE: /root/dist/logstash-8.16.1-arm64.deb
+#12 1293.6 -------------------------------------------------------------------------------
+#12 1293.6 
+#12 1354.5 [#53b8af 308MiB/408MiB(75%) CN:16 DL:1.5MiB ETA:1m3s]
+#12 1354.5 [#53b8af 310MiB/408MiB(75%) CN:16 DL:1.5MiB ETA:1m3s]
+#12 1354.5 [#53b8af 311MiB/408MiB(76%) CN:16 DL:1.5MiB ETA:1m2s]
+#12 1354.5 [#53b8af 313MiB/408MiB(76%) CN:16 DL:1.5MiB ETA:1m1s]
+#12 1354.5 [#53b8af 314MiB/408MiB(76%) CN:16 DL:1.5MiB ETA:1m1s]
+#12 1354.5 [#53b8af 316MiB/408MiB(77%) CN:16 DL:1.5MiB ETA:59s]
+#12 1354.5 [#53b8af 317MiB/408MiB(77%) CN:16 DL:1.5MiB ETA:58s]
+#12 1354.5 [#53b8af 319MiB/408MiB(78%) CN:16 DL:1.5MiB ETA:57s]
+#12 1354.5 [#53b8af 320MiB/408MiB(78%) CN:16 DL:1.5MiB ETA:57s]
+#12 1354.5 [#53b8af 322MiB/408MiB(78%) CN:16 DL:1.5MiB ETA:56s]
+#12 1354.5 [#53b8af 323MiB/408MiB(79%) CN:16 DL:1.5MiB ETA:55s]
+#12 1354.5 [#53b8af 325MiB/408MiB(79%) CN:16 DL:1.5MiB ETA:54s]
+#12 1354.5 [#53b8af 326MiB/408MiB(79%) CN:16 DL:1.5MiB ETA:54s]
+#12 1354.5 [#53b8af 328MiB/408MiB(80%) CN:16 DL:1.5MiB ETA:53s]
+#12 1354.5 [#53b8af 329MiB/408MiB(80%) CN:16 DL:1.5MiB ETA:52s]
+#12 1354.5 [#53b8af 331MiB/408MiB(81%) CN:16 DL:1.5MiB ETA:51s]
+#12 1354.5 [#53b8af 332MiB/408MiB(81%) CN:16 DL:1.4MiB ETA:50s]
+#12 1354.5 [#53b8af 334MiB/408MiB(81%) CN:16 DL:1.5MiB ETA:49s]
+#12 1354.5 [#53b8af 336MiB/408MiB(82%) CN:16 DL:1.5MiB ETA:47s]
+#12 1354.5 [#53b8af 337MiB/408MiB(82%) CN:16 DL:1.5MiB ETA:47s]
+#12 1354.5 [#53b8af 338MiB/408MiB(82%) CN:16 DL:1.5MiB ETA:46s]
+#12 1354.5 [#53b8af 340MiB/408MiB(83%) CN:16 DL:1.5MiB ETA:45s]
+#12 1354.5 [#53b8af 341MiB/408MiB(83%) CN:16 DL:1.4MiB ETA:45s]
+#12 1354.5 [#53b8af 342MiB/408MiB(83%) CN:16 DL:1.4MiB ETA:45s]
+#12 1354.5 [#53b8af 344MiB/408MiB(84%) CN:16 DL:1.4MiB ETA:43s]
+#12 1354.5 [#53b8af 345MiB/408MiB(84%) CN:16 DL:1.4MiB ETA:44s]
+#12 1354.5 [#53b8af 347MiB/408MiB(84%) CN:16 DL:1.4MiB ETA:43s]
+#12 1354.5 [#53b8af 348MiB/408MiB(85%) CN:16 DL:1.4MiB ETA:42s]
+#12 1354.5 [#53b8af 350MiB/408MiB(85%) CN:16 DL:1.4MiB ETA:41s]
+#12 1354.5 [#53b8af 351MiB/408MiB(86%) CN:16 DL:1.4MiB ETA:40s]
+#12 1354.5 [#53b8af 353MiB/408MiB(86%) CN:16 DL:1.4MiB ETA:39s]
+#12 1354.5 [#53b8af 354MiB/408MiB(86%) CN:16 DL:1.4MiB ETA:37s]
+#12 1354.5 [#53b8af 355MiB/408MiB(87%) CN:16 DL:1.4MiB ETA:36s]
+#12 1354.5 [#53b8af 357MiB/408MiB(87%) CN:16 DL:1.4MiB ETA:35s]
+#12 1354.5 [#53b8af 358MiB/408MiB(87%) CN:16 DL:1.4MiB ETA:34s]
+#12 1354.5 [#53b8af 360MiB/408MiB(88%) CN:16 DL:1.4MiB ETA:33s]
+#12 1354.5 [#53b8af 361MiB/408MiB(88%) CN:16 DL:1.4MiB ETA:32s]
+#12 1354.5 [#53b8af 363MiB/408MiB(88%) CN:16 DL:1.4MiB ETA:31s]
+#12 1354.5 [#53b8af 364MiB/408MiB(89%) CN:16 DL:1.4MiB ETA:31s]
+#12 1354.5 [#53b8af 365MiB/408MiB(89%) CN:16 DL:1.4MiB ETA:30s]
+#12 1354.5 [#53b8af 367MiB/408MiB(89%) CN:16 DL:1.4MiB ETA:28s]
+#12 1354.5 [#53b8af 368MiB/408MiB(90%) CN:16 DL:1.4MiB ETA:27s]
+#12 1354.5 [#53b8af 370MiB/408MiB(90%) CN:16 DL:1.4MiB ETA:26s]
+#12 1354.5 [#53b8af 371MiB/408MiB(90%) CN:16 DL:1.4MiB ETA:25s]
+#12 1354.5 [#53b8af 373MiB/408MiB(91%) CN:16 DL:1.4MiB ETA:24s]
+#12 1354.5 [#53b8af 375MiB/408MiB(91%) CN:16 DL:1.4MiB ETA:22s]
+#12 1354.5 [#53b8af 376MiB/408MiB(92%) CN:16 DL:1.4MiB ETA:21s]
+#12 1354.5 [#53b8af 378MiB/408MiB(92%) CN:16 DL:1.4MiB ETA:20s]
+#12 1354.5 [#53b8af 379MiB/408MiB(92%) CN:16 DL:1.5MiB ETA:19s]
+#12 1354.5 [#53b8af 381MiB/408MiB(93%) CN:16 DL:1.5MiB ETA:18s]
+#12 1354.5 [#53b8af 382MiB/408MiB(93%) CN:16 DL:1.5MiB ETA:17s]
+#12 1354.5 [#53b8af 384MiB/408MiB(93%) CN:16 DL:1.5MiB ETA:16s]
+#12 1354.5 [#53b8af 385MiB/408MiB(94%) CN:16 DL:1.5MiB ETA:15s]
+#12 1354.5 [#53b8af 386MiB/408MiB(94%) CN:16 DL:1.4MiB ETA:14s]
+#12 1354.5 [#53b8af 388MiB/408MiB(94%) CN:15 DL:1.4MiB ETA:14s]
+#12 1354.5 [#53b8af 389MiB/408MiB(95%) CN:15 DL:1.4MiB ETA:13s]
+#12 1354.5 [#53b8af 390MiB/408MiB(95%) CN:15 DL:1.4MiB ETA:12s]
+#12 1354.5 [#53b8af 392MiB/408MiB(95%) CN:15 DL:1.4MiB ETA:11s]
+#12 1354.5 [#53b8af 393MiB/408MiB(96%) CN:15 DL:1.3MiB ETA:11s]
+#12 1354.5 [#53b8af 394MiB/408MiB(96%) CN:14 DL:1.3MiB ETA:11s]
+#12 1354.5 [#53b8af 395MiB/408MiB(96%) CN:14 DL:1.2MiB ETA:10s]
+#12 1354.5  *** Download Progress Summary as of Tue Feb 25 11:49:27 2025 *** 
+#12 1354.5 ===============================================================================
+#12 1354.5 [#53b8af 396MiB/408MiB(97%) CN:14 DL:1.2MiB ETA:9s]
+#12 1354.5 FILE: /root/dist/logstash-8.16.1-arm64.deb
+#12 1354.5 -------------------------------------------------------------------------------
+#12 1354.5 
+#12 1364.4 [#53b8af 396MiB/408MiB(97%) CN:14 DL:1.2MiB ETA:9s]
+#12 1364.4 [#53b8af 397MiB/408MiB(97%) CN:13 DL:1.2MiB ETA:8s]
+#12 1364.4 [#53b8af 399MiB/408MiB(97%) CN:10 DL:1.2MiB ETA:7s]
+#12 1364.4 [#53b8af 400MiB/408MiB(97%) CN:9 DL:1.2MiB ETA:7s]
+#12 1364.4 [#53b8af 401MiB/408MiB(98%) CN:9 DL:1.1MiB ETA:6s]
+#12 1364.4 [#53b8af 402MiB/408MiB(98%) CN:9 DL:1.1MiB ETA:5s]
+#12 1364.4 [#53b8af 403MiB/408MiB(98%) CN:9 DL:1.2MiB ETA:4s]
+#12 1364.4 [#53b8af 405MiB/408MiB(99%) CN:9 DL:1.2MiB ETA:3s]
+#12 1364.4 [#53b8af 406MiB/408MiB(99%) CN:9 DL:1.2MiB ETA:1s]
+#12 1364.4 [#53b8af 407MiB/408MiB(99%) CN:2 DL:1.2MiB]
+#12 1364.4 
+#12 1364.4 02/25 11:49:37 [[1;32mNOTICE[0m] Download complete: /root/dist/logstash-8.16.1-arm64.deb
+#12 1364.4 
+#12 1364.4 Download Results:
+#12 1364.4 gid   |stat|avg speed  |path/URI
+#12 1364.4 ======+====+===========+=======================================================
+#12 1364.4 53b8af|OK  |   1.3MiB/s|/root/dist/logstash-8.16.1-arm64.deb
+#12 1364.4 
+#12 1364.4 Status Legend:
+#12 1364.4 (OK):download completed.
+#12 1365.0 Selecting previously unselected package logstash.
+#12 1365.2 (Reading database ... 5214 files and directories currently installed.)
+#12 1365.2 Preparing to unpack logstash-8.16.1-arm64.deb ...
+#12 1365.8 Unpacking logstash (1:8.16.1-1) ...
+#12 1441.3 Setting up logstash (1:8.16.1-1) ...
+#12 1444.2 Using bundled JDK: /usr/share/logstash/jdk
+#12 1444.4 Picked up _JAVA_OPTIONS: -XX:UseSVE=0
+#12 1451.6 Picked up _JAVA_OPTIONS: -XX:UseSVE=0
+#12 1685.1 Updating logstash-filter-translate
+#12 2590.4 Bundler attempted to update logstash-mixin-ecs_compatibility_support but its version stayed the same
+#12 2590.4 Bundler attempted to update logstash-mixin-validator_support but its version stayed the same
+#12 2590.5 Bundler attempted to update logstash-mixin-deprecation_logger_support but its version stayed the same
+#12 2590.5 Bundler attempted to update logstash-mixin-scheduler but its version stayed the same
+#12 2590.5 Bundler attempted to update logstash-filter-translate but its version stayed the same
+#12 2620.5 No plugin updated
+#12 2622.8 Reading package lists...
+#12 2789.7 Building dependency tree...
+#12 2835.9 Reading state information...
+#12 2864.2 0 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.
+#12 DONE 2865.0s
+
+#13 [logstash] exporting to image
+#13 exporting layers
+#13 exporting layers 99.0s done
+#13 exporting manifest sha256:b034a4557d2245a5485275956186a4a3f95894b7032c7d9e438221df9ab1f4b5 0.0s done
+#13 exporting config sha256:bb52783189afdf8bcd43b483f88a431d0d0bc273c3c058c979fa8262191593ee 0.0s done
+#13 exporting attestation manifest sha256:3782e18bcbd50de09e3f93c1c5617af0648b260966ba9aa7a1b5300ae3bb5867 0.0s done
+#13 exporting manifest sha256:77fd3db57781f00a85b119cb1f9cf8ef6614f2bb93196bcbb0ce9ebe0252da60 0.0s done
+#13 exporting config sha256:ff5eb6c225848ea56cc6491a0cd6fa189cfb975552adf030c00092f377434a7c
+#13 exporting config sha256:ff5eb6c225848ea56cc6491a0cd6fa189cfb975552adf030c00092f377434a7c 0.0s done
+#13 exporting attestation manifest sha256:1af257bf706dc33891c8f49b4a89c14c712dec0116aaea9e5c15b36c56e6cf74 0.0s done
+#13 exporting manifest list sha256:d293e710803ad7d157b82e6cba541e997805ba3d0e278394089de7665e366ded 0.0s done
+#13 pushing layers
+#13 ...
+
+#14 [logstash auth] f0rc3ps/logstash:pull,push token for registry-1.docker.io
+#14 DONE 0.0s
+
+#13 [logstash] exporting to image
+#13 pushing layers 216.3s done
+#13 pushing manifest for docker.io/f0rc3ps/logstash:24.04.1@sha256:d293e710803ad7d157b82e6cba541e997805ba3d0e278394089de7665e366ded
+#13 pushing manifest for docker.io/f0rc3ps/logstash:24.04.1@sha256:d293e710803ad7d157b82e6cba541e997805ba3d0e278394089de7665e366ded 3.2s done
+#13 ...
+
+#15 [logstash auth] asc3t1c/logstash:pull,push token for ghcr.io
+#15 DONE 0.0s
+
+#13 [logstash] exporting to image
+#13 pushing layers 208.7s done
+#13 pushing manifest for ghcr.io/asc3t1c/logstash:24.04.1@sha256:d293e710803ad7d157b82e6cba541e997805ba3d0e278394089de7665e366ded
+#13 ...
+
+#16 [logstash auth] asc3t1c/logstash:pull,push token for ghcr.io
+#16 DONE 0.0s
+
+#13 [logstash] exporting to image
+#13 pushing manifest for ghcr.io/asc3t1c/logstash:24.04.1@sha256:d293e710803ad7d157b82e6cba541e997805ba3d0e278394089de7665e366ded 3.1s done
+#13 DONE 530.5s
+
+#17 [logstash] resolving provenance for metadata file
+#17 DONE 0.0s

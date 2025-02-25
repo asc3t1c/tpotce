@@ -1,0 +1,461 @@
+Compose now can delegate build to bake for better performances
+Just set COMPOSE_BAKE=true
+#0 building with "mybuilder" instance using docker-container driver
+
+#1 [suricata internal] load build definition from Dockerfile
+#1 DONE 0.0s
+
+#1 [suricata internal] load build definition from Dockerfile
+#1 transferring dockerfile: 1.15kB done
+#1 DONE 0.0s
+
+#2 [suricata auth] library/alpine:pull token for registry-1.docker.io
+#2 DONE 0.0s
+
+#3 [suricata linux/arm64 internal] load metadata for docker.io/library/alpine:edge
+#3 ...
+
+#4 [suricata linux/amd64 internal] load metadata for docker.io/library/alpine:edge
+#4 DONE 3.0s
+
+#3 [suricata linux/arm64 internal] load metadata for docker.io/library/alpine:edge
+#3 DONE 3.0s
+
+#5 [suricata internal] load .dockerignore
+#5 transferring context: 2B done
+#5 DONE 0.0s
+
+#6 [suricata linux/amd64 1/3] FROM docker.io/library/alpine:edge@sha256:115729ec5cb049ba6359c3ab005ac742012d92bbaa5b8bc1a878f1e8f62c0cb8
+#6 resolve docker.io/library/alpine:edge@sha256:115729ec5cb049ba6359c3ab005ac742012d92bbaa5b8bc1a878f1e8f62c0cb8 0.0s done
+#6 CACHED
+
+#7 [suricata linux/arm64 1/3] FROM docker.io/library/alpine:edge@sha256:115729ec5cb049ba6359c3ab005ac742012d92bbaa5b8bc1a878f1e8f62c0cb8
+#7 resolve docker.io/library/alpine:edge@sha256:115729ec5cb049ba6359c3ab005ac742012d92bbaa5b8bc1a878f1e8f62c0cb8 0.0s done
+#7 CACHED
+
+#8 [suricata internal] load build context
+#8 transferring context: 88.73kB 0.0s done
+#8 DONE 0.0s
+
+#9 [suricata linux/arm64 2/3] COPY dist/ /root/dist/
+#9 DONE 0.1s
+
+#10 [suricata linux/amd64 2/3] COPY dist/ /root/dist/
+#10 DONE 0.1s
+
+#11 [suricata linux/amd64 3/3] RUN apk --no-cache -U upgrade &&     apk --no-cache -U add 		ca-certificates 		curl 		file 		hiredis 		libcap 		wget 		suricata &&     addgroup -g 2000 suri &&     adduser -S -H -u 2000 -D -g 2000 suri &&     cp /root/dist/*.yaml /etc/suricata/ &&     cp /root/dist/*.conf /etc/suricata/ &&     cp /root/dist/*.bpf /etc/suricata/ &&     cp /root/dist/update.sh /usr/bin/ &&     chmod 644 /etc/suricata/*.config &&     chmod 755 -R /var/lib/suricata &&     chmod 755 /usr/bin/update.sh &&     chown -R root:suri /tmp /run &&     suricata-update update-sources &&     suricata-update --no-test --no-reload &&     rm -rf /root/*            /tmp/*            /var/cache/apk/*
+#11 0.188 fetch https://dl-cdn.alpinelinux.org/alpine/edge/main/x86_64/APKINDEX.tar.gz
+#11 0.466 fetch https://dl-cdn.alpinelinux.org/alpine/edge/community/x86_64/APKINDEX.tar.gz
+#11 1.222 Upgrading critical system libraries and apk-tools:
+#11 1.222 (1/2) Installing libapk2 (2.14.9-r1)
+#11 1.239 (2/2) Upgrading apk-tools (2.14.7-r0 -> 2.14.9-r1)
+#11 1.249 Executing busybox-1.37.0-r10.trigger
+#11 1.434 Continuing the upgrade transaction with new apk-tools:
+#11 1.448 fetch https://dl-cdn.alpinelinux.org/alpine/edge/main/x86_64/APKINDEX.tar.gz
+#11 1.602 fetch https://dl-cdn.alpinelinux.org/alpine/edge/community/x86_64/APKINDEX.tar.gz
+#11 2.458 (1/8) Upgrading musl (1.2.5-r9 -> 1.2.5-r10)
+#11 2.500 (2/8) Upgrading busybox (1.37.0-r10 -> 1.37.0-r14)
+#11 2.561 Executing busybox-1.37.0-r14.post-upgrade
+#11 2.615 (3/8) Upgrading busybox-binsh (1.37.0-r10 -> 1.37.0-r14)
+#11 2.621 (4/8) Upgrading alpine-release (3.22.0_alpha20250108-r0 -> 3.22.0_alpha20250108-r1)
+#11 2.631 (5/8) Upgrading libcrypto3 (3.3.2-r4 -> 3.3.3-r0)
+#11 2.817 (6/8) Upgrading libssl3 (3.3.2-r4 -> 3.3.3-r0)
+#11 2.855 (7/8) Upgrading ssl_client (1.37.0-r10 -> 1.37.0-r14)
+#11 2.866 (8/8) Upgrading musl-utils (1.2.5-r9 -> 1.2.5-r10)
+#11 2.880 Executing busybox-1.37.0-r14.trigger
+#11 2.897 OK: 7 MiB in 16 packages
+#11 3.104 fetch https://dl-cdn.alpinelinux.org/alpine/edge/main/x86_64/APKINDEX.tar.gz
+#11 3.304 fetch https://dl-cdn.alpinelinux.org/alpine/edge/community/x86_64/APKINDEX.tar.gz
+#11 4.110 (1/56) Installing ca-certificates (20241121-r1)
+#11 4.170 (2/56) Installing brotli-libs (1.1.0-r2)
+#11 4.224 (3/56) Installing c-ares (1.34.4-r0)
+#11 4.242 (4/56) Installing libunistring (1.3-r0)
+#11 4.313 (5/56) Installing libidn2 (2.3.7-r0)
+#11 4.329 (6/56) Installing nghttp2-libs (1.64.0-r0)
+#11 4.341 (7/56) Installing libpsl (0.21.5-r3)
+#11 4.353 (8/56) Installing zstd-libs (1.5.7-r0)
+#11 4.393 (9/56) Installing libcurl (8.12.1-r0)
+#11 4.429 (10/56) Installing curl (8.12.1-r0)
+#11 4.453 (11/56) Installing libmagic (5.46-r1)
+#11 4.543 (12/56) Installing file (5.46-r1)
+#11 4.549 (13/56) Installing hiredis (1.2.0-r0)
+#11 4.557 (14/56) Installing libcap2 (2.73-r0)
+#11 4.567 (15/56) Installing libcap-getcap (2.73-r0)
+#11 4.571 (16/56) Installing libcap-setcap (2.73-r0)
+#11 4.608 (17/56) Installing libcap-utils (2.73-r0)
+#11 4.646 (18/56) Installing libcap (2.73-r0)
+#11 4.646 (19/56) Installing libbz2 (1.0.8-r6)
+#11 4.654 (20/56) Installing libexpat (2.6.4-r0)
+#11 4.667 (21/56) Installing libffi (3.4.6-r0)
+#11 4.675 (22/56) Installing gdbm (1.24-r0)
+#11 4.685 (23/56) Installing xz-libs (5.6.4-r0)
+#11 4.704 (24/56) Installing libgcc (14.2.0-r5)
+#11 4.720 (25/56) Installing libstdc++ (14.2.0-r5)
+#11 4.811 (26/56) Installing mpdecimal (4.0.0-r0)
+#11 4.826 (27/56) Installing ncurses-terminfo-base (6.5_p20250216-r0)
+#11 4.840 (28/56) Installing libncursesw (6.5_p20250216-r0)
+#11 4.862 (29/56) Installing libpanelw (6.5_p20250216-r0)
+#11 4.866 (30/56) Installing readline (8.2.13-r0)
+#11 4.885 (31/56) Installing sqlite-libs (3.49.1-r0)
+#11 4.967 (32/56) Installing python3 (3.12.9-r0)
+#11 5.721 (33/56) Installing python3-pycache-pyc0 (3.12.9-r0)
+#11 6.120 (34/56) Installing pyc (3.12.9-r0)
+#11 6.120 (35/56) Installing python3-pyc (3.12.9-r0)
+#11 6.120 (36/56) Installing yaml (0.2.5-r2)
+#11 6.139 (37/56) Installing py3-yaml (6.0.2-r0)
+#11 6.166 (38/56) Installing py3-yaml-pyc (6.0.2-r0)
+#11 6.188 (39/56) Installing libelf (0.192-r0)
+#11 6.200 (40/56) Installing libbpf (1.5.0-r0)
+#11 6.254 (41/56) Installing libcap-ng (0.8.5-r0)
+#11 6.261 (42/56) Installing vectorscan (5.4.11-r2)
+#11 6.522 (43/56) Installing libhtp (0.5.49-r0)
+#11 6.565 (44/56) Installing jansson (2.14-r4)
+#11 6.573 (45/56) Installing luajit (2.1_p20240815-r1)
+#11 6.642 (46/56) Installing lz4-libs (1.10.0-r0)
+#11 6.656 (47/56) Installing libmaxminddb-libs (1.9.1-r0)
+#11 6.691 (48/56) Installing libnet (1.3-r0)
+#11 6.729 (49/56) Installing libmnl (1.0.5-r2)
+#11 6.737 (50/56) Installing libnfnetlink (1.0.2-r3)
+#11 6.772 (51/56) Installing libnetfilter_log (1.0.2-r2)
+#11 6.807 (52/56) Installing libnetfilter_queue (1.0.5-r2)
+#11 6.856 (53/56) Installing libpcap (1.10.5-r0)
+#11 6.902 (54/56) Installing pcre2 (10.43-r0)
+#11 6.945 (55/56) Installing suricata (7.0.8-r0)
+#11 7.359 Executing suricata-7.0.8-r0.post-install
+#11 ...
+
+#12 [suricata linux/arm64 3/3] RUN apk --no-cache -U upgrade &&     apk --no-cache -U add 		ca-certificates 		curl 		file 		hiredis 		libcap 		wget 		suricata &&     addgroup -g 2000 suri &&     adduser -S -H -u 2000 -D -g 2000 suri &&     cp /root/dist/*.yaml /etc/suricata/ &&     cp /root/dist/*.conf /etc/suricata/ &&     cp /root/dist/*.bpf /etc/suricata/ &&     cp /root/dist/update.sh /usr/bin/ &&     chmod 644 /etc/suricata/*.config &&     chmod 755 -R /var/lib/suricata &&     chmod 755 /usr/bin/update.sh &&     chown -R root:suri /tmp /run &&     suricata-update update-sources &&     suricata-update --no-test --no-reload &&     rm -rf /root/*            /tmp/*            /var/cache/apk/*
+#12 0.366 fetch https://dl-cdn.alpinelinux.org/alpine/edge/main/aarch64/APKINDEX.tar.gz
+#12 1.685 fetch https://dl-cdn.alpinelinux.org/alpine/edge/community/aarch64/APKINDEX.tar.gz
+#12 5.027 Upgrading critical system libraries and apk-tools:
+#12 5.029 (1/2) Installing libapk2 (2.14.9-r1)
+#12 5.144 (2/2) Upgrading apk-tools (2.14.7-r0 -> 2.14.9-r1)
+#12 5.231 Executing busybox-1.37.0-r10.trigger
+#12 5.868 Continuing the upgrade transaction with new apk-tools:
+#12 6.052 fetch https://dl-cdn.alpinelinux.org/alpine/edge/main/aarch64/APKINDEX.tar.gz
+#12 7.495 fetch https://dl-cdn.alpinelinux.org/alpine/edge/community/aarch64/APKINDEX.tar.gz
+#12 11.43 (1/8) Upgrading musl (1.2.5-r9 -> 1.2.5-r10)
+#12 11.64 (2/8) Upgrading busybox (1.37.0-r10 -> 1.37.0-r14)
+#12 11.88 Executing busybox-1.37.0-r14.post-upgrade
+#12 12.57 (3/8) Upgrading busybox-binsh (1.37.0-r10 -> 1.37.0-r14)
+#12 12.59 (4/8) Upgrading alpine-release (3.22.0_alpha20250108-r0 -> 3.22.0_alpha20250108-r1)
+#12 12.61 (5/8) Upgrading libcrypto3 (3.3.2-r4 -> 3.3.3-r0)
+#12 13.32 (6/8) Upgrading libssl3 (3.3.2-r4 -> 3.3.3-r0)
+#12 13.47 (7/8) Upgrading ssl_client (1.37.0-r10 -> 1.37.0-r14)
+#12 13.48 (8/8) Upgrading musl-utils (1.2.5-r9 -> 1.2.5-r10)
+#12 13.51 Executing busybox-1.37.0-r14.trigger
+#12 13.66 OK: 7 MiB in 16 packages
+#12 14.50 fetch https://dl-cdn.alpinelinux.org/alpine/edge/main/aarch64/APKINDEX.tar.gz
+#12 15.98 fetch https://dl-cdn.alpinelinux.org/alpine/edge/community/aarch64/APKINDEX.tar.gz
+#12 ...
+
+#11 [suricata linux/amd64 3/3] RUN apk --no-cache -U upgrade &&     apk --no-cache -U add 		ca-certificates 		curl 		file 		hiredis 		libcap 		wget 		suricata &&     addgroup -g 2000 suri &&     adduser -S -H -u 2000 -D -g 2000 suri &&     cp /root/dist/*.yaml /etc/suricata/ &&     cp /root/dist/*.conf /etc/suricata/ &&     cp /root/dist/*.bpf /etc/suricata/ &&     cp /root/dist/update.sh /usr/bin/ &&     chmod 644 /etc/suricata/*.config &&     chmod 755 -R /var/lib/suricata &&     chmod 755 /usr/bin/update.sh &&     chown -R root:suri /tmp /run &&     suricata-update update-sources &&     suricata-update --no-test --no-reload &&     rm -rf /root/*            /tmp/*            /var/cache/apk/*
+#11 18.38 25/2/2025 -- 13:13:19 - <Info> -- Using data-directory /var/lib/suricata.
+#11 18.38 25/2/2025 -- 13:13:19 - <Info> -- Using /usr/share/suricata/rules for Suricata provided rules.
+#11 18.38 25/2/2025 -- 13:13:19 - <Info> -- Found Suricata version 7.0.8 at /usr/bin/suricata.
+#11 18.38 25/2/2025 -- 13:13:19 - <Info> -- Loading /etc/suricata/suricata.yaml
+#11 18.38 25/2/2025 -- 13:13:19 - <Info> -- Disabling rules for protocol pgsql
+#11 18.38 25/2/2025 -- 13:13:19 - <Info> -- Disabling rules for protocol modbus
+#11 18.38 25/2/2025 -- 13:13:19 - <Info> -- Disabling rules for protocol dnp3
+#11 18.38 25/2/2025 -- 13:13:19 - <Info> -- Disabling rules for protocol enip
+#11 18.38 25/2/2025 -- 13:13:19 - <Info> -- No sources configured, will use Emerging Threats Open
+#11 18.38 25/2/2025 -- 13:13:19 - <Info> -- Fetching https://rules.emergingthreats.net/open/suricata-7.0.8/emerging.rules.tar.gz.
+#11 18.38 25/2/2025 -- 13:13:21 - <Info> -- Done.
+#11 18.38 25/2/2025 -- 13:13:21 - <Info> -- Loading distribution rule file /usr/share/suricata/rules/app-layer-events.rules
+#11 18.38 25/2/2025 -- 13:13:21 - <Info> -- Loading distribution rule file /usr/share/suricata/rules/decoder-events.rules
+#11 18.38 25/2/2025 -- 13:13:21 - <Info> -- Loading distribution rule file /usr/share/suricata/rules/dhcp-events.rules
+#11 18.38 25/2/2025 -- 13:13:21 - <Info> -- Loading distribution rule file /usr/share/suricata/rules/dnp3-events.rules
+#11 18.38 25/2/2025 -- 13:13:21 - <Info> -- Loading distribution rule file /usr/share/suricata/rules/dns-events.rules
+#11 18.38 25/2/2025 -- 13:13:21 - <Info> -- Loading distribution rule file /usr/share/suricata/rules/files.rules
+#11 18.38 25/2/2025 -- 13:13:21 - <Info> -- Loading distribution rule file /usr/share/suricata/rules/http2-events.rules
+#11 18.38 25/2/2025 -- 13:13:21 - <Info> -- Loading distribution rule file /usr/share/suricata/rules/http-events.rules
+#11 18.38 25/2/2025 -- 13:13:21 - <Info> -- Loading distribution rule file /usr/share/suricata/rules/ipsec-events.rules
+#11 18.38 25/2/2025 -- 13:13:21 - <Info> -- Loading distribution rule file /usr/share/suricata/rules/kerberos-events.rules
+#11 18.38 25/2/2025 -- 13:13:21 - <Info> -- Loading distribution rule file /usr/share/suricata/rules/modbus-events.rules
+#11 18.38 25/2/2025 -- 13:13:21 - <Info> -- Loading distribution rule file /usr/share/suricata/rules/mqtt-events.rules
+#11 18.38 25/2/2025 -- 13:13:21 - <Info> -- Loading distribution rule file /usr/share/suricata/rules/nfs-events.rules
+#11 18.38 25/2/2025 -- 13:13:21 - <Info> -- Loading distribution rule file /usr/share/suricata/rules/ntp-events.rules
+#11 18.38 25/2/2025 -- 13:13:21 - <Info> -- Loading distribution rule file /usr/share/suricata/rules/quic-events.rules
+#11 18.38 25/2/2025 -- 13:13:21 - <Info> -- Loading distribution rule file /usr/share/suricata/rules/rfb-events.rules
+#11 18.38 25/2/2025 -- 13:13:21 - <Info> -- Loading distribution rule file /usr/share/suricata/rules/smb-events.rules
+#11 18.38 25/2/2025 -- 13:13:21 - <Info> -- Loading distribution rule file /usr/share/suricata/rules/smtp-events.rules
+#11 18.38 25/2/2025 -- 13:13:21 - <Info> -- Loading distribution rule file /usr/share/suricata/rules/ssh-events.rules
+#11 18.38 25/2/2025 -- 13:13:21 - <Info> -- Loading distribution rule file /usr/share/suricata/rules/stream-events.rules
+#11 18.38 25/2/2025 -- 13:13:21 - <Info> -- Loading distribution rule file /usr/share/suricata/rules/tls-events.rules
+#11 18.38 25/2/2025 -- 13:13:22 - <Info> -- Ignoring file 029f98278a177b2c54e8d37841dc5528/rules/emerging-deleted.rules
+#11 18.38 25/2/2025 -- 13:13:28 - <Info> -- Loaded 57039 rules.
+#11 18.38 25/2/2025 -- 13:13:29 - <Info> -- Disabled 13 rules.
+#11 18.38 25/2/2025 -- 13:13:29 - <Info> -- Enabled 0 rules.
+#11 18.38 25/2/2025 -- 13:13:29 - <Info> -- Modified 0 rules.
+#11 18.38 25/2/2025 -- 13:13:29 - <Info> -- Dropped 0 rules.
+#11 18.38 25/2/2025 -- 13:13:29 - <Info> -- Enabled 136 rules for flowbit dependencies.
+#11 18.38 25/2/2025 -- 13:13:29 - <Info> -- Creating directory /var/lib/suricata/rules.
+#11 18.38 25/2/2025 -- 13:13:29 - <Info> -- Backing up current rules.
+#11 18.38 25/2/2025 -- 13:13:29 - <Info> -- Writing rules to /var/lib/suricata/rules/suricata.rules: total: 57039; enabled: 42715; added: 57039; removed 0; modified: 0
+#11 18.38 25/2/2025 -- 13:13:29 - <Info> -- Writing /var/lib/suricata/rules/classification.config
+#11 18.38 25/2/2025 -- 13:13:30 - <Info> -- Skipping test, disabled by configuration.
+#11 18.38 25/2/2025 -- 13:13:30 - <Info> -- Done.
+#11 18.44 (56/56) Installing wget (1.25.0-r1)
+#11 18.49 Executing busybox-1.37.0-r14.trigger
+#11 18.51 Executing ca-certificates-20241121-r1.trigger
+#11 18.59 OK: 82 MiB in 72 packages
+#11 19.88 25/2/2025 -- 13:13:31 - <Info> -- Loading /etc/suricata/update.yaml
+#11 19.88 25/2/2025 -- 13:13:31 - <Info> -- Using data-directory /var/lib/suricata.
+#11 19.88 25/2/2025 -- 13:13:31 - <Info> -- Using Suricata configuration /etc/suricata/suricata.yaml
+#11 19.88 25/2/2025 -- 13:13:31 - <Info> -- Using /usr/share/suricata/rules for Suricata provided rules.
+#11 19.88 25/2/2025 -- 13:13:31 - <Info> -- Found Suricata version 7.0.8 at /usr/bin/suricata.
+#11 19.88 25/2/2025 -- 13:13:31 - <Info> -- Downloading https://www.openinfosecfoundation.org/rules/index.yaml
+#11 19.88 25/2/2025 -- 13:13:31 - <Info> -- Adding all sources
+#11 19.88 25/2/2025 -- 13:13:31 - <Info> -- Saved /var/lib/suricata/update/cache/index.yaml
+#11 ...
+
+#12 [suricata linux/arm64 3/3] RUN apk --no-cache -U upgrade &&     apk --no-cache -U add 		ca-certificates 		curl 		file 		hiredis 		libcap 		wget 		suricata &&     addgroup -g 2000 suri &&     adduser -S -H -u 2000 -D -g 2000 suri &&     cp /root/dist/*.yaml /etc/suricata/ &&     cp /root/dist/*.conf /etc/suricata/ &&     cp /root/dist/*.bpf /etc/suricata/ &&     cp /root/dist/update.sh /usr/bin/ &&     chmod 644 /etc/suricata/*.config &&     chmod 755 -R /var/lib/suricata &&     chmod 755 /usr/bin/update.sh &&     chown -R root:suri /tmp /run &&     suricata-update update-sources &&     suricata-update --no-test --no-reload &&     rm -rf /root/*            /tmp/*            /var/cache/apk/*
+#12 19.86 (1/56) Installing ca-certificates (20241121-r1)
+#12 19.99 (2/56) Installing brotli-libs (1.1.0-r2)
+#12 20.21 (3/56) Installing c-ares (1.34.4-r0)
+#12 20.29 (4/56) Installing libunistring (1.3-r0)
+#12 20.51 (5/56) Installing libidn2 (2.3.7-r0)
+#12 20.56 (6/56) Installing nghttp2-libs (1.64.0-r0)
+#12 20.59 (7/56) Installing libpsl (0.21.5-r3)
+#12 20.61 (8/56) Installing zstd-libs (1.5.7-r0)
+#12 20.75 (9/56) Installing libcurl (8.12.1-r0)
+#12 20.84 (10/56) Installing curl (8.12.1-r0)
+#12 20.92 (11/56) Installing libmagic (5.46-r1)
+#12 21.22 (12/56) Installing file (5.46-r1)
+#12 21.26 (13/56) Installing hiredis (1.2.0-r0)
+#12 21.29 (14/56) Installing libcap2 (2.73-r0)
+#12 21.31 (15/56) Installing libcap-getcap (2.73-r0)
+#12 21.35 (16/56) Installing libcap-setcap (2.73-r0)
+#12 21.39 (17/56) Installing libcap-utils (2.73-r0)
+#12 21.44 (18/56) Installing libcap (2.73-r0)
+#12 21.44 (19/56) Installing libbz2 (1.0.8-r6)
+#12 21.47 (20/56) Installing libexpat (2.6.4-r0)
+#12 21.50 (21/56) Installing libffi (3.4.6-r0)
+#12 21.51 (22/56) Installing gdbm (1.24-r0)
+#12 21.54 (23/56) Installing xz-libs (5.6.4-r0)
+#12 21.59 (24/56) Installing libgcc (14.2.0-r5)
+#12 21.62 (25/56) Installing libstdc++ (14.2.0-r5)
+#12 21.87 (26/56) Installing mpdecimal (4.0.0-r0)
+#12 21.93 (27/56) Installing ncurses-terminfo-base (6.5_p20250216-r0)
+#12 22.00 (28/56) Installing libncursesw (6.5_p20250216-r0)
+#12 22.10 (29/56) Installing libpanelw (6.5_p20250216-r0)
+#12 22.12 (30/56) Installing readline (8.2.13-r0)
+#12 22.16 (31/56) Installing sqlite-libs (3.49.1-r0)
+#12 22.35 (32/56) Installing python3 (3.12.9-r0)
+#12 25.04 (33/56) Installing python3-pycache-pyc0 (3.12.9-r0)
+#12 26.67 (34/56) Installing pyc (3.12.9-r0)
+#12 26.67 (35/56) Installing python3-pyc (3.12.9-r0)
+#12 26.67 (36/56) Installing yaml (0.2.5-r2)
+#12 26.70 (37/56) Installing py3-yaml (6.0.2-r0)
+#12 26.74 (38/56) Installing py3-yaml-pyc (6.0.2-r0)
+#12 26.81 (39/56) Installing libelf (0.192-r0)
+#12 26.86 (40/56) Installing libbpf (1.5.0-r0)
+#12 26.95 (41/56) Installing libcap-ng (0.8.5-r0)
+#12 26.99 (42/56) Installing vectorscan (5.4.11-r2)
+#12 27.62 (43/56) Installing libhtp (0.5.49-r0)
+#12 27.68 (44/56) Installing jansson (2.14-r4)
+#12 27.70 (45/56) Installing luajit (2.1_p20240815-r1)
+#12 27.89 (46/56) Installing lz4-libs (1.10.0-r0)
+#12 27.92 (47/56) Installing libmaxminddb-libs (1.9.1-r0)
+#12 27.97 (48/56) Installing libnet (1.3-r0)
+#12 28.02 (49/56) Installing libmnl (1.0.5-r2)
+#12 28.03 (50/56) Installing libnfnetlink (1.0.2-r3)
+#12 28.07 (51/56) Installing libnetfilter_log (1.0.2-r2)
+#12 28.12 (52/56) Installing libnetfilter_queue (1.0.5-r2)
+#12 28.16 (53/56) Installing libpcap (1.10.5-r0)
+#12 28.23 (54/56) Installing pcre2 (10.43-r0)
+#12 28.32 (55/56) Installing suricata (7.0.8-r0)
+#12 29.54 Executing suricata-7.0.8-r0.post-install
+#12 ...
+
+#11 [suricata linux/amd64 3/3] RUN apk --no-cache -U upgrade &&     apk --no-cache -U add 		ca-certificates 		curl 		file 		hiredis 		libcap 		wget 		suricata &&     addgroup -g 2000 suri &&     adduser -S -H -u 2000 -D -g 2000 suri &&     cp /root/dist/*.yaml /etc/suricata/ &&     cp /root/dist/*.conf /etc/suricata/ &&     cp /root/dist/*.bpf /etc/suricata/ &&     cp /root/dist/update.sh /usr/bin/ &&     chmod 644 /etc/suricata/*.config &&     chmod 755 -R /var/lib/suricata &&     chmod 755 /usr/bin/update.sh &&     chown -R root:suri /tmp /run &&     suricata-update update-sources &&     suricata-update --no-test --no-reload &&     rm -rf /root/*            /tmp/*            /var/cache/apk/*
+#11 37.41 25/2/2025 -- 13:13:32 - <Info> -- Loading /etc/suricata/update.yaml
+#11 37.41 25/2/2025 -- 13:13:32 - <Info> -- Using data-directory /var/lib/suricata.
+#11 37.41 25/2/2025 -- 13:13:32 - <Info> -- Using Suricata configuration /etc/suricata/suricata.yaml
+#11 37.41 25/2/2025 -- 13:13:32 - <Info> -- Using /usr/share/suricata/rules for Suricata provided rules.
+#11 37.41 25/2/2025 -- 13:13:32 - <Info> -- Found Suricata version 7.0.8 at /usr/bin/suricata.
+#11 37.41 25/2/2025 -- 13:13:32 - <Info> -- Loading /etc/suricata/disable.conf.
+#11 37.41 25/2/2025 -- 13:13:32 - <Info> -- Loading /etc/suricata/enable.conf.
+#11 37.41 25/2/2025 -- 13:13:32 - <Info> -- Loading /etc/suricata/modify.conf.
+#11 37.41 25/2/2025 -- 13:13:32 - <Info> -- Loading /etc/suricata/suricata.yaml
+#11 37.41 25/2/2025 -- 13:13:32 - <Info> -- Disabling rules for protocol dhcp
+#11 37.41 25/2/2025 -- 13:13:32 - <Info> -- No sources configured, will use Emerging Threats Open
+#11 37.41 25/2/2025 -- 13:13:32 - <Info> -- Last download less than 15 minutes ago. Not downloading https://rules.emergingthreats.net/open/suricata-7.0.8/emerging.rules.tar.gz.
+#11 37.41 25/2/2025 -- 13:13:32 - <Info> -- Loading distribution rule file /usr/share/suricata/rules/app-layer-events.rules
+#11 37.41 25/2/2025 -- 13:13:32 - <Info> -- Loading distribution rule file /usr/share/suricata/rules/decoder-events.rules
+#11 37.41 25/2/2025 -- 13:13:32 - <Info> -- Loading distribution rule file /usr/share/suricata/rules/dhcp-events.rules
+#11 37.41 25/2/2025 -- 13:13:32 - <Info> -- Loading distribution rule file /usr/share/suricata/rules/dnp3-events.rules
+#11 37.41 25/2/2025 -- 13:13:32 - <Info> -- Loading distribution rule file /usr/share/suricata/rules/dns-events.rules
+#11 37.41 25/2/2025 -- 13:13:32 - <Info> -- Loading distribution rule file /usr/share/suricata/rules/files.rules
+#11 37.41 25/2/2025 -- 13:13:32 - <Info> -- Loading distribution rule file /usr/share/suricata/rules/http2-events.rules
+#11 37.41 25/2/2025 -- 13:13:32 - <Info> -- Loading distribution rule file /usr/share/suricata/rules/http-events.rules
+#11 37.41 25/2/2025 -- 13:13:32 - <Info> -- Loading distribution rule file /usr/share/suricata/rules/ipsec-events.rules
+#11 37.41 25/2/2025 -- 13:13:32 - <Info> -- Loading distribution rule file /usr/share/suricata/rules/kerberos-events.rules
+#11 37.41 25/2/2025 -- 13:13:32 - <Info> -- Loading distribution rule file /usr/share/suricata/rules/modbus-events.rules
+#11 37.41 25/2/2025 -- 13:13:32 - <Info> -- Loading distribution rule file /usr/share/suricata/rules/mqtt-events.rules
+#11 37.41 25/2/2025 -- 13:13:32 - <Info> -- Loading distribution rule file /usr/share/suricata/rules/nfs-events.rules
+#11 37.41 25/2/2025 -- 13:13:32 - <Info> -- Loading distribution rule file /usr/share/suricata/rules/ntp-events.rules
+#11 37.41 25/2/2025 -- 13:13:32 - <Info> -- Loading distribution rule file /usr/share/suricata/rules/quic-events.rules
+#11 37.41 25/2/2025 -- 13:13:32 - <Info> -- Loading distribution rule file /usr/share/suricata/rules/rfb-events.rules
+#11 37.41 25/2/2025 -- 13:13:32 - <Info> -- Loading distribution rule file /usr/share/suricata/rules/smb-events.rules
+#11 37.41 25/2/2025 -- 13:13:32 - <Info> -- Loading distribution rule file /usr/share/suricata/rules/smtp-events.rules
+#11 37.41 25/2/2025 -- 13:13:32 - <Info> -- Loading distribution rule file /usr/share/suricata/rules/ssh-events.rules
+#11 37.41 25/2/2025 -- 13:13:32 - <Info> -- Loading distribution rule file /usr/share/suricata/rules/stream-events.rules
+#11 37.41 25/2/2025 -- 13:13:32 - <Info> -- Loading distribution rule file /usr/share/suricata/rules/tls-events.rules
+#11 37.41 25/2/2025 -- 13:13:32 - <Info> -- Ignoring file /usr/share/suricata/rules/dhcp-events.rules
+#11 37.41 25/2/2025 -- 13:13:32 - <Info> -- Ignoring file /usr/share/suricata/rules/files.rules
+#11 37.41 25/2/2025 -- 13:13:33 - <Info> -- Ignoring file 029f98278a177b2c54e8d37841dc5528/rules/emerging-deleted.rules
+#11 37.41 25/2/2025 -- 13:13:39 - <Info> -- Loaded 57013 rules.
+#11 37.41 25/2/2025 -- 13:13:40 - <Info> -- Disabled 0 rules.
+#11 37.41 25/2/2025 -- 13:13:40 - <Info> -- Enabled 14423 rules.
+#11 37.41 25/2/2025 -- 13:13:40 - <Info> -- Modified 0 rules.
+#11 37.41 25/2/2025 -- 13:13:40 - <Info> -- Dropped 0 rules.
+#11 37.41 25/2/2025 -- 13:13:40 - <Info> -- Enabled 0 rules for flowbit dependencies.
+#11 37.41 25/2/2025 -- 13:13:40 - <Info> -- Backing up current rules.
+#11 37.41 25/2/2025 -- 13:13:48 - <Info> -- Writing rules to /var/lib/suricata/rules/suricata.rules: total: 57013; enabled: 57013; added: 0; removed 26; modified: 14428
+#11 37.41 25/2/2025 -- 13:13:48 - <Info> -- Writing /var/lib/suricata/rules/classification.config
+#11 37.41 25/2/2025 -- 13:13:49 - <Info> -- Skipping test, disabled by configuration.
+#11 37.41 25/2/2025 -- 13:13:49 - <Info> -- Done.
+#11 DONE 37.7s
+
+#12 [suricata linux/arm64 3/3] RUN apk --no-cache -U upgrade &&     apk --no-cache -U add 		ca-certificates 		curl 		file 		hiredis 		libcap 		wget 		suricata &&     addgroup -g 2000 suri &&     adduser -S -H -u 2000 -D -g 2000 suri &&     cp /root/dist/*.yaml /etc/suricata/ &&     cp /root/dist/*.conf /etc/suricata/ &&     cp /root/dist/*.bpf /etc/suricata/ &&     cp /root/dist/update.sh /usr/bin/ &&     chmod 644 /etc/suricata/*.config &&     chmod 755 -R /var/lib/suricata &&     chmod 755 /usr/bin/update.sh &&     chown -R root:suri /tmp /run &&     suricata-update update-sources &&     suricata-update --no-test --no-reload &&     rm -rf /root/*            /tmp/*            /var/cache/apk/*
+#12 127.8 25/2/2025 -- 13:13:44 - <Info> -- Using data-directory /var/lib/suricata.
+#12 127.8 25/2/2025 -- 13:13:44 - <Info> -- Using /usr/share/suricata/rules for Suricata provided rules.
+#12 127.8 25/2/2025 -- 13:13:44 - <Info> -- Found Suricata version 7.0.8 at /usr/bin/suricata.
+#12 127.8 25/2/2025 -- 13:13:44 - <Info> -- Loading /etc/suricata/suricata.yaml
+#12 127.8 25/2/2025 -- 13:13:45 - <Info> -- Disabling rules for protocol pgsql
+#12 127.8 25/2/2025 -- 13:13:45 - <Info> -- Disabling rules for protocol modbus
+#12 127.8 25/2/2025 -- 13:13:45 - <Info> -- Disabling rules for protocol dnp3
+#12 127.8 25/2/2025 -- 13:13:45 - <Info> -- Disabling rules for protocol enip
+#12 127.8 25/2/2025 -- 13:13:45 - <Info> -- No sources configured, will use Emerging Threats Open
+#12 127.8 25/2/2025 -- 13:13:45 - <Info> -- Fetching https://rules.emergingthreats.net/open/suricata-7.0.8/emerging.rules.tar.gz.
+#12 127.8 25/2/2025 -- 13:13:48 - <Info> -- Done.
+#12 127.8 25/2/2025 -- 13:13:49 - <Info> -- Loading distribution rule file /usr/share/suricata/rules/app-layer-events.rules
+#12 127.8 25/2/2025 -- 13:13:49 - <Info> -- Loading distribution rule file /usr/share/suricata/rules/decoder-events.rules
+#12 127.8 25/2/2025 -- 13:13:49 - <Info> -- Loading distribution rule file /usr/share/suricata/rules/dhcp-events.rules
+#12 127.8 25/2/2025 -- 13:13:49 - <Info> -- Loading distribution rule file /usr/share/suricata/rules/dnp3-events.rules
+#12 127.8 25/2/2025 -- 13:13:49 - <Info> -- Loading distribution rule file /usr/share/suricata/rules/dns-events.rules
+#12 127.8 25/2/2025 -- 13:13:49 - <Info> -- Loading distribution rule file /usr/share/suricata/rules/files.rules
+#12 127.8 25/2/2025 -- 13:13:49 - <Info> -- Loading distribution rule file /usr/share/suricata/rules/http2-events.rules
+#12 127.8 25/2/2025 -- 13:13:49 - <Info> -- Loading distribution rule file /usr/share/suricata/rules/http-events.rules
+#12 127.8 25/2/2025 -- 13:13:49 - <Info> -- Loading distribution rule file /usr/share/suricata/rules/ipsec-events.rules
+#12 127.8 25/2/2025 -- 13:13:49 - <Info> -- Loading distribution rule file /usr/share/suricata/rules/kerberos-events.rules
+#12 127.8 25/2/2025 -- 13:13:49 - <Info> -- Loading distribution rule file /usr/share/suricata/rules/modbus-events.rules
+#12 127.8 25/2/2025 -- 13:13:49 - <Info> -- Loading distribution rule file /usr/share/suricata/rules/mqtt-events.rules
+#12 127.8 25/2/2025 -- 13:13:49 - <Info> -- Loading distribution rule file /usr/share/suricata/rules/nfs-events.rules
+#12 127.8 25/2/2025 -- 13:13:49 - <Info> -- Loading distribution rule file /usr/share/suricata/rules/ntp-events.rules
+#12 127.8 25/2/2025 -- 13:13:49 - <Info> -- Loading distribution rule file /usr/share/suricata/rules/quic-events.rules
+#12 127.8 25/2/2025 -- 13:13:49 - <Info> -- Loading distribution rule file /usr/share/suricata/rules/rfb-events.rules
+#12 127.8 25/2/2025 -- 13:13:49 - <Info> -- Loading distribution rule file /usr/share/suricata/rules/smb-events.rules
+#12 127.8 25/2/2025 -- 13:13:49 - <Info> -- Loading distribution rule file /usr/share/suricata/rules/smtp-events.rules
+#12 127.8 25/2/2025 -- 13:13:49 - <Info> -- Loading distribution rule file /usr/share/suricata/rules/ssh-events.rules
+#12 127.8 25/2/2025 -- 13:13:49 - <Info> -- Loading distribution rule file /usr/share/suricata/rules/stream-events.rules
+#12 127.8 25/2/2025 -- 13:13:49 - <Info> -- Loading distribution rule file /usr/share/suricata/rules/tls-events.rules
+#12 127.8 25/2/2025 -- 13:13:53 - <Info> -- Ignoring file 029f98278a177b2c54e8d37841dc5528/rules/emerging-deleted.rules
+#12 127.8 25/2/2025 -- 13:15:00 - <Info> -- Loaded 57039 rules.
+#12 127.8 25/2/2025 -- 13:15:11 - <Info> -- Disabled 13 rules.
+#12 127.8 25/2/2025 -- 13:15:11 - <Info> -- Enabled 0 rules.
+#12 127.8 25/2/2025 -- 13:15:11 - <Info> -- Modified 0 rules.
+#12 127.8 25/2/2025 -- 13:15:11 - <Info> -- Dropped 0 rules.
+#12 127.8 25/2/2025 -- 13:15:14 - <Info> -- Enabled 136 rules for flowbit dependencies.
+#12 127.8 25/2/2025 -- 13:15:14 - <Info> -- Creating directory /var/lib/suricata/rules.
+#12 127.8 25/2/2025 -- 13:15:14 - <Info> -- Backing up current rules.
+#12 127.8 25/2/2025 -- 13:15:14 - <Info> -- Writing rules to /var/lib/suricata/rules/suricata.rules: total: 57039; enabled: 42715; added: 57039; removed 0; modified: 0
+#12 127.8 25/2/2025 -- 13:15:18 - <Info> -- Writing /var/lib/suricata/rules/classification.config
+#12 127.8 25/2/2025 -- 13:15:19 - <Info> -- Skipping test, disabled by configuration.
+#12 127.8 25/2/2025 -- 13:15:19 - <Info> -- Done.
+#12 128.1 (56/56) Installing wget (1.25.0-r1)
+#12 128.2 Executing busybox-1.37.0-r14.trigger
+#12 128.4 Executing ca-certificates-20241121-r1.trigger
+#12 129.2 OK: 85 MiB in 72 packages
+#12 135.7 25/2/2025 -- 13:15:25 - <Info> -- Loading /etc/suricata/update.yaml
+#12 135.7 25/2/2025 -- 13:15:25 - <Info> -- Using data-directory /var/lib/suricata.
+#12 135.7 25/2/2025 -- 13:15:25 - <Info> -- Using Suricata configuration /etc/suricata/suricata.yaml
+#12 135.7 25/2/2025 -- 13:15:25 - <Info> -- Using /usr/share/suricata/rules for Suricata provided rules.
+#12 135.7 25/2/2025 -- 13:15:25 - <Info> -- Found Suricata version 7.0.8 at /usr/bin/suricata.
+#12 135.7 25/2/2025 -- 13:15:25 - <Info> -- Downloading https://www.openinfosecfoundation.org/rules/index.yaml
+#12 135.7 25/2/2025 -- 13:15:27 - <Info> -- Adding all sources
+#12 135.7 25/2/2025 -- 13:15:27 - <Info> -- Saved /var/lib/suricata/update/cache/index.yaml
+#12 301.1 25/2/2025 -- 13:15:30 - <Info> -- Loading /etc/suricata/update.yaml
+#12 301.1 25/2/2025 -- 13:15:30 - <Info> -- Using data-directory /var/lib/suricata.
+#12 301.1 25/2/2025 -- 13:15:30 - <Info> -- Using Suricata configuration /etc/suricata/suricata.yaml
+#12 301.1 25/2/2025 -- 13:15:30 - <Info> -- Using /usr/share/suricata/rules for Suricata provided rules.
+#12 301.1 25/2/2025 -- 13:15:30 - <Info> -- Found Suricata version 7.0.8 at /usr/bin/suricata.
+#12 301.1 25/2/2025 -- 13:15:30 - <Info> -- Loading /etc/suricata/disable.conf.
+#12 301.1 25/2/2025 -- 13:15:30 - <Info> -- Loading /etc/suricata/enable.conf.
+#12 301.1 25/2/2025 -- 13:15:30 - <Info> -- Loading /etc/suricata/modify.conf.
+#12 301.1 25/2/2025 -- 13:15:30 - <Info> -- Loading /etc/suricata/suricata.yaml
+#12 301.1 25/2/2025 -- 13:15:31 - <Info> -- Disabling rules for protocol dhcp
+#12 301.1 25/2/2025 -- 13:15:31 - <Info> -- No sources configured, will use Emerging Threats Open
+#12 301.1 25/2/2025 -- 13:15:31 - <Info> -- Last download less than 15 minutes ago. Not downloading https://rules.emergingthreats.net/open/suricata-7.0.8/emerging.rules.tar.gz.
+#12 301.1 25/2/2025 -- 13:15:32 - <Info> -- Loading distribution rule file /usr/share/suricata/rules/app-layer-events.rules
+#12 301.1 25/2/2025 -- 13:15:32 - <Info> -- Loading distribution rule file /usr/share/suricata/rules/decoder-events.rules
+#12 301.1 25/2/2025 -- 13:15:32 - <Info> -- Loading distribution rule file /usr/share/suricata/rules/dhcp-events.rules
+#12 301.1 25/2/2025 -- 13:15:32 - <Info> -- Loading distribution rule file /usr/share/suricata/rules/dnp3-events.rules
+#12 301.1 25/2/2025 -- 13:15:32 - <Info> -- Loading distribution rule file /usr/share/suricata/rules/dns-events.rules
+#12 301.1 25/2/2025 -- 13:15:32 - <Info> -- Loading distribution rule file /usr/share/suricata/rules/files.rules
+#12 301.1 25/2/2025 -- 13:15:32 - <Info> -- Loading distribution rule file /usr/share/suricata/rules/http2-events.rules
+#12 301.1 25/2/2025 -- 13:15:32 - <Info> -- Loading distribution rule file /usr/share/suricata/rules/http-events.rules
+#12 301.1 25/2/2025 -- 13:15:32 - <Info> -- Loading distribution rule file /usr/share/suricata/rules/ipsec-events.rules
+#12 301.1 25/2/2025 -- 13:15:32 - <Info> -- Loading distribution rule file /usr/share/suricata/rules/kerberos-events.rules
+#12 301.1 25/2/2025 -- 13:15:32 - <Info> -- Loading distribution rule file /usr/share/suricata/rules/modbus-events.rules
+#12 301.1 25/2/2025 -- 13:15:32 - <Info> -- Loading distribution rule file /usr/share/suricata/rules/mqtt-events.rules
+#12 301.1 25/2/2025 -- 13:15:32 - <Info> -- Loading distribution rule file /usr/share/suricata/rules/nfs-events.rules
+#12 301.1 25/2/2025 -- 13:15:32 - <Info> -- Loading distribution rule file /usr/share/suricata/rules/ntp-events.rules
+#12 301.1 25/2/2025 -- 13:15:32 - <Info> -- Loading distribution rule file /usr/share/suricata/rules/quic-events.rules
+#12 301.1 25/2/2025 -- 13:15:32 - <Info> -- Loading distribution rule file /usr/share/suricata/rules/rfb-events.rules
+#12 301.1 25/2/2025 -- 13:15:32 - <Info> -- Loading distribution rule file /usr/share/suricata/rules/smb-events.rules
+#12 301.1 25/2/2025 -- 13:15:32 - <Info> -- Loading distribution rule file /usr/share/suricata/rules/smtp-events.rules
+#12 301.1 25/2/2025 -- 13:15:32 - <Info> -- Loading distribution rule file /usr/share/suricata/rules/ssh-events.rules
+#12 301.1 25/2/2025 -- 13:15:32 - <Info> -- Loading distribution rule file /usr/share/suricata/rules/stream-events.rules
+#12 301.1 25/2/2025 -- 13:15:32 - <Info> -- Loading distribution rule file /usr/share/suricata/rules/tls-events.rules
+#12 301.1 25/2/2025 -- 13:15:32 - <Info> -- Ignoring file /usr/share/suricata/rules/dhcp-events.rules
+#12 301.1 25/2/2025 -- 13:15:32 - <Info> -- Ignoring file /usr/share/suricata/rules/files.rules
+#12 301.1 25/2/2025 -- 13:15:37 - <Info> -- Ignoring file 029f98278a177b2c54e8d37841dc5528/rules/emerging-deleted.rules
+#12 301.1 25/2/2025 -- 13:16:47 - <Info> -- Loaded 57013 rules.
+#12 301.1 25/2/2025 -- 13:16:55 - <Info> -- Disabled 0 rules.
+#12 301.1 25/2/2025 -- 13:16:55 - <Info> -- Enabled 14423 rules.
+#12 301.1 25/2/2025 -- 13:16:55 - <Info> -- Modified 0 rules.
+#12 301.1 25/2/2025 -- 13:16:55 - <Info> -- Dropped 0 rules.
+#12 301.1 25/2/2025 -- 13:16:57 - <Info> -- Enabled 0 rules for flowbit dependencies.
+#12 301.1 25/2/2025 -- 13:16:57 - <Info> -- Backing up current rules.
+#12 301.1 25/2/2025 -- 13:18:07 - <Info> -- Writing rules to /var/lib/suricata/rules/suricata.rules: total: 57013; enabled: 57013; added: 0; removed 26; modified: 14428
+#12 301.1 25/2/2025 -- 13:18:11 - <Info> -- Writing /var/lib/suricata/rules/classification.config
+#12 301.1 25/2/2025 -- 13:18:13 - <Info> -- Skipping test, disabled by configuration.
+#12 301.1 25/2/2025 -- 13:18:13 - <Info> -- Done.
+#12 DONE 301.4s
+
+#13 [suricata] exporting to image
+#13 exporting layers
+#13 exporting layers 10.5s done
+#13 exporting manifest sha256:b9c14354552d19f7b01a5264600cc8ac3f7b254f5d2e89af18a0d475a8300e0d 0.0s done
+#13 exporting config sha256:dc4c4e9db01003124fcd843e2a85808b09df7cbd8156fff2d6db225be6905ed9 0.0s done
+#13 exporting attestation manifest sha256:8bdd1e31176cf4daf4c5cc60fdfdf55b3cfc112af9f47d805c69c4c97561acad 0.0s done
+#13 exporting manifest sha256:4dda6d389b540874280a2823641a77e0c11c1c6cb286cf36d916f764a0a737dd done
+#13 exporting config sha256:4a58691e55180b39984abdbdedfd98085c80c68f5153abf7173839aa073b1c94 done
+#13 exporting attestation manifest sha256:cca3232fad972f98f6de4ccd49e78c3f81652829654d11033281a3a04cb9810b
+#13 exporting attestation manifest sha256:cca3232fad972f98f6de4ccd49e78c3f81652829654d11033281a3a04cb9810b 0.0s done
+#13 exporting manifest list sha256:7477c2effd0fd039dec591db637cfa2b4196a3d439f76aa15d5c3198c9800d9d 0.0s done
+#13 pushing layers
+#13 ...
+
+#14 [suricata auth] f0rc3ps/suricata:pull,push token for registry-1.docker.io
+#14 DONE 0.0s
+
+#13 [suricata] exporting to image
+#13 pushing layers 19.6s done
+#13 pushing manifest for docker.io/f0rc3ps/suricata:24.04.1@sha256:7477c2effd0fd039dec591db637cfa2b4196a3d439f76aa15d5c3198c9800d9d
+#13 pushing manifest for docker.io/f0rc3ps/suricata:24.04.1@sha256:7477c2effd0fd039dec591db637cfa2b4196a3d439f76aa15d5c3198c9800d9d 3.8s done
+#13 ...
+
+#15 [suricata auth] asc3t1c/suricata:pull,push token for ghcr.io
+#15 DONE 0.0s
+
+#13 [suricata] exporting to image
+#13 pushing layers 20.3s done
+#13 pushing manifest for ghcr.io/asc3t1c/suricata:24.04.1@sha256:7477c2effd0fd039dec591db637cfa2b4196a3d439f76aa15d5c3198c9800d9d
+#13 pushing manifest for ghcr.io/asc3t1c/suricata:24.04.1@sha256:7477c2effd0fd039dec591db637cfa2b4196a3d439f76aa15d5c3198c9800d9d 2.8s done
+#13 DONE 57.3s
+
+#16 [suricata] resolving provenance for metadata file
+#16 DONE 0.0s

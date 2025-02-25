@@ -53,6 +53,7 @@ services:
       - ${TPOT_DATA_PATH}:/data
       - /var/run/docker.sock:/var/run/docker.sock:ro
 
+
 ##################
 #### Honeypots
 ##################
@@ -853,6 +854,3 @@ services:
     pull_policy: ${TPOT_PULL_POLICY}
     volumes:
      - ${TPOT_DATA_PATH}/spiderfoot:/home/spiderfoot/.spiderfoot
-
-# OUTSIDE SOFTWARE IS NOT HERE :)
-# - peppermint

@@ -1,0 +1,129 @@
+Compose now can delegate build to bake for better performances
+Just set COMPOSE_BAKE=true
+#0 building with "mybuilder" instance using docker-container driver
+
+#1 [elasticpot internal] load build definition from Dockerfile
+#1 transferring dockerfile: 1.38kB 0.0s done
+#1 DONE 0.0s
+
+#2 [elasticpot linux/amd64 internal] load metadata for docker.io/library/alpine:3.20
+#2 DONE 0.2s
+
+#3 [elasticpot linux/arm64 internal] load metadata for docker.io/library/alpine:3.20
+#3 DONE 0.2s
+
+#4 [elasticpot internal] load .dockerignore
+#4 transferring context: 2B 0.0s done
+#4 DONE 0.0s
+
+#5 [elasticpot linux/arm64 builder 1/7] FROM docker.io/library/alpine:3.20@sha256:de4fe7064d8f98419ea6b49190df1abbf43450c1702eeb864fe9ced453c1cc5f
+#5 resolve docker.io/library/alpine:3.20@sha256:de4fe7064d8f98419ea6b49190df1abbf43450c1702eeb864fe9ced453c1cc5f 0.0s done
+#5 DONE 0.0s
+
+#6 [elasticpot linux/amd64 builder 1/7] FROM docker.io/library/alpine:3.20@sha256:de4fe7064d8f98419ea6b49190df1abbf43450c1702eeb864fe9ced453c1cc5f
+#6 resolve docker.io/library/alpine:3.20@sha256:de4fe7064d8f98419ea6b49190df1abbf43450c1702eeb864fe9ced453c1cc5f 0.0s done
+#6 DONE 0.0s
+
+#7 [elasticpot internal] load build context
+#7 transferring context: 7.42kB 0.0s done
+#7 DONE 0.0s
+
+#8 [elasticpot linux/arm64 builder 5/7] RUN pip3 install --break-system-packages pyinstaller
+#8 CACHED
+
+#9 [elasticpot linux/arm64 builder 7/7] RUN pyinstaller elasticpot.py 		--hidden-import output_plugins 		--hidden-import output_plugins.jsonlog
+#9 CACHED
+
+#10 [elasticpot linux/arm64 builder 6/7] RUN pip3 install --break-system-packages -r requirements.txt
+#10 CACHED
+
+#11 [elasticpot linux/arm64 stage-1 2/6] RUN apk --no-cache -U upgrade
+#11 CACHED
+
+#12 [elasticpot linux/arm64 stage-1 5/6] COPY --from=builder /root/dist/honeypot.cfg /opt/elasticpot/etc/
+#12 CACHED
+
+#13 [elasticpot linux/arm64 builder 4/7] WORKDIR /opt/elasticpot
+#13 CACHED
+
+#14 [elasticpot linux/arm64 builder 2/7] COPY dist/ /root/dist/
+#14 CACHED
+
+#15 [elasticpot linux/arm64 stage-1 3/6] COPY --from=builder /opt/elasticpot/dist/ /opt/
+#15 CACHED
+
+#16 [elasticpot linux/arm64 builder 3/7] RUN apk --no-cache -U upgrade && 	apk --no-cache -U add 		build-base 		ca-certificates 		git 		libffi-dev 		openssl 		openssl-dev 		postgresql-dev 		py3-cryptography 		py3-elasticsearch 		py3-geoip2 		py3-maxminddb 		py3-mysqlclient 		py3-packaging 		py3-psycopg2 		py3-redis 		py3-requests 		py3-service_identity 		py3-setuptools 		py3-pip 		py3-twisted 		py3-wheel 		python3 		python3-dev &&     mkdir -p /opt &&     cd /opt/ &&     git clone https://gitlab.com/bontchev/elasticpot.git/ && 	cd elasticpot && 	git checkout d12649730d819bd78ea622361b6c65120173ad45 &&     cp /root/dist/requirements.txt .
+#16 CACHED
+
+#17 [elasticpot linux/arm64 stage-1 4/6] COPY --from=builder /opt/elasticpot/responses/ /opt/elasticpot/responses/
+#17 CACHED
+
+#18 [elasticpot linux/arm64 stage-1 6/6] WORKDIR /opt/elasticpot/
+#18 CACHED
+
+#19 [elasticpot linux/amd64 stage-1 5/6] COPY --from=builder /root/dist/honeypot.cfg /opt/elasticpot/etc/
+#19 CACHED
+
+#20 [elasticpot linux/amd64 builder 3/7] RUN apk --no-cache -U upgrade && 	apk --no-cache -U add 		build-base 		ca-certificates 		git 		libffi-dev 		openssl 		openssl-dev 		postgresql-dev 		py3-cryptography 		py3-elasticsearch 		py3-geoip2 		py3-maxminddb 		py3-mysqlclient 		py3-packaging 		py3-psycopg2 		py3-redis 		py3-requests 		py3-service_identity 		py3-setuptools 		py3-pip 		py3-twisted 		py3-wheel 		python3 		python3-dev &&     mkdir -p /opt &&     cd /opt/ &&     git clone https://gitlab.com/bontchev/elasticpot.git/ && 	cd elasticpot && 	git checkout d12649730d819bd78ea622361b6c65120173ad45 &&     cp /root/dist/requirements.txt .
+#20 CACHED
+
+#21 [elasticpot linux/amd64 stage-1 2/6] RUN apk --no-cache -U upgrade
+#21 CACHED
+
+#22 [elasticpot linux/amd64 builder 7/7] RUN pyinstaller elasticpot.py 		--hidden-import output_plugins 		--hidden-import output_plugins.jsonlog
+#22 CACHED
+
+#23 [elasticpot linux/amd64 builder 4/7] WORKDIR /opt/elasticpot
+#23 CACHED
+
+#24 [elasticpot linux/amd64 builder 2/7] COPY dist/ /root/dist/
+#24 CACHED
+
+#25 [elasticpot linux/amd64 builder 6/7] RUN pip3 install --break-system-packages -r requirements.txt
+#25 CACHED
+
+#26 [elasticpot linux/amd64 builder 5/7] RUN pip3 install --break-system-packages pyinstaller
+#26 CACHED
+
+#27 [elasticpot linux/amd64 stage-1 3/6] COPY --from=builder /opt/elasticpot/dist/ /opt/
+#27 CACHED
+
+#28 [elasticpot linux/amd64 stage-1 4/6] COPY --from=builder /opt/elasticpot/responses/ /opt/elasticpot/responses/
+#28 CACHED
+
+#29 [elasticpot linux/amd64 stage-1 6/6] WORKDIR /opt/elasticpot/
+#29 CACHED
+
+#30 [elasticpot] exporting to image
+#30 exporting layers
+#30 exporting layers done
+#30 exporting manifest sha256:51ebcc6d27311ee63378932dce9e2ed3897095e31db13d25ed2b29e3167813eb done
+#30 exporting config sha256:92249f861d5b0a4ef509695026dd93353718a801186b5f4de97cb6fc4690935a done
+#30 exporting attestation manifest sha256:4bacebd516fc7fc68ea88f19bb1e8b311ed4ca63f45e9b72d160e2b068d8592a 0.0s done
+#30 exporting manifest sha256:20dfcdba2f4321c4307778c7c13afb27bf3b9ae145c6756849b7c421217b8df6 done
+#30 exporting config sha256:513df73e5617eb68a0be025e295ddc591ed00e1284955d8f5605d017b62bfacc done
+#30 exporting attestation manifest sha256:5fa1133285849df459dd1c6800793d1da523a77c902c42d829795b124c2fd74e 0.0s done
+#30 exporting manifest list sha256:f752798796ca51bf548145ff9cd24d36caaa6fec37a3ef5847d76a77b514f868 done
+#30 pushing layers
+#30 ...
+
+#31 [elasticpot auth] f0rc3ps/elasticpot:pull,push token for registry-1.docker.io
+#31 DONE 0.0s
+
+#30 [elasticpot] exporting to image
+#30 pushing layers 3.1s done
+#30 pushing manifest for docker.io/f0rc3ps/elasticpot:24.04.1@sha256:f752798796ca51bf548145ff9cd24d36caaa6fec37a3ef5847d76a77b514f868
+#30 pushing manifest for docker.io/f0rc3ps/elasticpot:24.04.1@sha256:f752798796ca51bf548145ff9cd24d36caaa6fec37a3ef5847d76a77b514f868 2.0s done
+#30 ...
+
+#32 [elasticpot auth] asc3t1c/elasticpot:pull,push token for ghcr.io
+#32 DONE 0.0s
+
+#30 [elasticpot] exporting to image
+#30 pushing layers 3.1s done
+#30 pushing manifest for ghcr.io/asc3t1c/elasticpot:24.04.1@sha256:f752798796ca51bf548145ff9cd24d36caaa6fec37a3ef5847d76a77b514f868
+#30 pushing manifest for ghcr.io/asc3t1c/elasticpot:24.04.1@sha256:f752798796ca51bf548145ff9cd24d36caaa6fec37a3ef5847d76a77b514f868 2.3s done
+#30 DONE 10.6s
+
+#33 [elasticpot] resolving provenance for metadata file
+#33 DONE 0.0s

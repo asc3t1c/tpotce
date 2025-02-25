@@ -1,0 +1,722 @@
+Compose now can delegate build to bake for better performances
+Just set COMPOSE_BAKE=true
+#0 building with "mybuilder" instance using docker-container driver
+
+#1 [phpox internal] load build definition from Dockerfile
+#1 transferring dockerfile: 1.17kB 0.0s done
+#1 DONE 0.0s
+
+#2 [phpox auth] library/alpine:pull token for registry-1.docker.io
+#2 DONE 0.0s
+
+#3 [phpox linux/amd64 internal] load metadata for docker.io/library/alpine:3.20
+#3 DONE 0.9s
+
+#4 [phpox linux/arm64 internal] load metadata for docker.io/library/alpine:3.20
+#4 DONE 0.9s
+
+#5 [phpox internal] load .dockerignore
+#5 transferring context: 2B done
+#5 DONE 0.0s
+
+#6 [phpox linux/arm64 1/3] FROM docker.io/library/alpine:3.20@sha256:de4fe7064d8f98419ea6b49190df1abbf43450c1702eeb864fe9ced453c1cc5f
+#6 resolve docker.io/library/alpine:3.20@sha256:de4fe7064d8f98419ea6b49190df1abbf43450c1702eeb864fe9ced453c1cc5f 0.0s done
+#6 CACHED
+
+#7 [phpox linux/amd64 1/3] FROM docker.io/library/alpine:3.20@sha256:de4fe7064d8f98419ea6b49190df1abbf43450c1702eeb864fe9ced453c1cc5f
+#7 resolve docker.io/library/alpine:3.20@sha256:de4fe7064d8f98419ea6b49190df1abbf43450c1702eeb864fe9ced453c1cc5f 0.0s done
+#7 CACHED
+
+#8 [phpox linux/amd64 2/3] RUN apk --no-cache -U upgrade &&     apk --no-cache -U add 		build-base 		file 		git 		make 		php83 		php83-dev 		py3-aiohttp 		python3 		python3-dev 		re2c &&     git clone https://github.com/mushorg/BFR -b v1.0.0 /opt/BFR &&     cd /opt/BFR &&     phpize83 &&     ./configure       --with-php-config=/usr/bin/php-config83       --enable-bfr &&     make &&     make install &&     cd / &&     rm -rf /opt/BFR /tmp/* /var/tmp/* &&     echo "zend_extension = "$(find /usr -name bfr.so) >> /etc/php83/php.ini &&     git clone https://github.com/mushorg/phpox /opt/phpox &&     cd /opt/phpox &&     git checkout 55a6cbdc2c62f08eb45acffaf84f23f06a1d4703 &&     make &&     apk del --purge build-base                     git                     php83-dev                     python3-dev &&     rm -rf /root/* /var/cache/apk/* /opt/phpox/.git
+#8 0.186 fetch https://dl-cdn.alpinelinux.org/alpine/v3.20/main/x86_64/APKINDEX.tar.gz
+#8 0.436 fetch https://dl-cdn.alpinelinux.org/alpine/v3.20/community/x86_64/APKINDEX.tar.gz
+#8 1.407 OK: 8 MiB in 14 packages
+#8 1.591 fetch https://dl-cdn.alpinelinux.org/alpine/v3.20/main/x86_64/APKINDEX.tar.gz
+#8 1.785 fetch https://dl-cdn.alpinelinux.org/alpine/v3.20/community/x86_64/APKINDEX.tar.gz
+#8 2.663 (1/96) Installing libgcc (13.2.1_git20240309-r1)
+#8 2.682 (2/96) Installing jansson (2.14-r4)
+#8 2.691 (3/96) Installing libstdc++ (13.2.1_git20240309-r1)
+#8 2.780 (4/96) Installing zstd-libs (1.5.6-r0)
+#8 2.818 (5/96) Installing binutils (2.42-r0)
+#8 3.152 (6/96) Installing libmagic (5.45-r1)
+#8 3.228 (7/96) Installing file (5.45-r1)
+#8 3.234 (8/96) Installing libgomp (13.2.1_git20240309-r1)
+#8 3.257 (9/96) Installing libatomic (13.2.1_git20240309-r1)
+#8 3.264 (10/96) Installing gmp (6.3.0-r1)
+#8 3.290 (11/96) Installing isl26 (0.26-r1)
+#8 3.378 (12/96) Installing mpfr4 (4.2.1-r0)
+#8 3.415 (13/96) Installing mpc1 (1.3.1-r1)
+#8 3.425 (14/96) Installing gcc (13.2.1_git20240309-r1)
+#8 7.644 (15/96) Installing libstdc++-dev (13.2.1_git20240309-r1)
+#8 8.076 (16/96) Installing musl-dev (1.2.5-r1)
+#8 8.413 (17/96) Installing g++ (13.2.1_git20240309-r1)
+#8 9.735 (18/96) Installing make (4.4.1-r2)
+#8 9.754 (19/96) Installing fortify-headers (1.1-r3)
+#8 9.760 (20/96) Installing patch (2.7.6-r10)
+#8 9.774 (21/96) Installing build-base (0.5-r3)
+#8 9.778 (22/96) Installing ca-certificates (20241121-r1)
+#8 9.830 (23/96) Installing brotli-libs (1.1.0-r2)
+#8 9.876 (24/96) Installing c-ares (1.33.1-r0)
+#8 9.893 (25/96) Installing libunistring (1.2-r0)
+#8 9.957 (26/96) Installing libidn2 (2.3.7-r0)
+#8 9.975 (27/96) Installing nghttp2-libs (1.62.1-r0)
+#8 9.991 (28/96) Installing libpsl (0.21.5-r1)
+#8 10.00 (29/96) Installing libcurl (8.12.1-r0)
+#8 10.04 (30/96) Installing libexpat (2.6.4-r0)
+#8 10.05 (31/96) Installing pcre2 (10.43-r0)
+#8 10.09 (32/96) Installing git (2.45.3-r0)
+#8 ...
+
+#9 [phpox linux/arm64 2/3] RUN apk --no-cache -U upgrade &&     apk --no-cache -U add 		build-base 		file 		git 		make 		php83 		php83-dev 		py3-aiohttp 		python3 		python3-dev 		re2c &&     git clone https://github.com/mushorg/BFR -b v1.0.0 /opt/BFR &&     cd /opt/BFR &&     phpize83 &&     ./configure       --with-php-config=/usr/bin/php-config83       --enable-bfr &&     make &&     make install &&     cd / &&     rm -rf /opt/BFR /tmp/* /var/tmp/* &&     echo "zend_extension = "$(find /usr -name bfr.so) >> /etc/php83/php.ini &&     git clone https://github.com/mushorg/phpox /opt/phpox &&     cd /opt/phpox &&     git checkout 55a6cbdc2c62f08eb45acffaf84f23f06a1d4703 &&     make &&     apk del --purge build-base                     git                     php83-dev                     python3-dev &&     rm -rf /root/* /var/cache/apk/* /opt/phpox/.git
+#9 0.396 fetch https://dl-cdn.alpinelinux.org/alpine/v3.20/main/aarch64/APKINDEX.tar.gz
+#9 1.820 fetch https://dl-cdn.alpinelinux.org/alpine/v3.20/community/aarch64/APKINDEX.tar.gz
+#9 5.178 OK: 9 MiB in 14 packages
+#9 5.767 fetch https://dl-cdn.alpinelinux.org/alpine/v3.20/main/aarch64/APKINDEX.tar.gz
+#9 7.415 fetch https://dl-cdn.alpinelinux.org/alpine/v3.20/community/aarch64/APKINDEX.tar.gz
+#9 ...
+
+#8 [phpox linux/amd64 2/3] RUN apk --no-cache -U upgrade &&     apk --no-cache -U add 		build-base 		file 		git 		make 		php83 		php83-dev 		py3-aiohttp 		python3 		python3-dev 		re2c &&     git clone https://github.com/mushorg/BFR -b v1.0.0 /opt/BFR &&     cd /opt/BFR &&     phpize83 &&     ./configure       --with-php-config=/usr/bin/php-config83       --enable-bfr &&     make &&     make install &&     cd / &&     rm -rf /opt/BFR /tmp/* /var/tmp/* &&     echo "zend_extension = "$(find /usr -name bfr.so) >> /etc/php83/php.ini &&     git clone https://github.com/mushorg/phpox /opt/phpox &&     cd /opt/phpox &&     git checkout 55a6cbdc2c62f08eb45acffaf84f23f06a1d4703 &&     make &&     apk del --purge build-base                     git                     php83-dev                     python3-dev &&     rm -rf /root/* /var/cache/apk/* /opt/phpox/.git
+#8 10.39 (33/96) Installing git-init-template (2.45.3-r0)
+#8 10.40 (34/96) Installing php83-common (8.3.15-r0)
+#8 10.44 (35/96) Installing argon2-libs (20190702-r5)
+#8 10.44 (36/96) Installing ncurses-terminfo-base (6.4_p20240420-r2)
+#8 10.46 (37/96) Installing libncursesw (6.4_p20240420-r2)
+#8 10.48 (38/96) Installing libedit (20240517.3.1-r0)
+#8 10.50 (39/96) Installing xz-libs (5.6.2-r0)
+#8 10.52 (40/96) Installing libxml2 (2.12.7-r0)
+#8 10.57 (41/96) Installing php83 (8.3.15-r0)
+#8 10.79 (42/96) Installing m4 (1.4.19-r3)
+#8 10.81 (43/96) Installing libbz2 (1.0.8-r6)
+#8 10.83 (44/96) Installing perl (5.38.3-r0)
+#8 11.90 (45/96) Installing perl-error (0.17029-r2)
+#8 11.91 (46/96) Installing perl-git (2.45.3-r0)
+#8 11.92 (47/96) Installing git-perl (2.45.3-r0)
+#8 11.93 (48/96) Installing autoconf (2.72-r0)
+#8 12.01 (49/96) Installing bsd-compat-headers (0.7.2-r6)
+#8 12.01 (50/96) Installing libformw (6.4_p20240420-r2)
+#8 12.02 (51/96) Installing libmenuw (6.4_p20240420-r2)
+#8 12.03 (52/96) Installing libpanelw (6.4_p20240420-r2)
+#8 12.04 (53/96) Installing libncurses++ (6.4_p20240420-r2)
+#8 12.05 (54/96) Installing pkgconf (2.2.0-r0)
+#8 12.06 (55/96) Installing ncurses-dev (6.4_p20240420-r2)
+#8 12.09 (56/96) Installing libedit-dev (20240517.3.1-r0)
+#8 12.10 (57/96) Installing zlib-dev (1.3.1-r1)
+#8 12.11 (58/96) Installing libpcre2-16 (10.43-r0)
+#8 12.15 (59/96) Installing libpcre2-32 (10.43-r0)
+#8 12.19 (60/96) Installing pcre2-dev (10.43-r0)
+#8 12.30 (61/96) Installing re2c (3.1-r0)
+#8 12.37 (62/96) Installing php83-dev (8.3.15-r0)
+#8 12.54 (63/96) Installing libffi (3.4.6-r0)
+#8 12.55 (64/96) Installing gdbm (1.23-r1)
+#8 12.56 (65/96) Installing mpdecimal (4.0.0-r0)
+#8 12.58 (66/96) Installing readline (8.2.10-r0)
+#8 12.60 (67/96) Installing sqlite-libs (3.45.3-r1)
+#8 12.71 (68/96) Installing python3 (3.12.9-r0)
+#8 13.61 (69/96) Installing python3-pycache-pyc0 (3.12.9-r0)
+#8 14.20 (70/96) Installing pyc (3.12.9-r0)
+#8 14.20 (71/96) Installing py3-frozenlist (1.4.1-r1)
+#8 14.22 (72/96) Installing py3-frozenlist-pyc (1.4.1-r1)
+#8 14.26 (73/96) Installing py3-aiosignal-pyc (1.3.1-r3)
+#8 14.27 (74/96) Installing py3-typing-extensions (4.11.0-r1)
+#8 14.29 (75/96) Installing py3-typing-extensions-pyc (4.11.0-r1)
+#8 14.33 (76/96) Installing py3-async-timeout (4.0.3-r1)
+#8 14.34 (77/96) Installing py3-async-timeout-pyc (4.0.3-r1)
+#8 14.37 (78/96) Installing py3-attrs (23.2.0-r1)
+#8 14.40 (79/96) Installing py3-attrs-pyc (23.2.0-r1)
+#8 14.42 (80/96) Installing py3-brotli (1.1.0-r2)
+#8 14.48 (81/96) Installing py3-brotli-pyc (1.1.0-r2)
+#8 14.48 (82/96) Installing py3-charset-normalizer (3.3.2-r1)
+#8 14.50 (83/96) Installing py3-charset-normalizer-pyc (3.3.2-r1)
+#8 14.51 (84/96) Installing py3-idna (3.7-r0)
+#8 14.54 (85/96) Installing py3-idna-pyc (3.7-r0)
+#8 14.56 (86/96) Installing py3-idna-ssl (1.1.0-r9)
+#8 14.57 (87/96) Installing py3-idna-ssl-pyc (1.1.0-r9)
+#8 14.61 (88/96) Installing py3-multidict (6.0.5-r1)
+#8 14.62 (89/96) Installing py3-multidict-pyc (6.0.5-r1)
+#8 14.67 (90/96) Installing py3-yarl (1.9.4-r1)
+#8 14.69 (91/96) Installing py3-yarl-pyc (1.9.4-r1)
+#8 14.70 (92/96) Installing py3-aiohttp-pyc (3.9.3-r1)
+#8 14.76 (93/96) Installing python3-pyc (3.12.9-r0)
+#8 14.77 (94/96) Installing py3-aiosignal (1.3.1-r3)
+#8 14.77 (95/96) Installing py3-aiohttp (3.9.3-r1)
+#8 14.87 (96/96) Installing python3-dev (3.12.9-r0)
+#8 ...
+
+#9 [phpox linux/arm64 2/3] RUN apk --no-cache -U upgrade &&     apk --no-cache -U add 		build-base 		file 		git 		make 		php83 		php83-dev 		py3-aiohttp 		python3 		python3-dev 		re2c &&     git clone https://github.com/mushorg/BFR -b v1.0.0 /opt/BFR &&     cd /opt/BFR &&     phpize83 &&     ./configure       --with-php-config=/usr/bin/php-config83       --enable-bfr &&     make &&     make install &&     cd / &&     rm -rf /opt/BFR /tmp/* /var/tmp/* &&     echo "zend_extension = "$(find /usr -name bfr.so) >> /etc/php83/php.ini &&     git clone https://github.com/mushorg/phpox /opt/phpox &&     cd /opt/phpox &&     git checkout 55a6cbdc2c62f08eb45acffaf84f23f06a1d4703 &&     make &&     apk del --purge build-base                     git                     php83-dev                     python3-dev &&     rm -rf /root/* /var/cache/apk/* /opt/phpox/.git
+#9 11.29 (1/96) Installing libgcc (13.2.1_git20240309-r1)
+#9 11.40 (2/96) Installing jansson (2.14-r4)
+#9 11.47 (3/96) Installing libstdc++ (13.2.1_git20240309-r1)
+#9 11.82 (4/96) Installing zstd-libs (1.5.6-r0)
+#9 11.94 (5/96) Installing binutils (2.42-r0)
+#9 13.14 (6/96) Installing libmagic (5.45-r1)
+#9 13.41 (7/96) Installing file (5.45-r1)
+#9 13.43 (8/96) Installing libgomp (13.2.1_git20240309-r1)
+#9 13.49 (9/96) Installing libatomic (13.2.1_git20240309-r1)
+#9 13.51 (10/96) Installing gmp (6.3.0-r1)
+#9 13.59 (11/96) Installing isl26 (0.26-r1)
+#9 13.80 (12/96) Installing mpfr4 (4.2.1-r0)
+#9 13.92 (13/96) Installing mpc1 (1.3.1-r1)
+#9 13.97 (14/96) Installing gcc (13.2.1_git20240309-r1)
+#9 ...
+
+#8 [phpox linux/amd64 2/3] RUN apk --no-cache -U upgrade &&     apk --no-cache -U add 		build-base 		file 		git 		make 		php83 		php83-dev 		py3-aiohttp 		python3 		python3-dev 		re2c &&     git clone https://github.com/mushorg/BFR -b v1.0.0 /opt/BFR &&     cd /opt/BFR &&     phpize83 &&     ./configure       --with-php-config=/usr/bin/php-config83       --enable-bfr &&     make &&     make install &&     cd / &&     rm -rf /opt/BFR /tmp/* /var/tmp/* &&     echo "zend_extension = "$(find /usr -name bfr.so) >> /etc/php83/php.ini &&     git clone https://github.com/mushorg/phpox /opt/phpox &&     cd /opt/phpox &&     git checkout 55a6cbdc2c62f08eb45acffaf84f23f06a1d4703 &&     make &&     apk del --purge build-base                     git                     php83-dev                     python3-dev &&     rm -rf /root/* /var/cache/apk/* /opt/phpox/.git
+#8 21.66 Executing busybox-1.36.1-r29.trigger
+#8 21.71 Executing ca-certificates-20241121-r1.trigger
+#8 21.86 OK: 438 MiB in 110 packages
+#8 22.21 Cloning into '/opt/BFR'...
+#8 23.01 Note: switching to '91a8a4e155875c50b69d5c6af454e304994815a7'.
+#8 23.01 
+#8 23.01 You are in 'detached HEAD' state. You can look around, make experimental
+#8 23.01 changes and commit them, and you can discard any commits you make in this
+#8 23.01 state without impacting any branches by switching back to a branch.
+#8 23.01 
+#8 23.01 If you want to create a new branch to retain commits you create, you may
+#8 23.01 do so (now or later) by using -c with the switch command. Example:
+#8 23.01 
+#8 23.01   git switch -c <new-branch-name>
+#8 23.01 
+#8 23.01 Or undo this operation with:
+#8 23.01 
+#8 23.01   git switch -
+#8 23.01 
+#8 23.01 Turn off this advice by setting config variable advice.detachedHead to false
+#8 23.01 
+#8 23.04 Configuring for:
+#8 23.05 PHP Api Version:         20230831
+#8 23.05 Zend Module Api No:      20230831
+#8 23.05 Zend Extension Api No:   420230831
+#8 25.89 checking for grep that handles long lines and -e... /bin/grep
+#8 25.99 checking for egrep... /bin/grep -E
+#8 25.99 checking for a sed that does not truncate output... /bin/sed
+#8 26.01 checking for pkg-config... /usr/bin/pkg-config
+#8 26.01 checking pkg-config is at least version 0.9.0... yes
+#8 26.01 checking for cc... cc
+#8 26.11 checking whether the C compiler works... yes
+#8 26.23 checking for C compiler default output file name... a.out
+#8 26.23 checking for suffix of executables... 
+#8 26.30 checking whether we are cross compiling... no
+#8 26.39 checking for suffix of object files... o
+#8 26.45 checking whether the compiler supports GNU C... yes
+#8 26.49 checking whether cc accepts -g... yes
+#8 26.55 checking for cc option to enable C11 features... none needed
+#8 26.73 checking how to run the C preprocessor... cc -E
+#8 26.94 checking for egrep -e... (cached) /bin/grep -E
+#8 26.94 checking for icc... no
+#8 26.98 checking for suncc... no
+#8 27.02 checking for system library directory... lib
+#8 27.02 checking if compiler supports -Wl,-rpath,... yes
+#8 27.11 checking build system type... x86_64-pc-linux-musl
+#8 27.25 checking host system type... x86_64-pc-linux-musl
+#8 27.25 checking target system type... x86_64-pc-linux-musl
+#8 27.38 checking for PHP prefix... /usr
+#8 27.38 checking for PHP includes... -I/usr/include/php83 -I/usr/include/php83/main -I/usr/include/php83/TSRM -I/usr/include/php83/Zend -I/usr/include/php83/ext -I/usr/include/php83/ext/date/lib
+#8 27.38 checking for PHP extension directory... /usr/lib/php83/modules
+#8 27.38 checking for PHP installed headers prefix... /usr/include/php83
+#8 27.38 checking if debug is enabled... no
+#8 27.45 checking if zts is enabled... no
+#8 27.58 checking for gawk... no
+#8 27.59 checking for nawk... no
+#8 27.59 checking for awk... awk
+#8 27.59 checking if awk is broken... no
+#8 27.59 checking whether to enable BFR support... yes, shared
+#8 27.62 checking for a sed that does not truncate output... /bin/sed
+#8 27.63 checking for ld used by cc... /usr/x86_64-alpine-linux-musl/bin/ld
+#8 27.71 checking if the linker (/usr/x86_64-alpine-linux-musl/bin/ld) is GNU ld... yes
+#8 27.73 checking for /usr/x86_64-alpine-linux-musl/bin/ld option to reload object files... -r
+#8 27.73 checking for BSD-compatible nm... /usr/bin/nm -B
+#8 27.75 checking whether ln -s works... yes
+#8 27.75 checking how to recognize dependent libraries... pass_all
+#8 27.83 checking for stdio.h... yes
+#8 27.88 checking for stdlib.h... yes
+#8 27.98 checking for string.h... yes
+#8 28.06 checking for inttypes.h... yes
+#8 28.22 checking for stdint.h... yes
+#8 28.30 checking for strings.h... yes
+#8 28.44 checking for sys/stat.h... yes
+#8 28.65 checking for sys/types.h... yes
+#8 28.80 checking for unistd.h... yes
+#8 28.91 checking for dlfcn.h... yes
+#8 29.02 checking the maximum length of command line arguments... 98304
+#8 29.02 checking command to parse /usr/bin/nm -B output from cc object... ok
+#8 29.45 checking for objdir... .libs
+#8 29.46 checking for ar... ar
+#8 29.46 checking for ranlib... ranlib
+#8 29.46 checking for strip... strip
+#8 29.69 checking if cc supports -fno-rtti -fno-exceptions... no
+#8 29.80 checking for cc option to produce PIC... -fPIC
+#8 29.80 checking if cc PIC flag -fPIC works... yes
+#8 29.95 checking if cc static flag -static works... yes
+#8 30.17 checking if cc supports -c -o file.o... yes
+#8 30.36 checking whether the cc linker (/usr/x86_64-alpine-linux-musl/bin/ld -m elf_x86_64) supports shared libraries... yes
+#8 30.40 checking whether -lc should be explicitly linked in... no
+#8 30.51 checking dynamic linker characteristics... GNU/Linux ld.so
+#8 30.54 checking how to hardcode library paths into programs... immediate
+#8 30.54 checking whether stripping libraries is possible... yes
+#8 30.55 checking if libtool supports shared libraries... yes
+#8 30.55 checking whether to build shared libraries... yes
+#8 30.55 checking whether to build static libraries... no
+#8 30.75 
+#8 30.75 creating libtool
+#8 30.93 appending configuration tag "CXX" to libtool
+#8 31.17 configure: patching config.h.in
+#8 31.18 configure: creating ./config.status
+#8 31.31 config.status: creating config.h
+#8 31.41 /bin/sh /opt/BFR/libtool --tag=CC --mode=compile cc -I. -I/opt/BFR -I/opt/BFR/include -I/opt/BFR/main -I/opt/BFR -I/usr/include/php83 -I/usr/include/php83/main -I/usr/include/php83/TSRM -I/usr/include/php83/Zend -I/usr/include/php83/ext -I/usr/include/php83/ext/date/lib  -DHAVE_CONFIG_H  -g -O2 -D_GNU_SOURCE   -Werror -Wall -DZEND_COMPILE_DL_EXT=1 -c /opt/BFR/php_bfr.c -o php_bfr.lo  -MMD -MF php_bfr.dep -MT php_bfr.lo
+#8 31.59 mkdir .libs
+#8 31.60  cc -I. -I/opt/BFR -I/opt/BFR/include -I/opt/BFR/main -I/opt/BFR -I/usr/include/php83 -I/usr/include/php83/main -I/usr/include/php83/TSRM -I/usr/include/php83/Zend -I/usr/include/php83/ext -I/usr/include/php83/ext/date/lib -DHAVE_CONFIG_H -g -O2 -D_GNU_SOURCE -Werror -Wall -DZEND_COMPILE_DL_EXT=1 -c /opt/BFR/php_bfr.c -MMD -MF php_bfr.dep -MT php_bfr.lo  -fPIC -DPIC -o .libs/php_bfr.o
+#8 32.36 /bin/sh /opt/BFR/libtool --tag=CC --mode=compile cc -I. -I/opt/BFR -I/opt/BFR/include -I/opt/BFR/main -I/opt/BFR -I/usr/include/php83 -I/usr/include/php83/main -I/usr/include/php83/TSRM -I/usr/include/php83/Zend -I/usr/include/php83/ext -I/usr/include/php83/ext/date/lib  -DHAVE_CONFIG_H  -g -O2 -D_GNU_SOURCE   -Werror -Wall -DZEND_COMPILE_DL_EXT=1 -c /opt/BFR/php_helpers.c -o php_helpers.lo  -MMD -MF php_helpers.dep -MT php_helpers.lo
+#8 32.62  cc -I. -I/opt/BFR -I/opt/BFR/include -I/opt/BFR/main -I/opt/BFR -I/usr/include/php83 -I/usr/include/php83/main -I/usr/include/php83/TSRM -I/usr/include/php83/Zend -I/usr/include/php83/ext -I/usr/include/php83/ext/date/lib -DHAVE_CONFIG_H -g -O2 -D_GNU_SOURCE -Werror -Wall -DZEND_COMPILE_DL_EXT=1 -c /opt/BFR/php_helpers.c -MMD -MF php_helpers.dep -MT php_helpers.lo  -fPIC -DPIC -o .libs/php_helpers.o
+#8 33.23 /bin/sh /opt/BFR/libtool --tag=CC --mode=link cc -shared -I/opt/BFR/include -I/opt/BFR/main -I/opt/BFR -I/usr/include/php83 -I/usr/include/php83/main -I/usr/include/php83/TSRM -I/usr/include/php83/Zend -I/usr/include/php83/ext -I/usr/include/php83/ext/date/lib  -DHAVE_CONFIG_H  -g -O2 -D_GNU_SOURCE    -o bfr.la -export-dynamic -avoid-version -prefer-pic -module -rpath /opt/BFR/modules  php_bfr.lo php_helpers.lo 
+#8 33.34 cc -shared  .libs/php_bfr.o .libs/php_helpers.o   -Wl,-soname -Wl,bfr.so -o .libs/bfr.so
+#8 33.38 creating bfr.la
+#8 33.39 (cd .libs && rm -f bfr.la && ln -s ../bfr.la bfr.la)
+#8 33.40 /bin/sh /opt/BFR/libtool --tag=CC --mode=install cp ./bfr.la /opt/BFR/modules
+#8 33.46 cp ./.libs/bfr.so /opt/BFR/modules/bfr.so
+#8 33.47 cp ./.libs/bfr.lai /opt/BFR/modules/bfr.la
+#8 33.51 PATH="$PATH:/sbin" ldconfig -n /opt/BFR/modules
+#8 33.53 ----------------------------------------------------------------------
+#8 33.53 Libraries have been installed in:
+#8 33.53    /opt/BFR/modules
+#8 33.53 
+#8 33.53 If you ever happen to want to link against installed libraries
+#8 33.53 in a given directory, LIBDIR, you must either use libtool, and
+#8 33.53 specify the full pathname of the library, or use the `-LLIBDIR'
+#8 33.53 flag during linking and do at least one of the following:
+#8 33.53    - add LIBDIR to the `LD_LIBRARY_PATH' environment variable
+#8 33.53      during execution
+#8 33.53    - add LIBDIR to the `LD_RUN_PATH' environment variable
+#8 33.53      during linking
+#8 33.53    - use the `-Wl,--rpath -Wl,LIBDIR' linker flag
+#8 33.53 
+#8 33.53 See any operating system documentation about shared libraries for
+#8 33.53 more information, such as the ld(1) and ld.so(8) manual pages.
+#8 33.53 ----------------------------------------------------------------------
+#8 33.53 
+#8 33.53 Build complete.
+#8 33.54 Don't forget to run 'make test'.
+#8 33.54 
+#8 33.59 Installing shared extensions:     /usr/lib/php83/modules/
+#8 33.77 Cloning into '/opt/phpox'...
+#8 35.66 Note: switching to '55a6cbdc2c62f08eb45acffaf84f23f06a1d4703'.
+#8 35.66 
+#8 35.66 You are in 'detached HEAD' state. You can look around, make experimental
+#8 35.66 changes and commit them, and you can discard any commits you make in this
+#8 35.66 state without impacting any branches by switching back to a branch.
+#8 35.66 
+#8 35.66 If you want to create a new branch to retain commits you create, you may
+#8 35.66 do so (now or later) by using -c with the switch command. Example:
+#8 35.66 
+#8 35.66   git switch -c <new-branch-name>
+#8 35.66 
+#8 35.66 Or undo this operation with:
+#8 35.66 
+#8 35.66   git switch -
+#8 35.66 
+#8 35.66 Turn off this advice by setting config variable advice.detachedHead to false
+#8 35.66 
+#8 35.66 HEAD is now at 55a6cbd added dependency
+#8 35.69 python3 generate.py > sandbox.php
+#8 35.86 WARNING: opening from cache https://dl-cdn.alpinelinux.org/alpine/v3.20/main: No such file or directory
+#8 35.86 WARNING: opening from cache https://dl-cdn.alpinelinux.org/alpine/v3.20/community: No such file or directory
+#8 35.86 (1/45) Purging build-base (0.5-r3)
+#8 35.86 (2/45) Purging g++ (13.2.1_git20240309-r1)
+#8 35.88 (3/45) Purging libstdc++-dev (13.2.1_git20240309-r1)
+#8 35.92 (4/45) Purging gcc (13.2.1_git20240309-r1)
+#8 36.00 (5/45) Purging binutils (2.42-r0)
+#8 36.01 (6/45) Purging libatomic (13.2.1_git20240309-r1)
+#8 36.01 (7/45) Purging libgomp (13.2.1_git20240309-r1)
+#8 36.01 (8/45) Purging fortify-headers (1.1-r3)
+#8 36.01 (9/45) Purging patch (2.7.6-r10)
+#8 36.01 (10/45) Purging git-init-template (2.45.3-r0)
+#8 36.01 (11/45) Purging git-perl (2.45.3-r0)
+#8 36.02 (12/45) Purging perl-git (2.45.3-r0)
+#8 36.02 (13/45) Purging git (2.45.3-r0)
+#8 36.02 (14/45) Purging perl-error (0.17029-r2)
+#8 36.03 (15/45) Purging isl26 (0.26-r1)
+#8 36.03 (16/45) Purging jansson (2.14-r4)
+#8 36.03 (17/45) Purging libcurl (8.12.1-r0)
+#8 36.03 (18/45) Purging ca-certificates (20241121-r1)
+#8 36.03 Executing ca-certificates-20241121-r1.post-deinstall
+#8 36.05 (19/45) Purging libpsl (0.21.5-r1)
+#8 36.05 (20/45) Purging mpc1 (1.3.1-r1)
+#8 36.05 (21/45) Purging mpfr4 (4.2.1-r0)
+#8 36.05 (22/45) Purging musl-dev (1.2.5-r1)
+#8 36.07 (23/45) Purging nghttp2-libs (1.62.1-r0)
+#8 36.07 (24/45) Purging php83-dev (8.3.15-r0)
+#8 36.09 (25/45) Purging autoconf (2.72-r0)
+#8 36.10 (26/45) Purging m4 (1.4.19-r3)
+#8 36.10 (27/45) Purging perl (5.38.3-r0)
+#8 36.18 (28/45) Purging pcre2-dev (10.43-r0)
+#8 ...
+
+#9 [phpox linux/arm64 2/3] RUN apk --no-cache -U upgrade &&     apk --no-cache -U add 		build-base 		file 		git 		make 		php83 		php83-dev 		py3-aiohttp 		python3 		python3-dev 		re2c &&     git clone https://github.com/mushorg/BFR -b v1.0.0 /opt/BFR &&     cd /opt/BFR &&     phpize83 &&     ./configure       --with-php-config=/usr/bin/php-config83       --enable-bfr &&     make &&     make install &&     cd / &&     rm -rf /opt/BFR /tmp/* /var/tmp/* &&     echo "zend_extension = "$(find /usr -name bfr.so) >> /etc/php83/php.ini &&     git clone https://github.com/mushorg/phpox /opt/phpox &&     cd /opt/phpox &&     git checkout 55a6cbdc2c62f08eb45acffaf84f23f06a1d4703 &&     make &&     apk del --purge build-base                     git                     php83-dev                     python3-dev &&     rm -rf /root/* /var/cache/apk/* /opt/phpox/.git
+#9 26.02 (15/96) Installing libstdc++-dev (13.2.1_git20240309-r1)
+#9 27.38 (16/96) Installing musl-dev (1.2.5-r1)
+#9 28.33 (17/96) Installing g++ (13.2.1_git20240309-r1)
+#9 33.05 (18/96) Installing make (4.4.1-r2)
+#9 33.09 (19/96) Installing fortify-headers (1.1-r3)
+#9 33.11 (20/96) Installing patch (2.7.6-r10)
+#9 33.15 (21/96) Installing build-base (0.5-r3)
+#9 33.16 (22/96) Installing ca-certificates (20241121-r1)
+#9 33.32 (23/96) Installing brotli-libs (1.1.0-r2)
+#9 33.47 (24/96) Installing c-ares (1.33.1-r0)
+#9 33.51 (25/96) Installing libunistring (1.2-r0)
+#9 33.75 (26/96) Installing libidn2 (2.3.7-r0)
+#9 33.80 (27/96) Installing nghttp2-libs (1.62.1-r0)
+#9 33.84 (28/96) Installing libpsl (0.21.5-r1)
+#9 33.87 (29/96) Installing libcurl (8.12.1-r0)
+#9 33.99 (30/96) Installing libexpat (2.6.4-r0)
+#9 34.04 (31/96) Installing pcre2 (10.43-r0)
+#9 34.15 (32/96) Installing git (2.45.3-r0)
+#9 35.21 (33/96) Installing git-init-template (2.45.3-r0)
+#9 35.23 (34/96) Installing php83-common (8.3.15-r0)
+#9 35.25 (35/96) Installing argon2-libs (20190702-r5)
+#9 35.28 (36/96) Installing ncurses-terminfo-base (6.4_p20240420-r2)
+#9 35.31 (37/96) Installing libncursesw (6.4_p20240420-r2)
+#9 35.37 (38/96) Installing libedit (20240517.3.1-r0)
+#9 35.40 (39/96) Installing xz-libs (5.6.2-r0)
+#9 35.46 (40/96) Installing libxml2 (2.12.7-r0)
+#9 35.62 (41/96) Installing php83 (8.3.15-r0)
+#9 36.21 (42/96) Installing m4 (1.4.19-r3)
+#9 36.26 (43/96) Installing libbz2 (1.0.8-r6)
+#9 36.28 (44/96) Installing perl (5.38.3-r0)
+#9 ...
+
+#8 [phpox linux/amd64 2/3] RUN apk --no-cache -U upgrade &&     apk --no-cache -U add 		build-base 		file 		git 		make 		php83 		php83-dev 		py3-aiohttp 		python3 		python3-dev 		re2c &&     git clone https://github.com/mushorg/BFR -b v1.0.0 /opt/BFR &&     cd /opt/BFR &&     phpize83 &&     ./configure       --with-php-config=/usr/bin/php-config83       --enable-bfr &&     make &&     make install &&     cd / &&     rm -rf /opt/BFR /tmp/* /var/tmp/* &&     echo "zend_extension = "$(find /usr -name bfr.so) >> /etc/php83/php.ini &&     git clone https://github.com/mushorg/phpox /opt/phpox &&     cd /opt/phpox &&     git checkout 55a6cbdc2c62f08eb45acffaf84f23f06a1d4703 &&     make &&     apk del --purge build-base                     git                     php83-dev                     python3-dev &&     rm -rf /root/* /var/cache/apk/* /opt/phpox/.git
+#8 36.19 (29/45) Purging libedit-dev (20240517.3.1-r0)
+#8 36.19 (30/45) Purging bsd-compat-headers (0.7.2-r6)
+#8 36.19 (31/45) Purging ncurses-dev (6.4_p20240420-r2)
+#8 36.19 (32/45) Purging libncurses++ (6.4_p20240420-r2)
+#8 36.19 (33/45) Purging zlib-dev (1.3.1-r1)
+#8 36.19 (34/45) Purging libpcre2-16 (10.43-r0)
+#8 36.19 (35/45) Purging libpcre2-32 (10.43-r0)
+#8 36.19 (36/45) Purging python3-dev (3.12.9-r0)
+#8 36.24 (37/45) Purging zstd-libs (1.5.6-r0)
+#8 36.24 (38/45) Purging brotli-libs (1.1.0-r2)
+#8 36.24 (39/45) Purging c-ares (1.33.1-r0)
+#8 36.24 (40/45) Purging gmp (6.3.0-r1)
+#8 36.24 (41/45) Purging libformw (6.4_p20240420-r2)
+#8 36.24 (42/45) Purging libidn2 (2.3.7-r0)
+#8 36.24 (43/45) Purging libmenuw (6.4_p20240420-r2)
+#8 36.24 (44/45) Purging libunistring (1.2-r0)
+#8 36.24 (45/45) Purging pkgconf (2.2.0-r0)
+#8 36.25 Executing busybox-1.36.1-r29.trigger
+#8 36.26 OK: 76 MiB in 65 packages
+#8 DONE 36.6s
+
+#9 [phpox linux/arm64 2/3] RUN apk --no-cache -U upgrade &&     apk --no-cache -U add 		build-base 		file 		git 		make 		php83 		php83-dev 		py3-aiohttp 		python3 		python3-dev 		re2c &&     git clone https://github.com/mushorg/BFR -b v1.0.0 /opt/BFR &&     cd /opt/BFR &&     phpize83 &&     ./configure       --with-php-config=/usr/bin/php-config83       --enable-bfr &&     make &&     make install &&     cd / &&     rm -rf /opt/BFR /tmp/* /var/tmp/* &&     echo "zend_extension = "$(find /usr -name bfr.so) >> /etc/php83/php.ini &&     git clone https://github.com/mushorg/phpox /opt/phpox &&     cd /opt/phpox &&     git checkout 55a6cbdc2c62f08eb45acffaf84f23f06a1d4703 &&     make &&     apk del --purge build-base                     git                     php83-dev                     python3-dev &&     rm -rf /root/* /var/cache/apk/* /opt/phpox/.git
+#9 ...
+
+#10 [phpox linux/amd64 3/3] WORKDIR /opt/phpox
+#10 DONE 0.1s
+
+#9 [phpox linux/arm64 2/3] RUN apk --no-cache -U upgrade &&     apk --no-cache -U add 		build-base 		file 		git 		make 		php83 		php83-dev 		py3-aiohttp 		python3 		python3-dev 		re2c &&     git clone https://github.com/mushorg/BFR -b v1.0.0 /opt/BFR &&     cd /opt/BFR &&     phpize83 &&     ./configure       --with-php-config=/usr/bin/php-config83       --enable-bfr &&     make &&     make install &&     cd / &&     rm -rf /opt/BFR /tmp/* /var/tmp/* &&     echo "zend_extension = "$(find /usr -name bfr.so) >> /etc/php83/php.ini &&     git clone https://github.com/mushorg/phpox /opt/phpox &&     cd /opt/phpox &&     git checkout 55a6cbdc2c62f08eb45acffaf84f23f06a1d4703 &&     make &&     apk del --purge build-base                     git                     php83-dev                     python3-dev &&     rm -rf /root/* /var/cache/apk/* /opt/phpox/.git
+#9 40.46 (45/96) Installing perl-error (0.17029-r2)
+#9 40.47 (46/96) Installing perl-git (2.45.3-r0)
+#9 40.49 (47/96) Installing git-perl (2.45.3-r0)
+#9 40.51 (48/96) Installing autoconf (2.72-r0)
+#9 40.74 (49/96) Installing bsd-compat-headers (0.7.2-r6)
+#9 40.75 (50/96) Installing libformw (6.4_p20240420-r2)
+#9 40.77 (51/96) Installing libmenuw (6.4_p20240420-r2)
+#9 40.78 (52/96) Installing libpanelw (6.4_p20240420-r2)
+#9 40.79 (53/96) Installing libncurses++ (6.4_p20240420-r2)
+#9 40.81 (54/96) Installing pkgconf (2.2.0-r0)
+#9 40.84 (55/96) Installing ncurses-dev (6.4_p20240420-r2)
+#9 40.89 (56/96) Installing libedit-dev (20240517.3.1-r0)
+#9 40.91 (57/96) Installing zlib-dev (1.3.1-r1)
+#9 40.93 (58/96) Installing libpcre2-16 (10.43-r0)
+#9 41.01 (59/96) Installing libpcre2-32 (10.43-r0)
+#9 41.10 (60/96) Installing pcre2-dev (10.43-r0)
+#9 41.39 (61/96) Installing re2c (3.1-r0)
+#9 41.61 (62/96) Installing php83-dev (8.3.15-r0)
+#9 42.25 (63/96) Installing libffi (3.4.6-r0)
+#9 42.27 (64/96) Installing gdbm (1.23-r1)
+#9 42.29 (65/96) Installing mpdecimal (4.0.0-r0)
+#9 42.34 (66/96) Installing readline (8.2.10-r0)
+#9 42.39 (67/96) Installing sqlite-libs (3.45.3-r1)
+#9 42.62 (68/96) Installing python3 (3.12.9-r0)
+#9 45.26 (69/96) Installing python3-pycache-pyc0 (3.12.9-r0)
+#9 47.03 (70/96) Installing pyc (3.12.9-r0)
+#9 47.04 (71/96) Installing py3-frozenlist (1.4.1-r1)
+#9 47.10 (72/96) Installing py3-frozenlist-pyc (1.4.1-r1)
+#9 47.11 (73/96) Installing py3-aiosignal-pyc (1.3.1-r3)
+#9 47.15 (74/96) Installing py3-typing-extensions (4.11.0-r1)
+#9 47.19 (75/96) Installing py3-typing-extensions-pyc (4.11.0-r1)
+#9 47.26 (76/96) Installing py3-async-timeout (4.0.3-r1)
+#9 47.28 (77/96) Installing py3-async-timeout-pyc (4.0.3-r1)
+#9 47.32 (78/96) Installing py3-attrs (23.2.0-r1)
+#9 47.41 (79/96) Installing py3-attrs-pyc (23.2.0-r1)
+#9 47.43 (80/96) Installing py3-brotli (1.1.0-r2)
+#9 47.56 (81/96) Installing py3-brotli-pyc (1.1.0-r2)
+#9 47.58 (82/96) Installing py3-charset-normalizer (3.3.2-r1)
+#9 47.64 (83/96) Installing py3-charset-normalizer-pyc (3.3.2-r1)
+#9 47.73 (84/96) Installing py3-idna (3.7-r0)
+#9 47.77 (85/96) Installing py3-idna-pyc (3.7-r0)
+#9 47.80 (86/96) Installing py3-idna-ssl (1.1.0-r9)
+#9 47.82 (87/96) Installing py3-idna-ssl-pyc (1.1.0-r9)
+#9 47.82 (88/96) Installing py3-multidict (6.0.5-r1)
+#9 47.88 (89/96) Installing py3-multidict-pyc (6.0.5-r1)
+#9 47.89 (90/96) Installing py3-yarl (1.9.4-r1)
+#9 47.92 (91/96) Installing py3-yarl-pyc (1.9.4-r1)
+#9 47.94 (92/96) Installing py3-aiohttp-pyc (3.9.3-r1)
+#9 48.19 (93/96) Installing python3-pyc (3.12.9-r0)
+#9 48.20 (94/96) Installing py3-aiosignal (1.3.1-r3)
+#9 48.21 (95/96) Installing py3-aiohttp (3.9.3-r1)
+#9 48.42 (96/96) Installing python3-dev (3.12.9-r0)
+#9 65.62 Executing busybox-1.36.1-r29.trigger
+#9 65.75 Executing ca-certificates-20241121-r1.trigger
+#9 66.63 OK: 452 MiB in 110 packages
+#9 67.27 Cloning into '/opt/BFR'...
+#9 69.74 Note: switching to '91a8a4e155875c50b69d5c6af454e304994815a7'.
+#9 69.74 
+#9 69.74 You are in 'detached HEAD' state. You can look around, make experimental
+#9 69.74 changes and commit them, and you can discard any commits you make in this
+#9 69.74 state without impacting any branches by switching back to a branch.
+#9 69.74 
+#9 69.74 If you want to create a new branch to retain commits you create, you may
+#9 69.74 do so (now or later) by using -c with the switch command. Example:
+#9 69.74 
+#9 69.74   git switch -c <new-branch-name>
+#9 69.74 
+#9 69.74 Or undo this operation with:
+#9 69.74 
+#9 69.74   git switch -
+#9 69.74 
+#9 69.74 Turn off this advice by setting config variable advice.detachedHead to false
+#9 69.74 
+#9 70.32 Configuring for:
+#9 70.32 PHP Api Version:         20230831
+#9 70.32 Zend Module Api No:      20230831
+#9 70.32 Zend Extension Api No:   420230831
+#9 95.86 checking for grep that handles long lines and -e... /bin/grep
+#9 98.24 checking for egrep... /bin/grep -E
+#9 98.29 checking for a sed that does not truncate output... /bin/sed
+#9 98.84 checking for pkg-config... /usr/bin/pkg-config
+#9 98.84 checking pkg-config is at least version 0.9.0... yes
+#9 98.92 checking for cc... cc
+#9 99.99 checking whether the C compiler works... yes
+#9 101.9 checking for C compiler default output file name... a.out
+#9 102.0 checking for suffix of executables... 
+#9 103.8 checking whether we are cross compiling... no
+#9 106.0 checking for suffix of object files... o
+#9 107.4 checking whether the compiler supports GNU C... yes
+#9 109.1 checking whether cc accepts -g... yes
+#9 110.6 checking for cc option to enable C11 features... none needed
+#9 115.9 checking how to run the C preprocessor... cc -E
+#9 119.1 checking for egrep -e... (cached) /bin/grep -E
+#9 119.1 checking for icc... no
+#9 119.7 checking for suncc... no
+#9 120.4 checking for system library directory... lib
+#9 120.4 checking if compiler supports -Wl,-rpath,... yes
+#9 122.9 checking build system type... aarch64-unknown-linux-musl
+#9 125.3 checking host system type... aarch64-unknown-linux-musl
+#9 125.3 checking target system type... aarch64-unknown-linux-musl
+#9 127.3 checking for PHP prefix... /usr
+#9 127.3 checking for PHP includes... -I/usr/include/php83 -I/usr/include/php83/main -I/usr/include/php83/TSRM -I/usr/include/php83/Zend -I/usr/include/php83/ext -I/usr/include/php83/ext/date/lib
+#9 127.3 checking for PHP extension directory... /usr/lib/php83/modules
+#9 127.3 checking for PHP installed headers prefix... /usr/include/php83
+#9 127.3 checking if debug is enabled... no
+#9 128.2 checking if zts is enabled... no
+#9 129.0 checking for gawk... no
+#9 129.0 checking for nawk... no
+#9 129.0 checking for awk... awk
+#9 129.0 checking if awk is broken... no
+#9 129.1 checking whether to enable BFR support... yes, shared
+#9 129.3 checking for a sed that does not truncate output... /bin/sed
+#9 129.4 checking for ld used by cc... /usr/aarch64-alpine-linux-musl/bin/ld
+#9 130.2 checking if the linker (/usr/aarch64-alpine-linux-musl/bin/ld) is GNU ld... yes
+#9 130.3 checking for /usr/aarch64-alpine-linux-musl/bin/ld option to reload object files... -r
+#9 130.3 checking for BSD-compatible nm... /usr/bin/nm -B
+#9 130.4 checking whether ln -s works... yes
+#9 130.4 checking how to recognize dependent libraries... pass_all
+#9 130.4 checking for stdio.h... yes
+#9 131.7 checking for stdlib.h... yes
+#9 133.2 checking for string.h... yes
+#9 134.5 checking for inttypes.h... yes
+#9 136.2 checking for stdint.h... yes
+#9 137.8 checking for strings.h... yes
+#9 139.3 checking for sys/stat.h... yes
+#9 140.9 checking for sys/types.h... yes
+#9 142.4 checking for unistd.h... yes
+#9 144.0 checking for dlfcn.h... yes
+#9 145.7 checking the maximum length of command line arguments... 98304
+#9 145.9 checking command to parse /usr/bin/nm -B output from cc object... ok
+#9 150.4 checking for objdir... .libs
+#9 150.5 checking for ar... ar
+#9 150.5 checking for ranlib... ranlib
+#9 150.5 checking for strip... strip
+#9 154.2 checking if cc supports -fno-rtti -fno-exceptions... no
+#9 155.8 checking for cc option to produce PIC... -fPIC
+#9 155.8 checking if cc PIC flag -fPIC works... yes
+#9 157.5 checking if cc static flag -static works... yes
+#9 160.5 checking if cc supports -c -o file.o... yes
+#9 162.4 checking whether the cc linker (/usr/aarch64-alpine-linux-musl/bin/ld) supports shared libraries... yes
+#9 163.1 checking whether -lc should be explicitly linked in... no
+#9 165.0 checking dynamic linker characteristics... GNU/Linux ld.so
+#9 165.4 checking how to hardcode library paths into programs... immediate
+#9 165.4 checking whether stripping libraries is possible... yes
+#9 165.5 checking if libtool supports shared libraries... yes
+#9 165.5 checking whether to build shared libraries... yes
+#9 165.5 checking whether to build static libraries... no
+#9 171.1 
+#9 171.1 creating libtool
+#9 172.3 appending configuration tag "CXX" to libtool
+#9 174.9 configure: patching config.h.in
+#9 175.1 configure: creating ./config.status
+#9 177.5 config.status: creating config.h
+#9 178.9 /bin/sh /opt/BFR/libtool --tag=CC --mode=compile cc -I. -I/opt/BFR -I/opt/BFR/include -I/opt/BFR/main -I/opt/BFR -I/usr/include/php83 -I/usr/include/php83/main -I/usr/include/php83/TSRM -I/usr/include/php83/Zend -I/usr/include/php83/ext -I/usr/include/php83/ext/date/lib  -DHAVE_CONFIG_H  -g -O2 -D_GNU_SOURCE   -Werror -Wall -DZEND_COMPILE_DL_EXT=1 -c /opt/BFR/php_bfr.c -o php_bfr.lo  -MMD -MF php_bfr.dep -MT php_bfr.lo
+#9 182.5 mkdir .libs
+#9 182.6  cc -I. -I/opt/BFR -I/opt/BFR/include -I/opt/BFR/main -I/opt/BFR -I/usr/include/php83 -I/usr/include/php83/main -I/usr/include/php83/TSRM -I/usr/include/php83/Zend -I/usr/include/php83/ext -I/usr/include/php83/ext/date/lib -DHAVE_CONFIG_H -g -O2 -D_GNU_SOURCE -Werror -Wall -DZEND_COMPILE_DL_EXT=1 -c /opt/BFR/php_bfr.c -MMD -MF php_bfr.dep -MT php_bfr.lo  -fPIC -DPIC -o .libs/php_bfr.o
+#9 202.1 /bin/sh /opt/BFR/libtool --tag=CC --mode=compile cc -I. -I/opt/BFR -I/opt/BFR/include -I/opt/BFR/main -I/opt/BFR -I/usr/include/php83 -I/usr/include/php83/main -I/usr/include/php83/TSRM -I/usr/include/php83/Zend -I/usr/include/php83/ext -I/usr/include/php83/ext/date/lib  -DHAVE_CONFIG_H  -g -O2 -D_GNU_SOURCE   -Werror -Wall -DZEND_COMPILE_DL_EXT=1 -c /opt/BFR/php_helpers.c -o php_helpers.lo  -MMD -MF php_helpers.dep -MT php_helpers.lo
+#9 205.3  cc -I. -I/opt/BFR -I/opt/BFR/include -I/opt/BFR/main -I/opt/BFR -I/usr/include/php83 -I/usr/include/php83/main -I/usr/include/php83/TSRM -I/usr/include/php83/Zend -I/usr/include/php83/ext -I/usr/include/php83/ext/date/lib -DHAVE_CONFIG_H -g -O2 -D_GNU_SOURCE -Werror -Wall -DZEND_COMPILE_DL_EXT=1 -c /opt/BFR/php_helpers.c -MMD -MF php_helpers.dep -MT php_helpers.lo  -fPIC -DPIC -o .libs/php_helpers.o
+#9 224.2 /bin/sh /opt/BFR/libtool --tag=CC --mode=link cc -shared -I/opt/BFR/include -I/opt/BFR/main -I/opt/BFR -I/usr/include/php83 -I/usr/include/php83/main -I/usr/include/php83/TSRM -I/usr/include/php83/Zend -I/usr/include/php83/ext -I/usr/include/php83/ext/date/lib  -DHAVE_CONFIG_H  -g -O2 -D_GNU_SOURCE    -o bfr.la -export-dynamic -avoid-version -prefer-pic -module -rpath /opt/BFR/modules  php_bfr.lo php_helpers.lo 
+#9 226.8 cc -shared  .libs/php_bfr.o .libs/php_helpers.o   -Wl,-soname -Wl,bfr.so -o .libs/bfr.so
+#9 227.3 creating bfr.la
+#9 227.5 (cd .libs && rm -f bfr.la && ln -s ../bfr.la bfr.la)
+#9 227.6 /bin/sh /opt/BFR/libtool --tag=CC --mode=install cp ./bfr.la /opt/BFR/modules
+#9 228.4 cp ./.libs/bfr.so /opt/BFR/modules/bfr.so
+#9 228.5 cp ./.libs/bfr.lai /opt/BFR/modules/bfr.la
+#9 228.9 PATH="$PATH:/sbin" ldconfig -n /opt/BFR/modules
+#9 229.2 ----------------------------------------------------------------------
+#9 229.2 Libraries have been installed in:
+#9 229.2    /opt/BFR/modules
+#9 229.2 
+#9 229.2 If you ever happen to want to link against installed libraries
+#9 229.2 in a given directory, LIBDIR, you must either use libtool, and
+#9 229.2 specify the full pathname of the library, or use the `-LLIBDIR'
+#9 229.2 flag during linking and do at least one of the following:
+#9 229.2    - add LIBDIR to the `LD_LIBRARY_PATH' environment variable
+#9 229.2      during execution
+#9 229.2    - add LIBDIR to the `LD_RUN_PATH' environment variable
+#9 229.2      during linking
+#9 229.2    - use the `-Wl,--rpath -Wl,LIBDIR' linker flag
+#9 229.2 
+#9 229.2 See any operating system documentation about shared libraries for
+#9 229.2 more information, such as the ld(1) and ld.so(8) manual pages.
+#9 229.3 ----------------------------------------------------------------------
+#9 229.3 
+#9 229.4 Build complete.
+#9 229.5 Don't forget to run 'make test'.
+#9 229.5 
+#9 230.5 Installing shared extensions:     /usr/lib/php83/modules/
+#9 231.3 Cloning into '/opt/phpox'...
+#9 236.3 Note: switching to '55a6cbdc2c62f08eb45acffaf84f23f06a1d4703'.
+#9 236.3 
+#9 236.3 You are in 'detached HEAD' state. You can look around, make experimental
+#9 236.3 changes and commit them, and you can discard any commits you make in this
+#9 236.3 state without impacting any branches by switching back to a branch.
+#9 236.3 
+#9 236.3 If you want to create a new branch to retain commits you create, you may
+#9 236.3 do so (now or later) by using -c with the switch command. Example:
+#9 236.3 
+#9 236.3   git switch -c <new-branch-name>
+#9 236.3 
+#9 236.3 Or undo this operation with:
+#9 236.3 
+#9 236.3   git switch -
+#9 236.3 
+#9 236.3 Turn off this advice by setting config variable advice.detachedHead to false
+#9 236.3 
+#9 236.3 HEAD is now at 55a6cbd added dependency
+#9 236.5 python3 generate.py > sandbox.php
+#9 238.3 WARNING: opening from cache https://dl-cdn.alpinelinux.org/alpine/v3.20/main: No such file or directory
+#9 238.3 WARNING: opening from cache https://dl-cdn.alpinelinux.org/alpine/v3.20/community: No such file or directory
+#9 238.4 (1/45) Purging build-base (0.5-r3)
+#9 238.4 (2/45) Purging g++ (13.2.1_git20240309-r1)
+#9 238.4 (3/45) Purging libstdc++-dev (13.2.1_git20240309-r1)
+#9 238.4 (4/45) Purging gcc (13.2.1_git20240309-r1)
+#9 238.5 (5/45) Purging binutils (2.42-r0)
+#9 238.5 (6/45) Purging libatomic (13.2.1_git20240309-r1)
+#9 238.5 (7/45) Purging libgomp (13.2.1_git20240309-r1)
+#9 238.5 (8/45) Purging fortify-headers (1.1-r3)
+#9 238.5 (9/45) Purging patch (2.7.6-r10)
+#9 238.5 (10/45) Purging git-init-template (2.45.3-r0)
+#9 238.5 (11/45) Purging git-perl (2.45.3-r0)
+#9 238.5 (12/45) Purging perl-git (2.45.3-r0)
+#9 238.5 (13/45) Purging git (2.45.3-r0)
+#9 238.5 (14/45) Purging perl-error (0.17029-r2)
+#9 238.5 (15/45) Purging isl26 (0.26-r1)
+#9 238.5 (16/45) Purging jansson (2.14-r4)
+#9 238.5 (17/45) Purging libcurl (8.12.1-r0)
+#9 238.5 (18/45) Purging ca-certificates (20241121-r1)
+#9 238.5 Executing ca-certificates-20241121-r1.post-deinstall
+#9 238.7 (19/45) Purging libpsl (0.21.5-r1)
+#9 238.7 (20/45) Purging mpc1 (1.3.1-r1)
+#9 238.7 (21/45) Purging mpfr4 (4.2.1-r0)
+#9 238.7 (22/45) Purging musl-dev (1.2.5-r1)
+#9 238.7 (23/45) Purging nghttp2-libs (1.62.1-r0)
+#9 238.7 (24/45) Purging php83-dev (8.3.15-r0)
+#9 238.7 (25/45) Purging autoconf (2.72-r0)
+#9 238.7 (26/45) Purging m4 (1.4.19-r3)
+#9 238.7 (27/45) Purging perl (5.38.3-r0)
+#9 238.8 (28/45) Purging pcre2-dev (10.43-r0)
+#9 238.8 (29/45) Purging libedit-dev (20240517.3.1-r0)
+#9 238.8 (30/45) Purging bsd-compat-headers (0.7.2-r6)
+#9 238.8 (31/45) Purging ncurses-dev (6.4_p20240420-r2)
+#9 238.8 (32/45) Purging libncurses++ (6.4_p20240420-r2)
+#9 238.8 (33/45) Purging zlib-dev (1.3.1-r1)
+#9 238.8 (34/45) Purging libpcre2-16 (10.43-r0)
+#9 238.8 (35/45) Purging libpcre2-32 (10.43-r0)
+#9 238.8 (36/45) Purging python3-dev (3.12.9-r0)
+#9 238.9 (37/45) Purging zstd-libs (1.5.6-r0)
+#9 238.9 (38/45) Purging brotli-libs (1.1.0-r2)
+#9 238.9 (39/45) Purging c-ares (1.33.1-r0)
+#9 238.9 (40/45) Purging gmp (6.3.0-r1)
+#9 238.9 (41/45) Purging libformw (6.4_p20240420-r2)
+#9 238.9 (42/45) Purging libidn2 (2.3.7-r0)
+#9 238.9 (43/45) Purging libmenuw (6.4_p20240420-r2)
+#9 238.9 (44/45) Purging libunistring (1.2-r0)
+#9 238.9 (45/45) Purging pkgconf (2.2.0-r0)
+#9 238.9 Executing busybox-1.36.1-r29.trigger
+#9 239.0 OK: 79 MiB in 65 packages
+#9 DONE 239.1s
+
+#11 [phpox linux/arm64 3/3] WORKDIR /opt/phpox
+#11 DONE 0.1s
+
+#12 [phpox] exporting to image
+#12 exporting layers
+#12 exporting layers 5.0s done
+#12 exporting manifest sha256:4793255b4e9ff8b26541d57b4d047a68f34efa16a8080a9574c4ac6f83fc4e18 done
+#12 exporting config sha256:345a32fb60120698a8a5fbcab5bacd7db0ad7615158c336789f2f04dd8658b38 0.0s done
+#12 exporting attestation manifest sha256:eff816f30013c4f366caaf2f8abc1e59bdfb8e6c7417fb0a1bf4424dbf2af509 0.0s done
+#12 exporting manifest sha256:e573d8980232dbf3b3438741718c5209bb3bd57ad47862411ef019d85dd2d36d 0.0s done
+#12 exporting config sha256:ae2b97d426046d785fb01aafbd7486ab61df26c7c031b9ef6831fce3d392a91a 0.0s done
+#12 exporting attestation manifest sha256:1b98a7cebc284a12aa70a29e99ad7c68b10150a9799cf924a2f6e9adc14f7cbb 0.0s done
+#12 exporting manifest list sha256:5f39f5f73d0db4b01cb5041c602dc6dc3cde13ff27550e1fb29e0aaa4449a5aa
+#12 exporting manifest list sha256:5f39f5f73d0db4b01cb5041c602dc6dc3cde13ff27550e1fb29e0aaa4449a5aa 0.0s done
+#12 pushing layers
+#12 ...
+
+#13 [phpox auth] f0rc3ps/phpox:pull,push token for registry-1.docker.io
+#13 DONE 0.0s
+
+#12 [phpox] exporting to image
+#12 ...
+
+#14 [phpox auth] f0rc3ps/p0f:pull f0rc3ps/phpox:pull,push token for registry-1.docker.io
+#14 DONE 0.0s
+
+#12 [phpox] exporting to image
+#12 pushing layers 12.8s done
+#12 pushing manifest for docker.io/f0rc3ps/phpox:24.04.1@sha256:5f39f5f73d0db4b01cb5041c602dc6dc3cde13ff27550e1fb29e0aaa4449a5aa
+#12 pushing manifest for docker.io/f0rc3ps/phpox:24.04.1@sha256:5f39f5f73d0db4b01cb5041c602dc6dc3cde13ff27550e1fb29e0aaa4449a5aa 3.6s done
+#12 ...
+
+#15 [phpox auth] asc3t1c/phpox:pull,push token for ghcr.io
+#15 DONE 0.0s
+
+#12 [phpox] exporting to image
+#12 ...
+
+#16 [phpox auth] asc3t1c/p0f:pull asc3t1c/phpox:pull,push token for ghcr.io
+#16 DONE 0.0s
+
+#12 [phpox] exporting to image
+#12 pushing layers 11.3s done
+#12 pushing manifest for ghcr.io/asc3t1c/phpox:24.04.1@sha256:5f39f5f73d0db4b01cb5041c602dc6dc3cde13ff27550e1fb29e0aaa4449a5aa
+#12 pushing manifest for ghcr.io/asc3t1c/phpox:24.04.1@sha256:5f39f5f73d0db4b01cb5041c602dc6dc3cde13ff27550e1fb29e0aaa4449a5aa 2.6s done
+#12 DONE 35.3s
+
+#17 [phpox] resolving provenance for metadata file
+#17 DONE 0.0s
