@@ -1,0 +1,74 @@
+Compose now can delegate build to bake for better performances
+Just set COMPOSE_BAKE=true
+#0 building with "mybuilder" instance using docker-container driver
+
+#1 [phpox internal] load build definition from Dockerfile
+#1 transferring dockerfile: 1.17kB 0.0s done
+#1 DONE 0.0s
+
+#2 [phpox linux/arm64 internal] load metadata for docker.io/library/alpine:3.20
+#2 ...
+
+#3 [phpox linux/amd64 internal] load metadata for docker.io/library/alpine:3.20
+#3 DONE 0.2s
+
+#4 [phpox internal] load .dockerignore
+#4 transferring context: 2B done
+#4 DONE 0.0s
+
+#2 [phpox linux/arm64 internal] load metadata for docker.io/library/alpine:3.20
+#2 DONE 0.3s
+
+#5 [phpox linux/amd64 1/3] FROM docker.io/library/alpine:3.20@sha256:de4fe7064d8f98419ea6b49190df1abbf43450c1702eeb864fe9ced453c1cc5f
+#5 resolve docker.io/library/alpine:3.20@sha256:de4fe7064d8f98419ea6b49190df1abbf43450c1702eeb864fe9ced453c1cc5f 0.0s done
+#5 DONE 0.0s
+
+#6 [phpox linux/amd64 2/3] RUN apk --no-cache -U upgrade &&     apk --no-cache -U add 		build-base 		file 		git 		make 		php83 		php83-dev 		py3-aiohttp 		python3 		python3-dev 		re2c &&     git clone https://github.com/mushorg/BFR -b v1.0.0 /opt/BFR &&     cd /opt/BFR &&     phpize83 &&     ./configure       --with-php-config=/usr/bin/php-config83       --enable-bfr &&     make &&     make install &&     cd / &&     rm -rf /opt/BFR /tmp/* /var/tmp/* &&     echo "zend_extension = "$(find /usr -name bfr.so) >> /etc/php83/php.ini &&     git clone https://github.com/mushorg/phpox /opt/phpox &&     cd /opt/phpox &&     git checkout 55a6cbdc2c62f08eb45acffaf84f23f06a1d4703 &&     make &&     apk del --purge build-base                     git                     php83-dev                     python3-dev &&     rm -rf /root/* /var/cache/apk/* /opt/phpox/.git
+#6 CACHED
+
+#7 [phpox linux/amd64 3/3] WORKDIR /opt/phpox
+#7 CACHED
+
+#8 [phpox linux/arm64 1/3] FROM docker.io/library/alpine:3.20@sha256:de4fe7064d8f98419ea6b49190df1abbf43450c1702eeb864fe9ced453c1cc5f
+#8 resolve docker.io/library/alpine:3.20@sha256:de4fe7064d8f98419ea6b49190df1abbf43450c1702eeb864fe9ced453c1cc5f 0.0s done
+#8 DONE 0.0s
+
+#9 [phpox linux/arm64 2/3] RUN apk --no-cache -U upgrade &&     apk --no-cache -U add 		build-base 		file 		git 		make 		php83 		php83-dev 		py3-aiohttp 		python3 		python3-dev 		re2c &&     git clone https://github.com/mushorg/BFR -b v1.0.0 /opt/BFR &&     cd /opt/BFR &&     phpize83 &&     ./configure       --with-php-config=/usr/bin/php-config83       --enable-bfr &&     make &&     make install &&     cd / &&     rm -rf /opt/BFR /tmp/* /var/tmp/* &&     echo "zend_extension = "$(find /usr -name bfr.so) >> /etc/php83/php.ini &&     git clone https://github.com/mushorg/phpox /opt/phpox &&     cd /opt/phpox &&     git checkout 55a6cbdc2c62f08eb45acffaf84f23f06a1d4703 &&     make &&     apk del --purge build-base                     git                     php83-dev                     python3-dev &&     rm -rf /root/* /var/cache/apk/* /opt/phpox/.git
+#9 CACHED
+
+#10 [phpox linux/arm64 3/3] WORKDIR /opt/phpox
+#10 CACHED
+
+#11 [phpox] exporting to image
+#11 exporting layers done
+#11 exporting manifest sha256:ffa23f2657e56d0a7d5f40970f3805291ae10fae20a5a617ed03fb8bd7e96dc3 0.0s done
+#11 exporting config sha256:647096afc63e411d0723174b705bb80dcee8a36c2bc97230f12b42811bf87d9d 0.0s done
+#11 exporting attestation manifest sha256:d2f7b58d121f2cffd9e0f50c10ffbf2b6b116f7828fc67dd6c346d24f6082388 0.0s done
+#11 exporting manifest sha256:392be4bbe391da07048e7b1b6bd4ab42a5afeb854c25fb3657aeeef2a35c57a9 done
+#11 exporting config sha256:6f9b7b5efbbe4c1f00a8b77e3c3902c7d01b2f5b10dfe413413fead80fbeffdf
+#11 exporting config sha256:6f9b7b5efbbe4c1f00a8b77e3c3902c7d01b2f5b10dfe413413fead80fbeffdf done
+#11 exporting attestation manifest sha256:4d4ba44661f75ce0c0a7fff336802b830ce3aebbb35d2cc2f9223d14f5fb30f4 0.0s done
+#11 exporting manifest list sha256:c5a8ac4eef9d9bc9f5577b3ab45a219fa147853ae47a345ad0a0759e23269b28 done
+#11 pushing layers
+#11 ...
+
+#12 [phpox auth] f0rc3ps/phpox:pull,push token for registry-1.docker.io
+#12 DONE 0.0s
+
+#11 [phpox] exporting to image
+#11 pushing layers 2.5s done
+#11 pushing manifest for docker.io/f0rc3ps/phpox:25.0.1@sha256:c5a8ac4eef9d9bc9f5577b3ab45a219fa147853ae47a345ad0a0759e23269b28
+#11 pushing manifest for docker.io/f0rc3ps/phpox:25.0.1@sha256:c5a8ac4eef9d9bc9f5577b3ab45a219fa147853ae47a345ad0a0759e23269b28 2.9s done
+#11 ...
+
+#13 [phpox auth] asc3t1c/phpox:pull,push token for ghcr.io
+#13 DONE 0.0s
+
+#11 [phpox] exporting to image
+#11 pushing layers 2.0s done
+#11 pushing manifest for ghcr.io/asc3t1c/phpox:25.0.1@sha256:c5a8ac4eef9d9bc9f5577b3ab45a219fa147853ae47a345ad0a0759e23269b28
+#11 pushing manifest for ghcr.io/asc3t1c/phpox:25.0.1@sha256:c5a8ac4eef9d9bc9f5577b3ab45a219fa147853ae47a345ad0a0759e23269b28 2.5s done
+#11 DONE 10.0s
+
+#14 [phpox] resolving provenance for metadata file
+#14 DONE 0.0s

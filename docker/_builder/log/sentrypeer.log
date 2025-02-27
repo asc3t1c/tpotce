@@ -1,0 +1,68 @@
+Compose now can delegate build to bake for better performances
+Just set COMPOSE_BAKE=true
+#0 building with "mybuilder" instance using docker-container driver
+
+#1 [sentrypeer internal] load build definition from Dockerfile
+#1 transferring dockerfile: 693B 0.0s done
+#1 DONE 0.0s
+
+#2 [sentrypeer linux/arm64 internal] load metadata for docker.io/library/alpine:edge
+#2 ...
+
+#3 [sentrypeer linux/amd64 internal] load metadata for docker.io/library/alpine:edge
+#3 DONE 0.4s
+
+#2 [sentrypeer linux/arm64 internal] load metadata for docker.io/library/alpine:edge
+#2 DONE 0.5s
+
+#4 [sentrypeer internal] load .dockerignore
+#4 transferring context: 2B done
+#4 DONE 0.0s
+
+#5 [sentrypeer linux/amd64 1/2] FROM docker.io/library/alpine:edge@sha256:115729ec5cb049ba6359c3ab005ac742012d92bbaa5b8bc1a878f1e8f62c0cb8
+#5 resolve docker.io/library/alpine:edge@sha256:115729ec5cb049ba6359c3ab005ac742012d92bbaa5b8bc1a878f1e8f62c0cb8 0.0s done
+#5 DONE 0.0s
+
+#6 [sentrypeer linux/amd64 2/2] RUN apk -U upgrade --no-cache && 	apk -U add --no-cache -X http://dl-cdn.alpinelinux.org/alpine/edge/testing 		sentrypeer &&     mkdir -p /var/log/sentrypeer &&     addgroup -g 2000 sentrypeer &&     adduser -S -H -s /bin/ash -u 2000 -D -g 2000 sentrypeer &&     chown -R sentrypeer:sentrypeer /usr/bin/sentrypeer &&     rm -rf /root/*            /var/cache/apk/*
+#6 CACHED
+
+#7 [sentrypeer linux/arm64 1/2] FROM docker.io/library/alpine:edge@sha256:115729ec5cb049ba6359c3ab005ac742012d92bbaa5b8bc1a878f1e8f62c0cb8
+#7 resolve docker.io/library/alpine:edge@sha256:115729ec5cb049ba6359c3ab005ac742012d92bbaa5b8bc1a878f1e8f62c0cb8 0.0s done
+#7 DONE 0.0s
+
+#8 [sentrypeer linux/arm64 2/2] RUN apk -U upgrade --no-cache && 	apk -U add --no-cache -X http://dl-cdn.alpinelinux.org/alpine/edge/testing 		sentrypeer &&     mkdir -p /var/log/sentrypeer &&     addgroup -g 2000 sentrypeer &&     adduser -S -H -s /bin/ash -u 2000 -D -g 2000 sentrypeer &&     chown -R sentrypeer:sentrypeer /usr/bin/sentrypeer &&     rm -rf /root/*            /var/cache/apk/*
+#8 CACHED
+
+#9 [sentrypeer] exporting to image
+#9 exporting layers done
+#9 exporting manifest sha256:272486ce9e7f8443c44f696c1a5a31699d57d9dc910a56e54d57701c7239b7b3 done
+#9 exporting config sha256:b15f45d8a06a698999c3a37dea007694e77d39c60b15b24869f274a3b2ba7585 done
+#9 exporting attestation manifest sha256:160c32f9ddfe1a87f5fa4a4e6b9b2e41e9b42d84babaf77e14606727e4cd3701 0.0s done
+#9 exporting manifest sha256:c3cef6f6d0ee260e29f746aae0b1acd7a99f297a8bba3d1cefab8ee51e2b0090
+#9 exporting manifest sha256:c3cef6f6d0ee260e29f746aae0b1acd7a99f297a8bba3d1cefab8ee51e2b0090 0.0s done
+#9 exporting config sha256:4fc10929ac9188e8f89b4d88e33eccff12be23999c95e6aa917e09a2a4442cd3 done
+#9 exporting attestation manifest sha256:71131697edbcf707a3d59dee9d2b740404f033d995d1434edd231cf518fcabd6 0.0s done
+#9 exporting manifest list sha256:1cba0a83b64de5ace42f4a0d7919549706ba1d24c02c384f17abc481efd8a7ab 0.0s done
+#9 pushing layers
+#9 ...
+
+#10 [sentrypeer auth] f0rc3ps/sentrypeer:pull,push token for registry-1.docker.io
+#10 DONE 0.0s
+
+#9 [sentrypeer] exporting to image
+#9 pushing layers 2.5s done
+#9 pushing manifest for docker.io/f0rc3ps/sentrypeer:25.0.1@sha256:1cba0a83b64de5ace42f4a0d7919549706ba1d24c02c384f17abc481efd8a7ab
+#9 pushing manifest for docker.io/f0rc3ps/sentrypeer:25.0.1@sha256:1cba0a83b64de5ace42f4a0d7919549706ba1d24c02c384f17abc481efd8a7ab 2.8s done
+#9 ...
+
+#11 [sentrypeer auth] asc3t1c/sentrypeer:pull,push token for ghcr.io
+#11 DONE 0.0s
+
+#9 [sentrypeer] exporting to image
+#9 pushing layers 1.9s done
+#9 pushing manifest for ghcr.io/asc3t1c/sentrypeer:25.0.1@sha256:1cba0a83b64de5ace42f4a0d7919549706ba1d24c02c384f17abc481efd8a7ab
+#9 pushing manifest for ghcr.io/asc3t1c/sentrypeer:25.0.1@sha256:1cba0a83b64de5ace42f4a0d7919549706ba1d24c02c384f17abc481efd8a7ab 2.5s done
+#9 DONE 9.8s
+
+#12 [sentrypeer] resolving provenance for metadata file
+#12 DONE 0.0s

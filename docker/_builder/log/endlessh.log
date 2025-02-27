@@ -1,0 +1,110 @@
+Compose now can delegate build to bake for better performances
+Just set COMPOSE_BAKE=true
+#0 building with "mybuilder" instance using docker-container driver
+
+#1 [endlessh internal] load build definition from Dockerfile
+#1 transferring dockerfile: 654B 0.0s done
+#1 DONE 0.0s
+
+#2 [endlessh linux/amd64 internal] load metadata for docker.io/library/alpine:3.16
+#2 ...
+
+#3 [endlessh linux/arm64 internal] load metadata for docker.io/library/alpine:3.16
+#3 DONE 0.2s
+
+#4 [endlessh linux/arm64 internal] load metadata for docker.io/library/alpine:3.20
+#4 DONE 0.2s
+
+#5 [endlessh internal] load .dockerignore
+#5 transferring context: 2B done
+#5 DONE 0.0s
+
+#6 [endlessh linux/amd64 internal] load metadata for docker.io/library/alpine:3.20
+#6 DONE 0.4s
+
+#2 [endlessh linux/amd64 internal] load metadata for docker.io/library/alpine:3.16
+#2 DONE 0.4s
+
+#7 [endlessh linux/amd64 builder 1/3] FROM docker.io/library/alpine:3.16@sha256:452e7292acee0ee16c332324d7de05fa2c99f9994ecc9f0779c602916a672ae4
+#7 resolve docker.io/library/alpine:3.16@sha256:452e7292acee0ee16c332324d7de05fa2c99f9994ecc9f0779c602916a672ae4 0.1s done
+#7 DONE 0.1s
+
+#8 [endlessh linux/amd64 stage-1 1/4] FROM docker.io/library/alpine:3.20@sha256:de4fe7064d8f98419ea6b49190df1abbf43450c1702eeb864fe9ced453c1cc5f
+#8 resolve docker.io/library/alpine:3.20@sha256:de4fe7064d8f98419ea6b49190df1abbf43450c1702eeb864fe9ced453c1cc5f 0.0s done
+#8 DONE 0.1s
+
+#9 [endlessh linux/arm64 builder 1/3] FROM docker.io/library/alpine:3.16@sha256:452e7292acee0ee16c332324d7de05fa2c99f9994ecc9f0779c602916a672ae4
+#9 resolve docker.io/library/alpine:3.16@sha256:452e7292acee0ee16c332324d7de05fa2c99f9994ecc9f0779c602916a672ae4 0.1s done
+#9 DONE 0.1s
+
+#10 [endlessh linux/arm64 stage-1 1/4] FROM docker.io/library/alpine:3.20@sha256:de4fe7064d8f98419ea6b49190df1abbf43450c1702eeb864fe9ced453c1cc5f
+#10 resolve docker.io/library/alpine:3.20@sha256:de4fe7064d8f98419ea6b49190df1abbf43450c1702eeb864fe9ced453c1cc5f 0.1s done
+#10 DONE 0.1s
+
+#11 [endlessh internal] load build context
+#11 transferring context: 64B done
+#11 DONE 0.0s
+
+#12 [endlessh linux/amd64 builder 3/3] RUN apk -U add --no-cache 		build-base 		git 		libcap &&     git clone https://github.com/skeeto/endlessh /opt/endlessh &&     cd /opt/endlessh &&     git checkout dfe44eb2c5b6fc3c48a39ed826fe0e4459cdf6ef &&     make &&     mv /opt/endlessh/endlessh /root/dist
+#12 CACHED
+
+#13 [endlessh linux/amd64 builder 2/3] COPY dist/ /root/dist/
+#13 CACHED
+
+#14 [endlessh linux/amd64 stage-1 3/4] COPY --from=builder /root/dist/* /opt/endlessh/
+#14 CACHED
+
+#15 [endlessh linux/amd64 stage-1 2/4] RUN apk --no-cache -U upgrade
+#15 CACHED
+
+#16 [endlessh linux/arm64 stage-1 2/4] RUN apk --no-cache -U upgrade
+#16 CACHED
+
+#17 [endlessh linux/arm64 builder 2/3] COPY dist/ /root/dist/
+#17 CACHED
+
+#18 [endlessh linux/arm64 builder 3/3] RUN apk -U add --no-cache 		build-base 		git 		libcap &&     git clone https://github.com/skeeto/endlessh /opt/endlessh &&     cd /opt/endlessh &&     git checkout dfe44eb2c5b6fc3c48a39ed826fe0e4459cdf6ef &&     make &&     mv /opt/endlessh/endlessh /root/dist
+#18 CACHED
+
+#19 [endlessh linux/arm64 stage-1 3/4] COPY --from=builder /root/dist/* /opt/endlessh/
+#19 CACHED
+
+#20 [endlessh linux/amd64 stage-1 4/4] WORKDIR /opt/endlessh/
+#20 CACHED
+
+#21 [endlessh linux/arm64 stage-1 4/4] WORKDIR /opt/endlessh/
+#21 CACHED
+
+#22 [endlessh] exporting to image
+#22 exporting layers done
+#22 exporting manifest sha256:ab78d674a29dbf6add0e8bca1d2a59203530a8205329235792239e9071dd2633 done
+#22 exporting config sha256:ce32af749022850341d91ee37201b672ee5b1bb766eb9078f1753eba7a9b4c27
+#22 exporting config sha256:ce32af749022850341d91ee37201b672ee5b1bb766eb9078f1753eba7a9b4c27 done
+#22 exporting attestation manifest sha256:794aeb7afff4dd218b18750365faccc8bc3598cbf5b26e75c7b3007eaac26922 0.0s done
+#22 exporting manifest sha256:14f61a50d86010f09a0eb82340560cc48de69bdfc70f2acbbd94d37cac368686 0.0s done
+#22 exporting config sha256:053ee4a9640c0b3026a8329142749f1e11dac8a62e64cb590439a40df6fc333c 0.0s done
+#22 exporting attestation manifest sha256:58323a1821e8c3bb47d15be854bcb0ff1f4244d5951d978b507346a87036945f 0.0s done
+#22 exporting manifest list sha256:d32b0506d60c852c0110463e35ec37fdf22fc151ce91c4d076368f173e35ba0f done
+#22 pushing layers
+#22 ...
+
+#23 [endlessh auth] f0rc3ps/endlessh:pull,push token for registry-1.docker.io
+#23 DONE 0.0s
+
+#22 [endlessh] exporting to image
+#22 pushing layers 3.6s done
+#22 pushing manifest for docker.io/f0rc3ps/endlessh:25.0.1@sha256:d32b0506d60c852c0110463e35ec37fdf22fc151ce91c4d076368f173e35ba0f
+#22 pushing manifest for docker.io/f0rc3ps/endlessh:25.0.1@sha256:d32b0506d60c852c0110463e35ec37fdf22fc151ce91c4d076368f173e35ba0f 2.9s done
+#22 ...
+
+#24 [endlessh auth] asc3t1c/endlessh:pull,push token for ghcr.io
+#24 DONE 0.0s
+
+#22 [endlessh] exporting to image
+#22 pushing layers 2.9s done
+#22 pushing manifest for ghcr.io/asc3t1c/endlessh:25.0.1@sha256:d32b0506d60c852c0110463e35ec37fdf22fc151ce91c4d076368f173e35ba0f
+#22 pushing manifest for ghcr.io/asc3t1c/endlessh:25.0.1@sha256:d32b0506d60c852c0110463e35ec37fdf22fc151ce91c4d076368f173e35ba0f 2.7s done
+#22 DONE 12.2s
+
+#25 [endlessh] resolving provenance for metadata file
+#25 DONE 0.0s

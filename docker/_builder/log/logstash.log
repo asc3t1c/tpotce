@@ -1,0 +1,79 @@
+Compose now can delegate build to bake for better performances
+Just set COMPOSE_BAKE=true
+#0 building with "mybuilder" instance using docker-container driver
+
+#1 [logstash internal] load build definition from Dockerfile
+#1 transferring dockerfile: 2.40kB 0.0s done
+#1 DONE 0.0s
+
+#2 [logstash auth] library/ubuntu:pull token for registry-1.docker.io
+#2 DONE 0.0s
+
+#3 [logstash linux/arm64 internal] load metadata for docker.io/library/ubuntu:24.04
+#3 ...
+
+#4 [logstash linux/amd64 internal] load metadata for docker.io/library/ubuntu:24.04
+#4 DONE 0.6s
+
+#5 [logstash linux/amd64 1/3] FROM docker.io/library/ubuntu:24.04@sha256:72297848456d5d37d1262630108ab308d3e9ec7ed1c3286a32fe09856619a782
+#5 DONE 0.0s
+
+#6 [logstash linux/arm64 1/3] FROM docker.io/library/ubuntu:24.04@sha256:72297848456d5d37d1262630108ab308d3e9ec7ed1c3286a32fe09856619a782
+#6 resolve docker.io/library/ubuntu:24.04@sha256:72297848456d5d37d1262630108ab308d3e9ec7ed1c3286a32fe09856619a782 0.0s done
+#6 CACHED
+
+#3 [logstash linux/arm64 internal] load metadata for docker.io/library/ubuntu:24.04
+#3 DONE 0.6s
+
+#7 [logstash internal] load .dockerignore
+#7 transferring context: 2B done
+#7 DONE 0.0s
+
+#8 [logstash internal] load build context
+#8 transferring context: 346B done
+#8 DONE 0.0s
+
+#9 [logstash linux/amd64 2/3] COPY dist/ /root/dist/
+#9 CACHED
+
+#10 [logstash linux/amd64 3/3] RUN apt-get update -y &&     apt-get upgrade -y &&     apt-get install -y     		 adduser              aria2              bash              bzip2              curl &&     ARCH=$(arch) &&     if [ "$ARCH" = "x86_64" ]; then LS_ARCH="amd64"; export _JAVA_OPTIONS=""; fi &&     if [ "$ARCH" = "aarch64" ]; then LS_ARCH="arm64"; export _JAVA_OPTIONS="-XX:UseSVE=0"; fi &&     echo "$ARCH" &&     mkdir -p /etc/listbot &&     cd /etc/listbot &&     aria2c -s16 -x 16 https://listbot.sicherheitstacho.eu/cve.yaml.bz2 &&     aria2c -s16 -x 16 https://listbot.sicherheitstacho.eu/iprep.yaml.bz2 &&     bunzip2 *.bz2 &&     cd /root/dist/ &&     aria2c -s 16 -x 16 https://artifacts.elastic.co/downloads/logstash/logstash-8.17.2-$LS_ARCH.deb &&     dpkg -i logstash-8.17.2-$LS_ARCH.deb &&     cd /root/dist/ &&     cp entrypoint.sh /usr/bin/ &&     chmod u+x /usr/bin/entrypoint.sh &&     mkdir -p /usr/share/logstash/config &&     cp logstash.conf /etc/logstash/ &&     cp http_input.conf /etc/logstash/ &&     cp http_output.conf /etc/logstash/ &&     cp pipelines.yml /usr/share/logstash/config/pipelines.yml &&     cp pipelines_sensor.yml /usr/share/logstash/config/pipelines_sensor.yml &&     cp tpot-template.json /etc/logstash/ &&     cd /usr/share/logstash &&     bin/logstash-plugin update logstash-filter-translate &&     rm /etc/logstash/pipelines.yml &&     rm /etc/logstash/logstash.yml &&     groupmod -g 2000 logstash &&     usermod -u 2000 logstash &&     chown -R logstash:logstash /etc/listbot                                /var/log/logstash/ 			       /var/lib/logstash 			       /usr/share/logstash/data 			       /usr/share/logstash/config/pipelines* &&     chmod 755 /usr/bin/entrypoint.sh &&     apt-get autoremove -y --purge &&     apt-get clean &&         rm -rf /var/lib/apt/lists/*             /tmp/* /var/tmp/*             /root/.cache             /root/*
+#10 CACHED
+
+#11 [logstash linux/arm64 2/3] COPY dist/ /root/dist/
+#11 CACHED
+
+#12 [logstash linux/arm64 3/3] RUN apt-get update -y &&     apt-get upgrade -y &&     apt-get install -y     		 adduser              aria2              bash              bzip2              curl &&     ARCH=$(arch) &&     if [ "$ARCH" = "x86_64" ]; then LS_ARCH="amd64"; export _JAVA_OPTIONS=""; fi &&     if [ "$ARCH" = "aarch64" ]; then LS_ARCH="arm64"; export _JAVA_OPTIONS="-XX:UseSVE=0"; fi &&     echo "$ARCH" &&     mkdir -p /etc/listbot &&     cd /etc/listbot &&     aria2c -s16 -x 16 https://listbot.sicherheitstacho.eu/cve.yaml.bz2 &&     aria2c -s16 -x 16 https://listbot.sicherheitstacho.eu/iprep.yaml.bz2 &&     bunzip2 *.bz2 &&     cd /root/dist/ &&     aria2c -s 16 -x 16 https://artifacts.elastic.co/downloads/logstash/logstash-8.17.2-$LS_ARCH.deb &&     dpkg -i logstash-8.17.2-$LS_ARCH.deb &&     cd /root/dist/ &&     cp entrypoint.sh /usr/bin/ &&     chmod u+x /usr/bin/entrypoint.sh &&     mkdir -p /usr/share/logstash/config &&     cp logstash.conf /etc/logstash/ &&     cp http_input.conf /etc/logstash/ &&     cp http_output.conf /etc/logstash/ &&     cp pipelines.yml /usr/share/logstash/config/pipelines.yml &&     cp pipelines_sensor.yml /usr/share/logstash/config/pipelines_sensor.yml &&     cp tpot-template.json /etc/logstash/ &&     cd /usr/share/logstash &&     bin/logstash-plugin update logstash-filter-translate &&     rm /etc/logstash/pipelines.yml &&     rm /etc/logstash/logstash.yml &&     groupmod -g 2000 logstash &&     usermod -u 2000 logstash &&     chown -R logstash:logstash /etc/listbot                                /var/log/logstash/ 			       /var/lib/logstash 			       /usr/share/logstash/data 			       /usr/share/logstash/config/pipelines* &&     chmod 755 /usr/bin/entrypoint.sh &&     apt-get autoremove -y --purge &&     apt-get clean &&         rm -rf /var/lib/apt/lists/*             /tmp/* /var/tmp/*             /root/.cache             /root/*
+#12 CACHED
+
+#13 [logstash] exporting to image
+#13 exporting layers done
+#13 exporting manifest sha256:e4b0bf72c489197fd62c05f16fdf73bad8de007db5e96431a3b6404730967a35 0.0s done
+#13 exporting config sha256:3ff4f4c2399fc02665fff87c0d055c86b0e6152914091bc7c168cfd2c6a13e1f done
+#13 exporting attestation manifest sha256:481235f3ac4e3730bb65ecf3335b47c257953460716bf579c941e8e0ec916227 0.0s done
+#13 exporting manifest sha256:0b55de5a5cff24d0f951587b8d130e3570e4992808f4b314d7ea51e5d1e31301 0.1s done
+#13 exporting config sha256:658fbe0d6c66604a58025128fb32ccf4a339a9a49345d35bec250a38428a9c42 0.1s done
+#13 exporting attestation manifest sha256:1825ae7256a8ef690a2ca1ca439e9ee6a990d5af1f24f2aabb20f814ba88cbeb 0.0s done
+#13 exporting manifest list sha256:ecb1b0b42ebc0a0424dd47dcfbb99b4c0911677df16a0c584898e551a3e34385 0.0s done
+#13 pushing layers
+#13 ...
+
+#14 [logstash auth] f0rc3ps/logstash:pull,push token for registry-1.docker.io
+#14 DONE 0.0s
+
+#13 [logstash] exporting to image
+#13 pushing layers 2.1s done
+#13 pushing manifest for docker.io/f0rc3ps/logstash:25.0.1@sha256:ecb1b0b42ebc0a0424dd47dcfbb99b4c0911677df16a0c584898e551a3e34385
+#13 pushing manifest for docker.io/f0rc3ps/logstash:25.0.1@sha256:ecb1b0b42ebc0a0424dd47dcfbb99b4c0911677df16a0c584898e551a3e34385 2.8s done
+#13 ...
+
+#15 [logstash auth] asc3t1c/logstash:pull,push token for ghcr.io
+#15 DONE 0.0s
+
+#13 [logstash] exporting to image
+#13 pushing layers 2.0s done
+#13 pushing manifest for ghcr.io/asc3t1c/logstash:25.0.1@sha256:ecb1b0b42ebc0a0424dd47dcfbb99b4c0911677df16a0c584898e551a3e34385
+#13 pushing manifest for ghcr.io/asc3t1c/logstash:25.0.1@sha256:ecb1b0b42ebc0a0424dd47dcfbb99b4c0911677df16a0c584898e551a3e34385 2.5s done
+#13 DONE 9.7s
+
+#16 [logstash] resolving provenance for metadata file
+#16 DONE 0.0s

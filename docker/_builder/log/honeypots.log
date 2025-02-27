@@ -1,0 +1,81 @@
+Compose now can delegate build to bake for better performances
+Just set COMPOSE_BAKE=true
+#0 building with "mybuilder" instance using docker-container driver
+
+#1 [honeypots internal] load build definition from Dockerfile
+#1 transferring dockerfile: 1.85kB 0.0s done
+#1 DONE 0.0s
+
+#2 [honeypots linux/amd64 internal] load metadata for docker.io/library/alpine:3.20
+#2 DONE 0.2s
+
+#3 [honeypots linux/arm64 internal] load metadata for docker.io/library/alpine:3.20
+#3 DONE 0.2s
+
+#4 [honeypots internal] load .dockerignore
+#4 transferring context: 2B done
+#4 DONE 0.0s
+
+#5 [honeypots linux/arm64 1/4] FROM docker.io/library/alpine:3.20@sha256:de4fe7064d8f98419ea6b49190df1abbf43450c1702eeb864fe9ced453c1cc5f
+#5 resolve docker.io/library/alpine:3.20@sha256:de4fe7064d8f98419ea6b49190df1abbf43450c1702eeb864fe9ced453c1cc5f 0.0s done
+#5 DONE 0.0s
+
+#6 [honeypots linux/amd64 1/4] FROM docker.io/library/alpine:3.20@sha256:de4fe7064d8f98419ea6b49190df1abbf43450c1702eeb864fe9ced453c1cc5f
+#6 resolve docker.io/library/alpine:3.20@sha256:de4fe7064d8f98419ea6b49190df1abbf43450c1702eeb864fe9ced453c1cc5f 0.0s done
+#6 DONE 0.0s
+
+#7 [honeypots internal] load build context
+#7 transferring context: 62B done
+#7 DONE 0.0s
+
+#8 [honeypots linux/arm64 3/4] RUN apk --no-cache -U upgrade && 	apk --no-cache -U add 		build-base 		freetds 		freetds-dev 		gcc 		git 		hiredis 		jpeg-dev 		libcap 		libffi-dev 		libpq 		musl-dev 		openssl 		openssl-dev 		postgresql-dev 		py3-chardet 		py3-click 		py3-cryptography 		py3-dnspython 		py3-flask 		py3-future 		py3-hiredis 		py3-itsdangerous 		py3-jinja2 		py3-ldap3 		py3-markupsafe 		py3-openssl 		py3-packaging 		py3-pip 		py3-psycopg2 		py3-pycryptodomex 		py3-werkzeug 		py3-wheel 		python3 		python3-dev 		zlib-dev &&     mkdir -p /opt              /var/log/honeypots &&     cd /opt/ &&     git clone https://github.com/qeeqbox/honeypots &&     cd honeypots && 	git checkout 3f52129fbe9a712e86c54207ceb088c3b2c2af17 &&     pip3 install --break-system-packages --no-cache-dir . &&     setcap cap_net_bind_service=+ep $(readlink -f $(type -P python3)) &&     addgroup -g 2000 honeypots &&     adduser -S -H -s /bin/ash -u 2000 -D -g 2000 honeypots &&     chown honeypots:honeypots -R /opt/honeypots &&     chown honeypots:honeypots -R /var/log/honeypots &&     mv /root/dist/config.json /opt/honeypots/ &&     apk del --purge build-base 		freetds-dev 		git 		jpeg-dev 		libffi-dev 		openssl-dev 		postgresql-dev 		py3-pip 		python3-dev 		zlib-dev && 	rm -rf /root/* 			/var/cache/apk/* 			/opt/honeypots/.git
+#8 CACHED
+
+#9 [honeypots linux/arm64 2/4] COPY dist/ /root/dist/
+#9 CACHED
+
+#10 [honeypots linux/arm64 4/4] WORKDIR /opt/honeypots/
+#10 CACHED
+
+#11 [honeypots linux/amd64 3/4] RUN apk --no-cache -U upgrade && 	apk --no-cache -U add 		build-base 		freetds 		freetds-dev 		gcc 		git 		hiredis 		jpeg-dev 		libcap 		libffi-dev 		libpq 		musl-dev 		openssl 		openssl-dev 		postgresql-dev 		py3-chardet 		py3-click 		py3-cryptography 		py3-dnspython 		py3-flask 		py3-future 		py3-hiredis 		py3-itsdangerous 		py3-jinja2 		py3-ldap3 		py3-markupsafe 		py3-openssl 		py3-packaging 		py3-pip 		py3-psycopg2 		py3-pycryptodomex 		py3-werkzeug 		py3-wheel 		python3 		python3-dev 		zlib-dev &&     mkdir -p /opt              /var/log/honeypots &&     cd /opt/ &&     git clone https://github.com/qeeqbox/honeypots &&     cd honeypots && 	git checkout 3f52129fbe9a712e86c54207ceb088c3b2c2af17 &&     pip3 install --break-system-packages --no-cache-dir . &&     setcap cap_net_bind_service=+ep $(readlink -f $(type -P python3)) &&     addgroup -g 2000 honeypots &&     adduser -S -H -s /bin/ash -u 2000 -D -g 2000 honeypots &&     chown honeypots:honeypots -R /opt/honeypots &&     chown honeypots:honeypots -R /var/log/honeypots &&     mv /root/dist/config.json /opt/honeypots/ &&     apk del --purge build-base 		freetds-dev 		git 		jpeg-dev 		libffi-dev 		openssl-dev 		postgresql-dev 		py3-pip 		python3-dev 		zlib-dev && 	rm -rf /root/* 			/var/cache/apk/* 			/opt/honeypots/.git
+#11 CACHED
+
+#12 [honeypots linux/amd64 2/4] COPY dist/ /root/dist/
+#12 CACHED
+
+#13 [honeypots linux/amd64 4/4] WORKDIR /opt/honeypots/
+#13 CACHED
+
+#14 [honeypots] exporting to image
+#14 exporting layers done
+#14 exporting manifest sha256:f87066da49173680931c5dfc7415b58968b520ff39002e9ab5dd96ab0ab27324 0.0s done
+#14 exporting config sha256:32d22bd04e8caace85f921f529cd516a104fe3c466bed2bd97844658c6317040 done
+#14 exporting attestation manifest sha256:912e993117d5cce14640520ffa74467e02fa581d89b91a5a20d3eff2d57b0a16
+#14 exporting attestation manifest sha256:912e993117d5cce14640520ffa74467e02fa581d89b91a5a20d3eff2d57b0a16 0.0s done
+#14 exporting manifest sha256:20d4d53bf65d61b4af9c8736cab92d1e486f389a0928a7f356c790f60545a9be done
+#14 exporting config sha256:74398892dfce61600ceebb8ccdb75aa2cebed2ae3fc7eca45b3976d6aa0abeeb done
+#14 exporting attestation manifest sha256:9673bd616fbb1e15391eda9d94e6e41f058fb60ffc5554ec20763c25c01aaca2 0.0s done
+#14 exporting manifest list sha256:5109832aee740504ea2c95a4633144b882f2005b93dfa6fda5ea8bb4a3762487 done
+#14 pushing layers
+#14 ...
+
+#15 [honeypots auth] f0rc3ps/honeypots:pull,push token for registry-1.docker.io
+#15 DONE 0.0s
+
+#14 [honeypots] exporting to image
+#14 pushing layers 2.4s done
+#14 pushing manifest for docker.io/f0rc3ps/honeypots:25.0.1@sha256:5109832aee740504ea2c95a4633144b882f2005b93dfa6fda5ea8bb4a3762487
+#14 pushing manifest for docker.io/f0rc3ps/honeypots:25.0.1@sha256:5109832aee740504ea2c95a4633144b882f2005b93dfa6fda5ea8bb4a3762487 3.2s done
+#14 ...
+
+#16 [honeypots auth] asc3t1c/honeypots:pull,push token for ghcr.io
+#16 DONE 0.0s
+
+#14 [honeypots] exporting to image
+#14 pushing layers 2.0s done
+#14 pushing manifest for ghcr.io/asc3t1c/honeypots:25.0.1@sha256:5109832aee740504ea2c95a4633144b882f2005b93dfa6fda5ea8bb4a3762487
+#14 pushing manifest for ghcr.io/asc3t1c/honeypots:25.0.1@sha256:5109832aee740504ea2c95a4633144b882f2005b93dfa6fda5ea8bb4a3762487 2.6s done
+#14 DONE 10.3s
+
+#17 [honeypots] resolving provenance for metadata file
+#17 DONE 0.0s

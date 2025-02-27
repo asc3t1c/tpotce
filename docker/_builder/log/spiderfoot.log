@@ -1,0 +1,84 @@
+Compose now can delegate build to bake for better performances
+Just set COMPOSE_BAKE=true
+#0 building with "mybuilder" instance using docker-container driver
+
+#1 [spiderfoot internal] load build definition from Dockerfile
+#1 transferring dockerfile: 2.37kB 0.0s done
+#1 DONE 0.0s
+
+#2 [spiderfoot linux/arm64 internal] load metadata for docker.io/library/alpine:3.20
+#2 ...
+
+#3 [spiderfoot linux/amd64 internal] load metadata for docker.io/library/alpine:3.20
+#3 DONE 0.4s
+
+#2 [spiderfoot linux/arm64 internal] load metadata for docker.io/library/alpine:3.20
+#2 DONE 0.4s
+
+#4 [spiderfoot internal] load .dockerignore
+#4 transferring context: 2B done
+#4 DONE 0.0s
+
+#5 [spiderfoot linux/amd64 1/4] FROM docker.io/library/alpine:3.20@sha256:de4fe7064d8f98419ea6b49190df1abbf43450c1702eeb864fe9ced453c1cc5f
+#5 resolve docker.io/library/alpine:3.20@sha256:de4fe7064d8f98419ea6b49190df1abbf43450c1702eeb864fe9ced453c1cc5f 0.0s done
+#5 DONE 0.0s
+
+#6 [spiderfoot linux/arm64 1/4] FROM docker.io/library/alpine:3.20@sha256:de4fe7064d8f98419ea6b49190df1abbf43450c1702eeb864fe9ced453c1cc5f
+#6 resolve docker.io/library/alpine:3.20@sha256:de4fe7064d8f98419ea6b49190df1abbf43450c1702eeb864fe9ced453c1cc5f 0.0s done
+#6 DONE 0.0s
+
+#7 [spiderfoot internal] load build context
+#7 transferring context: 67B done
+#7 DONE 0.0s
+
+#8 [spiderfoot linux/amd64 3/4] RUN apk --no-cache -U upgrade && 	apk --no-cache -U add 		build-base 		curl 		git 		jpeg-dev 		libffi-dev 		libxml2 		libxml2-dev 		libxslt 		libxslt-dev 		musl 		musl-dev 		openjpeg-dev 		openssl 		openssl-dev 		python3 		python3-dev 		py3-cryptography 		py3-ipaddr 		py3-beautifulsoup4 		py3-dnspython 		py3-exifread 		py3-future 		py3-jaraco.classes 		py3-jaraco.context 		py3-jaraco.functools 		py3-lxml 		py3-mako 		py3-more-itertools 		py3-netaddr 		py3-networkx 		py3-openssl 		py3-pillow 		py3-portend 		py3-phonenumbers 		py3-pip 		py3-pysocks 		py3-requests 		py3-tempora 		py3-wheel 		py3-xlsxwriter 		py3-yaml 		swig 		tinyxml 		tinyxml-dev 		zlib-dev &&     addgroup -g 2000 spiderfoot &&     adduser -S -s /bin/ash -u 2000 -D -g 2000 spiderfoot && 	git config --global --add safe.directory /home/spiderfoot &&     git clone https://github.com/smicallef/spiderfoot /home/spiderfoot &&     cd /home/spiderfoot &&     git checkout 0f815a203afebf05c98b605dba5cf0475a0ee5fd &&     pip3 install --no-cache-dir --break-system-packages --upgrade pip &&     cp /root/dist/requirements.txt . &&     pip3 install --no-cache-dir --break-system-packages --no-cache-dir -r requirements.txt &&     mkdir -p /home/spiderfoot/.spiderfoot/logs &&     chown -R spiderfoot:spiderfoot /home/spiderfoot &&     sed -i "s#'root': '\/'#'root': '\/spiderfoot'#" /home/spiderfoot/sf.py &&     sed -i "s#'root', '\/'#'root', '\/spiderfoot'#" /home/spiderfoot/sf.py &&     apk del --purge build-base 		gcc 		git 		libffi-dev 		libxml2-dev 		libxslt-dev 		musl-dev 		openssl-dev 		python3-dev 		swig 		tinyxml-dev && 	rm -rf /var/cache/apk/* /home/spiderfoot/.git
+#8 CACHED
+
+#9 [spiderfoot linux/amd64 2/4] COPY dist/ /root/dist/
+#9 CACHED
+
+#10 [spiderfoot linux/arm64 3/4] RUN apk --no-cache -U upgrade && 	apk --no-cache -U add 		build-base 		curl 		git 		jpeg-dev 		libffi-dev 		libxml2 		libxml2-dev 		libxslt 		libxslt-dev 		musl 		musl-dev 		openjpeg-dev 		openssl 		openssl-dev 		python3 		python3-dev 		py3-cryptography 		py3-ipaddr 		py3-beautifulsoup4 		py3-dnspython 		py3-exifread 		py3-future 		py3-jaraco.classes 		py3-jaraco.context 		py3-jaraco.functools 		py3-lxml 		py3-mako 		py3-more-itertools 		py3-netaddr 		py3-networkx 		py3-openssl 		py3-pillow 		py3-portend 		py3-phonenumbers 		py3-pip 		py3-pysocks 		py3-requests 		py3-tempora 		py3-wheel 		py3-xlsxwriter 		py3-yaml 		swig 		tinyxml 		tinyxml-dev 		zlib-dev &&     addgroup -g 2000 spiderfoot &&     adduser -S -s /bin/ash -u 2000 -D -g 2000 spiderfoot && 	git config --global --add safe.directory /home/spiderfoot &&     git clone https://github.com/smicallef/spiderfoot /home/spiderfoot &&     cd /home/spiderfoot &&     git checkout 0f815a203afebf05c98b605dba5cf0475a0ee5fd &&     pip3 install --no-cache-dir --break-system-packages --upgrade pip &&     cp /root/dist/requirements.txt . &&     pip3 install --no-cache-dir --break-system-packages --no-cache-dir -r requirements.txt &&     mkdir -p /home/spiderfoot/.spiderfoot/logs &&     chown -R spiderfoot:spiderfoot /home/spiderfoot &&     sed -i "s#'root': '\/'#'root': '\/spiderfoot'#" /home/spiderfoot/sf.py &&     sed -i "s#'root', '\/'#'root', '\/spiderfoot'#" /home/spiderfoot/sf.py &&     apk del --purge build-base 		gcc 		git 		libffi-dev 		libxml2-dev 		libxslt-dev 		musl-dev 		openssl-dev 		python3-dev 		swig 		tinyxml-dev && 	rm -rf /var/cache/apk/* /home/spiderfoot/.git
+#10 CACHED
+
+#11 [spiderfoot linux/arm64 2/4] COPY dist/ /root/dist/
+#11 CACHED
+
+#12 [spiderfoot linux/amd64 4/4] WORKDIR /home/spiderfoot
+#12 CACHED
+
+#13 [spiderfoot linux/arm64 4/4] WORKDIR /home/spiderfoot
+#13 CACHED
+
+#14 [spiderfoot] exporting to image
+#14 exporting layers done
+#14 exporting manifest sha256:5e481acc04e41b16e7366d1d463254f195cafdf614168d1cd16fc6c53b296f29 done
+#14 exporting config sha256:20668f5ec541c9d146fd89e732cdbd4d348584e4511aa453193128d4ac3eca8d done
+#14 exporting attestation manifest sha256:95aa4e73ce1e7c5f870e15cb4a4c3a255684732fe0b38411eb203cca9679a3b2 0.0s done
+#14 exporting manifest sha256:5cef6c0adfae64fc7774771215b91f47a923ea2f068d246b175a4fece67e93f3
+#14 exporting manifest sha256:5cef6c0adfae64fc7774771215b91f47a923ea2f068d246b175a4fece67e93f3 done
+#14 exporting config sha256:1fa84b6411b963594b889b1ca9c21b405ea2a404239b9e065c07fcf97825ee8a done
+#14 exporting attestation manifest sha256:77443582652e3c8d4f9ae84410fa1f2b13134ca0f174eef1fab766bdf882f097 0.0s done
+#14 exporting manifest list sha256:443a360feb473d84330adbb398bd151931790a94b6741a4d07e9461d92664f22 done
+#14 pushing layers
+#14 ...
+
+#15 [spiderfoot auth] f0rc3ps/spiderfoot:pull,push token for registry-1.docker.io
+#15 DONE 0.0s
+
+#14 [spiderfoot] exporting to image
+#14 pushing layers 2.6s done
+#14 pushing manifest for docker.io/f0rc3ps/spiderfoot:25.0.1@sha256:443a360feb473d84330adbb398bd151931790a94b6741a4d07e9461d92664f22
+#14 pushing manifest for docker.io/f0rc3ps/spiderfoot:25.0.1@sha256:443a360feb473d84330adbb398bd151931790a94b6741a4d07e9461d92664f22 3.2s done
+#14 ...
+
+#16 [spiderfoot auth] asc3t1c/spiderfoot:pull,push token for ghcr.io
+#16 DONE 0.0s
+
+#14 [spiderfoot] exporting to image
+#14 pushing layers 2.0s done
+#14 pushing manifest for ghcr.io/asc3t1c/spiderfoot:25.0.1@sha256:443a360feb473d84330adbb398bd151931790a94b6741a4d07e9461d92664f22
+#14 pushing manifest for ghcr.io/asc3t1c/spiderfoot:25.0.1@sha256:443a360feb473d84330adbb398bd151931790a94b6741a4d07e9461d92664f22 2.5s done
+#14 DONE 10.4s
+
+#17 [spiderfoot] resolving provenance for metadata file
+#17 DONE 0.0s

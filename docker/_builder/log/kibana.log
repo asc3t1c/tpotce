@@ -1,0 +1,84 @@
+Compose now can delegate build to bake for better performances
+Just set COMPOSE_BAKE=true
+#0 building with "mybuilder" instance using docker-container driver
+
+#1 [kibana internal] load build definition from Dockerfile
+#1 transferring dockerfile: 2.58kB 0.0s done
+#1 DONE 0.0s
+
+#2 [kibana auth] library/node:pull token for registry-1.docker.io
+#2 DONE 0.0s
+
+#3 [kibana linux/arm64 internal] load metadata for docker.io/library/node:20.18.2-alpine3.20
+#3 DONE 0.7s
+
+#4 [kibana linux/amd64 internal] load metadata for docker.io/library/node:20.18.2-alpine3.20
+#4 DONE 0.8s
+
+#5 [kibana internal] load .dockerignore
+#5 transferring context: 2B done
+#5 DONE 0.0s
+
+#6 [kibana internal] load build context
+#6 DONE 0.0s
+
+#7 [kibana linux/amd64 1/3] FROM docker.io/library/node:20.18.2-alpine3.20@sha256:40cbd847a2db119ba716f2861b04076bcb575a0051923459271a18ff80944f7f
+#7 resolve docker.io/library/node:20.18.2-alpine3.20@sha256:40cbd847a2db119ba716f2861b04076bcb575a0051923459271a18ff80944f7f
+#7 ...
+
+#8 [kibana linux/arm64 1/3] FROM docker.io/library/node:20.18.2-alpine3.20@sha256:40cbd847a2db119ba716f2861b04076bcb575a0051923459271a18ff80944f7f
+#8 resolve docker.io/library/node:20.18.2-alpine3.20@sha256:40cbd847a2db119ba716f2861b04076bcb575a0051923459271a18ff80944f7f 0.0s done
+#8 DONE 0.0s
+
+#7 [kibana linux/amd64 1/3] FROM docker.io/library/node:20.18.2-alpine3.20@sha256:40cbd847a2db119ba716f2861b04076bcb575a0051923459271a18ff80944f7f
+#7 resolve docker.io/library/node:20.18.2-alpine3.20@sha256:40cbd847a2db119ba716f2861b04076bcb575a0051923459271a18ff80944f7f 0.0s done
+#7 DONE 0.0s
+
+#6 [kibana internal] load build context
+#6 transferring context: 93B done
+#6 DONE 0.0s
+
+#9 [kibana linux/arm64 2/3] COPY dist/ /root/dist/
+#9 CACHED
+
+#10 [kibana linux/arm64 3/3] RUN apk --no-cache -U upgrade &&     apk --no-cache -U add             aria2             curl             gcompat &&     ARCH=$(arch) &&       if [ "$ARCH" = "x86_64" ]; then KB_ARCH="x86_64"; fi &&       if [ "$ARCH" = "aarch64" ]; then KB_ARCH="aarch64"; fi &&     echo "$ARCH" &&     cd /root/dist/ &&     aria2c -s 16 -x 16 https://artifacts.elastic.co/downloads/kibana/kibana-8.17.2-linux-$KB_ARCH.tar.gz &&     mkdir -p /usr/share/kibana &&     tar xvfz kibana-8.17.2-linux-$KB_ARCH.tar.gz --strip-components=1 -C /usr/share/kibana/ &&     rm /usr/share/kibana/node/glibc-217/bin/node &&     ln -s /usr/local/bin/node /usr/share/kibana/node/glibc-217/bin/node &&     sed -i 's/#server.basePath: ""/server.basePath: "\/kibana"/' /usr/share/kibana/config/kibana.yml &&     sed -i 's/#server.host: "localhost"/server.host: "0.0.0.0"/' /usr/share/kibana/config/kibana.yml &&     sed -i 's/#elasticsearch.hosts: \["http:\/\/localhost:9200"\]/elasticsearch.hosts: \["http:\/\/elasticsearch:9200"\]/' /usr/share/kibana/config/kibana.yml &&     sed -i 's/#server.rewriteBasePath: false/server.rewriteBasePath: false/' /usr/share/kibana/config/kibana.yml &&     echo "xpack.reporting.roles.enabled: false" >> /usr/share/kibana/config/kibana.yml &&     echo "elasticsearch.requestTimeout: 60000" >> /usr/share/kibana/config/kibana.yml &&     echo "elasticsearch.shardTimeout: 60000" >> /usr/share/kibana/config/kibana.yml &&     echo "unifiedSearch.autocomplete.valueSuggestions.timeout: 60000" >> /usr/share/kibana/config/kibana.yml &&     echo "unifiedSearch.autocomplete.valueSuggestions.terminateAfter: 1000000" >> /usr/share/kibana/config/kibana.yml &&     rm -rf /usr/share/kibana/optimize/bundles/* &&     /usr/share/kibana/bin/kibana --optimize --allow-root &&     addgroup -g 2000 kibana &&     adduser -S -H -s /bin/ash -u 2000 -D -g 2000 kibana &&     chown -R kibana:kibana /usr/share/kibana/data &&     chmod 755 -R /usr/share/kibana/config &&     apk del --purge aria2 &&     rm -rf /root/*         /tmp/*         /var/cache/apk/*
+#10 CACHED
+
+#11 [kibana linux/amd64 2/3] COPY dist/ /root/dist/
+#11 CACHED
+
+#12 [kibana linux/amd64 3/3] RUN apk --no-cache -U upgrade &&     apk --no-cache -U add             aria2             curl             gcompat &&     ARCH=$(arch) &&       if [ "$ARCH" = "x86_64" ]; then KB_ARCH="x86_64"; fi &&       if [ "$ARCH" = "aarch64" ]; then KB_ARCH="aarch64"; fi &&     echo "$ARCH" &&     cd /root/dist/ &&     aria2c -s 16 -x 16 https://artifacts.elastic.co/downloads/kibana/kibana-8.17.2-linux-$KB_ARCH.tar.gz &&     mkdir -p /usr/share/kibana &&     tar xvfz kibana-8.17.2-linux-$KB_ARCH.tar.gz --strip-components=1 -C /usr/share/kibana/ &&     rm /usr/share/kibana/node/glibc-217/bin/node &&     ln -s /usr/local/bin/node /usr/share/kibana/node/glibc-217/bin/node &&     sed -i 's/#server.basePath: ""/server.basePath: "\/kibana"/' /usr/share/kibana/config/kibana.yml &&     sed -i 's/#server.host: "localhost"/server.host: "0.0.0.0"/' /usr/share/kibana/config/kibana.yml &&     sed -i 's/#elasticsearch.hosts: \["http:\/\/localhost:9200"\]/elasticsearch.hosts: \["http:\/\/elasticsearch:9200"\]/' /usr/share/kibana/config/kibana.yml &&     sed -i 's/#server.rewriteBasePath: false/server.rewriteBasePath: false/' /usr/share/kibana/config/kibana.yml &&     echo "xpack.reporting.roles.enabled: false" >> /usr/share/kibana/config/kibana.yml &&     echo "elasticsearch.requestTimeout: 60000" >> /usr/share/kibana/config/kibana.yml &&     echo "elasticsearch.shardTimeout: 60000" >> /usr/share/kibana/config/kibana.yml &&     echo "unifiedSearch.autocomplete.valueSuggestions.timeout: 60000" >> /usr/share/kibana/config/kibana.yml &&     echo "unifiedSearch.autocomplete.valueSuggestions.terminateAfter: 1000000" >> /usr/share/kibana/config/kibana.yml &&     rm -rf /usr/share/kibana/optimize/bundles/* &&     /usr/share/kibana/bin/kibana --optimize --allow-root &&     addgroup -g 2000 kibana &&     adduser -S -H -s /bin/ash -u 2000 -D -g 2000 kibana &&     chown -R kibana:kibana /usr/share/kibana/data &&     chmod 755 -R /usr/share/kibana/config &&     apk del --purge aria2 &&     rm -rf /root/*         /tmp/*         /var/cache/apk/*
+#12 CACHED
+
+#13 [kibana] exporting to image
+#13 exporting layers done
+#13 exporting manifest sha256:a899d94c654dbf3dfd591f235cdd381f3229097ac664e31a7f0cc45e0b98a53b 0.0s done
+#13 exporting config sha256:9111f5c93e2ffe581e925113551301bd0ef7a814d7108d11c072dbb721d53452 0.0s done
+#13 exporting attestation manifest sha256:9d8a0dbbf801f448fd2e239fcac0b6bfc5f6a203a1af55f00a3128156f00f60a 0.0s done
+#13 exporting manifest sha256:b9286c65dfaccd7c1f330504cb6315ab848bb36bed7ac7940c18be2271be6ed8 0.0s done
+#13 exporting config sha256:77c8ed5757eef1f8dda08471e29855daf48cdcc41839595b79988791ccd64e1f 0.0s done
+#13 exporting attestation manifest sha256:7671a9418d1ea243c84c0265f314acfc4ae4ec7d48442ebc6f0c8d6cb5efdbbf 0.0s done
+#13 exporting manifest list sha256:84bcaad52721c203a41bdbb462ebdd98c8615d2d5ac484a3987694dbe41a4acb 0.0s done
+#13 pushing layers
+#13 ...
+
+#14 [kibana auth] f0rc3ps/kibana:pull,push token for registry-1.docker.io
+#14 DONE 0.0s
+
+#13 [kibana] exporting to image
+#13 pushing layers 2.2s done
+#13 pushing manifest for docker.io/f0rc3ps/kibana:25.0.1@sha256:84bcaad52721c203a41bdbb462ebdd98c8615d2d5ac484a3987694dbe41a4acb
+#13 pushing manifest for docker.io/f0rc3ps/kibana:25.0.1@sha256:84bcaad52721c203a41bdbb462ebdd98c8615d2d5ac484a3987694dbe41a4acb 3.3s done
+#13 ...
+
+#15 [kibana auth] asc3t1c/kibana:pull,push token for ghcr.io
+#15 DONE 0.0s
+
+#13 [kibana] exporting to image
+#13 pushing layers 1.9s done
+#13 pushing manifest for ghcr.io/asc3t1c/kibana:25.0.1@sha256:84bcaad52721c203a41bdbb462ebdd98c8615d2d5ac484a3987694dbe41a4acb
+#13 pushing manifest for ghcr.io/asc3t1c/kibana:25.0.1@sha256:84bcaad52721c203a41bdbb462ebdd98c8615d2d5ac484a3987694dbe41a4acb 2.4s done
+#13 DONE 10.0s
+
+#16 [kibana] resolving provenance for metadata file
+#16 DONE 0.0s

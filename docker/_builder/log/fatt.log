@@ -1,0 +1,73 @@
+Compose now can delegate build to bake for better performances
+Just set COMPOSE_BAKE=true
+#0 building with "mybuilder" instance using docker-container driver
+
+#1 [fatt internal] load build definition from Dockerfile
+#1 transferring dockerfile: 1.16kB 0.0s done
+#1 DONE 0.0s
+
+#2 [fatt linux/arm64 internal] load metadata for docker.io/library/alpine:3.20
+#2 ...
+
+#3 [fatt linux/amd64 internal] load metadata for docker.io/library/alpine:3.20
+#3 DONE 0.2s
+
+#2 [fatt linux/arm64 internal] load metadata for docker.io/library/alpine:3.20
+#2 DONE 0.2s
+
+#4 [fatt internal] load .dockerignore
+#4 transferring context: 2B done
+#4 DONE 0.0s
+
+#5 [fatt linux/amd64 1/3] FROM docker.io/library/alpine:3.20@sha256:de4fe7064d8f98419ea6b49190df1abbf43450c1702eeb864fe9ced453c1cc5f
+#5 resolve docker.io/library/alpine:3.20@sha256:de4fe7064d8f98419ea6b49190df1abbf43450c1702eeb864fe9ced453c1cc5f 0.0s done
+#5 DONE 0.0s
+
+#6 [fatt linux/amd64 2/3] RUN apk --no-cache -U upgrade &&     apk --no-cache -U add 		git 		libcap 		py3-libxml2 		py3-lxml 		py3-pip 		python3 		python3-dev 		tshark &&     addgroup -g 2000 fatt &&     adduser -S -s /bin/ash -u 2000 -D -g 2000 fatt &&     mkdir -p /opt &&     cd /opt &&     git clone https://github.com/0x4D31/fatt &&     cd fatt &&     git checkout c29e553514281e50781f86932b82337a5ada5640 &&     mkdir -p log &&     pip3 install --no-cache-dir --break-system-packages pyshark &&     chgrp fatt /usr/bin/dumpcap &&     setcap cap_net_raw,cap_net_admin=+eip /usr/bin/dumpcap &&     chown fatt:fatt -R /opt/fatt/* &&     apk del --purge git             python3-dev &&     rm -rf /root/*             /var/cache/apk/*             /opt/fatt/.git
+#6 CACHED
+
+#7 [fatt linux/amd64 3/3] WORKDIR /opt/fatt
+#7 CACHED
+
+#8 [fatt linux/arm64 1/3] FROM docker.io/library/alpine:3.20@sha256:de4fe7064d8f98419ea6b49190df1abbf43450c1702eeb864fe9ced453c1cc5f
+#8 resolve docker.io/library/alpine:3.20@sha256:de4fe7064d8f98419ea6b49190df1abbf43450c1702eeb864fe9ced453c1cc5f 0.0s done
+#8 DONE 0.0s
+
+#9 [fatt linux/arm64 2/3] RUN apk --no-cache -U upgrade &&     apk --no-cache -U add 		git 		libcap 		py3-libxml2 		py3-lxml 		py3-pip 		python3 		python3-dev 		tshark &&     addgroup -g 2000 fatt &&     adduser -S -s /bin/ash -u 2000 -D -g 2000 fatt &&     mkdir -p /opt &&     cd /opt &&     git clone https://github.com/0x4D31/fatt &&     cd fatt &&     git checkout c29e553514281e50781f86932b82337a5ada5640 &&     mkdir -p log &&     pip3 install --no-cache-dir --break-system-packages pyshark &&     chgrp fatt /usr/bin/dumpcap &&     setcap cap_net_raw,cap_net_admin=+eip /usr/bin/dumpcap &&     chown fatt:fatt -R /opt/fatt/* &&     apk del --purge git             python3-dev &&     rm -rf /root/*             /var/cache/apk/*             /opt/fatt/.git
+#9 CACHED
+
+#10 [fatt linux/arm64 3/3] WORKDIR /opt/fatt
+#10 CACHED
+
+#11 [fatt] exporting to image
+#11 exporting layers done
+#11 exporting manifest sha256:80bc2d417c3da0d8366ae4ce3c57c233b5a2386e20c429b4d847b6865fcc26c0 0.0s done
+#11 exporting config sha256:ee9c5a3407f818dc98ff0bee40fce8cdef846d38f3100292d5c54d9a24eb199c 0.0s done
+#11 exporting attestation manifest sha256:3dc3727a9919473d88a4faa3a46c9ef6721be981cc107eb93d5faeb5303c83ea 0.0s done
+#11 exporting manifest sha256:479bf0e4ff9e7d177b005fef611b09dd2f66f9c9c1e41ab852aa843531f68324 done
+#11 exporting config sha256:9ec241fbb40a48be64313e4418b73e959863990099e8cd6a5c5cab0661b3b609 done
+#11 exporting attestation manifest sha256:a1fef96f0615c372d0b2130653b31632f450e49babd34de58a6e1a1f376b69e0 0.0s done
+#11 exporting manifest list sha256:b43f1fc310722c0097aa98463c6e0fd5b005d77504c8e085b74bcbddb168db41 0.0s done
+#11 pushing layers
+#11 ...
+
+#12 [fatt auth] f0rc3ps/fatt:pull,push token for registry-1.docker.io
+#12 DONE 0.0s
+
+#11 [fatt] exporting to image
+#11 pushing layers 7.2s done
+#11 pushing manifest for docker.io/f0rc3ps/fatt:25.0.1@sha256:b43f1fc310722c0097aa98463c6e0fd5b005d77504c8e085b74bcbddb168db41
+#11 pushing manifest for docker.io/f0rc3ps/fatt:25.0.1@sha256:b43f1fc310722c0097aa98463c6e0fd5b005d77504c8e085b74bcbddb168db41 3.0s done
+#11 ...
+
+#13 [fatt auth] asc3t1c/fatt:pull,push token for ghcr.io
+#13 DONE 0.0s
+
+#11 [fatt] exporting to image
+#11 pushing layers 1.9s done
+#11 pushing manifest for ghcr.io/asc3t1c/fatt:25.0.1@sha256:b43f1fc310722c0097aa98463c6e0fd5b005d77504c8e085b74bcbddb168db41
+#11 pushing manifest for ghcr.io/asc3t1c/fatt:25.0.1@sha256:b43f1fc310722c0097aa98463c6e0fd5b005d77504c8e085b74bcbddb168db41 2.4s done
+#11 DONE 14.6s
+
+#14 [fatt] resolving provenance for metadata file
+#14 DONE 0.0s

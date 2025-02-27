@@ -1,0 +1,79 @@
+Compose now can delegate build to bake for better performances
+Just set COMPOSE_BAKE=true
+#0 building with "mybuilder" instance using docker-container driver
+
+#1 [redis internal] load build definition from Dockerfile
+#1 transferring dockerfile: 568B 0.0s done
+#1 DONE 0.0s
+
+#2 [redis linux/amd64 internal] load metadata for docker.io/library/alpine:3.20
+#2 ...
+
+#3 [redis linux/arm64 internal] load metadata for docker.io/library/alpine:3.20
+#3 DONE 0.2s
+
+#4 [redis internal] load .dockerignore
+#4 transferring context: 2B done
+#4 DONE 0.0s
+
+#2 [redis linux/amd64 internal] load metadata for docker.io/library/alpine:3.20
+#2 DONE 0.4s
+
+#5 [redis linux/amd64 1/3] FROM docker.io/library/alpine:3.20@sha256:de4fe7064d8f98419ea6b49190df1abbf43450c1702eeb864fe9ced453c1cc5f
+#5 resolve docker.io/library/alpine:3.20@sha256:de4fe7064d8f98419ea6b49190df1abbf43450c1702eeb864fe9ced453c1cc5f
+#5 ...
+
+#6 [redis linux/arm64 1/3] FROM docker.io/library/alpine:3.20@sha256:de4fe7064d8f98419ea6b49190df1abbf43450c1702eeb864fe9ced453c1cc5f
+#6 resolve docker.io/library/alpine:3.20@sha256:de4fe7064d8f98419ea6b49190df1abbf43450c1702eeb864fe9ced453c1cc5f 0.0s done
+#6 DONE 0.0s
+
+#7 [redis internal] load build context
+#7 transferring context: 60B done
+#7 DONE 0.0s
+
+#8 [redis linux/arm64 2/3] COPY dist/ /root/dist/
+#8 CACHED
+
+#9 [redis linux/arm64 3/3] RUN apk --no-cache -U upgrade &&     apk --no-cache -U add redis shadow &&     cp /root/dist/redis.conf /etc &&     groupmod -g 2000 redis &&     usermod -u 2000 redis &&     apk del --purge             shadow &&     rm -rf /root/*            /tmp/*            /var/tmp/*            /var/cache/apk/*
+#9 CACHED
+
+#10 [redis linux/amd64 2/3] COPY dist/ /root/dist/
+#10 CACHED
+
+#11 [redis linux/amd64 3/3] RUN apk --no-cache -U upgrade &&     apk --no-cache -U add redis shadow &&     cp /root/dist/redis.conf /etc &&     groupmod -g 2000 redis &&     usermod -u 2000 redis &&     apk del --purge             shadow &&     rm -rf /root/*            /tmp/*            /var/tmp/*            /var/cache/apk/*
+#11 CACHED
+
+#12 [redis] exporting to image
+#12 exporting layers done
+#12 exporting manifest sha256:5557e710e93464474dbd059e3cab277872a95cb1d651c7ba2a6d64f9e52fcb99 0.0s done
+#12 exporting config sha256:d591107653f9a033001f0c886fd143aa0e66f67d148a0af2c3af8814837ac02e
+#12 exporting config sha256:d591107653f9a033001f0c886fd143aa0e66f67d148a0af2c3af8814837ac02e 0.0s done
+#12 exporting attestation manifest sha256:fa45607dab51216874e83506080b8bc3f86c496699ec5176169a39254dd499f1 0.0s done
+#12 exporting manifest sha256:23cfc7595bef5430ea9c55a34526da7ea3edf727f6f0a0963eea93db52a39c54 0.0s done
+#12 exporting config sha256:a373cbf1f41a755f2b196e27330ca1b445049b5800a42f0396f0445909af71e8 0.0s done
+#12 exporting attestation manifest sha256:c6cd070cd351f54acdae1f5e7e21cce4c711b09f9d7a7fec276e0d1ee4a52d23
+#12 exporting attestation manifest sha256:c6cd070cd351f54acdae1f5e7e21cce4c711b09f9d7a7fec276e0d1ee4a52d23 0.0s done
+#12 exporting manifest list sha256:91530a1779f3bb03737af14fa47f430f213f1654ca4864dcd737684105df4c7b 0.0s done
+#12 pushing layers
+#12 ...
+
+#13 [redis auth] f0rc3ps/redis:pull,push token for registry-1.docker.io
+#13 DONE 0.0s
+
+#12 [redis] exporting to image
+#12 pushing layers 2.3s done
+#12 pushing manifest for docker.io/f0rc3ps/redis:25.0.1@sha256:91530a1779f3bb03737af14fa47f430f213f1654ca4864dcd737684105df4c7b
+#12 pushing manifest for docker.io/f0rc3ps/redis:25.0.1@sha256:91530a1779f3bb03737af14fa47f430f213f1654ca4864dcd737684105df4c7b 3.0s done
+#12 ...
+
+#14 [redis auth] asc3t1c/redis:pull,push token for ghcr.io
+#14 DONE 0.0s
+
+#12 [redis] exporting to image
+#12 pushing layers 2.2s done
+#12 pushing manifest for ghcr.io/asc3t1c/redis:25.0.1@sha256:91530a1779f3bb03737af14fa47f430f213f1654ca4864dcd737684105df4c7b
+#12 pushing manifest for ghcr.io/asc3t1c/redis:25.0.1@sha256:91530a1779f3bb03737af14fa47f430f213f1654ca4864dcd737684105df4c7b 2.4s done
+#12 DONE 10.1s
+
+#15 [redis] resolving provenance for metadata file
+#15 DONE 0.0s

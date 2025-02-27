@@ -1,0 +1,78 @@
+Compose now can delegate build to bake for better performances
+Just set COMPOSE_BAKE=true
+#0 building with "mybuilder" instance using docker-container driver
+
+#1 [suricata internal] load build definition from Dockerfile
+#1 transferring dockerfile: 1.15kB done
+#1 DONE 0.0s
+
+#2 [suricata linux/arm64 internal] load metadata for docker.io/library/alpine:edge
+#2 ...
+
+#3 [suricata linux/amd64 internal] load metadata for docker.io/library/alpine:edge
+#3 DONE 0.2s
+
+#4 [suricata internal] load .dockerignore
+#4 transferring context: 2B done
+#4 DONE 0.0s
+
+#2 [suricata linux/arm64 internal] load metadata for docker.io/library/alpine:edge
+#2 DONE 0.4s
+
+#5 [suricata linux/amd64 1/3] FROM docker.io/library/alpine:edge@sha256:115729ec5cb049ba6359c3ab005ac742012d92bbaa5b8bc1a878f1e8f62c0cb8
+#5 resolve docker.io/library/alpine:edge@sha256:115729ec5cb049ba6359c3ab005ac742012d92bbaa5b8bc1a878f1e8f62c0cb8 0.0s done
+#5 DONE 0.0s
+
+#6 [suricata internal] load build context
+#6 transferring context: 311B done
+#6 DONE 0.0s
+
+#7 [suricata linux/arm64 1/3] FROM docker.io/library/alpine:edge@sha256:115729ec5cb049ba6359c3ab005ac742012d92bbaa5b8bc1a878f1e8f62c0cb8
+#7 resolve docker.io/library/alpine:edge@sha256:115729ec5cb049ba6359c3ab005ac742012d92bbaa5b8bc1a878f1e8f62c0cb8 0.0s done
+#7 DONE 0.0s
+
+#8 [suricata linux/arm64 2/3] COPY dist/ /root/dist/
+#8 CACHED
+
+#9 [suricata linux/arm64 3/3] RUN apk --no-cache -U upgrade &&     apk --no-cache -U add 		ca-certificates 		curl 		file 		hiredis 		libcap 		wget 		suricata &&     addgroup -g 2000 suri &&     adduser -S -H -u 2000 -D -g 2000 suri &&     cp /root/dist/*.yaml /etc/suricata/ &&     cp /root/dist/*.conf /etc/suricata/ &&     cp /root/dist/*.bpf /etc/suricata/ &&     cp /root/dist/update.sh /usr/bin/ &&     chmod 644 /etc/suricata/*.config &&     chmod 755 -R /var/lib/suricata &&     chmod 755 /usr/bin/update.sh &&     chown -R root:suri /tmp /run &&     suricata-update update-sources &&     suricata-update --no-test --no-reload &&     rm -rf /root/*            /tmp/*            /var/cache/apk/*
+#9 CACHED
+
+#10 [suricata linux/amd64 2/3] COPY dist/ /root/dist/
+#10 CACHED
+
+#11 [suricata linux/amd64 3/3] RUN apk --no-cache -U upgrade &&     apk --no-cache -U add 		ca-certificates 		curl 		file 		hiredis 		libcap 		wget 		suricata &&     addgroup -g 2000 suri &&     adduser -S -H -u 2000 -D -g 2000 suri &&     cp /root/dist/*.yaml /etc/suricata/ &&     cp /root/dist/*.conf /etc/suricata/ &&     cp /root/dist/*.bpf /etc/suricata/ &&     cp /root/dist/update.sh /usr/bin/ &&     chmod 644 /etc/suricata/*.config &&     chmod 755 -R /var/lib/suricata &&     chmod 755 /usr/bin/update.sh &&     chown -R root:suri /tmp /run &&     suricata-update update-sources &&     suricata-update --no-test --no-reload &&     rm -rf /root/*            /tmp/*            /var/cache/apk/*
+#11 CACHED
+
+#12 [suricata] exporting to image
+#12 exporting layers done
+#12 exporting manifest sha256:cfed4d6ecf6ffa11db19784573d8dd48c8a3c5d1ae276fccf336415e2f255d5d 0.0s done
+#12 exporting config sha256:9d85cab2cc24abb768301abf4004c9e5feb6400855661fd0533733cdcdd7089f 0.0s done
+#12 exporting attestation manifest sha256:5ec4d403719ee23f480ebcf1ddb89840a7184928d83de9c238e6bf7474696da6
+#12 exporting attestation manifest sha256:5ec4d403719ee23f480ebcf1ddb89840a7184928d83de9c238e6bf7474696da6 0.0s done
+#12 exporting manifest sha256:f7525a5fb7b5e2b7d7d6175ddf0d1e6d920c9733eefb397a28c230376518ad6d done
+#12 exporting config sha256:b37c27e8feae29f9f13c2d7a37b0c898b77cebeab45767c710f199443040ebd1 done
+#12 exporting attestation manifest sha256:e851b839d7db9e3c9ab822691ea4aae8cadba0eb972c0d2cb293c9dd16b6f65d 0.0s done
+#12 exporting manifest list sha256:e47edce174f660d1f1d661a4bdc7e6b1cc35bfad9bfe57facd96193042da84c4 0.0s done
+#12 pushing layers
+#12 ...
+
+#13 [suricata auth] f0rc3ps/suricata:pull,push token for registry-1.docker.io
+#13 DONE 0.0s
+
+#12 [suricata] exporting to image
+#12 pushing layers 2.4s done
+#12 pushing manifest for docker.io/f0rc3ps/suricata:25.0.1@sha256:e47edce174f660d1f1d661a4bdc7e6b1cc35bfad9bfe57facd96193042da84c4
+#12 pushing manifest for docker.io/f0rc3ps/suricata:25.0.1@sha256:e47edce174f660d1f1d661a4bdc7e6b1cc35bfad9bfe57facd96193042da84c4 3.0s done
+#12 ...
+
+#14 [suricata auth] asc3t1c/suricata:pull,push token for ghcr.io
+#14 DONE 0.0s
+
+#12 [suricata] exporting to image
+#12 pushing layers 1.8s done
+#12 pushing manifest for ghcr.io/asc3t1c/suricata:25.0.1@sha256:e47edce174f660d1f1d661a4bdc7e6b1cc35bfad9bfe57facd96193042da84c4
+#12 pushing manifest for ghcr.io/asc3t1c/suricata:25.0.1@sha256:e47edce174f660d1f1d661a4bdc7e6b1cc35bfad9bfe57facd96193042da84c4 2.4s done
+#12 DONE 9.7s
+
+#15 [suricata] resolving provenance for metadata file
+#15 DONE 0.0s

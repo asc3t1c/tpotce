@@ -1,0 +1,81 @@
+Compose now can delegate build to bake for better performances
+Just set COMPOSE_BAKE=true
+#0 building with "mybuilder" instance using docker-container driver
+
+#1 [heralding internal] load build definition from Dockerfile
+#1 transferring dockerfile: 1.71kB 0.0s done
+#1 DONE 0.0s
+
+#2 [heralding linux/amd64 internal] load metadata for docker.io/library/alpine:3.20
+#2 DONE 0.3s
+
+#3 [heralding linux/arm64 internal] load metadata for docker.io/library/alpine:3.20
+#3 DONE 0.4s
+
+#4 [heralding internal] load .dockerignore
+#4 transferring context: 2B done
+#4 DONE 0.0s
+
+#5 [heralding linux/amd64 1/4] FROM docker.io/library/alpine:3.20@sha256:de4fe7064d8f98419ea6b49190df1abbf43450c1702eeb864fe9ced453c1cc5f
+#5 resolve docker.io/library/alpine:3.20@sha256:de4fe7064d8f98419ea6b49190df1abbf43450c1702eeb864fe9ced453c1cc5f 0.0s done
+#5 DONE 0.0s
+
+#6 [heralding linux/arm64 1/4] FROM docker.io/library/alpine:3.20@sha256:de4fe7064d8f98419ea6b49190df1abbf43450c1702eeb864fe9ced453c1cc5f
+#6 resolve docker.io/library/alpine:3.20@sha256:de4fe7064d8f98419ea6b49190df1abbf43450c1702eeb864fe9ced453c1cc5f 0.0s done
+#6 DONE 0.0s
+
+#7 [heralding internal] load build context
+#7 transferring context: 104B done
+#7 DONE 0.0s
+
+#8 [heralding linux/amd64 2/4] COPY dist/ /root/dist/
+#8 CACHED
+
+#9 [heralding linux/amd64 3/4] RUN apk --no-cache -U upgrade && 	apk --no-cache -U add 		build-base 		git 		libcap 		libffi-dev 		openssl-dev 		py3-pyzmq 		postgresql-dev 		py3-attrs 		py3-mysqlclient 		py3-nose 		py3-pip 		py3-psycopg2 		py3-pycryptodome 		py3-pyzmq 		py3-requests 		py3-rsa 		py3-typing-extensions 		py3-wheel 		py3-yaml 		python3 		python3-dev &&     mkdir -p /opt &&     cd /opt/ &&     git clone https://github.com/johnnykv/heralding &&     cd heralding &&     git checkout ac12724ab38c4e2fe78f07d1bc35e6e586ba69c0 &&     cp /root/dist/requirements.txt . &&     pip3 install --break-system-packages --no-cache-dir --upgrade pip &&     pip3 install --break-system-packages --no-cache-dir -r requirements.txt &&     pip3 install --break-system-packages --no-cache-dir . &&     addgroup -g 2000 heralding &&     adduser -S -H -s /bin/ash -u 2000 -D -g 2000 heralding &&     mkdir -p /var/log/heralding/ /etc/heralding &&     mv /root/dist/heralding.yml /etc/heralding/ &&     setcap cap_net_bind_service=+ep $(readlink -f $(type -P python3)) &&     chown -R heralding:heralding /var/log/heralding &&     apk del --purge 		build-base 		git 		libcap 		libffi-dev 		openssl-dev 		postgresql-dev 		python3-dev &&     rm -rf /root/* 		/var/cache/apk/* 		/opt/heralding
+#9 CACHED
+
+#10 [heralding linux/arm64 3/4] RUN apk --no-cache -U upgrade && 	apk --no-cache -U add 		build-base 		git 		libcap 		libffi-dev 		openssl-dev 		py3-pyzmq 		postgresql-dev 		py3-attrs 		py3-mysqlclient 		py3-nose 		py3-pip 		py3-psycopg2 		py3-pycryptodome 		py3-pyzmq 		py3-requests 		py3-rsa 		py3-typing-extensions 		py3-wheel 		py3-yaml 		python3 		python3-dev &&     mkdir -p /opt &&     cd /opt/ &&     git clone https://github.com/johnnykv/heralding &&     cd heralding &&     git checkout ac12724ab38c4e2fe78f07d1bc35e6e586ba69c0 &&     cp /root/dist/requirements.txt . &&     pip3 install --break-system-packages --no-cache-dir --upgrade pip &&     pip3 install --break-system-packages --no-cache-dir -r requirements.txt &&     pip3 install --break-system-packages --no-cache-dir . &&     addgroup -g 2000 heralding &&     adduser -S -H -s /bin/ash -u 2000 -D -g 2000 heralding &&     mkdir -p /var/log/heralding/ /etc/heralding &&     mv /root/dist/heralding.yml /etc/heralding/ &&     setcap cap_net_bind_service=+ep $(readlink -f $(type -P python3)) &&     chown -R heralding:heralding /var/log/heralding &&     apk del --purge 		build-base 		git 		libcap 		libffi-dev 		openssl-dev 		postgresql-dev 		python3-dev &&     rm -rf /root/* 		/var/cache/apk/* 		/opt/heralding
+#10 CACHED
+
+#11 [heralding linux/arm64 2/4] COPY dist/ /root/dist/
+#11 CACHED
+
+#12 [heralding linux/amd64 4/4] WORKDIR /tmp/heralding/
+#12 CACHED
+
+#13 [heralding linux/arm64 4/4] WORKDIR /tmp/heralding/
+#13 CACHED
+
+#14 [heralding] exporting to image
+#14 exporting layers done
+#14 exporting manifest sha256:80ba2d27e4a68a6d88eb2562fc5815b9c03e8a4f3802dfe81963f1d974a72471 done
+#14 exporting config sha256:a26e1a0303624b01e625f18fda8a007ef397873a07dcc52025bf6bc89752d452
+#14 exporting config sha256:a26e1a0303624b01e625f18fda8a007ef397873a07dcc52025bf6bc89752d452 done
+#14 exporting attestation manifest sha256:29a4e7b8ab11a619e63fb6b25414b93938b4342429df07fb28e4c3e1bd815d7a 0.0s done
+#14 exporting manifest sha256:eec7ec6ce4f569ecac658c4a2ebf5acf4f0dd80d89438e81c1cd309968dbe57b 0.0s done
+#14 exporting config sha256:20eed94ba9d0e1250148cea1a77571260b0a21825385fdc72a93f5b74b56fcea done
+#14 exporting attestation manifest sha256:eb0f9ad58be313038ef047e78bc70eaacd7cbee4a1cc518447f56479f91b1a8f 0.0s done
+#14 exporting manifest list sha256:54cdd4f91cb5d6cec221c82f9206fdb109b315474d83e9f32561fe07186f482c done
+#14 pushing layers
+#14 ...
+
+#15 [heralding auth] f0rc3ps/heralding:pull,push token for registry-1.docker.io
+#15 DONE 0.0s
+
+#14 [heralding] exporting to image
+#14 pushing layers 3.9s done
+#14 pushing manifest for docker.io/f0rc3ps/heralding:25.0.1@sha256:54cdd4f91cb5d6cec221c82f9206fdb109b315474d83e9f32561fe07186f482c
+#14 pushing manifest for docker.io/f0rc3ps/heralding:25.0.1@sha256:54cdd4f91cb5d6cec221c82f9206fdb109b315474d83e9f32561fe07186f482c 2.9s done
+#14 ...
+
+#16 [heralding auth] asc3t1c/heralding:pull,push token for ghcr.io
+#16 DONE 0.0s
+
+#14 [heralding] exporting to image
+#14 pushing layers 2.9s done
+#14 pushing manifest for ghcr.io/asc3t1c/heralding:25.0.1@sha256:54cdd4f91cb5d6cec221c82f9206fdb109b315474d83e9f32561fe07186f482c
+#14 pushing manifest for ghcr.io/asc3t1c/heralding:25.0.1@sha256:54cdd4f91cb5d6cec221c82f9206fdb109b315474d83e9f32561fe07186f482c 2.5s done
+#14 DONE 12.4s
+
+#17 [heralding] resolving provenance for metadata file
+#17 DONE 0.0s

@@ -1,0 +1,81 @@
+Compose now can delegate build to bake for better performances
+Just set COMPOSE_BAKE=true
+#0 building with "mybuilder" instance using docker-container driver
+
+#1 [tpotinit internal] load build definition from Dockerfile
+#1 transferring dockerfile: 1.21kB 0.0s done
+#1 DONE 0.0s
+
+#2 [tpotinit linux/amd64 internal] load metadata for docker.io/library/alpine:3.20
+#2 DONE 0.4s
+
+#3 [tpotinit linux/arm64 internal] load metadata for docker.io/library/alpine:3.20
+#3 DONE 0.4s
+
+#4 [tpotinit internal] load .dockerignore
+#4 transferring context: 2B 0.0s done
+#4 DONE 0.0s
+
+#5 [tpotinit linux/amd64 1/4] FROM docker.io/library/alpine:3.20@sha256:de4fe7064d8f98419ea6b49190df1abbf43450c1702eeb864fe9ced453c1cc5f
+#5 resolve docker.io/library/alpine:3.20@sha256:de4fe7064d8f98419ea6b49190df1abbf43450c1702eeb864fe9ced453c1cc5f 0.0s done
+#5 DONE 0.0s
+
+#6 [tpotinit linux/arm64 1/4] FROM docker.io/library/alpine:3.20@sha256:de4fe7064d8f98419ea6b49190df1abbf43450c1702eeb864fe9ced453c1cc5f
+#6 resolve docker.io/library/alpine:3.20@sha256:de4fe7064d8f98419ea6b49190df1abbf43450c1702eeb864fe9ced453c1cc5f 0.0s done
+#6 DONE 0.0s
+
+#7 [tpotinit internal] load build context
+#7 transferring context: 1.29kB 0.0s done
+#7 DONE 0.0s
+
+#8 [tpotinit linux/arm64 3/4] RUN apk --no-cache -U upgrade &&     apk --no-cache -U add         aria2         apache2-utils         bash         bind-tools         conntrack-tools 		cracklib         curl         ethtool         figlet         git         grep         iproute2         iptables         jq         logrotate         lsblk         net-tools         openssl         pigz         tar         uuidgen         yq-go &&     addgroup -g 2000 tpot &&     adduser -S -s /bin/ash -u 2000 -D -g 2000 tpot &&     chmod 0600 /opt/tpot/etc/logrotate/logrotate.conf &&     apk del --purge git &&     rm -rf /root/* /tmp/*            /root/.cache            /opt/tpot/.git            /var/cache/apk/*
+#8 CACHED
+
+#9 [tpotinit linux/arm64 2/4] COPY dist/ /opt/tpot/
+#9 CACHED
+
+#10 [tpotinit linux/arm64 4/4] WORKDIR /opt/tpot
+#10 CACHED
+
+#11 [tpotinit linux/amd64 3/4] RUN apk --no-cache -U upgrade &&     apk --no-cache -U add         aria2         apache2-utils         bash         bind-tools         conntrack-tools 		cracklib         curl         ethtool         figlet         git         grep         iproute2         iptables         jq         logrotate         lsblk         net-tools         openssl         pigz         tar         uuidgen         yq-go &&     addgroup -g 2000 tpot &&     adduser -S -s /bin/ash -u 2000 -D -g 2000 tpot &&     chmod 0600 /opt/tpot/etc/logrotate/logrotate.conf &&     apk del --purge git &&     rm -rf /root/* /tmp/*            /root/.cache            /opt/tpot/.git            /var/cache/apk/*
+#11 CACHED
+
+#12 [tpotinit linux/amd64 2/4] COPY dist/ /opt/tpot/
+#12 CACHED
+
+#13 [tpotinit linux/amd64 4/4] WORKDIR /opt/tpot
+#13 CACHED
+
+#14 [tpotinit] exporting to image
+#14 exporting layers done
+#14 exporting manifest sha256:cb30a66e7d4efb48d22db2cc9673c9be26aeaebc7848fb763f571a244e027478 done
+#14 exporting config sha256:bf0418ebc49607f3ee2753e1b44f4f9bdc1d5351306571b36409747eac3a5193 0.0s done
+#14 exporting attestation manifest sha256:bef327ad033ac56102b434465ea8a24fc645bec9d07b4ba188aae2c262cb258f 0.0s done
+#14 exporting manifest sha256:319f5d326b47fcd8a730e9b153c7c5decb5868606c7fa692384f67c723c5af48 0.0s done
+#14 exporting config sha256:863ed92fad8946583193d96cd91761642f694418ee6441943b36c9089663a259 0.0s done
+#14 exporting attestation manifest sha256:f52715f04129fa5fba66c0b2d1fbfcb60d7ea04f027843573c8a409f5b7f0475 0.0s done
+#14 exporting manifest list sha256:e674a4d8977378e06e7acf8d81a7b59fe06f7db0f71a068d759419813004037c
+#14 exporting manifest list sha256:e674a4d8977378e06e7acf8d81a7b59fe06f7db0f71a068d759419813004037c done
+#14 pushing layers
+#14 ...
+
+#15 [tpotinit auth] f0rc3ps/tpotinit:pull,push token for registry-1.docker.io
+#15 DONE 0.0s
+
+#14 [tpotinit] exporting to image
+#14 pushing layers 2.3s done
+#14 pushing manifest for docker.io/f0rc3ps/tpotinit:25.0.1@sha256:e674a4d8977378e06e7acf8d81a7b59fe06f7db0f71a068d759419813004037c
+#14 pushing manifest for docker.io/f0rc3ps/tpotinit:25.0.1@sha256:e674a4d8977378e06e7acf8d81a7b59fe06f7db0f71a068d759419813004037c 3.0s done
+#14 ...
+
+#16 [tpotinit auth] asc3t1c/tpotinit:pull,push token for ghcr.io
+#16 DONE 0.0s
+
+#14 [tpotinit] exporting to image
+#14 pushing layers 1.9s done
+#14 pushing manifest for ghcr.io/asc3t1c/tpotinit:25.0.1@sha256:e674a4d8977378e06e7acf8d81a7b59fe06f7db0f71a068d759419813004037c
+#14 pushing manifest for ghcr.io/asc3t1c/tpotinit:25.0.1@sha256:e674a4d8977378e06e7acf8d81a7b59fe06f7db0f71a068d759419813004037c 2.5s done
+#14 DONE 9.9s
+
+#17 [tpotinit] resolving provenance for metadata file
+#17 DONE 0.0s

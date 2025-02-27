@@ -1,0 +1,78 @@
+Compose now can delegate build to bake for better performances
+Just set COMPOSE_BAKE=true
+#0 building with "mybuilder" instance using docker-container driver
+
+#1 [nginx internal] load build definition from Dockerfile
+#1 transferring dockerfile: 1.18kB 0.0s done
+#1 DONE 0.0s
+
+#2 [nginx linux/arm64 internal] load metadata for docker.io/library/alpine:3.20
+#2 ...
+
+#3 [nginx linux/amd64 internal] load metadata for docker.io/library/alpine:3.20
+#3 DONE 0.4s
+
+#4 [nginx internal] load .dockerignore
+#4 transferring context: 2B done
+#4 DONE 0.0s
+
+#2 [nginx linux/arm64 internal] load metadata for docker.io/library/alpine:3.20
+#2 DONE 0.4s
+
+#5 [nginx linux/amd64 1/3] FROM docker.io/library/alpine:3.20@sha256:de4fe7064d8f98419ea6b49190df1abbf43450c1702eeb864fe9ced453c1cc5f
+#5 resolve docker.io/library/alpine:3.20@sha256:de4fe7064d8f98419ea6b49190df1abbf43450c1702eeb864fe9ced453c1cc5f 0.0s done
+#5 DONE 0.0s
+
+#6 [nginx linux/arm64 1/3] FROM docker.io/library/alpine:3.20@sha256:de4fe7064d8f98419ea6b49190df1abbf43450c1702eeb864fe9ced453c1cc5f
+#6 resolve docker.io/library/alpine:3.20@sha256:de4fe7064d8f98419ea6b49190df1abbf43450c1702eeb864fe9ced453c1cc5f 0.0s done
+#6 DONE 0.0s
+
+#7 [nginx internal] load build context
+#7 transferring context: 2.09kB 0.0s done
+#7 DONE 0.0s
+
+#8 [nginx linux/arm64 2/3] COPY dist/ /root/dist/
+#8 CACHED
+
+#9 [nginx linux/amd64 2/3] COPY dist/ /root/dist/
+#9 CACHED
+
+#10 [nginx linux/arm64 3/3] RUN apk --no-cache -U upgrade &&     apk --no-cache -U add       nginx       nginx-mod-http-brotli       nginx-mod-http-headers-more       nginx-mod-http-lua &&     cp -R /root/dist/html/* /var/lib/nginx/html/ &&     cd /var/lib/nginx/html/esvue &&     tar xvfz esvue.tgz &&     rm esvue.tgz &&     cd /var/lib/nginx/html/cyberchef &&     tar xvfz cyberchef.tgz &&     rm cyberchef.tgz &&     chown root:www-data -R /var/lib/nginx/html &&     chmod 755 -R /var/lib/nginx/html &&     rm -rf /etc/nginx/conf.d/* /usr/share/nginx/html/* &&     mkdir -p /etc/nginx/conf.d &&     cp /root/dist/conf/nginx.conf /etc/nginx/ &&     cp -R /root/dist/conf/ssl /etc/nginx/ &&     cp /root/dist/conf/tpotweb.conf /etc/nginx/conf.d/ &&     cp /root/dist/conf/lsweb.conf /etc/nginx/conf.d/ &&     rm -rf /root/*            /var/cache/apk/*
+#10 CACHED
+
+#11 [nginx linux/amd64 3/3] RUN apk --no-cache -U upgrade &&     apk --no-cache -U add       nginx       nginx-mod-http-brotli       nginx-mod-http-headers-more       nginx-mod-http-lua &&     cp -R /root/dist/html/* /var/lib/nginx/html/ &&     cd /var/lib/nginx/html/esvue &&     tar xvfz esvue.tgz &&     rm esvue.tgz &&     cd /var/lib/nginx/html/cyberchef &&     tar xvfz cyberchef.tgz &&     rm cyberchef.tgz &&     chown root:www-data -R /var/lib/nginx/html &&     chmod 755 -R /var/lib/nginx/html &&     rm -rf /etc/nginx/conf.d/* /usr/share/nginx/html/* &&     mkdir -p /etc/nginx/conf.d &&     cp /root/dist/conf/nginx.conf /etc/nginx/ &&     cp -R /root/dist/conf/ssl /etc/nginx/ &&     cp /root/dist/conf/tpotweb.conf /etc/nginx/conf.d/ &&     cp /root/dist/conf/lsweb.conf /etc/nginx/conf.d/ &&     rm -rf /root/*            /var/cache/apk/*
+#11 CACHED
+
+#12 [nginx] exporting to image
+#12 exporting layers done
+#12 exporting manifest sha256:7ff799e8e7f5522b7e47b3ef8147e48414050ce09408e12792dfbda8ba8a1ca6 0.0s done
+#12 exporting config sha256:4ecc44a304127831b89fe7d7d89169a72cbff7bb35fd08929396505163db3a8a
+#12 exporting config sha256:4ecc44a304127831b89fe7d7d89169a72cbff7bb35fd08929396505163db3a8a done
+#12 exporting attestation manifest sha256:f564f201cd7f71e039a9cb6cc6b2b3e04a1f8fe8f72934e787c7eb81aa7eadf6 0.0s done
+#12 exporting manifest sha256:4cdf63e842094bf6913e9b74b5dbe0df538d6fdc43ab1b22e4f88942f6b4e283 done
+#12 exporting config sha256:7fc232963350f4e02994240735dbc5a3a810695b7fb8bb48295fc3becc67bde0 done
+#12 exporting attestation manifest sha256:cc829877e9ba14ebaaa04b123c7dcc3b18885793a3d8a247bdeafc854f513193 0.0s done
+#12 exporting manifest list sha256:65e72de42dda8c45b8fc62c7dfedf2554848784b6d66fd28b3268aaf03d4ad0b done
+#12 pushing layers
+#12 ...
+
+#13 [nginx auth] f0rc3ps/nginx:pull,push token for registry-1.docker.io
+#13 DONE 0.0s
+
+#12 [nginx] exporting to image
+#12 pushing layers 2.3s done
+#12 pushing manifest for docker.io/f0rc3ps/nginx:25.0.1@sha256:65e72de42dda8c45b8fc62c7dfedf2554848784b6d66fd28b3268aaf03d4ad0b
+#12 pushing manifest for docker.io/f0rc3ps/nginx:25.0.1@sha256:65e72de42dda8c45b8fc62c7dfedf2554848784b6d66fd28b3268aaf03d4ad0b 3.4s done
+#12 ...
+
+#14 [nginx auth] asc3t1c/nginx:pull,push token for ghcr.io
+#14 DONE 0.0s
+
+#12 [nginx] exporting to image
+#12 pushing layers 1.9s done
+#12 pushing manifest for ghcr.io/asc3t1c/nginx:25.0.1@sha256:65e72de42dda8c45b8fc62c7dfedf2554848784b6d66fd28b3268aaf03d4ad0b
+#12 pushing manifest for ghcr.io/asc3t1c/nginx:25.0.1@sha256:65e72de42dda8c45b8fc62c7dfedf2554848784b6d66fd28b3268aaf03d4ad0b 2.4s done
+#12 DONE 10.1s
+
+#15 [nginx] resolving provenance for metadata file
+#15 DONE 0.0s

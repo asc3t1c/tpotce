@@ -1,0 +1,76 @@
+Compose now can delegate build to bake for better performances
+Just set COMPOSE_BAKE=true
+#0 building with "mybuilder" instance using docker-container driver
+
+#1 [snare internal] load build definition from Dockerfile
+#1 transferring dockerfile: 1.42kB 0.0s done
+#1 DONE 0.0s
+
+#2 [snare linux/arm64 internal] load metadata for docker.io/library/alpine:3.19
+#2 DONE 0.4s
+
+#3 [snare linux/amd64 internal] load metadata for docker.io/library/alpine:3.19
+#3 DONE 0.4s
+
+#4 [snare internal] load .dockerignore
+#4 transferring context: 2B 0.0s done
+#4 DONE 0.0s
+
+#5 [snare linux/amd64 1/3] FROM docker.io/library/alpine:3.19@sha256:e5d0aea7f7d2954678a9a6269ca2d06e06591881161961ea59e974dff3f12377
+#5 resolve docker.io/library/alpine:3.19@sha256:e5d0aea7f7d2954678a9a6269ca2d06e06591881161961ea59e974dff3f12377 0.0s done
+#5 DONE 0.0s
+
+#6 [snare linux/arm64 1/3] FROM docker.io/library/alpine:3.19@sha256:e5d0aea7f7d2954678a9a6269ca2d06e06591881161961ea59e974dff3f12377
+#6 resolve docker.io/library/alpine:3.19@sha256:e5d0aea7f7d2954678a9a6269ca2d06e06591881161961ea59e974dff3f12377 0.0s done
+#6 DONE 0.0s
+
+#7 [snare internal] load build context
+#7 transferring context: 120.08kB 0.3s done
+#7 DONE 0.3s
+
+#8 [snare linux/arm64 2/3] COPY dist/ /root/dist/
+#8 CACHED
+
+#9 [snare linux/amd64 2/3] COPY dist/ /root/dist/
+#9 CACHED
+
+#10 [snare linux/arm64 3/3] RUN apk --no-cache -U upgrade &&     apk --no-cache -U add 		build-base 		git 		linux-headers 		python3 		python3-dev 		py3-aiohttp 		py3-beautifulsoup4 		py3-gitpython 		py3-jinja2 		py3-markupsafe 		py3-setuptools 		py3-pip 		py3-pycodestyle 		py3-wheel &&     git clone https://github.com/mushorg/snare /opt/snare &&     cd /opt/snare/ && 	git checkout 08c69b7165354ea2040b6170c37d92ff3c304f96 &&     cp /root/dist/requirements.txt . &&     pip3 install --break-system-packages --no-cache-dir -r requirements.txt &&     python3 setup.py install &&     cd / &&     rm -rf /opt/snare &&     mkdir -p /opt/snare/pages &&     mv /root/dist/pages/* /opt/snare/pages/ &&     addgroup -g 2000 snare &&     adduser -S -s /bin/ash -u 2000 -D -g 2000 snare &&     mkdir /var/log/tanner &&     chown -R snare:snare /opt/snare &&     apk del --purge             build-base             linux-headers             python3-dev &&     rm -rf /root/*            /tmp/* /var/tmp/*            /var/cache/apk/*
+#10 CACHED
+
+#11 [snare linux/amd64 3/3] RUN apk --no-cache -U upgrade &&     apk --no-cache -U add 		build-base 		git 		linux-headers 		python3 		python3-dev 		py3-aiohttp 		py3-beautifulsoup4 		py3-gitpython 		py3-jinja2 		py3-markupsafe 		py3-setuptools 		py3-pip 		py3-pycodestyle 		py3-wheel &&     git clone https://github.com/mushorg/snare /opt/snare &&     cd /opt/snare/ && 	git checkout 08c69b7165354ea2040b6170c37d92ff3c304f96 &&     cp /root/dist/requirements.txt . &&     pip3 install --break-system-packages --no-cache-dir -r requirements.txt &&     python3 setup.py install &&     cd / &&     rm -rf /opt/snare &&     mkdir -p /opt/snare/pages &&     mv /root/dist/pages/* /opt/snare/pages/ &&     addgroup -g 2000 snare &&     adduser -S -s /bin/ash -u 2000 -D -g 2000 snare &&     mkdir /var/log/tanner &&     chown -R snare:snare /opt/snare &&     apk del --purge             build-base             linux-headers             python3-dev &&     rm -rf /root/*            /tmp/* /var/tmp/*            /var/cache/apk/*
+#11 CACHED
+
+#12 [snare] exporting to image
+#12 exporting layers done
+#12 exporting manifest sha256:a2f1338050a2760d6336dca06700cdb123896da1e6ed08bf2accd2d1cda94088 0.0s done
+#12 exporting config sha256:c813f53acc77f7cdc422e31cc3af42a797059414a6ef6840be39ec225324b729
+#12 exporting config sha256:c813f53acc77f7cdc422e31cc3af42a797059414a6ef6840be39ec225324b729 done
+#12 exporting attestation manifest sha256:36cb364630435f7085bcfdeddfcff833d8ebd9904756291cc3087e3f0b0ce911 0.0s done
+#12 exporting manifest sha256:81cf1274540a4625519043a678038b394d5c29c650324b6121144ff499cec014 0.0s done
+#12 exporting config sha256:da02ffab5fc7091f2f01ff31e7da6593b955529cecf3493f6de7ee1c9f600a1c 0.0s done
+#12 exporting attestation manifest sha256:e5a59ed8598c3d73576c6b6365bbfa77c1e06be05c7efb85143faa70472979ae 0.0s done
+#12 exporting manifest list sha256:e5d369c146da5c553c28027d9646a451bc2de7d55105e9d55af45fd8dd3c688c
+#12 exporting manifest list sha256:e5d369c146da5c553c28027d9646a451bc2de7d55105e9d55af45fd8dd3c688c 0.0s done
+#12 pushing layers
+#12 ...
+
+#13 [snare auth] f0rc3ps/snare:pull,push token for registry-1.docker.io
+#13 DONE 0.0s
+
+#12 [snare] exporting to image
+#12 pushing layers 2.4s done
+#12 pushing manifest for docker.io/f0rc3ps/snare:25.0.1@sha256:e5d369c146da5c553c28027d9646a451bc2de7d55105e9d55af45fd8dd3c688c
+#12 pushing manifest for docker.io/f0rc3ps/snare:25.0.1@sha256:e5d369c146da5c553c28027d9646a451bc2de7d55105e9d55af45fd8dd3c688c 2.8s done
+#12 ...
+
+#14 [snare auth] asc3t1c/snare:pull,push token for ghcr.io
+#14 DONE 0.0s
+
+#12 [snare] exporting to image
+#12 pushing layers 1.9s done
+#12 pushing manifest for ghcr.io/asc3t1c/snare:25.0.1@sha256:e5d369c146da5c553c28027d9646a451bc2de7d55105e9d55af45fd8dd3c688c
+#12 pushing manifest for ghcr.io/asc3t1c/snare:25.0.1@sha256:e5d369c146da5c553c28027d9646a451bc2de7d55105e9d55af45fd8dd3c688c 2.4s done
+#12 DONE 9.7s
+
+#15 [snare] resolving provenance for metadata file
+#15 DONE 0.0s

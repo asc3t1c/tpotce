@@ -1,0 +1,81 @@
+Compose now can delegate build to bake for better performances
+Just set COMPOSE_BAKE=true
+#0 building with "mybuilder" instance using docker-container driver
+
+#1 [dionaea internal] load build definition from Dockerfile
+#1 transferring dockerfile: 3.51kB 0.0s done
+#1 DONE 0.0s
+
+#2 [dionaea linux/arm64 internal] load metadata for docker.io/library/ubuntu:24.04
+#2 ...
+
+#3 [dionaea auth] library/ubuntu:pull token for registry-1.docker.io
+#3 DONE 0.0s
+
+#4 [dionaea linux/amd64 internal] load metadata for docker.io/library/ubuntu:24.04
+#4 DONE 1.0s
+
+#2 [dionaea linux/arm64 internal] load metadata for docker.io/library/ubuntu:24.04
+#2 DONE 1.0s
+
+#5 [dionaea internal] load .dockerignore
+#5 transferring context: 2B done
+#5 DONE 0.0s
+
+#6 [dionaea linux/amd64 1/3] FROM docker.io/library/ubuntu:24.04@sha256:72297848456d5d37d1262630108ab308d3e9ec7ed1c3286a32fe09856619a782
+#6 resolve docker.io/library/ubuntu:24.04@sha256:72297848456d5d37d1262630108ab308d3e9ec7ed1c3286a32fe09856619a782 0.0s done
+#6 DONE 0.0s
+
+#7 [dionaea linux/arm64 1/3] FROM docker.io/library/ubuntu:24.04@sha256:72297848456d5d37d1262630108ab308d3e9ec7ed1c3286a32fe09856619a782
+#7 resolve docker.io/library/ubuntu:24.04@sha256:72297848456d5d37d1262630108ab308d3e9ec7ed1c3286a32fe09856619a782 0.0s done
+#7 DONE 0.0s
+
+#8 [dionaea internal] load build context
+#8 transferring context: 1.18kB done
+#8 DONE 0.0s
+
+#9 [dionaea linux/arm64 2/3] COPY dist/ /root/dist/
+#9 CACHED
+
+#10 [dionaea linux/arm64 3/3] RUN ARCH=$(arch) &&       if [ "$ARCH" = "x86_64" ]; then ARCH="amd64"; fi &&       if [ "$ARCH" = "aarch64" ]; then ARCH="arm64"; fi &&     echo "$ARCH" &&     cd /root/dist/ &&     apt-get update -y &&     apt-get upgrade -y &&     apt-get install wget -y &&     wget http://ftp.us.debian.org/debian/pool/main/libe/libemu/libemu2_0.2.0+git20120122-1.2+b1_$ARCH.deb          http://ftp.us.debian.org/debian/pool/main/libe/libemu/libemu-dev_0.2.0+git20120122-1.2+b1_$ARCH.deb &&     apt-get install ./libemu2_0.2.0+git20120122-1.2+b1_$ARCH.deb                 ./libemu-dev_0.2.0+git20120122-1.2+b1_$ARCH.deb -y &&     apt-get install -y --no-install-recommends 		build-essential 		ca-certificates 		check 		cmake 		cython3 		git 		libcap2-bin 		libcurl4-openssl-dev 		libev-dev 		libglib2.0-dev 		libloudmouth1-dev 		libnetfilter-queue-dev 		libnl-3-dev 		libpcap-dev 		libssl-dev 		libtool 		libudns-dev 		procps 		python3 		python3-dev 		python3-boto3 		python3-bson 		python3-setuptools 		python3-yaml 		fonts-liberation &&     git clone https://github.com/t3chn0m4g3/dionaea -b 0.11.1 /root/dionaea/ &&     cd /root/dionaea &&     mkdir build &&     cd build &&     cmake -DCMAKE_INSTALL_PREFIX:PATH=/opt/dionaea .. &&     make &&     make install &&     addgroup --gid 2000 dionaea &&     adduser --system --no-create-home --shell /bin/bash --uid 2000 --disabled-password --disabled-login --gid 2000 dionaea &&     setcap cap_net_bind_service=+ep /opt/dionaea/sbin/dionaea &&     chown -R dionaea:dionaea /opt/dionaea/var &&     rm -rf /opt/dionaea/etc/dionaea/* &&     mv /root/dist/etc/* /opt/dionaea/etc/dionaea/ &&     cp /root/dist/cpu_check.py / &&     apt-get purge -y       build-essential       ca-certificates       check       cmake       cython3       git       libcurl4-openssl-dev       libemu-dev       libev-dev       libglib2.0-dev       libloudmouth1-dev       libnetfilter-queue-dev       libnl-3-dev       libpcap-dev       libssl-dev       libtool       libudns-dev       python3       python3-dev       python3-boto3       python3-bson       python3-yaml       wget &&     apt-get install -y       ca-certificates       python3       python3-boto3       python3-bson       python3-psutil       python3-yaml       libcurl4       libemu2       libev4       libglib2.0-0       libnetfilter-queue1       libnl-3-200       libpcap0.8       libpython3.12       libudns0 &&     apt-get autoremove --purge -y &&     apt-get clean &&     rm -rf /root/*            /var/lib/apt/lists/*            /tmp/*            /var/tmp/*            /root/.cache            /opt/dionaea/.git
+#10 CACHED
+
+#11 [dionaea linux/amd64 2/3] COPY dist/ /root/dist/
+#11 CACHED
+
+#12 [dionaea linux/amd64 3/3] RUN ARCH=$(arch) &&       if [ "$ARCH" = "x86_64" ]; then ARCH="amd64"; fi &&       if [ "$ARCH" = "aarch64" ]; then ARCH="arm64"; fi &&     echo "$ARCH" &&     cd /root/dist/ &&     apt-get update -y &&     apt-get upgrade -y &&     apt-get install wget -y &&     wget http://ftp.us.debian.org/debian/pool/main/libe/libemu/libemu2_0.2.0+git20120122-1.2+b1_$ARCH.deb          http://ftp.us.debian.org/debian/pool/main/libe/libemu/libemu-dev_0.2.0+git20120122-1.2+b1_$ARCH.deb &&     apt-get install ./libemu2_0.2.0+git20120122-1.2+b1_$ARCH.deb                 ./libemu-dev_0.2.0+git20120122-1.2+b1_$ARCH.deb -y &&     apt-get install -y --no-install-recommends 		build-essential 		ca-certificates 		check 		cmake 		cython3 		git 		libcap2-bin 		libcurl4-openssl-dev 		libev-dev 		libglib2.0-dev 		libloudmouth1-dev 		libnetfilter-queue-dev 		libnl-3-dev 		libpcap-dev 		libssl-dev 		libtool 		libudns-dev 		procps 		python3 		python3-dev 		python3-boto3 		python3-bson 		python3-setuptools 		python3-yaml 		fonts-liberation &&     git clone https://github.com/t3chn0m4g3/dionaea -b 0.11.1 /root/dionaea/ &&     cd /root/dionaea &&     mkdir build &&     cd build &&     cmake -DCMAKE_INSTALL_PREFIX:PATH=/opt/dionaea .. &&     make &&     make install &&     addgroup --gid 2000 dionaea &&     adduser --system --no-create-home --shell /bin/bash --uid 2000 --disabled-password --disabled-login --gid 2000 dionaea &&     setcap cap_net_bind_service=+ep /opt/dionaea/sbin/dionaea &&     chown -R dionaea:dionaea /opt/dionaea/var &&     rm -rf /opt/dionaea/etc/dionaea/* &&     mv /root/dist/etc/* /opt/dionaea/etc/dionaea/ &&     cp /root/dist/cpu_check.py / &&     apt-get purge -y       build-essential       ca-certificates       check       cmake       cython3       git       libcurl4-openssl-dev       libemu-dev       libev-dev       libglib2.0-dev       libloudmouth1-dev       libnetfilter-queue-dev       libnl-3-dev       libpcap-dev       libssl-dev       libtool       libudns-dev       python3       python3-dev       python3-boto3       python3-bson       python3-yaml       wget &&     apt-get install -y       ca-certificates       python3       python3-boto3       python3-bson       python3-psutil       python3-yaml       libcurl4       libemu2       libev4       libglib2.0-0       libnetfilter-queue1       libnl-3-200       libpcap0.8       libpython3.12       libudns0 &&     apt-get autoremove --purge -y &&     apt-get clean &&     rm -rf /root/*            /var/lib/apt/lists/*            /tmp/*            /var/tmp/*            /root/.cache            /opt/dionaea/.git
+#12 CACHED
+
+#13 [dionaea] exporting to image
+#13 exporting layers done
+#13 exporting manifest sha256:42d01f772d59b5de65dadfcaf68a02cf56c7cfbc22623b4cbde664a1d4f02680 0.0s done
+#13 exporting config sha256:28d7e2cd801951e8fd0a22adafbf3dd41f391d0ea66fb1e649d44c517e4e1d3d
+#13 exporting config sha256:28d7e2cd801951e8fd0a22adafbf3dd41f391d0ea66fb1e649d44c517e4e1d3d done
+#13 exporting attestation manifest sha256:7e893b15542fff300f3b2101aa695cc68c4cbca3608da56b87c31122ca65b151 0.0s done
+#13 exporting manifest sha256:25b3fcef45946a4451c040770e57f2f94a5080620dc1e96bc1478175ee92cf1b 0.0s done
+#13 exporting config sha256:3494c88a78a33401dee5b2dc59e7d47e871a14a58e1c5568ace6e661e25742c5 done
+#13 exporting attestation manifest sha256:93d4f4c9762d5d84a37e563d42fe9e2b2066da4f67c723c760bdf3386d90bf7f 0.0s done
+#13 exporting manifest list sha256:56692e5b05639aaaf7ec4e84763deb220c972e1a8ca60f10f12659a8a3afc648 done
+#13 pushing layers
+#13 ...
+
+#14 [dionaea auth] f0rc3ps/dionaea:pull,push token for registry-1.docker.io
+#14 DONE 0.0s
+
+#13 [dionaea] exporting to image
+#13 pushing layers 3.4s done
+#13 pushing manifest for docker.io/f0rc3ps/dionaea:25.0.1@sha256:56692e5b05639aaaf7ec4e84763deb220c972e1a8ca60f10f12659a8a3afc648
+#13 pushing manifest for docker.io/f0rc3ps/dionaea:25.0.1@sha256:56692e5b05639aaaf7ec4e84763deb220c972e1a8ca60f10f12659a8a3afc648 2.9s done
+#13 ...
+
+#15 [dionaea auth] asc3t1c/dionaea:pull,push token for ghcr.io
+#15 DONE 0.0s
+
+#13 [dionaea] exporting to image
+#13 pushing layers 2.7s done
+#13 pushing manifest for ghcr.io/asc3t1c/dionaea:25.0.1@sha256:56692e5b05639aaaf7ec4e84763deb220c972e1a8ca60f10f12659a8a3afc648
+#13 pushing manifest for ghcr.io/asc3t1c/dionaea:25.0.1@sha256:56692e5b05639aaaf7ec4e84763deb220c972e1a8ca60f10f12659a8a3afc648 2.6s done
+#13 DONE 11.6s
+
+#16 [dionaea] resolving provenance for metadata file
+#16 DONE 0.0s

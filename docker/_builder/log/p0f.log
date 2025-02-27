@@ -1,0 +1,83 @@
+Compose now can delegate build to bake for better performances
+Just set COMPOSE_BAKE=true
+#0 building with "mybuilder" instance using docker-container driver
+
+#1 [p0f internal] load build definition from Dockerfile
+#1 transferring dockerfile: 882B done
+#1 DONE 0.0s
+
+#2 [p0f linux/arm64 internal] load metadata for docker.io/library/alpine:3.20
+#2 DONE 0.2s
+
+#3 [p0f linux/amd64 internal] load metadata for docker.io/library/alpine:3.20
+#3 ...
+
+#4 [p0f internal] load .dockerignore
+#4 transferring context: 2B 0.0s done
+#4 DONE 0.0s
+
+#3 [p0f linux/amd64 internal] load metadata for docker.io/library/alpine:3.20
+#3 DONE 0.4s
+
+#5 [p0f linux/amd64 1/4] FROM docker.io/library/alpine:3.20@sha256:de4fe7064d8f98419ea6b49190df1abbf43450c1702eeb864fe9ced453c1cc5f
+#5 resolve docker.io/library/alpine:3.20@sha256:de4fe7064d8f98419ea6b49190df1abbf43450c1702eeb864fe9ced453c1cc5f 0.0s done
+#5 DONE 0.0s
+
+#6 [p0f linux/arm64 1/4] FROM docker.io/library/alpine:3.20@sha256:de4fe7064d8f98419ea6b49190df1abbf43450c1702eeb864fe9ced453c1cc5f
+#6 resolve docker.io/library/alpine:3.20@sha256:de4fe7064d8f98419ea6b49190df1abbf43450c1702eeb864fe9ced453c1cc5f 0.0s done
+#6 DONE 0.0s
+
+#7 [p0f internal] load build context
+#7 transferring context: 1.19kB 0.0s done
+#7 DONE 0.0s
+
+#8 [p0f linux/arm64 2/4] COPY . /opt/p0f
+#8 CACHED
+
+#9 [p0f linux/arm64 3/4] RUN apk --no-cache -U upgrade &&     apk --no-cache -U add 		bash 		build-base 		jansson 		jansson-dev 		libcap 		libpcap 		libpcap-dev &&     addgroup -g 2000 p0f &&     adduser -S -s /bin/bash -u 2000 -D -g 2000 p0f &&     cd /opt/p0f &&     ./build.sh &&     setcap cap_sys_chroot,cap_setgid,cap_net_raw=+ep /opt/p0f/p0f &&     apk del --purge build-base                     jansson-dev                     libpcap-dev &&     rm -rf /root/*            /var/cache/apk/*
+#9 CACHED
+
+#10 [p0f linux/arm64 4/4] WORKDIR /opt/p0f
+#10 CACHED
+
+#11 [p0f linux/amd64 3/4] RUN apk --no-cache -U upgrade &&     apk --no-cache -U add 		bash 		build-base 		jansson 		jansson-dev 		libcap 		libpcap 		libpcap-dev &&     addgroup -g 2000 p0f &&     adduser -S -s /bin/bash -u 2000 -D -g 2000 p0f &&     cd /opt/p0f &&     ./build.sh &&     setcap cap_sys_chroot,cap_setgid,cap_net_raw=+ep /opt/p0f/p0f &&     apk del --purge build-base                     jansson-dev                     libpcap-dev &&     rm -rf /root/*            /var/cache/apk/*
+#11 CACHED
+
+#12 [p0f linux/amd64 2/4] COPY . /opt/p0f
+#12 CACHED
+
+#13 [p0f linux/amd64 4/4] WORKDIR /opt/p0f
+#13 CACHED
+
+#14 [p0f] exporting to image
+#14 exporting layers done
+#14 exporting manifest sha256:e733c27050886c56a97aa37cebc0676420ef82dd29a650c90fadba239dde2e12 0.0s done
+#14 exporting config sha256:29a8032de4a444cd4117c7c0095b792ae47ee99026ff4b82fea636b770b4c6fe 0.0s done
+#14 exporting attestation manifest sha256:8739ba837011ccd2d820fbb60bba76ceb76d04d7b0dbb6a27c5ab167ee10e57c 0.0s done
+#14 exporting manifest sha256:83e90802ae114d922b4a5a6d08c2f647e45cd9cac4ad4950f2c44b5302e5d16b 0.0s done
+#14 exporting config sha256:a178874cb5d71a17101b1f6ae698e2704b1d57a21eaa5c09b5b4dbe3dca797f3 0.0s done
+#14 exporting attestation manifest sha256:dbd74d81cffd99fd33de9a0164b02359b4128ea6303297719dc8597cda72d737 0.0s done
+#14 exporting manifest list sha256:883433a255512621d9ffb6640833de347116813329c622665ad55d0e58138bd4 done
+#14 pushing layers
+#14 ...
+
+#15 [p0f auth] f0rc3ps/p0f:pull,push token for registry-1.docker.io
+#15 DONE 0.0s
+
+#14 [p0f] exporting to image
+#14 pushing layers 2.4s done
+#14 pushing manifest for docker.io/f0rc3ps/p0f:25.0.1@sha256:883433a255512621d9ffb6640833de347116813329c622665ad55d0e58138bd4
+#14 pushing manifest for docker.io/f0rc3ps/p0f:25.0.1@sha256:883433a255512621d9ffb6640833de347116813329c622665ad55d0e58138bd4 3.1s done
+#14 ...
+
+#16 [p0f auth] asc3t1c/p0f:pull,push token for ghcr.io
+#16 DONE 0.0s
+
+#14 [p0f] exporting to image
+#14 pushing layers 2.0s done
+#14 pushing manifest for ghcr.io/asc3t1c/p0f:25.0.1@sha256:883433a255512621d9ffb6640833de347116813329c622665ad55d0e58138bd4
+#14 pushing manifest for ghcr.io/asc3t1c/p0f:25.0.1@sha256:883433a255512621d9ffb6640833de347116813329c622665ad55d0e58138bd4 2.4s done
+#14 DONE 10.0s
+
+#17 [p0f] resolving provenance for metadata file
+#17 DONE 0.0s

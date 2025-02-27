@@ -1,0 +1,128 @@
+Compose now can delegate build to bake for better performances
+Just set COMPOSE_BAKE=true
+#0 building with "mybuilder" instance using docker-container driver
+
+#1 [ipphoney internal] load build definition from Dockerfile
+#1 transferring dockerfile: 1.38kB 0.0s done
+#1 DONE 0.0s
+
+#2 [ipphoney linux/arm64 internal] load metadata for docker.io/library/alpine:3.20
+#2 DONE 0.5s
+
+#3 [ipphoney linux/amd64 internal] load metadata for docker.io/library/alpine:3.20
+#3 DONE 0.5s
+
+#4 [ipphoney internal] load .dockerignore
+#4 transferring context: 2B done
+#4 DONE 0.0s
+
+#5 [ipphoney linux/amd64 builder 1/7] FROM docker.io/library/alpine:3.20@sha256:de4fe7064d8f98419ea6b49190df1abbf43450c1702eeb864fe9ced453c1cc5f
+#5 resolve docker.io/library/alpine:3.20@sha256:de4fe7064d8f98419ea6b49190df1abbf43450c1702eeb864fe9ced453c1cc5f 0.0s done
+#5 DONE 0.0s
+
+#6 [ipphoney linux/arm64 builder 1/7] FROM docker.io/library/alpine:3.20@sha256:de4fe7064d8f98419ea6b49190df1abbf43450c1702eeb864fe9ced453c1cc5f
+#6 resolve docker.io/library/alpine:3.20@sha256:de4fe7064d8f98419ea6b49190df1abbf43450c1702eeb864fe9ced453c1cc5f 0.0s done
+#6 DONE 0.0s
+
+#7 [ipphoney internal] load build context
+#7 transferring context: 103B done
+#7 DONE 0.0s
+
+#8 [ipphoney linux/amd64 stage-1 5/6] COPY dist/honeypot.cfg /opt/ipphoney/etc/
+#8 CACHED
+
+#9 [ipphoney linux/amd64 builder 4/7] WORKDIR /opt/ipphoney
+#9 CACHED
+
+#10 [ipphoney linux/amd64 builder 5/7] RUN pip3 install --break-system-packages pyinstaller
+#10 CACHED
+
+#11 [ipphoney linux/amd64 stage-1 3/6] COPY --from=builder /opt/ipphoney/dist/ /opt/
+#11 CACHED
+
+#12 [ipphoney linux/amd64 builder 2/7] COPY dist/ /root/dist/
+#12 CACHED
+
+#13 [ipphoney linux/amd64 builder 6/7] RUN pip3 install --break-system-packages -r requirements.txt
+#13 CACHED
+
+#14 [ipphoney linux/amd64 stage-1 2/6] RUN apk --no-cache -U upgrade
+#14 CACHED
+
+#15 [ipphoney linux/amd64 builder 7/7] RUN pyinstaller ipphoney.py 		--hidden-import output_plugins 		--hidden-import output_plugins.jsonlog
+#15 CACHED
+
+#16 [ipphoney linux/amd64 stage-1 4/6] COPY --from=builder /opt/ipphoney/responses/ /opt/ipphoney/responses/
+#16 CACHED
+
+#17 [ipphoney linux/amd64 builder 3/7] RUN apk --no-cache -U upgrade && 	apk --no-cache -U add 		build-base 		ca-certificates 		git 		libcap 		libffi-dev 		openssl 		openssl-dev 		postgresql-dev 		py3-cryptography 		py3-elasticsearch 		py3-geoip2 		py3-maxminddb 		py3-mysqlclient 		py3-requests 		py3-packaging 		py3-pip 		py3-psycopg2 		py3-redis 		py3-requests 		py3-service_identity 		py3-setuptools 		py3-twisted 		py3-tz 		py3-wheel 		python3 		python3-dev &&     mkdir -p /opt &&     cd /opt/ &&     git clone https://gitlab.com/bontchev/ipphoney.git/ &&     cd ipphoney &&     git checkout 9da0a9e7f9d839e4522f56b3bb2b790d87d65457 &&     cp /root/dist/requirements.txt .
+#17 CACHED
+
+#18 [ipphoney linux/amd64 stage-1 6/6] WORKDIR /opt/ipphoney/
+#18 CACHED
+
+#19 [ipphoney linux/arm64 builder 6/7] RUN pip3 install --break-system-packages -r requirements.txt
+#19 CACHED
+
+#20 [ipphoney linux/arm64 stage-1 4/6] COPY --from=builder /opt/ipphoney/responses/ /opt/ipphoney/responses/
+#20 CACHED
+
+#21 [ipphoney linux/arm64 stage-1 2/6] RUN apk --no-cache -U upgrade
+#21 CACHED
+
+#22 [ipphoney linux/arm64 builder 2/7] COPY dist/ /root/dist/
+#22 CACHED
+
+#23 [ipphoney linux/arm64 stage-1 5/6] COPY dist/honeypot.cfg /opt/ipphoney/etc/
+#23 CACHED
+
+#24 [ipphoney linux/arm64 stage-1 3/6] COPY --from=builder /opt/ipphoney/dist/ /opt/
+#24 CACHED
+
+#25 [ipphoney linux/arm64 builder 7/7] RUN pyinstaller ipphoney.py 		--hidden-import output_plugins 		--hidden-import output_plugins.jsonlog
+#25 CACHED
+
+#26 [ipphoney linux/arm64 builder 5/7] RUN pip3 install --break-system-packages pyinstaller
+#26 CACHED
+
+#27 [ipphoney linux/arm64 builder 3/7] RUN apk --no-cache -U upgrade && 	apk --no-cache -U add 		build-base 		ca-certificates 		git 		libcap 		libffi-dev 		openssl 		openssl-dev 		postgresql-dev 		py3-cryptography 		py3-elasticsearch 		py3-geoip2 		py3-maxminddb 		py3-mysqlclient 		py3-requests 		py3-packaging 		py3-pip 		py3-psycopg2 		py3-redis 		py3-requests 		py3-service_identity 		py3-setuptools 		py3-twisted 		py3-tz 		py3-wheel 		python3 		python3-dev &&     mkdir -p /opt &&     cd /opt/ &&     git clone https://gitlab.com/bontchev/ipphoney.git/ &&     cd ipphoney &&     git checkout 9da0a9e7f9d839e4522f56b3bb2b790d87d65457 &&     cp /root/dist/requirements.txt .
+#27 CACHED
+
+#28 [ipphoney linux/arm64 builder 4/7] WORKDIR /opt/ipphoney
+#28 CACHED
+
+#29 [ipphoney linux/arm64 stage-1 6/6] WORKDIR /opt/ipphoney/
+#29 CACHED
+
+#30 [ipphoney] exporting to image
+#30 exporting layers done
+#30 exporting manifest sha256:07343ff6015f36dd2240bd81abe0a9a5ce958632886bb61d9f820aa612ab9a9b 0.0s done
+#30 exporting config sha256:b806638e39b9f09735a1aa5cc20745d5bbff1e853d9eac2496636395b7fd9650 0.0s done
+#30 exporting attestation manifest sha256:55be8b87b6bf2ea99b3a741e81b0bf2bbd96b6e6b3dc8f1b8ea62ab8694d7eb7 0.0s done
+#30 exporting manifest sha256:f9f3e347a3cb73f757248b47a699447596cb7ade148d4b1b70b908448fec4d39 0.0s done
+#30 exporting config sha256:55bb520d6200619d7c673102b9335d9df3e9dceff629f9274259027e83612b08 0.0s done
+#30 exporting attestation manifest sha256:5c6689eef68d7b73837d39bc96004f66acd3931179ea668374975b58f52ba58b 0.0s done
+#30 exporting manifest list sha256:873f0240d9da72ef1f2808e0e97c53383880511f70203cb7534e87bba8a2da1c 0.0s done
+#30 pushing layers
+#30 ...
+
+#31 [ipphoney auth] f0rc3ps/ipphoney:pull,push token for registry-1.docker.io
+#31 DONE 0.0s
+
+#30 [ipphoney] exporting to image
+#30 pushing layers 2.4s done
+#30 pushing manifest for docker.io/f0rc3ps/ipphoney:25.0.1@sha256:873f0240d9da72ef1f2808e0e97c53383880511f70203cb7534e87bba8a2da1c
+#30 pushing manifest for docker.io/f0rc3ps/ipphoney:25.0.1@sha256:873f0240d9da72ef1f2808e0e97c53383880511f70203cb7534e87bba8a2da1c 3.3s done
+#30 ...
+
+#32 [ipphoney auth] asc3t1c/ipphoney:pull,push token for ghcr.io
+#32 DONE 0.0s
+
+#30 [ipphoney] exporting to image
+#30 pushing layers 2.0s done
+#30 pushing manifest for ghcr.io/asc3t1c/ipphoney:25.0.1@sha256:873f0240d9da72ef1f2808e0e97c53383880511f70203cb7534e87bba8a2da1c
+#30 pushing manifest for ghcr.io/asc3t1c/ipphoney:25.0.1@sha256:873f0240d9da72ef1f2808e0e97c53383880511f70203cb7534e87bba8a2da1c 2.4s done
+#30 DONE 10.2s
+
+#33 [ipphoney] resolving provenance for metadata file
+#33 DONE 0.0s

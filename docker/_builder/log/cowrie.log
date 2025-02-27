@@ -1,0 +1,81 @@
+Compose now can delegate build to bake for better performances
+Just set COMPOSE_BAKE=true
+#0 building with "mybuilder" instance using docker-container driver
+
+#1 [cowrie internal] load build definition from Dockerfile
+#1 transferring dockerfile: 2.53kB 0.0s done
+#1 DONE 0.0s
+
+#2 [cowrie linux/amd64 internal] load metadata for docker.io/library/alpine:3.20
+#2 DONE 0.2s
+
+#3 [cowrie linux/arm64 internal] load metadata for docker.io/library/alpine:3.20
+#3 DONE 0.2s
+
+#4 [cowrie internal] load .dockerignore
+#4 transferring context: 2B done
+#4 DONE 0.0s
+
+#5 [cowrie linux/amd64 1/4] FROM docker.io/library/alpine:3.20@sha256:de4fe7064d8f98419ea6b49190df1abbf43450c1702eeb864fe9ced453c1cc5f
+#5 resolve docker.io/library/alpine:3.20@sha256:de4fe7064d8f98419ea6b49190df1abbf43450c1702eeb864fe9ced453c1cc5f 0.0s done
+#5 DONE 0.0s
+
+#6 [cowrie linux/arm64 1/4] FROM docker.io/library/alpine:3.20@sha256:de4fe7064d8f98419ea6b49190df1abbf43450c1702eeb864fe9ced453c1cc5f
+#6 resolve docker.io/library/alpine:3.20@sha256:de4fe7064d8f98419ea6b49190df1abbf43450c1702eeb864fe9ced453c1cc5f 0.0s done
+#6 DONE 0.1s
+
+#7 [cowrie internal] load build context
+#7 transferring context: 101B 0.0s done
+#7 DONE 0.0s
+
+#8 [cowrie linux/amd64 2/4] COPY dist/ /root/dist/
+#8 CACHED
+
+#9 [cowrie linux/amd64 3/4] RUN apk --no-cache -U upgrade &&     apk --no-cache -U add 		bash 		build-base 		git 		gmp-dev 		libcap 		libffi-dev 		mpc1-dev 		mpfr-dev 		openssl 		openssl-dev 		py3-appdirs 		py3-asn1-modules 		py3-attrs 		py3-bcrypt 		py3-cryptography 		py3-dateutil 		py3-greenlet 		py3-mysqlclient 		py3-openssl 		py3-packaging 		py3-parsing 		py3-pip 		py3-service_identity 		py3-treq 		py3-twisted 		python3 		python3-dev &&     addgroup -g 2000 cowrie &&     adduser -S -s /bin/ash -u 2000 -D -g 2000 cowrie &&     mkdir -p /home/cowrie &&     cd /home/cowrie &&     git clone https://github.com/cowrie/cowrie &&     cd cowrie &&     git checkout 7b18207485dbfc218082e82c615d948924429973 &&     mkdir -p log &&     pip3 install --break-system-packages --upgrade --no-cache-dir pip &&     pip3 install --break-system-packages --no-cache-dir -r requirements.txt &&     setcap cap_net_bind_service=+ep $(readlink -f $(type -P python3)) &&     cp /root/dist/cowrie.cfg /home/cowrie/cowrie/cowrie.cfg &&     chown cowrie:cowrie -R /home/cowrie/* /usr/lib/$(readlink -f $(type -P python3) | cut -f4 -d"/")/site-packages/twisted/plugins &&     su - cowrie -c "export PYTHONPATH=/home/cowrie/cowrie:/home/cowrie/cowrie/src &&                     cd /home/cowrie/cowrie &&                     /usr/bin/twistd --uid=2000 --gid=2000 -y cowrie.tac --pidfile cowrie.pid cowrie &" &&     sleep 10 &&     rm -rf /home/cowrie/cowrie/etc &&     apk del --purge build-base                     git                     gmp-dev                     libcap                     libffi-dev                     mpc1-dev                     mpfr-dev                     openssl-dev                     python3-dev                     py3-mysqlclient &&     rm -rf /root/* /tmp/*            /var/cache/apk/*            /home/cowrie/cowrie/cowrie.pid            /home/cowrie/cowrie/.git
+#9 CACHED
+
+#10 [cowrie linux/amd64 4/4] WORKDIR /home/cowrie/cowrie
+#10 CACHED
+
+#11 [cowrie linux/arm64 2/4] COPY dist/ /root/dist/
+#11 CACHED
+
+#12 [cowrie linux/arm64 3/4] RUN apk --no-cache -U upgrade &&     apk --no-cache -U add 		bash 		build-base 		git 		gmp-dev 		libcap 		libffi-dev 		mpc1-dev 		mpfr-dev 		openssl 		openssl-dev 		py3-appdirs 		py3-asn1-modules 		py3-attrs 		py3-bcrypt 		py3-cryptography 		py3-dateutil 		py3-greenlet 		py3-mysqlclient 		py3-openssl 		py3-packaging 		py3-parsing 		py3-pip 		py3-service_identity 		py3-treq 		py3-twisted 		python3 		python3-dev &&     addgroup -g 2000 cowrie &&     adduser -S -s /bin/ash -u 2000 -D -g 2000 cowrie &&     mkdir -p /home/cowrie &&     cd /home/cowrie &&     git clone https://github.com/cowrie/cowrie &&     cd cowrie &&     git checkout 7b18207485dbfc218082e82c615d948924429973 &&     mkdir -p log &&     pip3 install --break-system-packages --upgrade --no-cache-dir pip &&     pip3 install --break-system-packages --no-cache-dir -r requirements.txt &&     setcap cap_net_bind_service=+ep $(readlink -f $(type -P python3)) &&     cp /root/dist/cowrie.cfg /home/cowrie/cowrie/cowrie.cfg &&     chown cowrie:cowrie -R /home/cowrie/* /usr/lib/$(readlink -f $(type -P python3) | cut -f4 -d"/")/site-packages/twisted/plugins &&     su - cowrie -c "export PYTHONPATH=/home/cowrie/cowrie:/home/cowrie/cowrie/src &&                     cd /home/cowrie/cowrie &&                     /usr/bin/twistd --uid=2000 --gid=2000 -y cowrie.tac --pidfile cowrie.pid cowrie &" &&     sleep 10 &&     rm -rf /home/cowrie/cowrie/etc &&     apk del --purge build-base                     git                     gmp-dev                     libcap                     libffi-dev                     mpc1-dev                     mpfr-dev                     openssl-dev                     python3-dev                     py3-mysqlclient &&     rm -rf /root/* /tmp/*            /var/cache/apk/*            /home/cowrie/cowrie/cowrie.pid            /home/cowrie/cowrie/.git
+#12 CACHED
+
+#13 [cowrie linux/arm64 4/4] WORKDIR /home/cowrie/cowrie
+#13 CACHED
+
+#14 [cowrie] exporting to image
+#14 exporting layers done
+#14 exporting manifest sha256:5f0d15b12db551e3b59d22af1f3b7a433f26c6de33831f4fd2ab766e14342345 0.0s done
+#14 exporting config sha256:78af8ba2eefae66927e2d18eb8254fd5150ae4f5b13889c7a795b810f03246db 0.0s done
+#14 exporting attestation manifest sha256:49fc572f387f47364a36778e81434362c97199ca714d54efa04df783844f6dce 0.0s done
+#14 exporting manifest sha256:741557ca1d8341be9acc9c68d919e6cdbac42b616aecb295f1691792f6b54782 0.0s done
+#14 exporting config sha256:8c3703f7ee2876a78a7a19e2c916891b64eeb5dd624abca1d0a294649beaa107 0.0s done
+#14 exporting attestation manifest sha256:ac9aad1f09e9181e5a86f6b8c809aa8ea3193b3c5465e7ad761f059577c6bedf
+#14 exporting attestation manifest sha256:ac9aad1f09e9181e5a86f6b8c809aa8ea3193b3c5465e7ad761f059577c6bedf 0.0s done
+#14 exporting manifest list sha256:9368bde8d12d32abd709234bc13b1c5bfd98951c55614522bde9675fbaa42738 done
+#14 pushing layers
+#14 ...
+
+#15 [cowrie auth] f0rc3ps/cowrie:pull,push token for registry-1.docker.io
+#15 DONE 0.0s
+
+#14 [cowrie] exporting to image
+#14 pushing layers 3.6s done
+#14 pushing manifest for docker.io/f0rc3ps/cowrie:25.0.1@sha256:9368bde8d12d32abd709234bc13b1c5bfd98951c55614522bde9675fbaa42738
+#14 pushing manifest for docker.io/f0rc3ps/cowrie:25.0.1@sha256:9368bde8d12d32abd709234bc13b1c5bfd98951c55614522bde9675fbaa42738 3.1s done
+#14 ...
+
+#16 [cowrie auth] asc3t1c/cowrie:pull,push token for ghcr.io
+#16 DONE 0.0s
+
+#14 [cowrie] exporting to image
+#14 pushing layers 2.9s done
+#14 pushing manifest for ghcr.io/asc3t1c/cowrie:25.0.1@sha256:9368bde8d12d32abd709234bc13b1c5bfd98951c55614522bde9675fbaa42738
+#14 pushing manifest for ghcr.io/asc3t1c/cowrie:25.0.1@sha256:9368bde8d12d32abd709234bc13b1c5bfd98951c55614522bde9675fbaa42738 2.7s done
+#14 DONE 12.5s
+
+#17 [cowrie] resolving provenance for metadata file
+#17 DONE 0.0s

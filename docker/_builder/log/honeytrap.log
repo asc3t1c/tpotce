@@ -1,0 +1,79 @@
+Compose now can delegate build to bake for better performances
+Just set COMPOSE_BAKE=true
+#0 building with "mybuilder" instance using docker-container driver
+
+#1 [honeytrap internal] load build definition from Dockerfile
+#1 transferring dockerfile: 2.30kB 0.0s done
+#1 DONE 0.0s
+
+#2 [honeytrap linux/amd64 internal] load metadata for docker.io/library/ubuntu:22.04
+#2 DONE 0.2s
+
+#3 [honeytrap linux/arm64 internal] load metadata for docker.io/library/ubuntu:22.04
+#3 ...
+
+#4 [honeytrap internal] load .dockerignore
+#4 transferring context: 2B done
+#4 DONE 0.0s
+
+#3 [honeytrap linux/arm64 internal] load metadata for docker.io/library/ubuntu:22.04
+#3 DONE 0.4s
+
+#5 [honeytrap linux/arm64 1/3] FROM docker.io/library/ubuntu:22.04@sha256:ed1544e454989078f5dec1bfdabd8c5cc9c48e0705d07b678ab6ae3fb61952d2
+#5 resolve docker.io/library/ubuntu:22.04@sha256:ed1544e454989078f5dec1bfdabd8c5cc9c48e0705d07b678ab6ae3fb61952d2 0.0s done
+#5 DONE 0.0s
+
+#6 [honeytrap linux/amd64 1/3] FROM docker.io/library/ubuntu:22.04@sha256:ed1544e454989078f5dec1bfdabd8c5cc9c48e0705d07b678ab6ae3fb61952d2
+#6 resolve docker.io/library/ubuntu:22.04@sha256:ed1544e454989078f5dec1bfdabd8c5cc9c48e0705d07b678ab6ae3fb61952d2 0.0s done
+#6 DONE 0.0s
+
+#7 [honeytrap internal] load build context
+#7 transferring context: 65B done
+#7 DONE 0.0s
+
+#8 [honeytrap linux/arm64 2/3] COPY dist/ /root/dist/
+#8 CACHED
+
+#9 [honeytrap linux/amd64 2/3] COPY dist/ /root/dist/
+#9 CACHED
+
+#10 [honeytrap linux/arm64 3/3] RUN apt-get update &&     apt-get -y upgrade &&     apt-get install -y autoconf                        build-essential                        git                        iptables                        libcap2                        libcap2-bin                        libnetfilter-queue1                        libnetfilter-queue-dev                        libjson-c-dev                        libtool                        libpq5                        libpq-dev                        netbase                        procps                        wget &&     git clone https://github.com/t3chn0m4g3/honeytrap /root/honeytrap &&     cd /root/honeytrap/ &&     autoreconf -vfi &&     ./configure       --with-stream-mon=nfq       --with-logattacker       --with-logjson       --prefix=/opt/honeytrap &&     make &&     make install &&     make clean &&     addgroup --gid 2000 honeytrap &&     adduser --system --no-create-home --shell /bin/bash --uid 2000 --disabled-password --disabled-login --gid 2000 honeytrap &&     mkdir -p /opt/honeytrap/etc/honeytrap/ /opt/honeytrap/var/attacks /opt/honeytrap/var/downloads /opt/honeytrap/var/log &&     mv /root/dist/honeytrap.conf /opt/honeytrap/etc/honeytrap/ &&     setcap cap_net_admin=+ep /opt/honeytrap/sbin/honeytrap &&     rm -rf /root/* &&     apt-get purge -y autoconf                      build-essential                      git                      libnetfilter-queue-dev                      libpq-dev &&     apt-get autoremove -y --purge &&     apt-get clean &&         rm -rf /var/lib/apt/lists/*             /tmp/* /var/tmp/*             /root/.cache             /root/*             /opt/honeytrap/.git
+#10 CACHED
+
+#11 [honeytrap linux/amd64 3/3] RUN apt-get update &&     apt-get -y upgrade &&     apt-get install -y autoconf                        build-essential                        git                        iptables                        libcap2                        libcap2-bin                        libnetfilter-queue1                        libnetfilter-queue-dev                        libjson-c-dev                        libtool                        libpq5                        libpq-dev                        netbase                        procps                        wget &&     git clone https://github.com/t3chn0m4g3/honeytrap /root/honeytrap &&     cd /root/honeytrap/ &&     autoreconf -vfi &&     ./configure       --with-stream-mon=nfq       --with-logattacker       --with-logjson       --prefix=/opt/honeytrap &&     make &&     make install &&     make clean &&     addgroup --gid 2000 honeytrap &&     adduser --system --no-create-home --shell /bin/bash --uid 2000 --disabled-password --disabled-login --gid 2000 honeytrap &&     mkdir -p /opt/honeytrap/etc/honeytrap/ /opt/honeytrap/var/attacks /opt/honeytrap/var/downloads /opt/honeytrap/var/log &&     mv /root/dist/honeytrap.conf /opt/honeytrap/etc/honeytrap/ &&     setcap cap_net_admin=+ep /opt/honeytrap/sbin/honeytrap &&     rm -rf /root/* &&     apt-get purge -y autoconf                      build-essential                      git                      libnetfilter-queue-dev                      libpq-dev &&     apt-get autoremove -y --purge &&     apt-get clean &&         rm -rf /var/lib/apt/lists/*             /tmp/* /var/tmp/*             /root/.cache             /root/*             /opt/honeytrap/.git
+#11 CACHED
+
+#12 [honeytrap] exporting to image
+#12 exporting layers done
+#12 exporting manifest sha256:5e39f012582006e3f033c7f4a656f801981407be393d8298ddb1854dda5aaa61 0.0s done
+#12 exporting config sha256:f8a2f73fbcd1256afd0e00eda2b555422aa62ae45ca9b4ded8411ef991e8515f
+#12 exporting config sha256:f8a2f73fbcd1256afd0e00eda2b555422aa62ae45ca9b4ded8411ef991e8515f 0.0s done
+#12 exporting attestation manifest sha256:e1d19bc651d3bc8768c8c65f5847ae1c7095c40654bb217f11ae38e617645a6b 0.0s done
+#12 exporting manifest sha256:89232abf1017141c6689eba9937e889df4095866704808fd5a687544890720a9 0.0s done
+#12 exporting config sha256:6969063d68b80e217ece22c6d5f7b264ecc69ac95eabe195f88c12c8d4dcbd6c 0.0s done
+#12 exporting attestation manifest sha256:fd58b4114386ac1792041e9e0c34797018748a6e39b9beae76ccd63c83239c31
+#12 exporting attestation manifest sha256:fd58b4114386ac1792041e9e0c34797018748a6e39b9beae76ccd63c83239c31 0.0s done
+#12 exporting manifest list sha256:bd83d374f5109210bfb7cd660c6b9b10ac2c3fd4ef8c89cdf6dda9feaa752b74 0.0s done
+#12 pushing layers
+#12 ...
+
+#13 [honeytrap auth] f0rc3ps/honeytrap:pull,push token for registry-1.docker.io
+#13 DONE 0.0s
+
+#12 [honeytrap] exporting to image
+#12 pushing layers 2.4s done
+#12 pushing manifest for docker.io/f0rc3ps/honeytrap:25.0.1@sha256:bd83d374f5109210bfb7cd660c6b9b10ac2c3fd4ef8c89cdf6dda9feaa752b74
+#12 pushing manifest for docker.io/f0rc3ps/honeytrap:25.0.1@sha256:bd83d374f5109210bfb7cd660c6b9b10ac2c3fd4ef8c89cdf6dda9feaa752b74 2.8s done
+#12 ...
+
+#14 [honeytrap auth] asc3t1c/honeytrap:pull,push token for ghcr.io
+#14 DONE 0.0s
+
+#12 [honeytrap] exporting to image
+#12 pushing layers 1.9s done
+#12 pushing manifest for ghcr.io/asc3t1c/honeytrap:25.0.1@sha256:bd83d374f5109210bfb7cd660c6b9b10ac2c3fd4ef8c89cdf6dda9feaa752b74
+#12 pushing manifest for ghcr.io/asc3t1c/honeytrap:25.0.1@sha256:bd83d374f5109210bfb7cd660c6b9b10ac2c3fd4ef8c89cdf6dda9feaa752b74 2.6s done
+#12 DONE 9.8s
+
+#15 [honeytrap] resolving provenance for metadata file
+#15 DONE 0.0s

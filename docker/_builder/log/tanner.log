@@ -1,0 +1,83 @@
+Compose now can delegate build to bake for better performances
+Just set COMPOSE_BAKE=true
+#0 building with "mybuilder" instance using docker-container driver
+
+#1 [tanner internal] load build definition from Dockerfile
+#1 transferring dockerfile: 1.81kB 0.0s done
+#1 DONE 0.0s
+
+#2 [tanner linux/arm64 internal] load metadata for docker.io/library/alpine:3.17
+#2 DONE 0.4s
+
+#3 [tanner linux/amd64 internal] load metadata for docker.io/library/alpine:3.17
+#3 DONE 0.5s
+
+#4 [tanner internal] load .dockerignore
+#4 transferring context: 2B done
+#4 DONE 0.0s
+
+#5 [tanner internal] load build context
+#5 DONE 0.0s
+
+#6 [tanner linux/amd64 1/4] FROM docker.io/library/alpine:3.17@sha256:8fc3dacfb6d69da8d44e42390de777e48577085db99aa4e4af35f483eb08b989
+#6 resolve docker.io/library/alpine:3.17@sha256:8fc3dacfb6d69da8d44e42390de777e48577085db99aa4e4af35f483eb08b989 0.0s done
+#6 DONE 0.0s
+
+#7 [tanner linux/arm64 1/4] FROM docker.io/library/alpine:3.17@sha256:8fc3dacfb6d69da8d44e42390de777e48577085db99aa4e4af35f483eb08b989
+#7 resolve docker.io/library/alpine:3.17@sha256:8fc3dacfb6d69da8d44e42390de777e48577085db99aa4e4af35f483eb08b989 0.0s done
+#7 DONE 0.0s
+
+#5 [tanner internal] load build context
+#5 transferring context: 102B done
+#5 DONE 0.0s
+
+#8 [tanner linux/amd64 2/4] COPY dist/ /root/dist/
+#8 CACHED
+
+#9 [tanner linux/amd64 3/4] RUN apk --no-cache -U upgrade &&     apk --no-cache -U add 		build-base 		git 		libcap 		libffi-dev 		openssl-dev 		linux-headers 		py3-aiohttp 		py3-geoip2 		py3-jinja2 		py3-jwt 		py3-mako 		py3-mysqlclient 		py3-packaging 		py3-pip 		py3-redis 		py3-pycodestyle 		py3-setuptools 		py3-tornado 		py3-websocket-client 		py3-wheel 		py3-yaml 		py3-yarl 		python3 		python3-dev && 	git clone https://github.com/mushorg/tanner /opt/tanner &&     cd /opt/tanner/ &&     git checkout 245d628f4023e5462c7035e760a6b5eed0a33fbe &&     cp /root/dist/config.yaml /opt/tanner/tanner/data &&     cp /root/dist/requirements.txt . &&     pip3 install --no-cache-dir -r requirements.txt &&     python3 setup.py install &&     rm -rf .coveragerc            .git            .gitignore            .travis.yml            Tanner.egg-info            build            dist            docker            docs            requirements.txt            setup.py &&     cd / &&     addgroup -g 2000 tanner &&     adduser -S -s /bin/ash -u 2000 -D -g 2000 tanner &&     mkdir /var/log/tanner &&     chown -R tanner:tanner /opt/tanner /var/log/tanner &&     apk del --purge             build-base             git             libcap             libffi-dev             openssl-dev             linux-headers             python3-dev &&     rm -rf /root/*            /tmp/*            /var/tmp/*            /var/cache/apk/*            /opt/tanner/.git
+#9 CACHED
+
+#10 [tanner linux/amd64 4/4] WORKDIR /opt/tanner
+#10 CACHED
+
+#11 [tanner linux/arm64 3/4] RUN apk --no-cache -U upgrade &&     apk --no-cache -U add 		build-base 		git 		libcap 		libffi-dev 		openssl-dev 		linux-headers 		py3-aiohttp 		py3-geoip2 		py3-jinja2 		py3-jwt 		py3-mako 		py3-mysqlclient 		py3-packaging 		py3-pip 		py3-redis 		py3-pycodestyle 		py3-setuptools 		py3-tornado 		py3-websocket-client 		py3-wheel 		py3-yaml 		py3-yarl 		python3 		python3-dev && 	git clone https://github.com/mushorg/tanner /opt/tanner &&     cd /opt/tanner/ &&     git checkout 245d628f4023e5462c7035e760a6b5eed0a33fbe &&     cp /root/dist/config.yaml /opt/tanner/tanner/data &&     cp /root/dist/requirements.txt . &&     pip3 install --no-cache-dir -r requirements.txt &&     python3 setup.py install &&     rm -rf .coveragerc            .git            .gitignore            .travis.yml            Tanner.egg-info            build            dist            docker            docs            requirements.txt            setup.py &&     cd / &&     addgroup -g 2000 tanner &&     adduser -S -s /bin/ash -u 2000 -D -g 2000 tanner &&     mkdir /var/log/tanner &&     chown -R tanner:tanner /opt/tanner /var/log/tanner &&     apk del --purge             build-base             git             libcap             libffi-dev             openssl-dev             linux-headers             python3-dev &&     rm -rf /root/*            /tmp/*            /var/tmp/*            /var/cache/apk/*            /opt/tanner/.git
+#11 CACHED
+
+#12 [tanner linux/arm64 2/4] COPY dist/ /root/dist/
+#12 CACHED
+
+#13 [tanner linux/arm64 4/4] WORKDIR /opt/tanner
+#13 CACHED
+
+#14 [tanner] exporting to image
+#14 exporting layers done
+#14 exporting manifest sha256:5d5b7f255ec9566509a9c9fb1348bf1672c5003db308078e9ae7d211e3f78bad 0.0s done
+#14 exporting config sha256:cc3671134f08a1842106fda8cb8f73e8ed422bce65bafa6ad54abcad3ac3f3f0 0.0s done
+#14 exporting attestation manifest sha256:e11a22a188cbb97c20076242d436510e5a7193d4feafd1b5cb37270d574db11e 0.0s done
+#14 exporting manifest sha256:edc7e9e8d1a2bdf41607b7d17cb4e8f76f6b3fe7190dad58e93d360dce0f4cc6 done
+#14 exporting config sha256:ca404a944325b3fd327783d7caf61a93014bca88909cce476beeb31e9c3d708b done
+#14 exporting attestation manifest sha256:eed390bb59c57bab1ba602637aacdabd723186b170c9581529fe02cd71178799 0.0s done
+#14 exporting manifest list sha256:d81de2eae19e09a10d7cc2b34fd33cad547037f0d7c7a90f82f8e6f87d48c228 done
+#14 pushing layers
+#14 ...
+
+#15 [tanner auth] f0rc3ps/tanner:pull,push token for registry-1.docker.io
+#15 DONE 0.0s
+
+#14 [tanner] exporting to image
+#14 pushing layers 2.3s done
+#14 pushing manifest for docker.io/f0rc3ps/tanner:25.0.1@sha256:d81de2eae19e09a10d7cc2b34fd33cad547037f0d7c7a90f82f8e6f87d48c228
+#14 pushing manifest for docker.io/f0rc3ps/tanner:25.0.1@sha256:d81de2eae19e09a10d7cc2b34fd33cad547037f0d7c7a90f82f8e6f87d48c228 2.9s done
+#14 ...
+
+#16 [tanner auth] asc3t1c/tanner:pull,push token for ghcr.io
+#16 DONE 0.0s
+
+#14 [tanner] exporting to image
+#14 pushing layers 2.0s done
+#14 pushing manifest for ghcr.io/asc3t1c/tanner:25.0.1@sha256:d81de2eae19e09a10d7cc2b34fd33cad547037f0d7c7a90f82f8e6f87d48c228
+#14 pushing manifest for ghcr.io/asc3t1c/tanner:25.0.1@sha256:d81de2eae19e09a10d7cc2b34fd33cad547037f0d7c7a90f82f8e6f87d48c228 2.5s done
+#14 DONE 9.8s
+
+#17 [tanner] resolving provenance for metadata file
+#17 DONE 0.0s

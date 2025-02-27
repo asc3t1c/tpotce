@@ -1,0 +1,31 @@
+# T-Pot Docker Compose Image Builder (use only for building docker images)
+# Settings in .env
+
+##################
+#### Anchors
+##################
+
+# Common build config
+x-common-build: &common-build
+  dockerfile: ./Dockerfile
+  platforms:
+    - ${TPOT_AMD64}
+    - ${TPOT_ARM64}
+
+services:
+
+##################
+#### Honeypots
+##################
+
+
+# Nginx
+  nginx:
+    image: ${TPOT_DOCKER_REPO}/nginx:${TPOT_VERSION}
+    build:
+      tags:
+        - ${TPOT_GHCR_REPO}/nginx:${TPOT_VERSION}
+      context: ../nginx/
+      <<: *common-build
+
+

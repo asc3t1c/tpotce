@@ -1,0 +1,101 @@
+Compose now can delegate build to bake for better performances
+Just set COMPOSE_BAKE=true
+#0 building with "mybuilder" instance using docker-container driver
+
+#1 [go-pot internal] load build definition from Dockerfile
+#1 transferring dockerfile: 540B 0.0s done
+#1 DONE 0.0s
+
+#2 [go-pot linux/amd64 internal] load metadata for docker.io/library/golang:1.23-alpine
+#2 ...
+
+#3 [go-pot linux/arm64 internal] load metadata for docker.io/library/golang:1.23-alpine
+#3 DONE 0.2s
+
+#4 [go-pot internal] load .dockerignore
+#4 transferring context: 2B done
+#4 DONE 0.0s
+
+#2 [go-pot linux/amd64 internal] load metadata for docker.io/library/golang:1.23-alpine
+#2 DONE 0.4s
+
+#5 [go-pot linux/amd64 builder 1/4] FROM docker.io/library/golang:1.23-alpine@sha256:f8113c4b13e2a8b3a168dceaee88ac27743cc84e959f43b9dbd2291e9c3f57a0
+#5 resolve docker.io/library/golang:1.23-alpine@sha256:f8113c4b13e2a8b3a168dceaee88ac27743cc84e959f43b9dbd2291e9c3f57a0 0.0s done
+#5 DONE 0.0s
+
+#6 [go-pot linux/arm64 builder 1/4] FROM docker.io/library/golang:1.23-alpine@sha256:f8113c4b13e2a8b3a168dceaee88ac27743cc84e959f43b9dbd2291e9c3f57a0
+#6 resolve docker.io/library/golang:1.23-alpine@sha256:f8113c4b13e2a8b3a168dceaee88ac27743cc84e959f43b9dbd2291e9c3f57a0 0.0s done
+#6 DONE 0.0s
+
+#7 [go-pot internal] load build context
+#7 transferring context: 61B done
+#7 DONE 0.0s
+
+#8 [go-pot linux/amd64 stage-1 1/3] COPY --from=builder /opt/go-pot/go-pot /opt/go-pot/go-pot
+#8 CACHED
+
+#9 [go-pot linux/amd64 builder 4/4] RUN CGO_ENABLED=0 GOOS=linux go build -o /opt/go-pot/go-pot
+#9 CACHED
+
+#10 [go-pot linux/amd64 stage-1 2/3] COPY dist/config.yml /opt/go-pot/config.yml
+#10 CACHED
+
+#11 [go-pot linux/amd64 builder 3/4] WORKDIR /opt/go-pot
+#11 CACHED
+
+#12 [go-pot linux/amd64 builder 2/4] RUN <<EOF (apk -U upgrade...)
+#12 CACHED
+
+#13 [go-pot linux/arm64 builder 4/4] RUN CGO_ENABLED=0 GOOS=linux go build -o /opt/go-pot/go-pot
+#13 CACHED
+
+#14 [go-pot linux/arm64 stage-1 1/3] COPY --from=builder /opt/go-pot/go-pot /opt/go-pot/go-pot
+#14 CACHED
+
+#15 [go-pot linux/arm64 builder 3/4] WORKDIR /opt/go-pot
+#15 CACHED
+
+#16 [go-pot linux/arm64 builder 2/4] RUN <<EOF (apk -U upgrade...)
+#16 CACHED
+
+#17 [go-pot linux/arm64 stage-1 2/3] COPY dist/config.yml /opt/go-pot/config.yml
+#17 CACHED
+
+#18 [go-pot linux/amd64 stage-1 3/3] WORKDIR /opt/go-pot
+#18 CACHED
+
+#19 [go-pot linux/arm64 stage-1 3/3] WORKDIR /opt/go-pot
+#19 CACHED
+
+#20 [go-pot] exporting to image
+#20 exporting layers done
+#20 exporting manifest sha256:c6c387c31b0c68a069fd07634fce501c310b9694161407bb3c3a34d835b2deee 0.0s done
+#20 exporting config sha256:2c41ea4b1eee4f27b599fa58a0bd9180dc0f5bc654f3344c9adf386635ae060c 0.0s done
+#20 exporting attestation manifest sha256:427af3a3417995160684bdc1d5081e09f68e9826aafda1c1764c482dcb93d767 0.0s done
+#20 exporting manifest sha256:449e4547bfe3f9f0be36721e1b907630904fa223be063b51aa8bfeca4b4c9694 done
+#20 exporting config sha256:166b4635af10dd959bd292db4813dade522ebba174bc7884a86fd7f19c54fe78 done
+#20 exporting attestation manifest sha256:93a000ed29080e7ac38857b6374789ac6c5f57060c5dc8ebb091108949fd6afd 0.0s done
+#20 exporting manifest list sha256:907a114b5055092ad8d0dca0119a83c4a8040dc4de85cd11900223f193905113 done
+#20 pushing layers
+#20 ...
+
+#21 [go-pot auth] f0rc3ps/go-pot:pull,push token for registry-1.docker.io
+#21 DONE 0.0s
+
+#20 [go-pot] exporting to image
+#20 pushing layers 2.4s done
+#20 pushing manifest for docker.io/f0rc3ps/go-pot:25.0.1@sha256:907a114b5055092ad8d0dca0119a83c4a8040dc4de85cd11900223f193905113
+#20 pushing manifest for docker.io/f0rc3ps/go-pot:25.0.1@sha256:907a114b5055092ad8d0dca0119a83c4a8040dc4de85cd11900223f193905113 3.7s done
+#20 ...
+
+#22 [go-pot auth] asc3t1c/go-pot:pull,push token for ghcr.io
+#22 DONE 0.0s
+
+#20 [go-pot] exporting to image
+#20 pushing layers 1.9s done
+#20 pushing manifest for ghcr.io/asc3t1c/go-pot:25.0.1@sha256:907a114b5055092ad8d0dca0119a83c4a8040dc4de85cd11900223f193905113
+#20 pushing manifest for ghcr.io/asc3t1c/go-pot:25.0.1@sha256:907a114b5055092ad8d0dca0119a83c4a8040dc4de85cd11900223f193905113 3.4s done
+#20 DONE 11.5s
+
+#23 [go-pot] resolving provenance for metadata file
+#23 DONE 0.0s

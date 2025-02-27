@@ -78,8 +78,8 @@ function fuSELFUPDATE () {
 }
 
 function fuCHECK_VERSION () {
-	local myMINVERSION="24.04.1"
-	local myMASTERVERSION="25.0.1"
+	local myMINVERSION="24.04.0"
+	local myMASTERVERSION="24.04.1"
 	echo
 	echo "### Checking for version tag ..."
 	if [ -f "version" ];
@@ -165,12 +165,11 @@ function fuUPDATER () {
 	echo "### Now pulling latest docker images ..."
 	echo "######$myBLUE This might take a while, please be patient!$myWHITE"
 	fuPULLIMAGES
-	fuREMOVEOLDIMAGES "f0rc3ps/*:dev"
-	fuREMOVEOLDIMAGES "ghcr.io/asc3t1c/*:dev"
-	fuREMOVEOLDIMAGES "f0rc3ps/*:24.04.1"
-	fuREMOVEOLDIMAGES "ghcr.io/asc3t1c/*:24.04.1"
-	
- 	echo
+	fuREMOVEOLDIMAGES "dtagdevsec/*:dev"
+	fuREMOVEOLDIMAGES "ghcr.io/telekom-security/*:dev"
+	fuREMOVEOLDIMAGES "dtagdevsec/*:24.04"
+	fuREMOVEOLDIMAGES "ghcr.io/telekom-security/*:24.04"
+	echo
 	echo "### If you made changes to docker-compose.yml please ensure to add them again."
 	echo "### We stored the previous version as backup in $myARCHIVE."
 	echo "### Some updates may need an import of the latest Kibana objects as well."
@@ -215,14 +214,6 @@ fuBACKUP
 fuSELFUPDATE "$0" "$@"
 fuUPDATER
 fuRESTORE
-
-### Update external software:
-# Update peppermint
-echo "### Updatatinfg of external integrated software ...."
-echo
-cd docker/peppermint/
-bash peppermint_update.sh
-echo "### ----------------------------------------------------"
 
 echo
 echo "### Done. You can now start T-Pot using 'systemctl start tpot' or 'docker compose up -d'."
