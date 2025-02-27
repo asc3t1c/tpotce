@@ -167,8 +167,8 @@ function fuUPDATER () {
 	fuPULLIMAGES
 	fuREMOVEOLDIMAGES "f0rc3ps/*:dev"
 	fuREMOVEOLDIMAGES "ghcr.io/asc3t1c/*:dev"
-	fuREMOVEOLDIMAGES "f0rc3ps/*:24.04"
-	fuREMOVEOLDIMAGES "ghcr.io/asc3t1c/*:24.04"
+	fuREMOVEOLDIMAGES "f0rc3ps/*:24.04.1"
+	fuREMOVEOLDIMAGES "ghcr.io/asc3t1c/*:24.04.1"
 	
  	echo
 	echo "### If you made changes to docker-compose.yml please ensure to add them again."
