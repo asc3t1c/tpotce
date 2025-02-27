@@ -310,6 +310,13 @@ echo "### Now pulling images ..."
 sudo docker compose -f /home/${myUSER}/tpotce/docker-compose.yml pull
 echo
 
+# INSTALLING OF EXTERNAL SOFTWARE
+echo "### Installing of external - integrating of software ..."
+echo 
+cd /home/${myUSER}/tpotce/docker/peppermint/
+bash peppermint.sh
+echo "### ----------------------------------------------------"
+
 # Show running services
 echo "### Please review for possible honeypot port conflicts."
 echo "### While SSH is taken care of, other services such as"
