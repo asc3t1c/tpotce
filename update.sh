@@ -215,6 +215,14 @@ fuSELFUPDATE "$0" "$@"
 fuUPDATER
 fuRESTORE
 
+### Update external software:
+# Update peppermint
+echo "### Updatatinfg of external integrated software ...."
+echo
+cd docker/peppermint/
+bash peppermint_update.sh
+echo "### ----------------------------------------------------"
+
 echo
 echo "### Done. You can now start T-Pot using 'systemctl start tpot' or 'docker compose up -d'."
 echo
