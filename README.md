@@ -23,8 +23,6 @@ ORDER YOUR LIVE DEMO on seccyboxopsec@gmail.com!
   - Talking about IT defense in all aspects
   - Questions.
 
-Kind Regards
-
 ------------------------------------------------------------------------------------------------------------------------
 
 ### SUPPORT and CONTRACTS for SUPPORT:
@@ -34,6 +32,7 @@ IMPORTANT! After signing a contract, a distribution copy will be locked only for
 For the security and reliability of your company!
 Thank you
 ```
+Kind Regards
 
 # NOTE:
 
